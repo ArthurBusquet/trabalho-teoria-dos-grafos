@@ -25,7 +25,7 @@ int GrafoMatriz::calcularIndiceLinear(int origem, int destino) {
     return (origem * (origem - 1)) / 2 + destino - 1;
 }
 
-void GrafoMatriz::carrega_grafo_matriz() {
+void GrafoMatriz::inicializa_grafo() {
     ifstream arquivo("Grafo.txt");
         if (!arquivo.is_open()) {
             cerr << "Erro ao abrir o arquivo Grafo.txt" << endl;
@@ -95,6 +95,18 @@ int GrafoMatriz::get_vizinhos(int vertice) {
         }
     }
     return qtdVizinhos;
+}
+
+GrafoMatriz::~GrafoMatriz() {
+    if (Matriz) {
+        for (int i = 0; i < get_ordem(); ++i) {
+            delete[] Matriz[i];
+        }
+        delete[] Matriz;
+    }
+
+    delete[] MatrizLinear;
+    delete[] VetorPesosVertices;
 }
 
 

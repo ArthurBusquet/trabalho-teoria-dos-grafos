@@ -14,13 +14,17 @@ private:
     int*  VetorPesosVertices;                //Aloca Vetor Pesos Vertices Dinamicamente
 
 public:
-
+    GrafoMatriz() {};
     void inicializa_matrizes(bool direcionado);
     int calcularIndiceLinear(int origem, int destino);
-    void carrega_grafo_matriz();
+    void inicializa_grafo() override;
     int get_aresta(int origem, int destino);
     int get_vertice(int vertice);
     int get_vizinhos(int vertice);
+    int n_conexo() override {
+        return 1;
+    };
+    ~GrafoMatriz();
 
 };
 
