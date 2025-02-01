@@ -73,14 +73,12 @@ int GrafoMatriz::get_vertice(int origem) {
     }
 }
 
-int* GrafoMatriz::get_vizinhos(int vertice) {
-    int* vizinhos = new int[get_ordem()];
-    int j = 0;
+int GrafoMatriz::get_vizinhos(int vertice) {
+    int qtdVizinhos = 0;
     if( eh_direcionado()) {
         for (int i = 0; i < get_ordem(); i++) {
             if (Matriz[vertice][i] != 0) {
-                vizinhos[j] = i;
-                j++;
+                qtdVizinhos++;
             }
         }
     }
@@ -91,12 +89,11 @@ int* GrafoMatriz::get_vizinhos(int vertice) {
             int index = calcularIndiceLinear(vertice, i);
         
             if (MatrizLinear[index] != 0) {
-                vizinhos[j] = i;
-                j++;
+                qtdVizinhos++;
             }
         }
     }
-    return vizinhos;
+    return qtdVizinhos;
 }
 
 

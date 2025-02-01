@@ -6,9 +6,10 @@
 
 class GrafoMatriz : public Grafo {
 private:
-    int** Matriz;                            //Aloca Matriz 
-    int*  MatrizLinear;                      //Aloca vetor Matriz Linear
-    int*  VetorPesosVertices;                //Aloca Vetor Pesos Vertices
+
+    int** Matriz;                            //Aloca Matriz Dinamicamente
+    int*  MatrizLinear;                      //Aloca vetor Matriz Linear Dinamicamente
+    int*  VetorPesosVertices;                //Aloca Vetor Pesos Vertices Dinamicamente
 
 public:
 
@@ -17,8 +18,8 @@ public:
     void carrega_grafo_matriz();
     int get_aresta(int origem, int destino);
     int get_vertice(int vertice);
-    int* get_vizinhos(int vertice);
-    
+    int get_vizinhos(int vertice);
+
 };
 
 #endif  // GRAFOLISTA_H_INCLUDED
