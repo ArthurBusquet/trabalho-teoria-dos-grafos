@@ -4,6 +4,8 @@
 #include "Grafo.h"
 #include <string>
 
+using namespace std;
+
 class GrafoMatriz : public Grafo {
 private:
 

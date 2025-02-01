@@ -6,52 +6,47 @@
 
 #include "Grafo.h"
 // #include "grafo_matriz.h"
-#include "GrafoLista.h"
+//#include "GrafoLista.h"
 
 void imprimirDescricaoGrafo(Grafo* graph) {
     std::cout << "Grau: " << graph->get_grau() << std::endl;
-    std::cout << "Ordem: " << graph->get_ordem() << std::endl;
-    std::cout << "Direcionado: " << (graph->eh_direcionado() ? "Sim" : "Não") << std::endl;
-    std::cout << "Componentes conexas: " << graph->n_conexo() << std::endl;
-    std::cout << "Vertices ponderados: " << (graph->vertice_ponderado() ? "Sim" : "Não") << std::endl;
-    std::cout << "Arestas ponderadas: " << (graph->aresta_ponderada() ? "Sim" : "Não") << std::endl;
-    std::cout << "Completo: " << (graph->eh_completo() ? "Sim" : "Não") << std::endl;
-    std::cout << "Bipartido: " << (graph->eh_bipartido() ? "Sim" : "Não") << std::endl;
-    std::cout << "Arvore: " << (graph->eh_arvore() ? "Sim" : "Não") << std::endl;
-    std::cout << "Aresta Ponte: " << (graph->possui_ponte() ? "Sim" : "Não") << std::endl;
-    std::cout << "Vertice de Articulacao: " << (graph->possui_articulacao() ? "Sim" : "Não") << std::endl;
+    // std::cout << "Ordem: " << graph->get_ordem() << std::endl;
+    // std::cout << "Direcionado: " << (graph->eh_direcionado() ? "Sim" : "Nï¿½o") << std::endl;
+    // std::cout << "Componentes conexas: " << graph->n_conexo() << std::endl;
+    // std::cout << "Vertices ponderados: " << (graph->vertice_ponderado() ? "Sim" : "Nï¿½o") << std::endl;
+    // std::cout << "Arestas ponderadas: " << (graph->aresta_ponderada() ? "Sim" : "Nï¿½o") << std::endl;
+    // std::cout << "Completo: " << (graph->eh_completo() ? "Sim" : "Nï¿½o") << std::endl;
+    // std::cout << "Bipartido: " << (graph->eh_bipartido() ? "Sim" : "Nï¿½o") << std::endl;
+    // std::cout << "Arvore: " << (graph->eh_arvore() ? "Sim" : "Nï¿½o") << std::endl;
+    // std::cout << "Aresta Ponte: " << (graph->possui_ponte() ? "Sim" : "Nï¿½o") << std::endl;
+    // std::cout << "Vertice de Articulacao: " << (graph->possui_articulacao() ? "Sim" : "Nï¿½o") << std::endl;
 }
 
 void carregarGrafo(const std::string &caminhoArquivo, bool usarMatriz) {
     Grafo* graph;
-    if (usarMatriz) {
-        // graph = new grafo_matriz();
-    } else {
-        graph = new GrafoLista();
-    }
-    graph->carrega_grafo();
+    graph->carrega_grafo(usarMatriz);
     imprimirDescricaoGrafo(graph);
     delete graph;
 }
 
-void criarGrafo(const std::string &caminhoDescricao, const std::string &caminhoSaida, bool usarMatriz) {
-    Grafo* graph;
-    if (usarMatriz) {
-        // graph = new grafo_matriz();
-    } else {
-        graph = new GrafoLista();
-    }
+// void criarGrafo(const std::string &caminhoDescricao, const std::string &caminhoSaida, bool usarMatriz) {
+//     Grafo* graph;
+//     if (usarMatriz) {
+//         // graph = new grafo_matriz();
+//     } else {
+//         graph = new GrafoLista();
+//     }
 
 
-    graph->novo_grafo();
+//     graph->novo_grafo();
 
 
-    delete graph;
-}
+//     delete graph;
+// }
 
 int main(int argc, char *argv[]) {
     if (argc < 4) {
-        std::cerr << "Uso incorreto. Veja as opções abaixo:\n";
+        std::cerr << "Uso incorreto. Veja as opï¿½ï¿½es abaixo:\n";
         std::cerr << "Caso 1: ./main.out -d -m grafo.txt\n";
         std::cerr << "Caso 2: ./main.out -d -l grafo.txt\n";
         std::cerr << "Caso 3: ./main.out -c -m descricao.txt grafo.txt\n";
@@ -64,7 +59,7 @@ int main(int argc, char *argv[]) {
 
     if (opcao == "-d") {
         if (argc != 4) {
-            std::cerr << "Uso incorreto para o modo de descrição." << std::endl;
+            std::cerr << "Uso incorreto para o modo de descriï¿½ï¿½o." << std::endl;
             return 1;
         }
         std::string caminhoArquivo = argv[3];
@@ -73,16 +68,16 @@ int main(int argc, char *argv[]) {
 
     } else if (opcao == "-c") {
         if (argc != 5) {
-            std::cerr << "Uso incorreto para o modo de criação." << std::endl;
+            std::cerr << "Uso incorreto para o modo de criaï¿½ï¿½o." << std::endl;
             return 1;
         }
         std::string caminhoDescricao = argv[3];
         std::string caminhoSaida = argv[4];
         bool usarMatriz = (estrutura == "-m");
-        criarGrafo(caminhoDescricao, caminhoSaida, usarMatriz);
+        //criarGrafo(caminhoDescricao, caminhoSaida, usarMatriz);
 
     } else {
-        std::cerr << "Opção inválida." << std::endl;
+        std::cerr << "Opï¿½ï¿½o invï¿½lida." << std::endl;
         return 1;
     }
 

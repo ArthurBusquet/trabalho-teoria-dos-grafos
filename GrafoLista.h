@@ -8,6 +8,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 class GrafoLista : public Grafo {
 private:
     ListaEncadeada<VerticeEncadeado>* vertices;
@@ -28,7 +30,6 @@ public:
 
     int n_conexo() override;
 
-    int get_grau() override;
 
     bool eh_completo() override;
 

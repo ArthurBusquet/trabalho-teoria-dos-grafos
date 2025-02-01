@@ -1,7 +1,9 @@
 #ifndef GRAFO_H_INCLUDED
 #define GRAFO_H_INCLUDED
-#include "GrafoMatriz.h"
 #include <iostream>
+#include <fstream>
+
+using namespace std;
 
 class Grafo {
 private:
@@ -110,12 +112,10 @@ public:
     // ------------------ Métodos virtuais puros ------------------
     virtual bool eh_bipartido() = 0;
     virtual int n_conexo() = 0;
-    virtual int get_grau() = 0;
     virtual bool eh_completo() = 0;
     virtual bool eh_arvore() = 0;
     virtual bool possui_articulacao() = 0;
     virtual bool possui_ponte() = 0;
-    virtual void carrega_grafo() = 0;
     virtual void novo_grafo() = 0;
 };
 

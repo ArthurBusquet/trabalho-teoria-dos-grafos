@@ -71,6 +71,7 @@ int GrafoMatriz::get_vertice(int origem) {
     if(vertice_ponderado()) {
         return VetorPesosVertices[origem - 1];
     }
+    return 1;
 }
 
 int GrafoMatriz::get_vizinhos(int vertice) {
