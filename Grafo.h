@@ -6,7 +6,6 @@ class Grafo {
 private:
 
     bool direcionado, vtp, atp;
-    bool atp;
     int ordem, origem, destino, peso;
 
 public:
@@ -14,9 +13,14 @@ public:
     virtual ~Grafo() = default;
 
     virtual void carrega_grafo_matriz() = 0;
+    virtual int get_aresta(int origem, int destino) = 0;
 
     int get_ordem() {
         return ordem;
+    };
+
+    void set_ordem(int ordem) {
+        this->ordem = ordem;
     };
 
     void aumenta_ordem() {
@@ -26,6 +30,7 @@ public:
     bool eh_direcionado() {
         return direcionado;
     }
+
     void set_eh_direcionado(bool direcionado) {
         this->direcionado = direcionado;
     };
@@ -54,6 +59,10 @@ public:
         }
 
         arquivo >> ordem >> direcionado >> vtp >> atp;
+        set_ordem(ordem);
+        set_eh_direcionado(direcionado);
+        set_vertice_ponderado(vtp);
+        set_aresta_ponderada(atp); 
 
         if(direcionado) {
             carrega_grafo_matriz();
