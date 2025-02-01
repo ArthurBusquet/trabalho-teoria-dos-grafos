@@ -36,11 +36,10 @@ void GrafoMatriz::carrega_grafo_matriz() {
 
     inicializa_matrizes(eh_direcionado());
 
-    int* pesosVertices = nullptr;
     if (vertice_ponderado()) {
-        pesosVertices = new int[get_ordem()];
+        VetorPesosVertices = new int[get_ordem()];
         for (int i = 0; i < get_ordem(); ++i) {
-            arquivo >> pesosVertices[i];
+            arquivo >> VetorPesosVertices[i];
         }
     }
 
@@ -67,3 +66,37 @@ int GrafoMatriz::get_aresta(int origem, int destino) {
         return MatrizLinear[indice];
     }
 }
+
+int GrafoMatriz::get_vertice(int origem) {
+    if(vertice_ponderado()) {
+        return VetorPesosVertices[origem - 1];
+    }
+}
+
+int* GrafoMatriz::get_vizinhos(int vertice) {
+    int* vizinhos = new int[get_ordem()];
+    int j = 0;
+    if( eh_direcionado()) {
+        for (int i = 0; i < get_ordem(); i++) {
+            if (Matriz[vertice][i] != 0) {
+                vizinhos[j] = i;
+                j++;
+            }
+        }
+    }
+    else {
+        for (int i = 0; i < get_ordem(); i++) {
+            if (i == vertice) continue;
+        
+            int index = calcularIndiceLinear(vertice, i);
+        
+            if (MatrizLinear[index] != 0) {
+                vizinhos[j] = i;
+                j++;
+            }
+        }
+    }
+    return vizinhos;
+}
+
+

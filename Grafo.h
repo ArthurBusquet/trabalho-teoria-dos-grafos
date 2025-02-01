@@ -14,6 +14,8 @@ public:
 
     virtual void carrega_grafo_matriz() = 0;
     virtual int get_aresta(int origem, int destino) = 0;
+    virtual int get_vertice(int vertice) = 0;
+    virtual int* get_vizinhos(int vertice) = 0;
 
     int get_ordem() {
         return ordem;
