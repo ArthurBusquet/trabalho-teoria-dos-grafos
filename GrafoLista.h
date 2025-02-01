@@ -13,32 +13,26 @@ private:
     ListaEncadeada<VerticeEncadeado>* vertices;
     ListaEncadeada<ArestaEncadeada>* arestas;
 
-    VerticeEncadeado* encontraVertice(int id);
-
 
 
 public:
     GrafoLista();
 
-    void adicionarVertice(int id, float peso);
-    void adicionarAresta(int origem, int destino, int peso);
-    void imprimir();
 
-    bool eh_bipartido() override;
+    VerticeEncadeado* get_vertice(int id);
+    void set_vertice(int id, float peso);
+
+    void set_aresta(int origem, int destino, int peso);
+
+    int get_vizinhos(int id);
+
+    void imprimir();
 
     int n_conexo() override;
 
     int get_grau() override;
 
-    bool eh_completo() override;
-
-    bool eh_arvore() override;
-    bool possui_articulacao() override;
-    bool possui_ponte() override;
-
     void carrega_grafo() override;
-    void novo_grafo() override;
-    // void novo_grafo(const std::string& descricaoArquivo) override;
 
     void buscaEmProfundidade(VerticeEncadeado* vertice, bool* visitados);
 

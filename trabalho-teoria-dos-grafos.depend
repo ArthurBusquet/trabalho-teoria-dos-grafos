@@ -1,0 +1,43 @@
+# depslib dependency file v1.0
+1737506408 source:c:\faculdade\grafos\trabalho-teoria-dos-grafos-\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<cstdlib>
+	<ctime>
+	"Grafo.h"
+	"GrafoLista.h"
+
+1737505830 source:c:\faculdade\grafos\trabalho-teoria-dos-grafos-\arestaencadeada.cpp
+	"ArestaEncadeada.h"
+	"VerticeEncadeado.h"
+	<iostream>
+
+1737505765 c:\faculdade\grafos\trabalho-teoria-dos-grafos-\arestaencadeada.h
+	<iostream>
+
+1737505809 c:\faculdade\grafos\trabalho-teoria-dos-grafos-\verticeencadeado.h
+	<iostream>
+	"ListaEncadeada.h"
+	"ArestaEncadeada.h"
+
+1738438070 c:\faculdade\grafos\trabalho-teoria-dos-grafos-\listaencadeada.h
+	<iostream>
+
+1737505824 source:c:\faculdade\grafos\trabalho-teoria-dos-grafos-\verticeencadeado.cpp
+	"VerticeEncadeado.h"
+
+1738438390 source:c:\faculdade\grafos\trabalho-teoria-dos-grafos-\grafolista.cpp
+	<iostream>
+	<fstream>
+	"GrafoLista.h"
+
+1738441263 c:\faculdade\grafos\trabalho-teoria-dos-grafos-\grafolista.h
+	"Grafo.h"
+	"ListaEncadeada.h"
+	"VerticeEncadeado.h"
+	"ArestaEncadeada.h"
+	<iostream>
+
+1738441271 c:\faculdade\grafos\trabalho-teoria-dos-grafos-\grafo.h
+

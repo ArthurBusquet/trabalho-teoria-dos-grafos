@@ -47,7 +47,7 @@ void GrafoLista::carrega_grafo() {
                 try {
                     float pesoVertice = std::stof(linha.substr(pos), &nextPos);
                     pos += nextPos;
-                    adicionarVertice(i, pesoVertice);
+                    set_vertice(i, pesoVertice);
                 } catch (...) {
                     cerr << "Erro ao converter peso dos vértices." << endl;
                     std::exit(EXIT_FAILURE);
@@ -59,7 +59,7 @@ void GrafoLista::carrega_grafo() {
         }
     } else {
         for (int i = 1; i <= ordem; i++) {
-            adicionarVertice(i, 0);
+            set_vertice(i, 0);
         }
     }
 
@@ -76,13 +76,13 @@ void GrafoLista::carrega_grafo() {
                 std::exit(EXIT_FAILURE);
             }
         }
-        adicionarAresta(origem, destino, peso);
+        set_aresta(origem, destino, peso);
     }
 
     arquivo.close();
 }
 
-VerticeEncadeado* GrafoLista::encontraVertice(int id) {
+VerticeEncadeado* GrafoLista::get_vertice(int id) {
     VerticeEncadeado* vertice = vertices->getInicio();
 
     while (vertice != nullptr) {
@@ -94,8 +94,8 @@ VerticeEncadeado* GrafoLista::encontraVertice(int id) {
     return nullptr;
 }
 
-void GrafoLista::adicionarVertice(int id, float peso) {
-    if (encontraVertice(id) != nullptr) {
+void GrafoLista::set_vertice(int id, float peso) {
+    if (get_vertice(id) != nullptr) {
         cout << "VerticeEncadeado com ID " << id << " já existe!" << endl;
         return;
     }
@@ -103,7 +103,7 @@ void GrafoLista::adicionarVertice(int id, float peso) {
     vertices->adicionar(novoVertice);
 }
 
-void GrafoLista::adicionarAresta(int origem, int destino, int peso) {
+void GrafoLista::set_aresta(int origem, int destino, int peso) {
     ArestaEncadeada* atual = arestas->getInicio();
     while (atual != nullptr) {
         if (atual->getOrigem()->getId() == origem &&
@@ -114,8 +114,8 @@ void GrafoLista::adicionarAresta(int origem, int destino, int peso) {
         atual = atual->getProximo();
     }
 
-    VerticeEncadeado* verticeOrigem = encontraVertice(origem);
-    VerticeEncadeado* verticeDestino = encontraVertice(destino);
+    VerticeEncadeado* verticeOrigem = get_vertice(origem);
+    VerticeEncadeado* verticeDestino = get_vertice(destino);
     if (verticeOrigem == nullptr || verticeDestino == nullptr) {
         cout << "Erro: Um ou ambos os vértices não existem!" << endl;
         return;
@@ -124,6 +124,7 @@ void GrafoLista::adicionarAresta(int origem, int destino, int peso) {
     ArestaEncadeada* novaAresta = new ArestaEncadeada(verticeOrigem, verticeDestino, peso);
 
     verticeOrigem->setConexao(verticeDestino, peso, false);
+
     if (!eh_direcionado())
         verticeDestino->setConexao(verticeOrigem, peso, true);
     arestas->adicionar(novaAresta);
@@ -143,22 +144,16 @@ int GrafoLista::get_grau() {
     return maiorGrau;
 }
 
-bool GrafoLista::eh_completo() {
-    if (ordem < 2) {
-        return true;
-    }
+int GrafoLista::get_vizinhos(int id) {
+    VerticeEncadeado* vertice = get_vertice(id);
 
-    VerticeEncadeado* v1 = vertices->getInicio();
+    if(vertice == nullptr)
+        return 0;
 
-    while (v1 != nullptr) {
-        if (v1->getGrau() < get_ordem() - 1) {
-            return false;
-        }
-        v1 = v1->getProximo();
-    }
-
-    return true;
+    return vertice->getConexoes()->get_tamanho();
 }
+
+
 
 void GrafoLista::buscaEmProfundidade(VerticeEncadeado* vertice, bool* visitados) {
     visitados[vertice->getId()] = true;
@@ -206,133 +201,6 @@ void GrafoLista::imprimir() {
     cout << "Eh completo? " << eh_completo() << "\n";
     cout << "Quantidade de componente conexas: " << n_conexo();
 }
-
-bool GrafoLista::eh_bipartido() {
-    int* cores = new int[ordem + 1];
-    for (int i = 1; i <= ordem; i++) {
-        cores[i] = -1;
-    }
-
-    int* pilha = new int[ordem];
-    int topo = -1;
-
-    for (int i = 1; i <= ordem; i++) {
-        if (cores[i] == -1) {
-            pilha[++topo] = i;
-            cores[i] = 0;
-
-            while (topo >= 0) {
-                int idAtual = pilha[topo--];
-                VerticeEncadeado* verticeAtual = encontraVertice(idAtual);
-
-                if (!verticeAtual) continue;
-
-                ArestaEncadeada* conexao = verticeAtual->getPrimeiraConexao();
-                while (conexao != nullptr) {
-                    VerticeEncadeado* vizinho = conexao->getDestino();
-                    int idVizinho = vizinho->getId();
-
-                    if (cores[idVizinho] == -1) {
-                        cores[idVizinho] = 1 - cores[idAtual];
-                        pilha[++topo] = idVizinho;
-                    } else if (cores[idVizinho] == cores[idAtual]) {
-                        delete[] cores;
-                        delete[] pilha;
-                        return false;
-                    }
-
-                    conexao = conexao->getProximo();
-                }
-            }
-        }
-    }
-
-    delete[] cores;
-    delete[] pilha;
-    return true;
-}
-
-bool GrafoLista::eh_arvore() {
-    if (n_conexo() != 1) {
-        return false;
-    }
-
-    int quantidadeArestas = 0;
-    ArestaEncadeada* arestaAtual = arestas->getInicio();
-    while (arestaAtual != nullptr) {
-        quantidadeArestas++;
-        arestaAtual = arestaAtual->getProximo();
-    }
-
-    if (quantidadeArestas != (ordem - 1)) {
-        return false;
-    }
-    return true;
-}
-
-
-bool GrafoLista::possui_articulacao() {
-    VerticeEncadeado* verticeAtual = vertices->getInicio();
-
-    while (verticeAtual != nullptr) {
-        int idAtual = verticeAtual->getId();
-
-        bool* visitados = new bool[ordem + 1];
-        for (int i = 1; i <= ordem; i++) {
-            visitados[i] = false;
-        }
-
-        int componentesConexos = 0;
-        visitados[idAtual] = true;
-
-        VerticeEncadeado* vertice = vertices->getInicio();
-        while (vertice != nullptr) {
-            if (!visitados[vertice->getId()]) {
-                buscaEmProfundidade(vertice, visitados);
-                componentesConexos++;
-            }
-            vertice = vertice->getProximo();
-        }
-
-        delete[] visitados;
-
-        if (componentesConexos > 1)
-            return true;
-
-        verticeAtual = verticeAtual->getProximo();
-    }
-    return false;
-}
-
-bool GrafoLista::possui_ponte(){
-
-    ArestaEncadeada* atual = arestas->getInicio();
-    while (atual != nullptr) {
-        VerticeEncadeado* origem = atual->getOrigem();
-        VerticeEncadeado* destino = atual->getDestino();
-
-        int componentesAntes = n_conexo();
-
-        int pesoAresta = origem->removeConexao(destino);
-        if (!eh_direcionado()){
-            destino->removeConexao(origem);
-        }
-        int componentesDepois = n_conexo();
-
-        origem->setConexao(destino, pesoAresta, false);
-        if (!eh_direcionado()){
-            destino->setConexao(origem, pesoAresta, true);
-        }
-        if (componentesDepois > componentesAntes) {
-            return true;
-        }
-
-        atual = atual->getProximo();
-    }
-    return false;
-}
-
-void GrafoLista::novo_grafo() {}
 
 GrafoLista::~GrafoLista() {
     delete vertices;

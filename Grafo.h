@@ -42,15 +42,18 @@ public:
         this->arestaPonderada = arestaPonderada;
     };
 
-    virtual bool eh_bipartido() = 0;
+    bool eh_completo() {
+        for(int i=1;i<=ordem;i++) {
+            if(get_vizinhos(i) < ordem - 1)
+                return false;
+        }
+        return true;
+    }
+
+    virtual int get_vizinhos(int id) = 0;
     virtual int n_conexo() = 0;
     virtual int get_grau() = 0;
-    virtual bool eh_completo() = 0;
-    virtual bool eh_arvore() = 0;
-    virtual bool possui_articulacao() = 0;
-    virtual bool possui_ponte() = 0;
     virtual void carrega_grafo() = 0;
-    virtual void novo_grafo() = 0;
 };
 
 
