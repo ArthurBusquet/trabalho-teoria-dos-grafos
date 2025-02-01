@@ -1,15 +1,19 @@
 #ifndef GRAFO_H_INCLUDED
 #define GRAFO_H_INCLUDED
+#include "GrafoMatriz.h"
 
 class Grafo {
+private:
+
+    bool direcionado, vtp, atp;
+    bool atp;
+    int ordem, origem, destino, peso;
+
 public:
     Grafo() = default;
     virtual ~Grafo() = default;
 
-    int ordem;
-    bool direcionado;
-    bool verticePonderado;
-    bool arestaPonderada;
+    virtual void carrega_grafo_matriz() = 0;
 
     int get_ordem() {
         return ordem;
@@ -27,20 +31,38 @@ public:
     };
 
     bool vertice_ponderado() {
-        return verticePonderado;
+        return vtp;
     }
 
     void set_vertice_ponderado(bool verticePonderado) {
-        this->verticePonderado = verticePonderado;
+        this->vtp = verticePonderado;
     };
 
     bool aresta_ponderada() {
-        return arestaPonderada;
+        return atp;
     }
 
     void set_aresta_ponderada(bool arestaPonderada) {
-        this->arestaPonderada = arestaPonderada;
+        this->atp = arestaPonderada;
     };
+
+    void carrega_grafo(bool usa_matriz) {
+        ifstream arquivo("Grafo.txt");
+        if (!arquivo.is_open()) {
+            cerr << "Erro ao abrir o arquivo Grafo.txt" << endl;
+            return;
+        }
+
+        arquivo >> ordem >> direcionado >> vtp >> atp;
+
+        if(direcionado) {
+            carrega_grafo_matriz();
+        }
+        
+    }    
+
+
+
 
     virtual bool eh_bipartido() = 0;
     virtual int n_conexo() = 0;

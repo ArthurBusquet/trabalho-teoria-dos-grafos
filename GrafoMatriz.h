@@ -10,26 +10,15 @@ private:
     static int*  MatrizLinear;                      //Aloca vetor Matriz Linear Dinamicamente
     static int*  VetorPesosVertices;                //Aloca Vetor Pesos Vertices Dinamicamente
 
-    static int ordem;              
-    static bool direcionado;
-    static bool vtp;
-    static bool atp;
-
+    int ordem;              
+    bool direcionado;
+    bool vtp;
+    bool atp;
 public:
-    GrafoMatriz();                           //Construtor
-    ~GrafoMatriz();                          //Destrutor
 
+    void inicializa_matrizes(bool direcionado);
     int calcularIndiceLinear(int origem, int destino);
-    void inicializarMatrizes(bool direcionado); 
-
-    void carrega_grafo() override;
-    int get_grau() override;
-    bool eh_completo() override;
-    bool eh_bipartido() override;
-    int n_conexo() override;
-    bool eh_arvore() override;
-    bool possui_articulacao() override;
-    bool possui_ponte() override;
+    void carrega_grafo_matriz();
     
 };
 
