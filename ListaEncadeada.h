@@ -11,6 +11,7 @@ class ListaEncadeada {
 private:
     T* primeiro;
     T* ultimo;
+    int tamanho;
 
 
 public:
@@ -28,6 +29,7 @@ public:
             ultimo->setProximo(novoNo);
             ultimo = novoNo;
         }
+        tamanho++;
     }
 
     void imprimir() const {
@@ -38,41 +40,47 @@ public:
         }
     }
 
+    void remover(T* noParaRemover) {
+        if(!primeiro || !noParaRemover) {
+            return;
+        }
+        if(primeiro == noParaRemover) {
+            primeiro = primeiro->getProximo();
+            if (!primeiro) {
+                ultimo = nullptr;
+            }
+            tamanho--;
+            delete noParaRemover;
+            return;
+        }
+
+        T* atual = primeiro;
+        while(atual->getProximo() && atual->getProximo() != noParaRemover) {
+            atual = atual->getProximo();
+        }
+
+        if(atual->getProximo() == noParaRemover) {
+            atual->setProximo(noParaRemover->getProximo());
+
+            if (noParaRemover == ultimo) {
+                ultimo = atual;
+            }
+            tamanho--;
+            delete noParaRemover;
+        }
+    }
+
+    int get_tamanho() {
+        return tamanho;
+    }
+
+
     ~ListaEncadeada() {
         T* atual = primeiro;
         while (atual != nullptr) {
             T* proximo = atual->getProximo();
             delete atual;
             atual = proximo;
-        }
-    }
-
-    void remover(T* noParaRemover) {
-        if (primeiro == nullptr || noParaRemover == nullptr) {
-            return;
-        }
-
-        if (primeiro == noParaRemover) {
-            primeiro = primeiro->getProximo();
-            if (primeiro == nullptr) {
-                ultimo = nullptr;
-            }
-            delete noParaRemover;
-            return;
-        }
-
-        T* atual = primeiro;
-        while (atual->getProximo() != nullptr && atual->getProximo() != noParaRemover) {
-            atual = atual->getProximo();
-        }
-
-        if (atual->getProximo() == noParaRemover) {
-            T* proximo = noParaRemover->getProximo();
-            atual->setProximo(proximo);
-
-            if (noParaRemover == ultimo) {
-                ultimo = atual;
-            }
         }
     }
 };
