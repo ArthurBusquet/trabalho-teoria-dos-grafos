@@ -24,31 +24,38 @@ void GrafoMatriz::inicializa_grafo()
         return;
     }
 
-    if (eh_direcionado()) {
-        for (int i = 0; i < get_ordem(); ++i) {
-            for (int j = 0; j < get_ordem(); ++j) {
-                Matriz[i][j] = 0;
-            }
-        }
-    } else {
-        for (int i = 0; i < (get_ordem() * (get_ordem() + 1)) / 2; ++i) {
-            MatrizLinear[i] = 0;
-        }
-    }
+    int num_vertices, direcionado, ponderado_vertices, ponderado_arestas;
+    arquivo >> num_vertices >> direcionado >> ponderado_vertices >> ponderado_arestas;
 
-    if (vertice_ponderado()) {
-        for (int i = 0; i < get_ordem(); ++i) {
+
+    // Lendo os pesos dos vértices, caso o grafo seja ponderado nos vértices.
+    if (ponderado_vertices) {
+        for (int i = 0; i < num_vertices; ++i) {
             arquivo >> VetorPesosVertices[i];
         }
     }
 
+    // Inicializando a matriz de adjacência.
+    if (direcionado) {
+        for (int i = 0; i < num_vertices; ++i) {
+            for (int j = 0; j < num_vertices; ++j) {
+                Matriz[i][j] = 0;
+            }
+        }
+    } else {
+        for (int i = 0; i < (num_vertices * (num_vertices + 1)) / 2; ++i) {
+            MatrizLinear[i] = 0;
+        }
+    }
+
+    // Lendo as arestas do arquivo.
     int origem, destino, peso = 1;
     while (arquivo >> origem >> destino) {
-        if (aresta_ponderada()) {
+        if (ponderado_arestas) {
             arquivo >> peso;
-        }
+        } 
 
-        if (eh_direcionado()) {
+        if (direcionado) {
             Matriz[origem - 1][destino - 1] = peso;
         } else {
             int indice = calcularIndiceLinear(origem, destino);
@@ -85,7 +92,7 @@ int GrafoMatriz::get_vizinhos(int vertice) {
     int qtdVizinhos = 0;
     if (eh_direcionado()) {
         for (int i = 0; i < get_ordem(); i++) {
-            if (Matriz[vertice][i] != 0) {
+            if (Matriz[vertice - 1][i] != 0) {
                 qtdVizinhos++;
             }
         }
@@ -101,4 +108,23 @@ int GrafoMatriz::get_vizinhos(int vertice) {
         }
     }
     return qtdVizinhos;
+}
+
+void GrafoMatriz::imprime_matriz() {
+    if (eh_direcionado()) {
+        for (int i = 0; i < get_ordem(); ++i) {
+            for (int j = 0; j < get_ordem(); ++j) {
+                cout << Matriz[i][j] << " ";
+            }
+            cout << endl;
+        }
+    } else {
+        int index = 0;
+        for (int i = 0; i < get_ordem(); ++i) {
+            for (int j = 0; j <= i; ++j) {
+                cout << MatrizLinear[index++] << " ";
+            }
+            cout << endl;
+        }
+    }
 }

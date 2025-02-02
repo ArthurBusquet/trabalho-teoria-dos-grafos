@@ -18,6 +18,7 @@ public:
     virtual int get_aresta(int origem, int destino) = 0;
     virtual int get_vertice(int vertice) = 0;
     virtual int get_vizinhos(int vertice) = 0;
+    virtual void imprime_matriz() = 0;
 
     int get_ordem()
     {
@@ -73,12 +74,6 @@ public:
             return;
         }
 
-        if (!arquivo.is_open())
-        {
-            cerr << "Erro ao abrir o arquivo Grafo.txt" << endl;
-            return;
-        }
-
         arquivo >> ordem >> direcionado >> vtp >> atp;
         set_ordem(ordem);
         set_eh_direcionado(direcionado);
@@ -92,10 +87,11 @@ public:
 
     int get_grau()
     {
+        cout << endl;
+        imprime_matriz();
         if (!eh_direcionado())
         {
             int grauMaximo = 0;
-
             for (int i = 0; i < ordem; i++)
             {
                 int numVizinhos = get_vizinhos(i);
