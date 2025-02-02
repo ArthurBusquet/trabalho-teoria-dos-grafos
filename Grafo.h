@@ -5,7 +5,8 @@
 
 using namespace std;
 
-class Grafo {
+class Grafo
+{
 private:
     bool direcionado, vtp, atp;
     int ordem, origem, destino, peso;
@@ -18,43 +19,53 @@ public:
     virtual int get_vertice(int vertice) = 0;
     virtual int get_vizinhos(int vertice) = 0;
 
-    int get_ordem() {
+    int get_ordem()
+    {
         return ordem;
     };
 
-    void set_ordem(int ordem) {
+    void set_ordem(int ordem)
+    {
         this->ordem = ordem;
     };
 
-    void aumenta_ordem() {
+    void aumenta_ordem()
+    {
         this->ordem++;
     };
 
-    bool eh_direcionado() {
+    bool eh_direcionado()
+    {
         return direcionado;
     }
 
-    void set_eh_direcionado(bool direcionado) {
+    void set_eh_direcionado(bool direcionado)
+    {
         this->direcionado = direcionado;
     };
 
-    bool vertice_ponderado() {
+    bool vertice_ponderado()
+    {
         return vtp;
     }
 
-    void set_vertice_ponderado(bool verticePonderado) {
+    void set_vertice_ponderado(bool verticePonderado)
+    {
         this->vtp = verticePonderado;
     };
 
-    bool aresta_ponderada() {
+    bool aresta_ponderada()
+    {
         return atp;
     }
 
-    void set_aresta_ponderada(bool arestaPonderada) {
+    void set_aresta_ponderada(bool arestaPonderada)
+    {
         this->atp = arestaPonderada;
     };
 
-    void carrega_grafo(bool usa_matriz) {
+    void carrega_grafo(bool usa_matriz)
+    {
         ifstream arquivo("Grafo.txt");
         if (!arquivo.is_open())
         {
@@ -62,7 +73,8 @@ public:
             return;
         }
 
-        if (!arquivo.is_open()) {
+        if (!arquivo.is_open())
+        {
             cerr << "Erro ao abrir o arquivo Grafo.txt" << endl;
             return;
         }
@@ -73,41 +85,57 @@ public:
         set_vertice_ponderado(vtp);
         set_aresta_ponderada(atp);
 
-       inicializa_grafo();
+        inicializa_grafo();
     }
 
-  // ------------------ Função para calcular o grau do grafo ------------------
+    // ------------------ Função para calcular o grau do grafo ------------------
 
-    int get_grau() {
-        if(!eh_direcionado()) {
+    int get_grau()
+    {
+        if (!eh_direcionado())
+        {
             int grauMaximo = 0;
 
-            for (int i = 0; i < ordem; i++) {
+            for (int i = 0; i < ordem; i++)
+            {
                 int numVizinhos = get_vizinhos(i);
-            
-                if (numVizinhos > grauMaximo) {
+
+                if (numVizinhos > grauMaximo)
+                {
                     grauMaximo = numVizinhos;
                 }
             }
             return grauMaximo;
         }
-        else {
+        else
+        {
             int maxGrauSaida = 0;
 
-            for (int i = 0; i < ordem; i++) {
+            for (int i = 0; i < ordem; i++)
+            {
                 int grauSaida = 0;
-                
+
                 // Calcula grau de saída
                 int numVizinhos = get_vizinhos(i);
                 grauSaida = numVizinhos;
 
-                if (grauSaida > maxGrauSaida) {
+                if (grauSaida > maxGrauSaida)
+                {
                     maxGrauSaida = grauSaida;
                 }
             }
-            return  maxGrauSaida;
+            return maxGrauSaida;
         }
+    }
 
+    bool eh_completo()
+    {
+        for (int i = 1; i <= get_ordem(); i++)
+        {
+            if(get_vizinhos(i) < get_ordem() - 1)
+                return false;
+        }
+        return true;
     }
 
     // ------------------ Métodos virtuais puros ------------------

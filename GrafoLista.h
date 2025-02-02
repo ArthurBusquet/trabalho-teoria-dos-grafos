@@ -16,6 +16,7 @@ private:
     ListaEncadeada<VerticeEncadeado> *vertices;
     ListaEncadeada<ArestaEncadeada> *arestas;
     VerticeEncadeado *get_vertice_encadeado(int id);
+    void buscaEmProfundidade(VerticeEncadeado *vertice, bool *visitados);
 
 public:
     GrafoLista();
@@ -27,13 +28,11 @@ public:
     void set_aresta(int origem, int destino, int peso);
     
 
-    int get_vizinhos(int id);
+    int get_vizinhos(int vertice);
 
     void imprimir();
 
-    void inicializa_grafo() override {};
-
-    void buscaEmProfundidade(VerticeEncadeado *vertice, bool *visitados);
+    void inicializa_grafo() override;
 
     int n_conexo() override
     {

@@ -11,16 +11,12 @@
 void imprimirDescricaoGrafo(Grafo *graph)
 {
     std::cout << "Grau: " << graph->get_grau() << std::endl;
-    // std::cout << "Ordem: " << graph->get_ordem() << std::endl;
-    // std::cout << "Direcionado: " << (graph->eh_direcionado() ? "Sim" : "N�o") << std::endl;
-    // std::cout << "Componentes conexas: " << graph->n_conexo() << std::endl;
-    // std::cout << "Vertices ponderados: " << (graph->vertice_ponderado() ? "Sim" : "N�o") << std::endl;
-    // std::cout << "Arestas ponderadas: " << (graph->aresta_ponderada() ? "Sim" : "N�o") << std::endl;
-    // std::cout << "Completo: " << (graph->eh_completo() ? "Sim" : "N�o") << std::endl;
-    // std::cout << "Bipartido: " << (graph->eh_bipartido() ? "Sim" : "N�o") << std::endl;
-    // std::cout << "Arvore: " << (graph->eh_arvore() ? "Sim" : "N�o") << std::endl;
-    // std::cout << "Aresta Ponte: " << (graph->possui_ponte() ? "Sim" : "N�o") << std::endl;
-    // std::cout << "Vertice de Articulacao: " << (graph->possui_articulacao() ? "Sim" : "N�o") << std::endl;
+    std::cout << "Ordem: " << graph->get_ordem() << std::endl;
+    std::cout << "Direcionado: " << (graph->eh_direcionado() ? "Sim" : "Nao") << std::endl;
+    std::cout << "Componentes conexas: " << graph->n_conexo() << std::endl;
+    std::cout << "Completo: " << graph->eh_completo() << std::endl;
+    std::cout << "Vertices ponderados: " << (graph->vertice_ponderado() ? "Sim" : "Nao") << std::endl;
+    std::cout << "Arestas ponderadas: " << (graph->aresta_ponderada() ? "Sim" : "Nao") << std::endl;
 }
 
 void carregarGrafo(const std::string &caminhoArquivo, bool usarMatriz)
@@ -55,19 +51,22 @@ int main(int argc, char *argv[])
         }
         std::string caminhoArquivo = argv[3];
 
+        Grafo *graph;
 
         if (estrutura == "-m")
         {
 
-            GrafoMatriz *graph = new GrafoMatriz();
+            graph = new GrafoMatriz();
 
             graph->carrega_grafo(true);
         }
         else
         {
-            GrafoLista *graph = new GrafoLista();
+            graph = new GrafoLista();
             graph->carrega_grafo(false);
         }
+        imprimirDescricaoGrafo(graph);
+        delete graph;
         // carregarGrafo(caminhoArquivo, usarMatriz);
     }
     else if (opcao == "-c")

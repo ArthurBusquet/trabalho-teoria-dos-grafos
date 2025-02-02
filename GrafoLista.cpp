@@ -105,6 +105,78 @@ GrafoLista::GrafoLista()
 //     arquivo.close();
 // }
 
+void GrafoLista::inicializa_grafo()
+{
+    ifstream arquivo("Grafo.txt");
+    if (!arquivo.is_open())
+    {
+        cerr << "Erro ao abrir o arquivo Grafo.txt" << endl;
+        return;
+    }
+    // arquivo >>  >> direcionado >> vtp >> atp;
+
+    std::string linha;
+
+    if (vertice_ponderado())
+    {
+        if (std::getline(arquivo, linha))
+        {
+            size_t pos = 0;
+            for (int i = 1; i <= get_ordem(); i++)
+            {
+                size_t nextPos;
+                try
+                {
+                    float pesoVertice = std::stof(linha.substr(pos), &nextPos);
+                    pos += nextPos;
+                    set_vertice(i, pesoVertice);
+                }
+                catch (...)
+                {
+                    cerr << "Erro ao converter peso dos vértices." << endl;
+                    std::exit(EXIT_FAILURE);
+                }
+            }
+        }
+        else
+        {
+            cerr << "Pesos dos vértices não encontrados em arquivo ponderado." << endl;
+            std::exit(EXIT_FAILURE);
+        }
+    }
+    else
+    {
+        for (int i = 1; i <= get_ordem(); i++)
+        {
+            set_vertice(i, 0);
+        }
+    }
+
+    while (std::getline(arquivo, linha))
+    {
+        int origem, destino, peso = 0;
+        if (aresta_ponderada())
+        {
+            if (std::sscanf(linha.c_str(), "%d %d %d", &origem, &destino, &peso) < 3)
+            {
+                cerr << "Erro ao ler peso da aresta em grafo ponderado." << endl;
+                std::exit(EXIT_FAILURE);
+            }
+        }
+        else
+        {
+            if (std::sscanf(linha.c_str(), "%d %d", &origem, &destino) < 2)
+            {
+                cerr << "Erro ao ler aresta (origem e destino)." << endl;
+                std::exit(EXIT_FAILURE);
+            }
+        }
+        set_aresta(origem, destino, peso);
+    }
+
+    arquivo.close();
+}
+
 VerticeEncadeado *GrafoLista::get_vertice_encadeado(int id)
 {
     VerticeEncadeado *vertice = vertices->getInicio();
@@ -195,6 +267,8 @@ void GrafoLista::set_aresta(int origem, int destino, int peso)
 int GrafoLista::get_vizinhos(int id)
 {
     VerticeEncadeado *vertice = get_vertice_encadeado(id);
+    int vizinhos[get_ordem() - 1];
+
 
     if (vertice == nullptr)
         return 0;
