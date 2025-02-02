@@ -8,36 +8,35 @@
 
 using namespace std;
 
-void GrafoMatriz::inicializa_matrizes(bool direcionado) {
-    if(direcionado) {
-        Matriz = new int*[get_ordem()];
-        for (int i = 0; i < get_ordem(); ++i) {
-            Matriz[i] = new int[get_ordem()]();
-        }
-    }
-    else MatrizLinear = new int[(get_ordem() * (get_ordem() + 1)) / 2]();
+GrafoMatriz::GrafoMatriz()
+{
 }
 
-int GrafoMatriz::calcularIndiceLinear(int origem, int destino) {
-    if (origem <= destino) {
-        return (destino * (destino - 1)) / 2 + origem - 1;
-    }
-    return (origem * (origem - 1)) / 2 + destino - 1;
+GrafoMatriz::~GrafoMatriz()
+{
 }
 
-void GrafoMatriz::inicializa_grafo() {
+void GrafoMatriz::inicializa_grafo()
+{
     ifstream arquivo("Grafo.txt");
-        if (!arquivo.is_open()) {
-            cerr << "Erro ao abrir o arquivo Grafo.txt" << endl;
-            return;
+    if (!arquivo.is_open()) {
+        cerr << "Erro ao abrir o arquivo Grafo.txt" << endl;
+        return;
+    }
+
+    if (eh_direcionado()) {
+        for (int i = 0; i < get_ordem(); ++i) {
+            for (int j = 0; j < get_ordem(); ++j) {
+                Matriz[i][j] = 0;
+            }
         }
-    // arquivo >>  >> direcionado >> vtp >> atp;
-
-
-    inicializa_matrizes(eh_direcionado());
+    } else {
+        for (int i = 0; i < (get_ordem() * (get_ordem() + 1)) / 2; ++i) {
+            MatrizLinear[i] = 0;
+        }
+    }
 
     if (vertice_ponderado()) {
-        VetorPesosVertices = new int[get_ordem()];
         for (int i = 0; i < get_ordem(); ++i) {
             arquivo >> VetorPesosVertices[i];
         }
@@ -45,7 +44,9 @@ void GrafoMatriz::inicializa_grafo() {
 
     int origem, destino, peso = 1;
     while (arquivo >> origem >> destino) {
-        if (aresta_ponderada()) {  arquivo >> peso; }
+        if (aresta_ponderada()) {
+            arquivo >> peso;
+        }
 
         if (eh_direcionado()) {
             Matriz[origem - 1][destino - 1] = peso;
@@ -57,18 +58,24 @@ void GrafoMatriz::inicializa_grafo() {
     arquivo.close();
 }
 
-int GrafoMatriz::get_aresta(int origem, int destino) {
-    if(eh_direcionado()) {
-        return Matriz[origem - 1][destino - 1];
+int GrafoMatriz::calcularIndiceLinear(int origem, int destino) {
+    if (origem <= destino) {
+        return (destino * (destino - 1)) / 2 + origem - 1;
     }
-    else {
+    return (origem * (origem - 1)) / 2 + destino - 1;
+}
+
+int GrafoMatriz::get_aresta(int origem, int destino) {
+    if (eh_direcionado()) {
+        return Matriz[origem - 1][destino - 1];
+    } else {
         int indice = calcularIndiceLinear(origem, destino);
         return MatrizLinear[indice];
     }
 }
 
 int GrafoMatriz::get_vertice(int origem) {
-    if(vertice_ponderado()) {
+    if (vertice_ponderado()) {
         return VetorPesosVertices[origem - 1];
     }
     return 1;
@@ -76,19 +83,18 @@ int GrafoMatriz::get_vertice(int origem) {
 
 int GrafoMatriz::get_vizinhos(int vertice) {
     int qtdVizinhos = 0;
-    if( eh_direcionado()) {
+    if (eh_direcionado()) {
         for (int i = 0; i < get_ordem(); i++) {
             if (Matriz[vertice][i] != 0) {
                 qtdVizinhos++;
             }
         }
-    }
-    else {
+    } else {
         for (int i = 0; i < get_ordem(); i++) {
             if (i == vertice) continue;
-        
+
             int index = calcularIndiceLinear(vertice, i);
-        
+
             if (MatrizLinear[index] != 0) {
                 qtdVizinhos++;
             }
@@ -96,17 +102,3 @@ int GrafoMatriz::get_vizinhos(int vertice) {
     }
     return qtdVizinhos;
 }
-
-GrafoMatriz::~GrafoMatriz() {
-    if (Matriz) {
-        for (int i = 0; i < get_ordem(); ++i) {
-            delete[] Matriz[i];
-        }
-        delete[] Matriz;
-    }
-
-    delete[] MatrizLinear;
-    delete[] VetorPesosVertices;
-}
-
-

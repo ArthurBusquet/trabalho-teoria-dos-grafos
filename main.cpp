@@ -62,8 +62,8 @@ int main(int argc, char *argv[])
         }
         else
         {
-            graph = new GrafoLista();
-            graph->carrega_grafo(false);
+            //graph = new GrafoLista();
+            //graph->carrega_grafo(false);
         }
         imprimirDescricaoGrafo(graph);
         delete graph;
