@@ -49,17 +49,20 @@ void GrafoMatriz::inicializa_grafo()
     }
 
     // Lendo as arestas do arquivo.
-    int origem, destino, peso = 1;
+    int origem, destino, peso;
     while (arquivo >> origem >> destino) {
-        if (ponderado_arestas) {
-            arquivo >> peso;
-        } 
+    if (ponderado_arestas) {
+        arquivo >> peso;
+    } else {
+        arquivo >> peso;
+        peso = 1; // Arestas não ponderadas têm peso padrão 1
+    }
 
-        if (direcionado) {
-            Matriz[origem - 1][destino - 1] = peso;
-        } else {
-            int indice = calcularIndiceLinear(origem, destino);
-            MatrizLinear[indice] = peso;
+    if (direcionado) {
+        Matriz[origem - 1][destino - 1] = peso;
+    } else {
+        int indice = calcularIndiceLinear(origem, destino);
+        MatrizLinear[indice] = peso;
         }
     }
     arquivo.close();
