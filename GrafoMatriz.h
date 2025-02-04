@@ -6,26 +6,30 @@
 
 using namespace std;
 
+const int MAX_VERTICES = 100; // Defina um tamanho máximo para o grafo
+
 class GrafoMatriz : public Grafo {
 private:
-
-    int** Matriz;                            //Aloca Matriz Dinamicamente
-    int*  MatrizLinear;                      //Aloca vetor Matriz Linear Dinamicamente
-    int*  VetorPesosVertices;                //Aloca Vetor Pesos Vertices Dinamicamente
+    int Matriz[MAX_VERTICES][MAX_VERTICES];  // Matriz estática para grafos direcionados
+    int MatrizLinear[(MAX_VERTICES * (MAX_VERTICES + 1)) / 2]; // Matriz linear estática para grafos não direcionados
+    int VetorPesosVertices[MAX_VERTICES];   // Vetor estático para armazenar pesos dos vértices
 
 public:
-    GrafoMatriz() {};
-    void inicializa_matrizes(bool direcionado);
-    int calcularIndiceLinear(int origem, int destino);
+    GrafoMatriz();
+    ~GrafoMatriz();
+
     void inicializa_grafo() override;
+    int calcularIndiceLinear(int origem, int destino);
+    void carrega_grafo_matriz();
     int get_aresta(int origem, int destino);
     int get_vertice(int vertice);
     int get_vizinhos(int vertice);
-    int n_conexo() override {
+    void imprime_matriz();
+
+    int n_conexo() override
+    {
         return 1;
     };
-    ~GrafoMatriz();
-
 };
 
-#endif  // GRAFOLISTA_H_INCLUDED
+#endif  // GRAFO_MATRIZ_H_INCLUDED
