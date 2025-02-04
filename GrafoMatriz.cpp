@@ -16,8 +16,7 @@ GrafoMatriz::~GrafoMatriz()
 {
 }
 
-void GrafoMatriz::inicializa_grafo()
-{
+void GrafoMatriz::inicializa_grafo() {
     ifstream arquivo("Grafo.txt");
     if (!arquivo.is_open()) {
         cerr << "Erro ao abrir o arquivo Grafo.txt" << endl;
@@ -27,46 +26,54 @@ void GrafoMatriz::inicializa_grafo()
     int num_vertices, direcionado, ponderado_vertices, ponderado_arestas;
     arquivo >> num_vertices >> direcionado >> ponderado_vertices >> ponderado_arestas;
 
-
     // Lendo os pesos dos vértices, caso o grafo seja ponderado nos vértices.
     if (ponderado_vertices) {
-        for (int i = 0; i < num_vertices; ++i) {
-            arquivo >> VetorPesosVertices[i];
+        int index = 0;
+        while (index < num_vertices) {
+            arquivo >> VetorPesosVertices[index];
+            index = index + 1;
         }
     }
 
     // Inicializando a matriz de adjacência.
     if (direcionado) {
-        for (int i = 0; i < num_vertices; ++i) {
-            for (int j = 0; j < num_vertices; ++j) {
-                Matriz[i][j] = 0;
+        int linha = 0;
+        while (linha < num_vertices) {
+            int coluna = 0;
+            while (coluna < num_vertices) {
+                Matriz[linha][coluna] = 0;
+                coluna = coluna + 1;
             }
+            linha = linha + 1;
         }
     } else {
-        for (int i = 0; i < (num_vertices * (num_vertices + 1)) / 2; ++i) {
-            MatrizLinear[i] = 0;
+        int index = 0;
+        while (index < (num_vertices * (num_vertices + 1)) / 2) {
+            MatrizLinear[index] = 0;
+            index = index + 1;
         }
     }
 
     // Lendo as arestas do arquivo.
     int origem, destino, peso;
     while (arquivo >> origem >> destino) {
-    if (ponderado_arestas) {
-        arquivo >> peso;
-    } else {
-        arquivo >> peso;
-        peso = 1; // Arestas não ponderadas têm peso padrão 1
-    }
+        if (ponderado_arestas) {
+            arquivo >> peso;
+        } else {
+            arquivo >> peso;
+            peso = 1; // Arestas não ponderadas têm peso padrão 1
+        }
 
-    if (direcionado) {
-        Matriz[origem - 1][destino - 1] = peso;
-    } else {
-        int indice = calcularIndiceLinear(origem, destino);
-        MatrizLinear[indice] = peso;
+        if (direcionado) {
+            Matriz[origem - 1][destino - 1] = peso;
+        } else {
+            int indice = calcularIndiceLinear(origem, destino);
+            MatrizLinear[indice] = peso;
         }
     }
     arquivo.close();
 }
+
 
 int GrafoMatriz::calcularIndiceLinear(int origem, int destino) {
     if (origem <= destino) {
@@ -92,26 +99,35 @@ int GrafoMatriz::get_vertice(int origem) {
 }
 
 int GrafoMatriz::get_vizinhos(int vertice) {
-    int qtdVizinhos = 0;
+    if (vertice < 1 || vertice > get_ordem()) {
+        cerr << "Vértice inválido!" << endl;
+        return -1;
+    }
+
+    int vizinhos = 0;
+    int v = vertice - 1; // Ajustando para índice 0
+
     if (eh_direcionado()) {
+        // Contar arestas de entrada e saída
         for (int i = 0; i < get_ordem(); i++) {
-            if (Matriz[vertice - 1][i] != 0) {
-                qtdVizinhos++;
-            }
+            if (Matriz[v][i] != 0) vizinhos++; // Contando saídas
+            if (Matriz[i][v] != 0 && i != v) vizinhos++; // Contando entradas
         }
     } else {
+        // Grafo não direcionado: verificar matriz comprimida
         for (int i = 0; i < get_ordem(); i++) {
-            if (i == vertice) continue;
+            if (i == v) continue; // Evita contar o próprio vértice
 
-            int index = calcularIndiceLinear(vertice, i);
-
-            if (MatrizLinear[index] != 0) {
-                qtdVizinhos++;
+            int indice = calcularIndiceLinear(i + 1, vertice);
+            if (MatrizLinear[indice] != 0) {
+                vizinhos++;
             }
         }
     }
-    return qtdVizinhos;
+
+    return vizinhos;
 }
+
 
 void GrafoMatriz::imprime_matriz() {
     if (eh_direcionado()) {
@@ -127,7 +143,7 @@ void GrafoMatriz::imprime_matriz() {
             for (int j = 0; j <= i; ++j) {
                 cout << MatrizLinear[index++] << " ";
             }
-            cout << endl;
         }
+        cout << endl; // Adiciona uma nova linha ao final da impressão
     }
 }

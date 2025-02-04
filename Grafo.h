@@ -92,7 +92,7 @@ public:
         if (!eh_direcionado())
         {
             int grauMaximo = 0;
-            for (int i = 0; i < ordem; i++)
+            for (int i = 1; i <= ordem; i++)
             {
                 int numVizinhos = get_vizinhos(i);
 
@@ -107,7 +107,7 @@ public:
         {
             int maxGrauSaida = 0;
 
-            for (int i = 0; i < ordem; i++)
+            for (int i = 1; i <= ordem; i++)
             {
                 int grauSaida = 0;
 
