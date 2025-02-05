@@ -8,12 +8,29 @@
 
 using namespace std;
 
-GrafoMatriz::GrafoMatriz()
-{
+GrafoMatriz::GrafoMatriz() {
+    // Inicializa a matriz de adjacência com 0
+    for (int i = 0; i < MAX_VERTICES; i++) {
+        for (int j = 0; j < MAX_VERTICES; j++) {
+            Matriz[i][j] = 0;
+        }
+    }
+
+    // Inicializa a matriz linear com 0
+    for (int i = 0; i < (MAX_VERTICES * (MAX_VERTICES + 1)) / 2; i++) {
+        MatrizLinear[i] = 0;
+    }
+
+    // Inicializa o vetor de pesos dos vértices com 0
+    for (int i = 0; i < MAX_VERTICES; i++) {
+        VetorPesosVertices[i] = 0;
+    }
 }
 
-GrafoMatriz::~GrafoMatriz()
-{
+GrafoMatriz::~GrafoMatriz() {
+    // Como estamos usando arrays estáticos, não há necessidade de deletar manualmente.
+    // Se usássemos alocação dinâmica (new/malloc), liberaríamos a memória aqui com delete/free.
+    cout << "Destruindo GrafoMatriz..." << endl;
 }
 
 void GrafoMatriz::inicializa_grafo() {
@@ -111,7 +128,7 @@ int GrafoMatriz::get_vizinhos(int vertice) {
         // Contar arestas de entrada e saída
         for (int i = 0; i < get_ordem(); i++) {
             if (Matriz[v][i] != 0) vizinhos++; // Contando saídas
-            if (Matriz[i][v] != 0 && i != v) vizinhos++; // Contando entradas
+            // if (Matriz[i][v] != 0 && i != v) vizinhos++; // Contando entradas
         }
     } else {
         // Grafo não direcionado: verificar matriz comprimida
@@ -144,6 +161,6 @@ void GrafoMatriz::imprime_matriz() {
                 cout << MatrizLinear[index++] << " ";
             }
         }
-        cout << endl; // Adiciona uma nova linha ao final da impressão
+        cout << endl; 
     }
 }

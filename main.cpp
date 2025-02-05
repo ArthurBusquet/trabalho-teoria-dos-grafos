@@ -11,12 +11,12 @@
 void imprimirDescricaoGrafo(Grafo *graph)
 {
     std::cout << "Grau: " << graph->get_grau() << std::endl;
-    // std::cout << "Ordem: " << graph->get_ordem() << std::endl;
-    // std::cout << "Direcionado: " << (graph->eh_direcionado() ? "Sim" : "Nao") << std::endl;
-    // std::cout << "Componentes conexas: " << graph->n_conexo() << std::endl;
-    // std::cout << "Completo: " << graph->eh_completo() << std::endl;
-    // std::cout << "Vertices ponderados: " << (graph->vertice_ponderado() ? "Sim" : "Nao") << std::endl;
-    // std::cout << "Arestas ponderadas: " << (graph->aresta_ponderada() ? "Sim" : "Nao") << std::endl;
+    std::cout << "Ordem: " << graph->get_ordem() << std::endl;
+    std::cout << "Direcionado: " << (graph->eh_direcionado() ? "Sim" : "Nao") << std::endl;
+    std::cout << "Componentes conexas: " << graph->n_conexo() << std::endl;
+    std::cout << "Completo: " << graph->eh_completo() << std::endl;
+    std::cout << "Vertices ponderados: " << (graph->vertice_ponderado() ? "Sim" : "Nao") << std::endl;
+    std::cout << "Arestas ponderadas: " << (graph->aresta_ponderada() ? "Sim" : "Nao") << std::endl;
 }
 
 void carregarGrafo(const std::string &caminhoArquivo, bool usarMatriz)
