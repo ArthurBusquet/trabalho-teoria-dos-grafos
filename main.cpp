@@ -4,9 +4,9 @@
 #include <cstdlib>
 #include <ctime>
 
-#include "Grafo.h"
-#include "GrafoMatriz.h"
-#include "GrafoLista.h"
+#include "include/Grafo.h"
+#include "include/GrafoMatriz.h"
+#include "include/GrafoLista.h"
 
 void imprimirDescricaoGrafo(Grafo *graph)
 {
