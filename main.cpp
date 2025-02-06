@@ -19,14 +19,6 @@ void imprimirDescricaoGrafo(Grafo *graph)
     std::cout << "Arestas ponderadas: " << (graph->aresta_ponderada() ? "Sim" : "Nao") << std::endl;
 }
 
-void carregarGrafo(const std::string &caminhoArquivo, bool usarMatriz)
-{
-    Grafo *graph;
-    graph->carrega_grafo(usarMatriz);
-    imprimirDescricaoGrafo(graph);
-    delete graph;
-}
-
 int main(int argc, char *argv[])
 {
     if (argc < 4)
@@ -46,7 +38,7 @@ int main(int argc, char *argv[])
     {
         if (argc != 4)
         {
-            std::cerr << "Uso incorreto para o modo de descri��o." << std::endl;
+            std::cerr << "Uso incorreto para o modo de descricao." << std::endl;
             return 1;
         }
         std::string caminhoArquivo = argv[3];
@@ -58,16 +50,15 @@ int main(int argc, char *argv[])
 
             graph = new GrafoMatriz();
 
-            graph->carrega_grafo(true);
+            graph->carrega_grafo();
         }
         else
         {
-            //graph = new GrafoLista();
-            //graph->carrega_grafo(false);
+            graph = new GrafoLista();
+            graph->carrega_grafo();
         }
         imprimirDescricaoGrafo(graph);
         delete graph;
-        // carregarGrafo(caminhoArquivo, usarMatriz);
     }
     else if (opcao == "-c")
     {

@@ -145,22 +145,21 @@ int GrafoMatriz::get_vizinhos(int vertice) {
     return vizinhos;
 }
 
-
-void GrafoMatriz::imprime_matriz() {
-    if (eh_direcionado()) {
-        for (int i = 0; i < get_ordem(); ++i) {
-            for (int j = 0; j < get_ordem(); ++j) {
-                cout << Matriz[i][j] << " ";
-            }
-            cout << endl;
-        }
-    } else {
-        int index = 0;
-        for (int i = 0; i < get_ordem(); ++i) {
-            for (int j = 0; j <= i; ++j) {
-                cout << MatrizLinear[index++] << " ";
-            }
-        }
-        cout << endl; 
-    }
-}
+// void GrafoMatriz::imprime_matriz() {
+//     if (eh_direcionado()) {
+//         for (int i = 0; i < get_ordem(); ++i) {
+//             for (int j = 0; j < get_ordem(); ++j) {
+//                 cout << Matriz[i][j] << " ";
+//             }
+//             cout << endl;
+//         }
+//     } else {
+//         int index = 0;
+//         for (int i = 0; i < get_ordem(); ++i) {
+//             for (int j = 0; j <= i; ++j) {
+//                 cout << MatrizLinear[index++] << " ";
+//             }
+//             cout << endl;
+//         }
+//     }
+// }
