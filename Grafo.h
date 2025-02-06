@@ -18,7 +18,7 @@ public:
     virtual int get_aresta(int origem, int destino) = 0;
     virtual int get_vertice(int vertice) = 0;
     virtual int get_vizinhos(int vertice) = 0;
-    virtual void imprime_matriz() = 0;
+    // virtual void imprime_matriz() = 0;
 
     int get_ordem()
     {
@@ -65,7 +65,7 @@ public:
         this->atp = arestaPonderada;
     };
 
-    void carrega_grafo(bool usa_matriz)
+    void carrega_grafo()
     {
         ifstream arquivo("Grafo.txt");
         if (!arquivo.is_open())
@@ -87,8 +87,7 @@ public:
 
     int get_grau()
     {
-        cout << endl;
-        imprime_matriz();
+        // imprime_matriz();
         if (!eh_direcionado())
         {
             int grauMaximo = 0;

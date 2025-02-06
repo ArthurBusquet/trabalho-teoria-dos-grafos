@@ -10,101 +10,6 @@ GrafoLista::GrafoLista()
     arestas = new ListaEncadeada<ArestaEncadeada>();
 }
 
-// void GrafoLista::carrega_grafo_lista()
-// {
-//     std::ifstream arquivo("Grafo.txt");
-
-//     if (!arquivo.is_open())
-//     {
-//         cerr << "Erro ao abrir o arquivo: Grafo.txt" << endl;
-//         std::exit(EXIT_FAILURE);
-//     }
-
-//     std::string linha;
-
-//     if (std::getline(arquivo, linha))
-//     {
-//         int direcionado;
-//         int ordem;
-//         int atp;
-//         int vtp;
-//         if (std::sscanf(linha.c_str(), "%d %d %d %d", &ordem, &direcionado, &vtp, &atp) != 4)
-//         {
-//             cerr << "Formato inválido na primeira linha." << endl;
-//             std::exit(EXIT_FAILURE);
-//         }
-
-//         set_ordem(ordem);
-//         set_eh_direcionado(direcionado);
-//         set_vertice_ponderado(vtp);
-//         set_aresta_ponderada(atp);
-//     }
-//     else
-//     {
-//         cerr << "Arquivo vazio ou formato inválido na primeira linha." << endl;
-//         std::exit(EXIT_FAILURE);
-//     }
-
-//     if (vertice_ponderado())
-//     {
-//         if (std::getline(arquivo, linha))
-//         {
-//             size_t pos = 0;
-//             for (int i = 1; i <= get_ordem(); i++)
-//             {
-//                 size_t nextPos;
-//                 try
-//                 {
-//                     float pesoVertice = std::stof(linha.substr(pos), &nextPos);
-//                     pos += nextPos;
-//                     set_vertice(i, pesoVertice);
-//                 }
-//                 catch (...)
-//                 {
-//                     cerr << "Erro ao converter peso dos vértices." << endl;
-//                     std::exit(EXIT_FAILURE);
-//                 }
-//             }
-//         }
-//         else
-//         {
-//             cerr << "Pesos dos vértices não encontrados em arquivo ponderado." << endl;
-//             std::exit(EXIT_FAILURE);
-//         }
-//     }
-//     else
-//     {
-//         for (int i = 1; i <= get_ordem(); i++)
-//         {
-//             set_vertice(i, 0);
-//         }
-//     }
-
-//     while (std::getline(arquivo, linha))
-//     {
-//         int origem, destino, peso = 0;
-//         if (aresta_ponderada())
-//         {
-//             if (std::sscanf(linha.c_str(), "%d %d %d", &origem, &destino, &peso) < 3)
-//             {
-//                 cerr << "Erro ao ler peso da aresta em grafo ponderado." << endl;
-//                 std::exit(EXIT_FAILURE);
-//             }
-//         }
-//         else
-//         {
-//             if (std::sscanf(linha.c_str(), "%d %d", &origem, &destino) < 2)
-//             {
-//                 cerr << "Erro ao ler aresta (origem e destino)." << endl;
-//                 std::exit(EXIT_FAILURE);
-//             }
-//         }
-//         set_aresta(origem, destino, peso);
-//     }
-
-//     arquivo.close();
-// }
-
 void GrafoLista::inicializa_grafo()
 {
     ifstream arquivo("Grafo.txt");
@@ -113,7 +18,6 @@ void GrafoLista::inicializa_grafo()
         cerr << "Erro ao abrir o arquivo Grafo.txt" << endl;
         return;
     }
-    // arquivo >>  >> direcionado >> vtp >> atp;
 
     std::string linha;
 
@@ -269,10 +173,10 @@ int GrafoLista::get_vizinhos(int id)
     VerticeEncadeado *vertice = get_vertice_encadeado(id);
     int vizinhos[get_ordem() - 1];
 
-
     if (vertice == nullptr)
         return 0;
 
+    cout << " Vizinhos do " << vertice->getId() << ": "<< vertice->getConexoes()->get_tamanho();
     return vertice->getConexoes()->get_tamanho();
 }
 

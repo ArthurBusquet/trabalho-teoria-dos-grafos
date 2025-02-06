@@ -24,7 +24,7 @@ public:
     int get_aresta(int origem, int destino);
     int get_vertice(int vertice);
     int get_vizinhos(int vertice);
-    void imprime_matriz();
+    // void imprime_matriz();
 
     int n_conexo() override
     {
