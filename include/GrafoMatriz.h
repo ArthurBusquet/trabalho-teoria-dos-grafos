@@ -24,6 +24,7 @@ public:
     int get_vertice(int vertice);
     int get_vizinhos(int vertice);
     
+    
 };
 
 #endif  // GRAFO_MATRIZ_H_INCLUDED
