@@ -50,6 +50,7 @@ void GrafoLista::inicializa_grafo()
     }
     else
     {
+        std::getline(arquivo, linha); 
         for (int i = 1; i <= get_ordem(); i++)
         {
             set_vertice(i, 0);
@@ -80,6 +81,7 @@ void GrafoLista::inicializa_grafo()
 
     arquivo.close();
 }
+
 
 VerticeEncadeado *GrafoLista::get_vertice_encadeado(int id)
 {
@@ -176,7 +178,7 @@ int GrafoLista::get_vizinhos(int id)
     if (vertice == nullptr)
         return 0;
 
-    cout << " Vizinhos do " << vertice->getId() << ": "<< vertice->getConexoes()->get_tamanho();
+    //cout << " Vizinhos do " << vertice->getId() << ": "<< vertice->getConexoes()->get_tamanho();
     return vertice->getConexoes()->get_tamanho();
 }
 
