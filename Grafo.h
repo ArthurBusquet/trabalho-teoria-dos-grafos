@@ -87,11 +87,11 @@ public:
 
     int get_grau()
     {
-        // imprime_matriz();
+        //imprime_matriz();
         if (!eh_direcionado())
         {
             int grauMaximo = 0;
-            for (int i = 0; i < ordem; i++)
+            for (int i = 1; i <= ordem; i++)
             {
                 int numVizinhos = get_vizinhos(i);
 
@@ -106,7 +106,7 @@ public:
         {
             int maxGrauSaida = 0;
 
-            for (int i = 0; i < ordem; i++)
+            for (int i = 1; i <= ordem; i++)
             {
                 int grauSaida = 0;
 
@@ -133,8 +133,33 @@ public:
         return true;
     }
 
+    void dfs(int vertice, bool visitado[]) {
+    visitado[vertice] = true;
+    for (int i = 0; i < ordem; i++) {
+        if (get_aresta(vertice, i) && !visitado[i]) {
+            dfs(i, visitado);
+        }
+    }
+}
+
+int n_conexo() {
+    bool visitado[ordem];
+    for (int i = 0; i < ordem; i++) {
+        visitado[i] = false;
+    }
+    int componentes = 0;
+    
+    for (int i = 0; i < ordem; i++) {
+        if (!visitado[i]) {
+            dfs(i, visitado);
+            componentes++;
+        }
+    }
+    return componentes;
+}
+
     // ------------------ Métodos virtuais puros ------------------
-    virtual int n_conexo() = 0;
+    //virtual int n_conexo() = 0;
     virtual void inicializa_grafo() = 0;
 };
 

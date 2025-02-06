@@ -34,10 +34,10 @@ public:
 
     void inicializa_grafo() override;
 
-    int n_conexo() override
-    {
-        return 1;
-    };
+    // int n_conexo() override
+    // {
+    //     return 1;
+    // };
 
     ~GrafoLista();
 };
