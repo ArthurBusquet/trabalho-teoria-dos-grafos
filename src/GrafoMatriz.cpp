@@ -94,9 +94,9 @@ void GrafoMatriz::inicializa_grafo() {
 
 int GrafoMatriz::calcularIndiceLinear(int origem, int destino) {
     if (origem <= destino) {
-        return (destino * (destino - 1)) / 2 + origem - 1;
+        return (destino * (destino - 1)) / 2 + origem;
     }
-    return (origem * (origem - 1)) / 2 + destino - 1;
+    return (origem * (origem - 1)) / 2 + destino;
 }
 
 int GrafoMatriz::get_aresta(int origem, int destino) {
