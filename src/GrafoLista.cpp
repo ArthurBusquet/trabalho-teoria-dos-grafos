@@ -38,10 +38,10 @@ void GrafoLista::inicializa_grafo()
             set_vertice(i, 1);
     }
 
-    int origem, destino, peso = 1;
+    int origem, destino = 1;
+    float peso = 0;
     while (arquivo >> origem >> destino >> peso)
     {
-        cout << "teste: " << origem << " " << destino << endl;
         set_aresta(origem, destino, peso);
     }
 
@@ -104,7 +104,7 @@ void GrafoLista::set_vertice(int id, float peso)
     vertices->adicionar(novoVertice);
 }
 
-void GrafoLista::set_aresta(int origem, int destino, int peso)
+void GrafoLista::set_aresta(int origem, int destino, float peso)
 {
     ArestaEncadeada *atual = arestas->getInicio();
     while (atual != nullptr)

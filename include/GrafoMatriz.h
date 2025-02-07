@@ -20,11 +20,12 @@ public:
 
     void inicializa_grafo() override;
     int calcularIndiceLinear(int origem, int destino);
-    int get_aresta(int origem, int destino);
-    int get_vertice(int vertice);
-    int get_vizinhos(int vertice);
-    
-    
+    int get_aresta(int origem, int destino) override;
+    int get_vertice(int vertice) override;
+    int get_vizinhos(int vertice) override;
+    void set_vertice(int id, float peso) override;
+    void set_aresta(int origem, int destino, float peso) override; 
+
 };
 
 #endif  // GRAFO_MATRIZ_H_INCLUDED

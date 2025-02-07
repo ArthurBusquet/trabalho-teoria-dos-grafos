@@ -2,7 +2,7 @@
 #include "../include/VerticeEncadeado.h"
 #include <iostream>
 
-ArestaEncadeada::ArestaEncadeada(VerticeEncadeado* origem, VerticeEncadeado* destino, int peso)
+ArestaEncadeada::ArestaEncadeada(VerticeEncadeado* origem, VerticeEncadeado* destino, float peso)
     : origem(origem), destino(destino), peso(peso), proximo(nullptr) {}
 
 VerticeEncadeado* ArestaEncadeada::getOrigem() const {
@@ -13,7 +13,7 @@ VerticeEncadeado* ArestaEncadeada::getDestino() const {
     return destino;
 }
 
-int ArestaEncadeada::getPeso() const {
+float ArestaEncadeada::getPeso() const {
     return peso;
 }
 

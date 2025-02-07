@@ -24,11 +24,11 @@ public:
     int get_vertice(int id) override;
     int get_aresta(int idOrigem, int idDestino) override;
 
-    void set_vertice(int id, float peso);
-    void set_aresta(int origem, int destino, int peso);
+    void set_vertice(int id, float peso) override;
+    void set_aresta(int origem, int destino, float peso) override;
     
 
-    int get_vizinhos(int vertice);
+    int get_vizinhos(int vertice) override;
 
     void imprimir();
 

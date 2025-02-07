@@ -9,15 +9,15 @@ class ArestaEncadeada {
 private:
     VerticeEncadeado* origem;
     VerticeEncadeado* destino;
-    int peso;
+    float peso;
     ArestaEncadeada* proximo;
 
 public:
-    ArestaEncadeada(VerticeEncadeado* origem, VerticeEncadeado* destino, int peso);
+    ArestaEncadeada(VerticeEncadeado* origem, VerticeEncadeado* destino, float peso);
 
     VerticeEncadeado* getOrigem() const;
     VerticeEncadeado* getDestino() const;
-    int getPeso() const;
+    float getPeso() const;
     ArestaEncadeada* getProximo() const;
     void setProximo(ArestaEncadeada* novoProximo);
 
