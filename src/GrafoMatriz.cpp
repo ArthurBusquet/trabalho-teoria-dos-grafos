@@ -155,7 +155,7 @@ int GrafoMatriz::get_vizinhos(int vertice) {
 void GrafoMatriz::nova_aresta(int origem, int destino, int peso) {
     std::cout << "Tentando adicionar aresta entre " << origem << " e " << destino << " com peso " << peso << std::endl;
     
-    // Verificando se a aresta já existe
+    // Verificando se a aresta já existea
     if (get_aresta(origem, destino) != 0) {
         std::cout << "Aresta entre " << origem << " e " << destino << " já existe!" << std::endl;
         return;
