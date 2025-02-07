@@ -23,6 +23,8 @@ public:
     int get_aresta(int origem, int destino);
     int get_vertice(int vertice);
     int get_vizinhos(int vertice);
+    void nova_aresta(int origem, int destino, int peso) override;
+
     
     
 };

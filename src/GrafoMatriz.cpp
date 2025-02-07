@@ -101,18 +101,18 @@ int GrafoMatriz::calcularIndiceLinear(int origem, int destino) {
 
 int GrafoMatriz::get_aresta(int origem, int destino) {
     if (eh_direcionado()) {
-        return Matriz[origem][destino];
+        // Para grafos direcionados, basta acessar diretamente
+        return Matriz[origem - 1][destino - 1];
     } else {
-        // Certifique-se de que origem é sempre menor ou igual a destino
+        // Para grafos não direcionados, garantir que acessamos a mesma posição para origem e destino
         if (origem > destino) {
-            std::swap(origem, destino);
+            std::swap(origem, destino);  // Garante que origem é sempre menor ou igual a destino
         }
         int indice = calcularIndiceLinear(origem, destino);
-        //cout << MatrizLinear[indice];
         return MatrizLinear[indice];
-        
     }
 }
+
 
 int GrafoMatriz::get_vertice(int origem) {
     if (vertice_ponderado()) {
@@ -149,4 +149,33 @@ int GrafoMatriz::get_vizinhos(int vertice) {
     }
 
     return vizinhos;
+}
+
+
+void GrafoMatriz::nova_aresta(int origem, int destino, int peso) {
+    std::cout << "Tentando adicionar aresta entre " << origem << " e " << destino << " com peso " << peso << std::endl;
+    
+    // Verificando se a aresta já existe
+    if (get_aresta(origem, destino) != 0) {
+        std::cout << "Aresta entre " << origem << " e " << destino << " já existe!" << std::endl;
+        return;
+    }
+
+    // Verifica se os índices estão dentro do limite
+    if (origem > MAX_VERTICES || destino > MAX_VERTICES) {
+        std::cerr << "Erro: Índices de vértice estão fora dos limites da matriz!" << std::endl;
+        return;
+    }
+
+    // Para grafos direcionados
+    if (eh_direcionado()) {
+        // Adicionando a aresta na posição correta para grafo direcionado
+        Matriz[origem - 1][destino - 1] = peso;
+        std::cout << "Aresta adicionada na matriz de adjacência!" << std::endl;
+    } 
+    // Para grafos não direcionados
+    else {
+        int indice = calcularIndiceLinear(origem, destino);
+        MatrizLinear[indice] = peso;
+    }
 }
