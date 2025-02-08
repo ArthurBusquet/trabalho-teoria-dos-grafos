@@ -17,13 +17,14 @@ void imprimirDescricaoGrafo(Grafo *graph)
     std::cout << "Completo: " << graph->eh_completo() << std::endl;
     std::cout << "Vertices ponderados: " << (graph->vertice_ponderado() ? "Sim" : "Nao") << std::endl;
     std::cout << "Arestas ponderadas: " << (graph->aresta_ponderada() ? "Sim" : "Nao") << std::endl;
+    std::cout << "----------------------------------------" << std::endl;
 }
 
 int main(int argc, char *argv[])
 {
     if (argc < 4)
     {
-        std::cerr << "Uso incorreto. Veja as op��es abaixo:\n";
+        std::cerr << "Uso incorreto. Veja as opções abaixo:\n";
         std::cerr << "Caso 1: ./main.out -d -m grafo.txt\n";
         std::cerr << "Caso 2: ./main.out -d -l grafo.txt\n";
         std::cerr << "Caso 3: ./main.out -c -m descricao.txt grafo.txt\n";
@@ -47,35 +48,73 @@ int main(int argc, char *argv[])
 
         if (estrutura == "-m")
         {
-
             graph = new GrafoMatriz();
-
-            graph->carrega_grafo();
         }
         else
         {
             graph = new GrafoLista();
-            graph->carrega_grafo();
         }
-        imprimirDescricaoGrafo(graph);
-        delete graph;
     }
-    else if (opcao == "-c")
-    {
-        if (argc != 5)
-        {
-            std::cerr << "Uso incorreto para o modo de cria��o." << std::endl;
-            return 1;
-        }
-        std::string caminhoDescricao = argv[3];
-        std::string caminhoSaida = argv[4];
-        bool usarMatriz = (estrutura == "-m");
-    }
-    else
-    {
-        std::cerr << "Op��o inv�lida." << std::endl;
-        return 1;
-    }
+        // Carregar o grafo a partir do arquivo
+        graph->carrega_grafo();
 
+        std::cout << "\nEstado inicial do grafo:\n";
+        imprimirDescricaoGrafo(graph);
+
+    //     // TESTANDO nova_aresta
+    //     std::cout << "\n--- Testando nova_aresta ---\n";
+
+    //     // Adicionando nova aresta com vértices diferentes para não duplicar aresta entre 1 e 3
+    //     std::cout << "Adicionando aresta (2 -> 4) com peso 10..." << std::endl;
+    //     graph->nova_aresta(2, 4, 10);
+
+    //     // Verificando se a aresta foi realmente adicionada
+    //     int peso24 = graph->get_aresta(2, 4);
+    //     std::cout << "Verificando aresta (2 -> 4): " << peso24 << std::endl;
+
+    //     std::cout << "Estado do grafo após adicionar a aresta (2 -> 4):\n";
+    //     imprimirDescricaoGrafo(graph);
+
+    //     std::cout << "Adicionando aresta (4 -> 1) com peso 5..." << std::endl;
+    //     graph->nova_aresta(4, 1, 5);
+
+    //     // Verificando se a aresta foi realmente adicionada
+    //     int peso41 = graph->get_aresta(4, 1);
+    //     std::cout << "Verificando aresta (4 -> 1): " << peso41 << std::endl;
+
+    //     std::cout << "Estado do grafo após adicionar a aresta (4 -> 1):\n";
+    //     imprimirDescricaoGrafo(graph);
+
+    //     // Garantindo que os valores armazenados são os esperados
+    //     if (peso24 != 10)
+    //     {
+    //         std::cerr << "Erro: Aresta (2 -> 4) deveria ter peso 10, mas tem " << peso24 << std::endl;
+    //     }
+
+    //     if (peso41 != 5)
+    //     {
+    //         std::cerr << "Erro: Aresta (4 -> 1) deveria ter peso 5, mas tem " << peso41 << std::endl;
+    //     }
+
+    //     delete graph;
+    // }
+    // else if (opcao == "-c")
+    // {
+    //     if (argc != 5)
+    //     {
+    //         std::cerr << "Uso incorreto para o modo de criação." << std::endl;
+    //         return 1;
+    //     }
+    //     std::string caminhoDescricao = argv[3];
+    //     std::string caminhoSaida = argv[4];
+    //     bool usarMatriz = (estrutura == "-m");
+    //     // criarGrafo(caminhoDescricao, caminhoSaida, usarMatriz);
+    // }
+    // else
+    // {
+    //     std::cerr << "Opção inválida." << std::endl;
+    //     return 1;
+    // }
+    }
     return 0;
 }

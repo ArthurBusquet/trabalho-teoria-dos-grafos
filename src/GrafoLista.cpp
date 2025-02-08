@@ -174,6 +174,34 @@ void GrafoLista::imprimir()
     cout << "Quantidade de componente conexas: " << n_conexo();
 }
 
+void GrafoLista::nova_aresta(int origem, int destino, int peso) {
+    // Verifica se a aresta já existe
+    if (get_aresta(origem, destino) != -1) {
+        cout << "Aresta entre " << origem << " e " << destino << " já existe!" << endl;
+        return;
+    }
+
+    // Obtém os vértices de origem e destino
+    VerticeEncadeado *verticeOrigem = get_vertice_encadeado(origem);
+    VerticeEncadeado *verticeDestino = get_vertice_encadeado(destino);
+
+    if (!verticeOrigem || !verticeDestino) {
+        cout << "Erro: Um ou ambos os vértices não existem!" << endl;
+        return;
+    }
+
+    // Cria e adiciona a nova aresta
+    ArestaEncadeada *novaAresta = new ArestaEncadeada(verticeOrigem, verticeDestino, peso);
+    arestas->adicionar(novaAresta);
+
+    verticeOrigem->setConexao(verticeDestino, peso, false);
+    
+    // Se não for direcionado, adiciona também no destino
+    if (!eh_direcionado()) {
+        verticeDestino->setConexao(verticeOrigem, peso, true);
+    }
+}
+
 GrafoLista::~GrafoLista()
 {
     delete vertices;
