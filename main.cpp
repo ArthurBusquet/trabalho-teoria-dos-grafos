@@ -65,8 +65,8 @@ int main(int argc, char *argv[])
         std::cout << "\n--- Testando nova_aresta ---\n";
 
         // Adicionando nova aresta com vértices diferentes para não duplicar aresta entre 1 e 3
-        std::cout << "Adicionando aresta (2 -> 4) com peso 10..." << std::endl;
-        graph->nova_aresta(2, 4, 10);
+        std::cout << "Adicionando aresta (2 -> 4) com peso 8..." << std::endl;
+        graph->nova_aresta(2, 4, 8);
 
         // Verificando se a aresta foi realmente adicionada
         int peso24 = graph->get_aresta(2, 4);
