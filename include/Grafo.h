@@ -132,56 +132,34 @@ public:
         return true;
     }
 
-void dfs(int vertice, bool visitado[]) {
-    visitado[vertice] = true;
-    for (int i = 1; i <= ordem; i++) {
-        if (get_aresta(vertice, i) && !visitado[i]) {
-            dfs(i, visitado);
+    void dfs(int vertice, bool visitado[]) {
+        visitado[vertice] = true;
+        for (int i = 1; i <= ordem; i++) {
+            if (get_aresta(vertice, i) && !visitado[i]) {
+                dfs(i, visitado);
+            }
         }
     }
-}
 
-int n_conexo() {
-    bool visitado[ordem];
-    for (int i = 0; i < ordem; i++) {
-        visitado[i] = false;
+    int n_conexo() {
+    bool* visitado = new bool[ordem + 1]; // Usa alocação dinâmica para evitar problemas de tamanho
+    for (int i = 1; i <= ordem; i++) { // Se os vértices começam em 1
+        visitado[i] = false; // Inicializa corretamente
     }
 
     int componentes = 0;
     
-    for (int i = 0; i < ordem; i++) {
-        if (!visitado[i]) {
-            dfs(i, visitado);
+    for (int i = 1; i <= ordem; i++) { // Se os vértices começam em 1
+        if (!visitado[i]) { // Usa índice corretamente
+            dfs(i, visitado); // Chama a DFS
             componentes++;
         }
     }
+
+    delete[] visitado; // Libera memória alocada dinamicamente
     return componentes;
 }
 
-// void dfs(int vertice, bool visitado[]) {
-//     visitado[vertice] = true;
-//     for (int i = 1; i <= ordem; i++) {
-//         // A função get_aresta pode estar tentando acessar um índice inválido. 
-//         // Corrigir a verificação de acesso aos vértices
-//         if (get_aresta(vertice + 1, i) && !visitado[i]) {
-//             dfs(i - 1, visitado);  // Passa o índice ajustado para o DFS
-//         }
-//     }
-// }
-
-// int n_conexo() {
-//     bool* visitado = new bool[ordem]();  // Inicializa o vetor de visitados com false
-//     int componentes = 0;
-
-//     for (int i = 0; i < ordem; i++) {
-//         if (!visitado[i]) {
-//             dfs(i, visitado);
-//             componentes++;
-//         }
-//     }
-//     delete[] visitado;  // Libera a memória do vetor de visitados
-//     return componentes;
-// }
 
 
     virtual void inicializa_grafo() = 0;

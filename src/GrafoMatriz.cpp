@@ -173,13 +173,16 @@ int GrafoMatriz::calcularIndiceLinear(int origem, int destino) {
 }
 
 int GrafoMatriz::get_aresta(int origem, int destino) {
+    if (origem < 1 || destino < 1 || origem > tamanhoAtual || destino > tamanhoAtual) {
+        cerr << "Erro: Índices fora dos limites da matriz!" << endl;
+        return -1; // Retorno de erro
+    }
+
     if (eh_direcionado()) {
-        // Para grafos direcionados, basta acessar diretamente
         return Matriz[origem - 1][destino - 1];
     } else {
-        // Para grafos não direcionados, garantir que acessamos a mesma posição para origem e destino
         if (origem > destino) {
-            std::swap(origem, destino);  // Garante que origem é sempre menor ou igual a destino
+            std::swap(origem, destino);
         }
         int indice = calcularIndiceLinear(origem, destino);
         return MatrizLinear[indice];
