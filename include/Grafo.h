@@ -19,6 +19,7 @@ public:
     virtual int get_vertice(int vertice) = 0;
     virtual int get_vizinhos(int vertice) = 0;
     virtual void nova_aresta(int origem, int destino, int peso) = 0;
+    virtual void maior_menor_distancia() = 0;
     // virtual void imprime_matriz() = 0;
 
     int get_ordem()
@@ -159,6 +160,63 @@ int n_conexo() {
 
     virtual void inicializa_grafo() = 0;
 
+    void maior_menor_distancia() {
+        int n = get_ordem();
+
+        if (n == 0) {
+            cout << "O grafo está vazio." << endl;
+            return;
+        }
+
+        // Matriz de distâncias
+        int dist[n + 1][n + 1];
+
+        // Inicializa a matriz de distâncias
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (i == j) {
+                    dist[i][j] = 0; // Distância de um nó para ele mesmo
+                } else {
+                    int peso = get_aresta(i, j);
+                    dist[i][j] = (peso > 0) ? peso : 999999; // Se não há aresta, assume um valor alto (infinito)
+                }
+            }
+        }
+
+        // Algoritmo de Floyd-Warshall
+        for (int k = 1; k <= n; k++) {
+            for (int i = 1; i <= n; i++) {
+                for (int j = 1; j <= n; j++) {
+                    if (dist[i][k] != 999999 && dist[k][j] != 999999) {
+                        if (dist[i][j] > dist[i][k] + dist[k][j]) {
+                            dist[i][j] = dist[i][k] + dist[k][j];
+                        }
+                    }
+                }
+            }
+        }
+
+        // Encontrar os nós mais distantes
+        int maxDist = -1;
+        int no1 = -1, no2 = -1;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = i + 1; j <= n; j++) {
+                if (dist[i][j] != 999999 && dist[i][j] > maxDist) {
+                    maxDist = dist[i][j];
+                    no1 = i;
+                    no2 = j;
+                }
+            }
+        }
+
+        // Exibir resultado
+        if (no1 != -1 && no2 != -1) {
+            cout << "Maior menor distância: (" << no1 << "-" << no2 << ") " << maxDist << endl;
+        } else {
+            cout << "Não há caminho entre os nós." << endl;
+        }
+    }
 };
 
 #endif // GRAFO_H_INCLUDED
