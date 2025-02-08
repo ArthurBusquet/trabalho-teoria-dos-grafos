@@ -189,6 +189,28 @@ int GrafoMatriz::get_aresta(int origem, int destino) {
     }
 }
 
+void GrafoMatriz::set_vertice(int id, float peso) {
+    if(!vertice_ponderado())
+        peso = 0;
+
+    VetorPesosVertices[id - 1] = peso;
+}
+
+void GrafoMatriz::set_aresta(int origem, int destino, float peso) {
+    if(!aresta_ponderada())
+        peso = 0;
+    
+    if (eh_direcionado()) {
+        Matriz[origem][destino] = peso;
+    } else {
+        // Certifique-se de que origem é sempre menor ou igual a destino
+        if (origem > destino) {
+            std::swap(origem, destino);
+        }
+        int indice = calcularIndiceLinear(origem, destino);
+        MatrizLinear[indice] = peso;
+    }
+}
 
 int GrafoMatriz::get_vertice(int origem) {
     if (vertice_ponderado()) {

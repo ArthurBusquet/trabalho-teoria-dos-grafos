@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
         {
             graph = new GrafoLista();
         }
-
+    }
         // Carregar o grafo a partir do arquivo
         graph->carrega_grafo();
 

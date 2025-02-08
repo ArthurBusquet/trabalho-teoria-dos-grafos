@@ -20,6 +20,10 @@ public:
     virtual int get_vizinhos(int vertice) = 0;
     virtual void nova_aresta(int origem, int destino, int peso) = 0;
     //virtual void maior_menor_distancia() = 0;
+
+    virtual void set_aresta(int origem, int destino, float peso) = 0;
+    virtual void set_vertice(int id, float peso) = 0;
+
     // virtual void imprime_matriz() = 0;
 
     int get_ordem()
@@ -85,10 +89,50 @@ public:
         inicializa_grafo();
     }
 
+    void carrega_grafo2()
+    {
+        ifstream arquivo("./entradas/Grafo.txt");
+        if (!arquivo.is_open())
+        {
+            cerr << "Erro ao abrir o arquivo Grafo.txt" << endl;
+            return;
+        }
+
+        arquivo >> ordem >> direcionado >> vtp >> atp;
+        set_ordem(ordem);
+        set_eh_direcionado(direcionado);
+        set_vertice_ponderado(vtp);
+        set_aresta_ponderada(atp);
+
+        for (int i = 1; i <= ordem; i++)
+        {
+            int peso_vertice;
+            arquivo >> peso_vertice;
+
+            if (vertice_ponderado())
+                set_vertice(i, peso_vertice);
+            else
+                set_vertice(i, 1);
+        }
+
+        int origem, destino = 1;
+        float peso = 0;
+
+        
+        while (arquivo >> origem >> destino >> peso)
+        {
+            if(!aresta_ponderada())
+                peso = 0;
+            set_aresta(origem, destino, peso);
+        }
+
+        // inicializa_grafo();
+    }
+
     int get_grau()
     {
-        if (!eh_direcionado())
-        {
+          if (!eh_direcionado())
+          {
             int grauMaximo = 0;
             for (int i = 1; i <= ordem; i++)
             {
@@ -100,7 +144,7 @@ public:
                 }
             }
             return grauMaximo;
-        }
+                    }
         else
         {
             int maxGrauSaida = 0;
@@ -126,7 +170,7 @@ public:
     {
         for (int i = 1; i <= get_ordem(); i++)
         {
-            if(get_vizinhos(i) < get_ordem() - 1)
+            if (get_vizinhos(i) < get_ordem() - 1)
                 return false;
         }
         return true;

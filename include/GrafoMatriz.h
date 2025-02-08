@@ -22,10 +22,13 @@ public:
     void redimensionarMatrizLinear();
     void inicializa_grafo();
     int calcularIndiceLinear(int origem, int destino);
-    int get_aresta(int origem, int destino);
-    int get_vertice(int origem);
-    int get_vizinhos(int vertice);
+    int get_aresta(int origem, int destino) override;
+    int get_vertice(int vertice) override;
+    int get_vizinhos(int vertice) override;
+    void set_vertice(int id, float peso) override;
+    void set_aresta(int origem, int destino, float peso) override; 
     void nova_aresta(int origem, int destino, int peso);
+
 };
 
 #endif  // GRAFO_MATRIZ_H_INCLUDED

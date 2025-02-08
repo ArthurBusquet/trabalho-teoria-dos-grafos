@@ -3,74 +3,82 @@
 VerticeEncadeado::VerticeEncadeado(int id, int peso)
     : id(id), peso(peso), grau(0), proximo(nullptr), conexoes(new ListaEncadeada<ArestaEncadeada>()) {}
 
-int VerticeEncadeado::getId() const {
+int VerticeEncadeado::getId() const
+{
     return id;
 }
 
-int VerticeEncadeado::getPeso() const {
+int VerticeEncadeado::getPeso() const
+{
     return peso;
 }
 
-int VerticeEncadeado::getGrau() const {
+int VerticeEncadeado::getGrau() const
+{
     return grau;
 }
 
-VerticeEncadeado* VerticeEncadeado::getProximo() const {
+VerticeEncadeado *VerticeEncadeado::getProximo() const
+{
     return proximo;
 }
 
-void VerticeEncadeado::setConexao(VerticeEncadeado* verticeDestino, int pesoAresta, bool arestaDuplicada) {
-
-    ArestaEncadeada* novaAresta = new ArestaEncadeada(this, verticeDestino, pesoAresta);
+void VerticeEncadeado::setConexao(VerticeEncadeado *verticeDestino, int pesoAresta)
+{
+    ArestaEncadeada *novaAresta = new ArestaEncadeada(this, verticeDestino, pesoAresta);
     conexoes->adicionar(novaAresta);
-
-    if(!arestaDuplicada)
-    grau++;
+    grau++; 
 }
 
-ArestaEncadeada* VerticeEncadeado::getPrimeiraConexao() {
+ArestaEncadeada *VerticeEncadeado::getPrimeiraConexao()
+{
 
     return conexoes->getInicio();
 }
 
-ListaEncadeada<ArestaEncadeada>* VerticeEncadeado::getConexoes() {
+ListaEncadeada<ArestaEncadeada> *VerticeEncadeado::getConexoes()
+{
     return conexoes;
 }
 
-void VerticeEncadeado::setProximo(VerticeEncadeado* novoProximo) {
+void VerticeEncadeado::setProximo(VerticeEncadeado *novoProximo)
+{
     proximo = novoProximo;
 }
 
-void VerticeEncadeado::setConexoes(ListaEncadeada<ArestaEncadeada>* novasConexoes) {
+void VerticeEncadeado::setConexoes(ListaEncadeada<ArestaEncadeada> *novasConexoes)
+{
     conexoes = novasConexoes;
 }
 
-ArestaEncadeada* VerticeEncadeado::getConexao(int origem, int destino) {
-    ArestaEncadeada* arestaAtual = conexoes->getInicio();
+ArestaEncadeada *VerticeEncadeado::getConexao(int origem, int destino)
+{
+    ArestaEncadeada *arestaAtual = conexoes->getInicio();
 
-    while(arestaAtual != nullptr) {
-        if(arestaAtual->getOrigem()->getId() == origem && arestaAtual->getDestino()->getId() == destino)
+    while (arestaAtual != nullptr)
+    {
+        if (arestaAtual->getOrigem()->getId() == origem && arestaAtual->getDestino()->getId() == destino)
             break;
 
         arestaAtual = arestaAtual->getProximo();
     }
     return arestaAtual;
-
 }
 
-int VerticeEncadeado::removeConexao(VerticeEncadeado* destino) {
+int VerticeEncadeado::removeConexao(VerticeEncadeado *destino)
+{
 
-    ArestaEncadeada* aresta = getConexao(id, destino->getId());
-    if(aresta == nullptr)
+    ArestaEncadeada *aresta = getConexao(id, destino->getId());
+    if (aresta == nullptr)
         return 0;
 
     int pesoAresta = aresta->getPeso();
     conexoes->remover(aresta);
     return pesoAresta;
-
 }
 
-std::ostream& operator<<(std::ostream& os, const VerticeEncadeado& vertice) {
+std::ostream &operator<<(std::ostream &os, const VerticeEncadeado &vertice)
+{
     os << "VerticeEncadeado " << vertice.id
        << " (Peso: " << vertice.peso << ", Grau: " << vertice.grau << ")\n";
     os << "Conexoes: ";
