@@ -70,7 +70,6 @@ int main(int argc, char *argv[])
         std::string caminhoDescricao = argv[3];
         std::string caminhoSaida = argv[4];
         bool usarMatriz = (estrutura == "-m");
-        // criarGrafo(caminhoDescricao, caminhoSaida, usarMatriz);
     }
     else
     {

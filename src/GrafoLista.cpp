@@ -109,8 +109,9 @@ void GrafoLista::set_aresta(int origem, int destino, float peso)
     ArestaEncadeada *atual = arestas->getInicio();
     while (atual != nullptr)
     {
-        if (atual->getOrigem()->getId() == origem &&
-            atual->getDestino()->getId() == destino)
+        if ((atual->getOrigem()->getId() == origem &&
+            atual->getDestino()->getId() == destino) || (!eh_direcionado() && atual->getOrigem()->getId() == destino &&
+            atual->getDestino()->getId() == origem))
         {
             cout << "Aresta entre " << origem << " e " << destino << " já existe!" << endl;
             return;
@@ -128,17 +129,17 @@ void GrafoLista::set_aresta(int origem, int destino, float peso)
 
     ArestaEncadeada *novaAresta = new ArestaEncadeada(verticeOrigem, verticeDestino, peso);
 
-    verticeOrigem->setConexao(verticeDestino, peso, false);
+    verticeOrigem->setConexao(verticeDestino, peso);
 
-    if (!eh_direcionado())
-        verticeDestino->setConexao(verticeOrigem, peso, true);
+    if (!eh_direcionado()) {
+        verticeDestino->setConexao(verticeOrigem, peso);
+    }
     arestas->adicionar(novaAresta);
 }
 
 int GrafoLista::get_vizinhos(int id)
 {
     VerticeEncadeado *vertice = get_vertice_encadeado(id);
-    int vizinhos[get_ordem() - 1];
 
     if (vertice == nullptr)
         return 0;

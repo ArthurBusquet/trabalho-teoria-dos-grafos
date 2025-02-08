@@ -23,13 +23,11 @@ VerticeEncadeado *VerticeEncadeado::getProximo() const
     return proximo;
 }
 
-void VerticeEncadeado::setConexao(VerticeEncadeado *verticeDestino, int pesoAresta, bool arestaDuplicada)
+void VerticeEncadeado::setConexao(VerticeEncadeado *verticeDestino, int pesoAresta)
 {
     ArestaEncadeada *novaAresta = new ArestaEncadeada(this, verticeDestino, pesoAresta);
     conexoes->adicionar(novaAresta);
-
-    if (!arestaDuplicada)
-        grau++;
+    grau++; 
 }
 
 ArestaEncadeada *VerticeEncadeado::getPrimeiraConexao()
