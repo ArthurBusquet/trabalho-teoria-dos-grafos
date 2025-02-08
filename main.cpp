@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
         int peso24 = graph->get_aresta(2, 4);
         std::cout << "Verificando aresta (2 -> 4): " << peso24 << std::endl;
 
-        std::cout << "Estado do grafo após adicionar a aresta (2 -> 4):\n";
+        std::cout << "Estado do grafo apos adicionar a aresta (2 -> 4):\n";
         imprimirDescricaoGrafo(graph);
 
         std::cout << "Adicionando aresta (4 -> 1) com peso 5..." << std::endl;
@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
         int peso41 = graph->get_aresta(4, 1);
         std::cout << "Verificando aresta (4 -> 1): " << peso41 << std::endl;
 
-        std::cout << "Estado do grafo após adicionar a aresta (4 -> 1):\n";
+        std::cout << "Estado do grafo apos adicionar a aresta (4 -> 1):\n";
         imprimirDescricaoGrafo(graph);
 
         // Garantindo que os valores armazenados são os esperados
@@ -94,6 +94,24 @@ int main(int argc, char *argv[])
         if (peso41 != 5)
         {
             std::cerr << "Erro: Aresta (4 -> 1) deveria ter peso 5, mas tem " << peso41 << std::endl;
+        }
+
+        // TESTANDO novo_no
+        std::cout << "\n--- Testando novo_no ---\n";
+        int ordemAntes = graph->get_ordem();
+        graph->novo_no();  // Adiciona um novo vértice
+        int ordemDepois = graph->get_ordem();
+
+        std::cout << "Ordem antes de novo_no: " << ordemAntes << std::endl;
+        std::cout << "Ordem depois de novo_no: " << ordemDepois << std::endl;
+
+        if (ordemDepois != ordemAntes + 1)
+        {
+            std::cerr << "Erro: A ordem nao foi aumentada corretamente!" << std::endl;
+        }
+        else
+        {
+            std::cout << "Novo vertice adicionado corretamente!" << std::endl;
         }
 
         delete graph;

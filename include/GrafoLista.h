@@ -34,6 +34,8 @@ public:
     void imprimir();
 
     void inicializa_grafo() override;
+    void novo_no() override;  // Declaração da função virtual para implementação na classe derivada
+
 
     // int n_conexo() override
     // {
