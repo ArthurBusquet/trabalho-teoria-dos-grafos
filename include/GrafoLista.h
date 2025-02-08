@@ -27,7 +27,7 @@ public:
     void set_vertice(int id, float peso);
     void set_aresta(int origem, int destino, int peso);
     void nova_aresta(int origem, int destino, int peso) override;
-
+    void deleta_aresta(int origem, int destino) override;
 
     int get_vizinhos(int vertice);
 
