@@ -40,23 +40,16 @@ GrafoMatriz::GrafoMatriz() {
     // Aloca matriz 2D dinamicamente
     Matriz = new int*[tamanhoAtual];
     for (int i = 0; i < tamanhoAtual; i++) {
-        Matriz[i] = new int[tamanhoAtual];
-        for (int j = 0; j < tamanhoAtual; j++) {
-            Matriz[i][j] = 0;
-        }
+        Matriz[i] = new int[tamanhoAtual](); // Inicializa com zero
     }
 
     // Aloca matriz linear dinamicamente
-    MatrizLinear = new int[tamanhoAtualLinear];
-    for (int i = 0; i < tamanhoAtualLinear; i++) {
-        MatrizLinear[i] = 0;
-    }
+    MatrizLinear = new int[tamanhoAtualLinear](); // Inicializa com zero
 
     // Inicializa o vetor de pesos dos vértices com 0
-    for (int i = 0; i < tamanhoAtual; i++) {
-        VetorPesosVertices[i] = 0;
-    }
+    VetorPesosVertices = new int[tamanhoAtual](); // Inicializa com zero
 }
+
 
 GrafoMatriz::~GrafoMatriz() {
     // Libera a memória alocada para a matriz 2D
