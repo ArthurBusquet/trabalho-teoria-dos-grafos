@@ -17,6 +17,7 @@ void imprimirDescricaoGrafo(Grafo *graph)
     std::cout << "Completo: " << graph->eh_completo() << std::endl;
     std::cout << "Vertices ponderados: " << (graph->vertice_ponderado() ? "Sim" : "Nao") << std::endl;
     std::cout << "Arestas ponderadas: " << (graph->aresta_ponderada() ? "Sim" : "Nao") << std::endl;
+    graph->maior_menor_distancia();
     std::cout << "----------------------------------------" << std::endl;
 }
 
@@ -60,7 +61,7 @@ int main(int argc, char *argv[])
     }
         // Carregar o grafo a partir do arquivo
         
-        graph->nova_aresta(3, 1, 10);
+        //graph->nova_aresta(3, 1, 10);
 
         std::cout << "\nEstado inicial do grafo:\n";
         imprimirDescricaoGrafo(graph);
