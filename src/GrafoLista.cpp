@@ -194,11 +194,11 @@ void GrafoLista::nova_aresta(int origem, int destino, int peso) {
     ArestaEncadeada *novaAresta = new ArestaEncadeada(verticeOrigem, verticeDestino, peso);
     arestas->adicionar(novaAresta);
 
-    verticeOrigem->setConexao(verticeDestino, peso, false);
+    verticeOrigem->setConexao(verticeDestino, peso); // Comentei o direcionado, pq tu ja pega ele lá na função usando eh_direcionado()
     
     // Se não for direcionado, adiciona também no destino
     if (!eh_direcionado()) {
-        verticeDestino->setConexao(verticeOrigem, peso, true);
+        verticeDestino->setConexao(verticeOrigem, peso); // idem
     }
 }
 
