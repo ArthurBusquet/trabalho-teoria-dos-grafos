@@ -299,6 +299,9 @@ void GrafoMatriz::deleta_no(int vertice) {
     // Atualiza o vetor de pesos dos vértices
     reorganiza_vetor_pesos(vertice);
 
+    // Decrementa a ordem do grafo
+    tamanhoAtual--;
+
     cout << "Vértice " << vertice << " deletado com sucesso!" << endl;
 }
 
@@ -349,7 +352,7 @@ void GrafoMatriz::reorganiza_matriz(int vertice) {
         redimensionarMatriz();
     } else {
         // Reorganiza a matriz linear
-        int novoTamanho = ((tamanhoAtual - 1) * tamanhoAtual) / 2;
+        int novoTamanho = ((tamanhoAtual - 1) * (tamanhoAtual)) / 2;
         int* novaMatrizLinear = new int[novoTamanho]();
 
         int novoIndice = 0;
@@ -393,5 +396,4 @@ void GrafoMatriz::reorganiza_vetor_pesos(int vertice) {
 
     // Atualiza ponteiro e tamanho
     VetorPesosVertices = novoVetorPesos;
-    tamanhoAtual--;
 }
