@@ -74,6 +74,7 @@ int VerticeEncadeado::removeConexao(VerticeEncadeado *destino)
 
     int pesoAresta = aresta->getPeso();
     conexoes->remover(aresta);
+    grau--;
     return pesoAresta;
 }
 

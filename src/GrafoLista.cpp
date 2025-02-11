@@ -203,44 +203,55 @@ void GrafoLista::nova_aresta(int origem, int destino, int peso) {
 }
 
 void GrafoLista::deleta_aresta(int origem, int destino) {
-   // Verifica se a aresta existe
     if (get_aresta(origem, destino) == -1) {
         cout << "Aresta entre " << origem << " e " << destino << " não existe!" << endl;
         return;
     }
 
-    // Obtém os vértices de origem e destino
-    VerticeEncadeado *verticeOrigem = get_vertice_encadeado(origem);
-    VerticeEncadeado *verticeDestino = get_vertice_encadeado(destino);
+    VerticeEncadeado* verticeOrigem = get_vertice_encadeado(origem);
+    VerticeEncadeado* verticeDestino = get_vertice_encadeado(destino);
 
     if (!verticeOrigem || !verticeDestino) {
-        cout << "Erro: Um ou ambos os vértices não existem!" << endl;
         return;
     }
 
-    // Remove a aresta
-    ArestaEncadeada *anterior = nullptr;
-    ArestaEncadeada *atual = arestas->getInicio();
-    while (atual != nullptr) {
-        if (atual->getOrigem()->getId() == origem && atual->getDestino()->getId() == destino) {
-            if (anterior == nullptr) {
-                arestas->setInicio(atual->getProximo());
-            } else {
-                anterior->setProximo(atual->getProximo());
-            }
-            delete atual;
-            break;
-        }
-        anterior = atual;
-        atual = atual->getProximo();
-    }
-
+    // Remove da lista de conexões do vértice de origem
     verticeOrigem->removeConexao(verticeDestino);
 
-    // Se não for direcionado, remove também no destino
+    // Se não for direcionado, remove do destino também
     if (!eh_direcionado()) {
         verticeDestino->removeConexao(verticeOrigem);
     }
+}
+
+void GrafoLista::deleta_no(int id) {
+    VerticeEncadeado* verticeAnterior = nullptr;
+    VerticeEncadeado* verticeAtual = vertices->getInicio();
+
+    while (verticeAtual != nullptr) {
+        ArestaEncadeada* conexao = verticeAtual->getConexoes()->getInicio();
+        ArestaEncadeada* proximaConexao;
+
+        while (conexao != nullptr) {
+            proximaConexao = conexao->getProximo();
+            deleta_aresta(verticeAtual->getId(), conexao->getDestino()->getId());
+            conexao = proximaConexao;
+        }
+
+        if (verticeAtual->getId() == id) {
+            if (verticeAnterior == nullptr) {
+                vertices->setInicio(verticeAtual->getProximo());
+            } else {
+                verticeAnterior->setProximo(verticeAtual->getProximo());
+            }
+            delete verticeAtual;
+            set_ordem(get_ordem() - 1);
+        }
+        verticeAnterior = verticeAtual;
+        verticeAtual = verticeAtual->getProximo();
+    }
+
+    
 }
 
 
@@ -252,39 +263,6 @@ void GrafoLista::novo_no(int peso) {
     set_vertice(get_ordem(), peso); // O peso pode ser inicializado com 0 ou outro valor, dependendo da necessidade
 }
 
-void GrafoLista::deleta_no(int id) {
-    VerticeEncadeado* verticeAnterior = nullptr;
-    VerticeEncadeado* verticeAtual = vertices->getInicio();
-
-    while(verticeAtual != nullptr) {
-        ListaEncadeada<ArestaEncadeada>* conexoes = verticeAtual->getConexoes();
-        ArestaEncadeada* conexao = conexoes->getInicio();
-
-        while(conexao != nullptr) {
-            VerticeEncadeado* destino = conexao->getDestino();
-            
-
-            if(destino->getId() == id || verticeAtual->getId() == id) {
-                deleta_aresta(verticeAtual->getId(), destino->getId());
-            }
-
-            conexao = conexao->getProximo();
-        }
-
-        if(verticeAtual->getId() == id) {
-            if (verticeAnterior == nullptr) {
-                vertices->setInicio(verticeAtual->getProximo());
-            } else {
-                verticeAnterior->setProximo(verticeAtual->getProximo());
-            }
-            delete verticeAtual;
-            set_ordem(get_ordem() - 1);
-            break;
-        }
-        verticeAnterior = verticeAtual;
-        verticeAtual = verticeAtual->getProximo();
-    } 
-}
 
 GrafoLista::~GrafoLista()
 {
