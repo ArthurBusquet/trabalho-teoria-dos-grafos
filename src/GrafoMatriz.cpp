@@ -8,31 +8,6 @@
 
 using namespace std;
 
-// GrafoMatriz::GrafoMatriz() {
-//     // Inicializa a matriz de adjacência com 0
-//     for (int i = 0; i < MAX_VERTICES; i++) {
-//         for (int j = 0; j < MAX_VERTICES; j++) {
-//             Matriz[i][j] = 0;
-//         }
-//     }
-
-//     // Inicializa a matriz linear com 0
-//     for (int i = 0; i < (MAX_VERTICES * (MAX_VERTICES + 1)) / 2; i++) {
-//         MatrizLinear[i] = 0;
-//     }
-
-//     // Inicializa o vetor de pesos dos vértices com 0
-//     for (int i = 0; i < MAX_VERTICES; i++) {
-//         VetorPesosVertices[i] = 0;
-//     }
-// }
-
-// GrafoMatriz::~GrafoMatriz() {
-//     // Como estamos usando arrays estáticos, não há necessidade de deletar manualmente.
-//     // Se usássemos alocação dinâmica (new/malloc), liberaríamos a memória aqui com delete/free.
-//     cout << "Destruindo GrafoMatriz..." << endl;
-// }
-
 GrafoMatriz::GrafoMatriz() {
     tamanhoAtual = TAMANHO_INICIAL;
     tamanhoAtualLinear = (TAMANHO_INICIAL * (TAMANHO_INICIAL + 1)) / 2;

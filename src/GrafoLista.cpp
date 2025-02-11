@@ -113,7 +113,7 @@ void GrafoLista::set_aresta(int origem, int destino, float peso)
             atual->getDestino()->getId() == destino) || (!eh_direcionado() && atual->getOrigem()->getId() == destino &&
             atual->getDestino()->getId() == origem))
         {
-            cout << "Aresta entre " << origem << " e " << destino << " já existe!" << endl;
+            //cout << "Aresta entre " << origem << " e " << destino << " já existe!" << endl;
             return;
         }
         atual = atual->getProximo();
@@ -177,7 +177,7 @@ void GrafoLista::imprimir()
 void GrafoLista::nova_aresta(int origem, int destino, int peso) {
     // Verifica se a aresta já existe
     if (get_aresta(origem, destino) != -1) {
-        cout << "Aresta entre " << origem << " e " << destino << " já existe!" << endl;
+        //cout << "Aresta entre " << origem << " e " << destino << " já existe!" << endl;
         return;
     }
 
