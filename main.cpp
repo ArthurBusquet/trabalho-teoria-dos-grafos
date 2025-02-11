@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
         imprimirDescricaoGrafo(graph);
 
         // Testando deleta_no
-        int verticeParaDeletar = 8; // Vértice que será deletado
+        int verticeParaDeletar = 2; // Vértice que será deletado
         std::cout << "\n--- Testando deleta_no ---\n";
         std::cout << "Deletando o vértice " << verticeParaDeletar << "..." << std::endl;
         graph->deleta_no(verticeParaDeletar);
