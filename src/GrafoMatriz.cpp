@@ -222,17 +222,18 @@ int GrafoMatriz::get_vizinhos(int vertice) {
     int v = vertice - 1; // Ajustando para índice 0
 
     if (eh_direcionado()) {
-        // Contar arestas de entrada e saída
+        // Contar arestas de saída (direcionadas)
         for (int i = 0; i < get_ordem(); i++) {
-            if (Matriz[v][i] != 0) vizinhos++; // Contando saídas
-            // if (Matriz[i][v] != 0 && i != v) vizinhos++; // Contando entradas
+            if (Matriz[v][i] != 0) { // Verifica se existe aresta de v para i
+                vizinhos++;
+            }
         }
     } else {
-        // Grafo não direcionado: verificar matriz comprimida
+        // Grafo não direcionado: verificar matriz comprimida sem contar duplicados
         for (int i = 0; i < get_ordem(); i++) {
             if (i == v) continue; // Evita contar o próprio vértice
 
-            int indice = calcularIndiceLinear(i + 1, vertice);
+            int indice = calcularIndiceLinear(std::min(i + 1, vertice), std::max(i + 1, vertice));
             if (MatrizLinear[indice] != 0) {
                 vizinhos++;
             }
@@ -241,7 +242,6 @@ int GrafoMatriz::get_vizinhos(int vertice) {
 
     return vizinhos;
 }
-
 
 void GrafoMatriz::nova_aresta(int origem, int destino, int peso) {
     std::cout << "Tentando adicionar aresta entre " << origem << " e " << destino << " com peso " << peso << std::endl;
@@ -253,7 +253,7 @@ void GrafoMatriz::nova_aresta(int origem, int destino, int peso) {
     }
 
     // Verifica se os índices estão dentro do limite
-    if (origem > /*MAX_VERTICES*/ tamanhoAtual || destino > /*MAX_VERTICES*/ tamanhoAtual) {
+    if (origem > tamanhoAtual || destino > tamanhoAtual) {
         std::cerr << "Erro: Índices de vértice estão fora dos limites da matriz!" << std::endl;
         return;
     }
@@ -324,10 +324,10 @@ void GrafoMatriz::deleta_no(int vertice) {
     }
 
     // Reorganiza a matriz de adjacência ou a matriz linear
-    reorganiza_matriz(vertice);
+    //reorganiza_matriz(vertice);
 
     // Atualiza o vetor de pesos dos vértices
-    reorganiza_vetor_pesos(vertice);
+    //reorganiza_vetor_pesos(vertice);
 
     // Decrementa a ordem do grafo
     set_ordem(get_ordem() - 1);
