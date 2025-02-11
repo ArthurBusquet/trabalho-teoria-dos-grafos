@@ -181,7 +181,7 @@ public:
     void dfs(int vertice, bool visitado[]) {
         visitado[vertice] = true;
         for (int i = 1; i <= ordem; i++) {
-            if (get_aresta(vertice, i) && !visitado[i]) {
+            if (get_aresta(vertice, i) != -1 && !visitado[i]) {
                 dfs(i, visitado);
             }
         }
