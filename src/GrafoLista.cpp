@@ -252,8 +252,38 @@ void GrafoLista::novo_no(int peso) {
     set_vertice(get_ordem(), peso); // O peso pode ser inicializado com 0 ou outro valor, dependendo da necessidade
 }
 
-void GrafoLista::deleta_no(int vertice) {
-    
+void GrafoLista::deleta_no(int id) {
+    VerticeEncadeado* verticeAnterior = nullptr;
+    VerticeEncadeado* verticeAtual = vertices->getInicio();
+
+    while(verticeAtual != nullptr) {
+        ListaEncadeada<ArestaEncadeada>* conexoes = verticeAtual->getConexoes();
+        ArestaEncadeada* conexao = conexoes->getInicio();
+
+        while(conexao != nullptr) {
+            VerticeEncadeado* destino = conexao->getDestino();
+            
+
+            if(destino->getId() == id || verticeAtual->getId() == id) {
+                deleta_aresta(verticeAtual->getId(), destino->getId());
+            }
+
+            conexao = conexao->getProximo();
+        }
+
+        if(verticeAtual->getId() == id) {
+            if (verticeAnterior == nullptr) {
+                vertices->setInicio(verticeAtual->getProximo());
+            } else {
+                verticeAnterior->setProximo(verticeAtual->getProximo());
+            }
+            delete verticeAtual;
+            set_ordem(get_ordem() - 1);
+            break;
+        }
+        verticeAnterior = verticeAtual;
+        verticeAtual = verticeAtual->getProximo();
+    } 
 }
 
 GrafoLista::~GrafoLista()

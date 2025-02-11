@@ -65,6 +65,9 @@ int main(int argc, char *argv[])
         imprimirDescricaoGrafo(graph);
 
         //graph->novo_no(0);
+
+        graph->deleta_no(1);
+        imprimirDescricaoGrafo(graph);
         
 
         // // TESTANDO nova_aresta
