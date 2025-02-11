@@ -202,21 +202,8 @@ void GrafoLista::nova_aresta(int origem, int destino, int peso) {
     }
 }
 
-void GrafoLista::deleta_aresta(int vertice1, int vertice2) {
-   cout << "Tem que adicionar aqui" << endl;
-}
-
-
-void GrafoLista::novo_no() {
-    // Aumenta a ordem do grafo
-    aumenta_ordem();
-
-    // Cria um novo vértice com o id correspondente
-    set_vertice(get_ordem(), 0); // O peso pode ser inicializado com 0 ou outro valor, dependendo da necessidade
-}
-
 void GrafoLista::deleta_aresta(int origem, int destino) {
-    // Verifica se a aresta existe
+   // Verifica se a aresta existe
     if (get_aresta(origem, destino) == -1) {
         cout << "Aresta entre " << origem << " e " << destino << " não existe!" << endl;
         return;
@@ -254,6 +241,15 @@ void GrafoLista::deleta_aresta(int origem, int destino) {
     if (!eh_direcionado()) {
         verticeDestino->removeConexao(verticeOrigem);
     }
+}
+
+
+void GrafoLista::novo_no() {
+    // Aumenta a ordem do grafo
+    aumenta_ordem();
+
+    // Cria um novo vértice com o id correspondente
+    set_vertice(get_ordem(), 0); // O peso pode ser inicializado com 0 ou outro valor, dependendo da necessidade
 }
 
 GrafoLista::~GrafoLista()
