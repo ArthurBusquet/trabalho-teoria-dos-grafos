@@ -1,0 +1,150 @@
+\doxysection{Lista\+Encadeada\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_lista_encadeada}{}\label{class_lista_encadeada}\index{ListaEncadeada$<$ T $>$@{ListaEncadeada$<$ T $>$}}
+
+
+A classe \doxylink{class_lista_encadeada}{Lista\+Encadeada} é uma implementação genérica de uma lista encadeada, capaz de armazenar elementos de qualquer tipo. Esta classe fornece métodos para adicionar, remover e imprimir elementos da lista, além de acessar o primeiro e o último elemento.  
+
+
+
+
+{\ttfamily \#include $<$Lista\+Encadeada.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_lista_encadeada_ac5347cb0f42e987120be0b9fa000a020}{Lista\+Encadeada}} ()
+\begin{DoxyCompactList}\small\item\em Construtor padrão da lista encadeada. Inicializa a lista com primeiro e último ponteiro nulos. \end{DoxyCompactList}\item 
+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_lista_encadeada_a5e6203661cdc1001783f42e2716f7dd4}{get\+Inicio}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o primeiro nó da lista. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_lista_encadeada_ad6360d05b41a357ca15ee3a20df514c6}{adicionar}} (T \texorpdfstring{$\ast$}{*}novo\+No)
+\begin{DoxyCompactList}\small\item\em Adiciona um novo nó ao final da lista. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_lista_encadeada_ac165b17bd7baacab7d4d2efb8be0c9ea}{imprimir}} () const
+\begin{DoxyCompactList}\small\item\em Imprime todos os elementos da lista. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_lista_encadeada_acb6287ac1432a28c57006ef7967fb5c0}{remover}} (T \texorpdfstring{$\ast$}{*}no\+Para\+Remover)
+\begin{DoxyCompactList}\small\item\em Remove um nó específico da lista. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_lista_encadeada_a56b0cf38d0578e52a261fb024c7a7a34}{get\+\_\+tamanho}} ()
+\begin{DoxyCompactList}\small\item\em Retorna o tamanho atual da lista (número de elementos armazenados). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_lista_encadeada_a28bee040db9c86b637590d2788bf351b}{\texorpdfstring{$\sim$}{\string~}\+Lista\+Encadeada}} ()
+\begin{DoxyCompactList}\small\item\em Destruidor da lista encadeada. Libera toda a memória alocada para os nós da lista. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Lista\+Encadeada$<$ T $>$}
+A classe \doxylink{class_lista_encadeada}{Lista\+Encadeada} é uma implementação genérica de uma lista encadeada, capaz de armazenar elementos de qualquer tipo. Esta classe fornece métodos para adicionar, remover e imprimir elementos da lista, além de acessar o primeiro e o último elemento. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Tipo dos elementos armazenados na lista. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_lista_encadeada_ac5347cb0f42e987120be0b9fa000a020}\index{ListaEncadeada$<$ T $>$@{ListaEncadeada$<$ T $>$}!ListaEncadeada@{ListaEncadeada}}
+\index{ListaEncadeada@{ListaEncadeada}!ListaEncadeada$<$ T $>$@{ListaEncadeada$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{ListaEncadeada()}{ListaEncadeada()}}
+{\footnotesize\ttfamily \label{class_lista_encadeada_ac5347cb0f42e987120be0b9fa000a020} 
+template$<$typename T$>$ \\
+\mbox{\hyperlink{class_lista_encadeada}{Lista\+Encadeada}}$<$ T $>$\mbox{\hyperlink{class_lista_encadeada}{\+::\+Lista\+Encadeada}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor padrão da lista encadeada. Inicializa a lista com primeiro e último ponteiro nulos. 
+
+\Hypertarget{class_lista_encadeada_a28bee040db9c86b637590d2788bf351b}\index{ListaEncadeada$<$ T $>$@{ListaEncadeada$<$ T $>$}!````~ListaEncadeada@{\texorpdfstring{$\sim$}{\string~}ListaEncadeada}}
+\index{````~ListaEncadeada@{\texorpdfstring{$\sim$}{\string~}ListaEncadeada}!ListaEncadeada$<$ T $>$@{ListaEncadeada$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ListaEncadeada()}{\string~ListaEncadeada()}}
+{\footnotesize\ttfamily \label{class_lista_encadeada_a28bee040db9c86b637590d2788bf351b} 
+template$<$typename T$>$ \\
+\mbox{\hyperlink{class_lista_encadeada}{Lista\+Encadeada}}$<$ T $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{class_lista_encadeada}{Lista\+Encadeada}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destruidor da lista encadeada. Libera toda a memória alocada para os nós da lista. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_lista_encadeada_ad6360d05b41a357ca15ee3a20df514c6}\index{ListaEncadeada$<$ T $>$@{ListaEncadeada$<$ T $>$}!adicionar@{adicionar}}
+\index{adicionar@{adicionar}!ListaEncadeada$<$ T $>$@{ListaEncadeada$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{adicionar()}{adicionar()}}
+{\footnotesize\ttfamily \label{class_lista_encadeada_ad6360d05b41a357ca15ee3a20df514c6} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{class_lista_encadeada}{Lista\+Encadeada}}$<$ T $>$\+::adicionar (\begin{DoxyParamCaption}\item[{T \texorpdfstring{$\ast$}{*}}]{novo\+No}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adiciona um novo nó ao final da lista. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em novo\+No} & Ponteiro para o nó a ser adicionado. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_lista_encadeada_a56b0cf38d0578e52a261fb024c7a7a34}\index{ListaEncadeada$<$ T $>$@{ListaEncadeada$<$ T $>$}!get\_tamanho@{get\_tamanho}}
+\index{get\_tamanho@{get\_tamanho}!ListaEncadeada$<$ T $>$@{ListaEncadeada$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get\_tamanho()}{get\_tamanho()}}
+{\footnotesize\ttfamily \label{class_lista_encadeada_a56b0cf38d0578e52a261fb024c7a7a34} 
+template$<$typename T$>$ \\
+int \mbox{\hyperlink{class_lista_encadeada}{Lista\+Encadeada}}$<$ T $>$\+::get\+\_\+tamanho (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retorna o tamanho atual da lista (número de elementos armazenados). 
+
+\begin{DoxyReturn}{Returns}
+O número de elementos na lista. 
+\end{DoxyReturn}
+\Hypertarget{class_lista_encadeada_a5e6203661cdc1001783f42e2716f7dd4}\index{ListaEncadeada$<$ T $>$@{ListaEncadeada$<$ T $>$}!getInicio@{getInicio}}
+\index{getInicio@{getInicio}!ListaEncadeada$<$ T $>$@{ListaEncadeada$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getInicio()}{getInicio()}}
+{\footnotesize\ttfamily \label{class_lista_encadeada_a5e6203661cdc1001783f42e2716f7dd4} 
+template$<$typename T$>$ \\
+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_lista_encadeada}{Lista\+Encadeada}}$<$ T $>$\+::get\+Inicio (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Obtém o primeiro nó da lista. 
+
+\begin{DoxyReturn}{Returns}
+O ponteiro para o primeiro nó. 
+\end{DoxyReturn}
+\Hypertarget{class_lista_encadeada_ac165b17bd7baacab7d4d2efb8be0c9ea}\index{ListaEncadeada$<$ T $>$@{ListaEncadeada$<$ T $>$}!imprimir@{imprimir}}
+\index{imprimir@{imprimir}!ListaEncadeada$<$ T $>$@{ListaEncadeada$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{imprimir()}{imprimir()}}
+{\footnotesize\ttfamily \label{class_lista_encadeada_ac165b17bd7baacab7d4d2efb8be0c9ea} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{class_lista_encadeada}{Lista\+Encadeada}}$<$ T $>$\+::imprimir (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Imprime todos os elementos da lista. 
+
+\begin{DoxyNote}{Note}
+A impressão é feita chamando o operador {\ttfamily \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}} do tipo {\ttfamily T} para cada elemento da lista. 
+\end{DoxyNote}
+\Hypertarget{class_lista_encadeada_acb6287ac1432a28c57006ef7967fb5c0}\index{ListaEncadeada$<$ T $>$@{ListaEncadeada$<$ T $>$}!remover@{remover}}
+\index{remover@{remover}!ListaEncadeada$<$ T $>$@{ListaEncadeada$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{remover()}{remover()}}
+{\footnotesize\ttfamily \label{class_lista_encadeada_acb6287ac1432a28c57006ef7967fb5c0} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{class_lista_encadeada}{Lista\+Encadeada}}$<$ T $>$\+::remover (\begin{DoxyParamCaption}\item[{T \texorpdfstring{$\ast$}{*}}]{no\+Para\+Remover}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove um nó específico da lista. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em no\+Para\+Remover} & Ponteiro para o nó a ser removido. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Se o nó não for encontrado ou a lista estiver vazia, a operação não será realizada. 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_lista_encadeada_8h}{Lista\+Encadeada.\+h}}\end{DoxyCompactItemize}

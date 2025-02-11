@@ -1,0 +1,54 @@
+\doxysection{Vertice\+Encadeado.\+h}
+\hypertarget{_vertice_encadeado_8h_source}{}\label{_vertice_encadeado_8h_source}\index{include/VerticeEncadeado.h@{include/VerticeEncadeado.h}}
+\mbox{\hyperlink{_vertice_encadeado_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ VERTICEENCADEADO\_H\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ VERTICEENCADEADO\_H\_INCLUDED}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_lista_encadeada_8h}{ListaEncadeada.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_aresta_encadeada_8h}{ArestaEncadeada.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vertice_encadeado_a21d7b669d9c67ae413a6c7209008880d}{VerticeEncadeado}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ peso;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ grau;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_vertice_encadeado_a21d7b669d9c67ae413a6c7209008880d}{VerticeEncadeado}}*\ proximo;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_lista_encadeada}{ListaEncadeada<ArestaEncadeada>}}*\ conexoes;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_vertice_encadeado_a21d7b669d9c67ae413a6c7209008880d}{VerticeEncadeado}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{int}\ peso);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vertice_encadeado_ad2ad7ea963ff50dcb4f66c124126a9b7}{getId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vertice_encadeado_abd4053cd4016bcb92955a8924d51c0f8}{getPeso}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vertice_encadeado_af49be982135f0b5904f21429159a0faf}{getGrau}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{class_vertice_encadeado_a21d7b669d9c67ae413a6c7209008880d}{VerticeEncadeado}}*\ \mbox{\hyperlink{class_vertice_encadeado_a04a3bcd8c5fd29747a85b56c5f650179}{getProximo}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vertice_encadeado_a070f881761f35d07751d66d1058c3770}{setProximo}}(\mbox{\hyperlink{class_vertice_encadeado_a21d7b669d9c67ae413a6c7209008880d}{VerticeEncadeado}}*\ novoProximo);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vertice_encadeado_af0fe63b029b5aa44795467b198d9535e}{setConexao}}(\mbox{\hyperlink{class_vertice_encadeado_a21d7b669d9c67ae413a6c7209008880d}{VerticeEncadeado}}*\ verticeDestino,\ \textcolor{keywordtype}{int}\ pesoAresta);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{class_aresta_encadeada}{ArestaEncadeada}}*\ \mbox{\hyperlink{class_vertice_encadeado_aee1b2c277e9e550341fc4af5295d72cb}{getPrimeiraConexao}}();}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{class_lista_encadeada}{ListaEncadeada<ArestaEncadeada>}}*\ \mbox{\hyperlink{class_vertice_encadeado_aabfba1d3a90cfddfc0e487409479a616}{getConexoes}}();}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vertice_encadeado_a01d49b73c7b588d6843f28c03d0b600d}{setConexoes}}(\mbox{\hyperlink{class_lista_encadeada}{ListaEncadeada<ArestaEncadeada>}}*\ novasConexoes);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{friend}\ std::ostream\&\ \mbox{\hyperlink{class_vertice_encadeado_ad4e801fa41f555af406e43971a20500c}{operator<<}}(std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_vertice_encadeado_a21d7b669d9c67ae413a6c7209008880d}{VerticeEncadeado}}\&\ vertice);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vertice_encadeado_aa27e77b576a283554a9fa47ab4223d9b}{removeConexao}}(\mbox{\hyperlink{class_vertice_encadeado_a21d7b669d9c67ae413a6c7209008880d}{VerticeEncadeado}}*\ destino);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{class_aresta_encadeada}{ArestaEncadeada}}*\ \mbox{\hyperlink{class_vertice_encadeado_a2c2f21be1dfa436ad730df02745b257b}{getConexao}}(\textcolor{keywordtype}{int}\ origem,\ \textcolor{keywordtype}{int}\ destino);}
+\DoxyCodeLine{00140\ \};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VERTICEENCADEADO\_H\_INCLUDED}}
+
+\end{DoxyCode}
