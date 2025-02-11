@@ -1,0 +1,52 @@
+\doxysection{Grafo\+Lista.\+h}
+\hypertarget{_grafo_lista_8h_source}{}\label{_grafo_lista_8h_source}\index{include/GrafoLista.h@{include/GrafoLista.h}}
+\mbox{\hyperlink{_grafo_lista_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GRAFOLISTA\_H\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GRAFOLISTA\_H\_INCLUDED}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_grafo_8h}{Grafo.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_lista_encadeada_8h}{ListaEncadeada.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vertice_encadeado_8h}{VerticeEncadeado.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_aresta_encadeada_8h}{ArestaEncadeada.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_grafo_lista_af4a522c3a983807abe6f9fb74e0c4489}{GrafoLista}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_grafo_a0f6befe1a4a9bdaf4a05d2100f476522}{Grafo}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_lista_encadeada}{ListaEncadeada<VerticeEncadeado>}}\ *vertices;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_lista_encadeada}{ListaEncadeada<ArestaEncadeada>}}\ *arestas;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{class_vertice_encadeado}{VerticeEncadeado}}\ *get\_vertice\_encadeado(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ buscaEmProfundidade(\mbox{\hyperlink{class_vertice_encadeado}{VerticeEncadeado}}\ *vertice,\ \textcolor{keywordtype}{bool}\ *visitados);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_grafo_lista_af4a522c3a983807abe6f9fb74e0c4489}{GrafoLista}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_grafo_lista_ac11ea955de368ba048d67e44f7cf5f0e}{get\_vertice}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_grafo_lista_ac8d5284da7f3ef4007c8cac351fc4df6}{get\_aresta}}(\textcolor{keywordtype}{int}\ idOrigem,\ \textcolor{keywordtype}{int}\ idDestino)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_lista_a5bf86bfde3a65f1da47894144e12f8a4}{set\_vertice}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{float}\ peso)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_lista_af3798502fb3a091ebe9bbd9025771add}{set\_aresta}}(\textcolor{keywordtype}{int}\ origem,\ \textcolor{keywordtype}{int}\ destino,\ \textcolor{keywordtype}{float}\ peso)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_lista_a34bec41ce42dd5719167a686aca9ad4a}{nova\_aresta}}(\textcolor{keywordtype}{int}\ origem,\ \textcolor{keywordtype}{int}\ destino,\ \textcolor{keywordtype}{int}\ peso)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_grafo_lista_ad56ed6d6af7d5741c0a59f48ae339575}{get\_vizinhos}}(\textcolor{keywordtype}{int}\ vertice)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_lista_ade800e5e355aebd673a344987fd0865b}{imprimir}}();}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_lista_a264c985123f08ae3ab99b4b1bb27261a}{inicializa\_grafo}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{class_grafo_lista_a4fb6a8087a973f7061b069d1d38a1174}{\string~GrafoLista}}();}
+\DoxyCodeLine{00119\ \};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GRAFOLISTA\_H\_INCLUDED}}
+
+\end{DoxyCode}

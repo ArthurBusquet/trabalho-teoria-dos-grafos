@@ -1,0 +1,307 @@
+\doxysection{Grafo\+Matriz Class Reference}
+\hypertarget{class_grafo_matriz}{}\label{class_grafo_matriz}\index{GrafoMatriz@{GrafoMatriz}}
+
+
+A classe \doxylink{class_grafo_matriz}{Grafo\+Matriz} implementa a interface da classe abstrata \doxylink{class_grafo}{Grafo} utilizando uma matriz de adjacência. A classe gerencia tanto grafos direcionados quanto não direcionados, além de permitir a manipulação de pesos de vértices e arestas.  
+
+
+
+
+{\ttfamily \#include $<$Grafo\+Matriz.\+h$>$}
+
+Inheritance diagram for Grafo\+Matriz\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_grafo_matriz}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_grafo_matriz_a02ff2d64e3ebce45e6891a3c9914b92e}{Grafo\+Matriz}} ()
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{class_grafo_matriz}{Grafo\+Matriz}. Inicializa as matrizes e vetores necessários. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_grafo_matriz_a2907ad8631e3bc21c34840cfbd7e0cbb}{\texorpdfstring{$\sim$}{\string~}\+Grafo\+Matriz}} ()
+\begin{DoxyCompactList}\small\item\em Destruidor da classe \doxylink{class_grafo_matriz}{Grafo\+Matriz}. Libera a memória alocada para as matrizes e vetores. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_matriz_aa9bc63976f1578206a89f5f08794de04}{redimensionar\+Matriz}} ()
+\begin{DoxyCompactList}\small\item\em Método para redimensionar a matriz 2D de adjacência. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_matriz_a53456aee5d70d5dcbaec51ed6822233a}{redimensionar\+Matriz\+Linear}} ()
+\begin{DoxyCompactList}\small\item\em Método para redimensionar a matriz linear de adjacência. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_matriz_a01ec9f198e6c2f49690c5cf58c480aad}{inicializa\+\_\+grafo}} ()
+\begin{DoxyCompactList}\small\item\em Método para inicializar o grafo a partir de um arquivo de entrada. Lê os vértices, arestas e pesos do arquivo de dados. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_grafo_matriz_a1bcdc6146b2526c8aacbfe9708885378}{calcular\+Indice\+Linear}} (int origem, int destino)
+\begin{DoxyCompactList}\small\item\em Calcula o índice linear na matriz comprimida para grafos não direcionados. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_grafo_matriz_ad8bfe4e0ba65c43bb15c24b5d5dd41a2}{get\+\_\+aresta}} (int origem, int destino) override
+\begin{DoxyCompactList}\small\item\em Método para obter o peso de uma aresta entre dois vértices dados seus ids. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_grafo_matriz_adf60b7bb020e48e07a6cb2dc6982b42a}{get\+\_\+vertice}} (int vertice) override
+\begin{DoxyCompactList}\small\item\em Método para obter o peso de um vértice dado seu id. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_grafo_matriz_ad26746a41b10cb0649e750ab7c011981}{get\+\_\+vizinhos}} (int vertice) override
+\begin{DoxyCompactList}\small\item\em Método para obter o número de vizinhos de um vértice. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_matriz_a9d08d9fa7fb905713a7788a308c708c6}{set\+\_\+vertice}} (int id, float peso) override
+\begin{DoxyCompactList}\small\item\em Método para definir o peso de um vértice dado seu id. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_matriz_abac4e5064314f4eec5094cdc236521fc}{set\+\_\+aresta}} (int origem, int destino, float peso) override
+\begin{DoxyCompactList}\small\item\em Método para definir o peso de uma aresta entre dois vértices dados seus ids. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_matriz_a674143c3e98c79c86c01fe45eb1f6d38}{nova\+\_\+aresta}} (int origem, int destino, int peso)
+\begin{DoxyCompactList}\small\item\em Método para adicionar uma nova aresta entre dois vértices, verificando se a aresta já existe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_grafo}{Grafo}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_grafo_a0f6befe1a4a9bdaf4a05d2100f476522}{Grafo}} ()=default
+\begin{DoxyCompactList}\small\item\em Construtor padrão. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_grafo_a6ebba30af6e13ced6fea59de81080396}{\texorpdfstring{$\sim$}{\string~}\+Grafo}} ()=default
+\begin{DoxyCompactList}\small\item\em Destruidor virtual. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_grafo_a062f2789887e0e4d0dabf0f40f1196e3}{get\+\_\+ordem}} ()
+\begin{DoxyCompactList}\small\item\em Obtém o número de vértices no grafo (ordem do grafo). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a0ca434931b5d454ffe6decc8dd16b279}{set\+\_\+ordem}} (int ordem)
+\begin{DoxyCompactList}\small\item\em Define o número de vértices do grafo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_aaa0b55a32a79f959151c742c8f179e25}{aumenta\+\_\+ordem}} ()
+\begin{DoxyCompactList}\small\item\em Aumenta a ordem do grafo em 1. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_grafo_a24bd7ebc8fed82323a4335fb6b7f7800}{eh\+\_\+direcionado}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se o grafo é direcionado. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a196864be382b940b6d1a955b5c410ed1}{set\+\_\+eh\+\_\+direcionado}} (bool direcionado)
+\begin{DoxyCompactList}\small\item\em Define se o grafo é direcionado. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_grafo_a22aa3389904db28407564c7e279af0e6}{vertice\+\_\+ponderado}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se os vértices do grafo são ponderados. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_ad5f38027249f808d36e9f1b688245c25}{set\+\_\+vertice\+\_\+ponderado}} (bool vertice\+Ponderado)
+\begin{DoxyCompactList}\small\item\em Define se os vértices do grafo são ponderados. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_grafo_a3cc7e8c8e78252d54d04a734ba025e28}{aresta\+\_\+ponderada}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se as arestas do grafo são ponderadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a8ad69eeacb86e6baccdd5cb1236a5090}{set\+\_\+aresta\+\_\+ponderada}} (bool aresta\+Ponderada)
+\begin{DoxyCompactList}\small\item\em Define se as arestas do grafo são ponderadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a9e4436c6bb72bf73c64540ceda34cb1e}{carrega\+\_\+grafo}} ()
+\begin{DoxyCompactList}\small\item\em Carrega o grafo a partir de um arquivo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a2778094dc6ed5a5d7898e3e765ed2c57}{carrega\+\_\+grafo2}} ()
+\begin{DoxyCompactList}\small\item\em Carrega o grafo a partir de um arquivo com outro formato. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_grafo_a9af683109b9f5ddb20a4c951a739d8df}{get\+\_\+grau}} ()
+\begin{DoxyCompactList}\small\item\em Obtém o grau (número de vizinhos) do vértice com maior grau. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_grafo_a6ef121a6657a931f8881ab0a0e7a77ee}{eh\+\_\+completo}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se o grafo é completo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a1fce74258aedbdb525555d1c9ea80f8b}{dfs}} (int vertice, bool visitado\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Realiza uma busca em profundidade (DFS) para explorar todos os vértices conectados a partir de um vértice inicial. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_grafo_a8107b74abb70e626d18d3466a9a1cb63}{n\+\_\+conexo}} ()
+\begin{DoxyCompactList}\small\item\em Calcula o número de componentes conexas do grafo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a2d60fe7bde618a28cafa79b5e3de70da}{maior\+\_\+menor\+\_\+distancia}} ()
+\begin{DoxyCompactList}\small\item\em Encontra a maior menor distância entre os vértices utilizando o algoritmo de Floyd-\/\+Warshall. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A classe \doxylink{class_grafo_matriz}{Grafo\+Matriz} implementa a interface da classe abstrata \doxylink{class_grafo}{Grafo} utilizando uma matriz de adjacência. A classe gerencia tanto grafos direcionados quanto não direcionados, além de permitir a manipulação de pesos de vértices e arestas. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_grafo_matriz_a02ff2d64e3ebce45e6891a3c9914b92e}\index{GrafoMatriz@{GrafoMatriz}!GrafoMatriz@{GrafoMatriz}}
+\index{GrafoMatriz@{GrafoMatriz}!GrafoMatriz@{GrafoMatriz}}
+\doxysubsubsection{\texorpdfstring{GrafoMatriz()}{GrafoMatriz()}}
+{\footnotesize\ttfamily \label{class_grafo_matriz_a02ff2d64e3ebce45e6891a3c9914b92e} 
+Grafo\+Matriz\+::\+Grafo\+Matriz (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{class_grafo_matriz}{Grafo\+Matriz}. Inicializa as matrizes e vetores necessários. 
+
+\Hypertarget{class_grafo_matriz_a2907ad8631e3bc21c34840cfbd7e0cbb}\index{GrafoMatriz@{GrafoMatriz}!````~GrafoMatriz@{\texorpdfstring{$\sim$}{\string~}GrafoMatriz}}
+\index{````~GrafoMatriz@{\texorpdfstring{$\sim$}{\string~}GrafoMatriz}!GrafoMatriz@{GrafoMatriz}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GrafoMatriz()}{\string~GrafoMatriz()}}
+{\footnotesize\ttfamily \label{class_grafo_matriz_a2907ad8631e3bc21c34840cfbd7e0cbb} 
+Grafo\+Matriz\+::\texorpdfstring{$\sim$}{\string~}\+Grafo\+Matriz (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destruidor da classe \doxylink{class_grafo_matriz}{Grafo\+Matriz}. Libera a memória alocada para as matrizes e vetores. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_grafo_matriz_a1bcdc6146b2526c8aacbfe9708885378}\index{GrafoMatriz@{GrafoMatriz}!calcularIndiceLinear@{calcularIndiceLinear}}
+\index{calcularIndiceLinear@{calcularIndiceLinear}!GrafoMatriz@{GrafoMatriz}}
+\doxysubsubsection{\texorpdfstring{calcularIndiceLinear()}{calcularIndiceLinear()}}
+{\footnotesize\ttfamily \label{class_grafo_matriz_a1bcdc6146b2526c8aacbfe9708885378} 
+int Grafo\+Matriz\+::calcular\+Indice\+Linear (\begin{DoxyParamCaption}\item[{int}]{origem}{, }\item[{int}]{destino}{}\end{DoxyParamCaption})}
+
+
+
+Calcula o índice linear na matriz comprimida para grafos não direcionados. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origem} & O id do vértice de origem. \\
+\hline
+{\em destino} & O id do vértice de destino. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O índice linear correspondente aos vértices de origem e destino. 
+\end{DoxyReturn}
+\Hypertarget{class_grafo_matriz_ad8bfe4e0ba65c43bb15c24b5d5dd41a2}\index{GrafoMatriz@{GrafoMatriz}!get\_aresta@{get\_aresta}}
+\index{get\_aresta@{get\_aresta}!GrafoMatriz@{GrafoMatriz}}
+\doxysubsubsection{\texorpdfstring{get\_aresta()}{get\_aresta()}}
+{\footnotesize\ttfamily \label{class_grafo_matriz_ad8bfe4e0ba65c43bb15c24b5d5dd41a2} 
+int Grafo\+Matriz\+::get\+\_\+aresta (\begin{DoxyParamCaption}\item[{int}]{origem}{, }\item[{int}]{destino}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Método para obter o peso de uma aresta entre dois vértices dados seus ids. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origem} & O id do vértice de origem. \\
+\hline
+{\em destino} & O id do vértice de destino. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O peso da aresta entre os vértices de origem e destino. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_grafo_a5507e6044381fd85aaf8c20268becfb0}{Grafo}}.
+
+\Hypertarget{class_grafo_matriz_adf60b7bb020e48e07a6cb2dc6982b42a}\index{GrafoMatriz@{GrafoMatriz}!get\_vertice@{get\_vertice}}
+\index{get\_vertice@{get\_vertice}!GrafoMatriz@{GrafoMatriz}}
+\doxysubsubsection{\texorpdfstring{get\_vertice()}{get\_vertice()}}
+{\footnotesize\ttfamily \label{class_grafo_matriz_adf60b7bb020e48e07a6cb2dc6982b42a} 
+int Grafo\+Matriz\+::get\+\_\+vertice (\begin{DoxyParamCaption}\item[{int}]{vertice}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Método para obter o peso de um vértice dado seu id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertice} & O id do vértice. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O peso do vértice correspondente ao id. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_grafo_a1f0abb031405ef9e387dad1b8ab68fb0}{Grafo}}.
+
+\Hypertarget{class_grafo_matriz_ad26746a41b10cb0649e750ab7c011981}\index{GrafoMatriz@{GrafoMatriz}!get\_vizinhos@{get\_vizinhos}}
+\index{get\_vizinhos@{get\_vizinhos}!GrafoMatriz@{GrafoMatriz}}
+\doxysubsubsection{\texorpdfstring{get\_vizinhos()}{get\_vizinhos()}}
+{\footnotesize\ttfamily \label{class_grafo_matriz_ad26746a41b10cb0649e750ab7c011981} 
+int Grafo\+Matriz\+::get\+\_\+vizinhos (\begin{DoxyParamCaption}\item[{int}]{vertice}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Método para obter o número de vizinhos de um vértice. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertice} & O id do vértice. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O número de vizinhos do vértice. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_grafo_a8a69e155257c71c3442e4314dc7ac597}{Grafo}}.
+
+\Hypertarget{class_grafo_matriz_a01ec9f198e6c2f49690c5cf58c480aad}\index{GrafoMatriz@{GrafoMatriz}!inicializa\_grafo@{inicializa\_grafo}}
+\index{inicializa\_grafo@{inicializa\_grafo}!GrafoMatriz@{GrafoMatriz}}
+\doxysubsubsection{\texorpdfstring{inicializa\_grafo()}{inicializa\_grafo()}}
+{\footnotesize\ttfamily \label{class_grafo_matriz_a01ec9f198e6c2f49690c5cf58c480aad} 
+void Grafo\+Matriz\+::inicializa\+\_\+grafo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Método para inicializar o grafo a partir de um arquivo de entrada. Lê os vértices, arestas e pesos do arquivo de dados. 
+
+
+
+Implements \mbox{\hyperlink{class_grafo_ad1eb4122f7c46e6e874ae54c4c9b45ce}{Grafo}}.
+
+\Hypertarget{class_grafo_matriz_a674143c3e98c79c86c01fe45eb1f6d38}\index{GrafoMatriz@{GrafoMatriz}!nova\_aresta@{nova\_aresta}}
+\index{nova\_aresta@{nova\_aresta}!GrafoMatriz@{GrafoMatriz}}
+\doxysubsubsection{\texorpdfstring{nova\_aresta()}{nova\_aresta()}}
+{\footnotesize\ttfamily \label{class_grafo_matriz_a674143c3e98c79c86c01fe45eb1f6d38} 
+void Grafo\+Matriz\+::nova\+\_\+aresta (\begin{DoxyParamCaption}\item[{int}]{origem}{, }\item[{int}]{destino}{, }\item[{int}]{peso}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Método para adicionar uma nova aresta entre dois vértices, verificando se a aresta já existe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origem} & O id do vértice de origem. \\
+\hline
+{\em destino} & O id do vértice de destino. \\
+\hline
+{\em peso} & O peso da nova aresta. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_grafo_a36f135f314ae74555daed781b172b06f}{Grafo}}.
+
+\Hypertarget{class_grafo_matriz_aa9bc63976f1578206a89f5f08794de04}\index{GrafoMatriz@{GrafoMatriz}!redimensionarMatriz@{redimensionarMatriz}}
+\index{redimensionarMatriz@{redimensionarMatriz}!GrafoMatriz@{GrafoMatriz}}
+\doxysubsubsection{\texorpdfstring{redimensionarMatriz()}{redimensionarMatriz()}}
+{\footnotesize\ttfamily \label{class_grafo_matriz_aa9bc63976f1578206a89f5f08794de04} 
+void Grafo\+Matriz\+::redimensionar\+Matriz (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Método para redimensionar a matriz 2D de adjacência. 
+
+\Hypertarget{class_grafo_matriz_a53456aee5d70d5dcbaec51ed6822233a}\index{GrafoMatriz@{GrafoMatriz}!redimensionarMatrizLinear@{redimensionarMatrizLinear}}
+\index{redimensionarMatrizLinear@{redimensionarMatrizLinear}!GrafoMatriz@{GrafoMatriz}}
+\doxysubsubsection{\texorpdfstring{redimensionarMatrizLinear()}{redimensionarMatrizLinear()}}
+{\footnotesize\ttfamily \label{class_grafo_matriz_a53456aee5d70d5dcbaec51ed6822233a} 
+void Grafo\+Matriz\+::redimensionar\+Matriz\+Linear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Método para redimensionar a matriz linear de adjacência. 
+
+\Hypertarget{class_grafo_matriz_abac4e5064314f4eec5094cdc236521fc}\index{GrafoMatriz@{GrafoMatriz}!set\_aresta@{set\_aresta}}
+\index{set\_aresta@{set\_aresta}!GrafoMatriz@{GrafoMatriz}}
+\doxysubsubsection{\texorpdfstring{set\_aresta()}{set\_aresta()}}
+{\footnotesize\ttfamily \label{class_grafo_matriz_abac4e5064314f4eec5094cdc236521fc} 
+void Grafo\+Matriz\+::set\+\_\+aresta (\begin{DoxyParamCaption}\item[{int}]{origem}{, }\item[{int}]{destino}{, }\item[{float}]{peso}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Método para definir o peso de uma aresta entre dois vértices dados seus ids. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origem} & O id do vértice de origem. \\
+\hline
+{\em destino} & O id do vértice de destino. \\
+\hline
+{\em peso} & O peso a ser atribuído à aresta. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_grafo_ae9d3052b7a59745f97f3404c39a94c64}{Grafo}}.
+
+\Hypertarget{class_grafo_matriz_a9d08d9fa7fb905713a7788a308c708c6}\index{GrafoMatriz@{GrafoMatriz}!set\_vertice@{set\_vertice}}
+\index{set\_vertice@{set\_vertice}!GrafoMatriz@{GrafoMatriz}}
+\doxysubsubsection{\texorpdfstring{set\_vertice()}{set\_vertice()}}
+{\footnotesize\ttfamily \label{class_grafo_matriz_a9d08d9fa7fb905713a7788a308c708c6} 
+void Grafo\+Matriz\+::set\+\_\+vertice (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{float}]{peso}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Método para definir o peso de um vértice dado seu id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O id do vértice. \\
+\hline
+{\em peso} & O peso a ser atribuído ao vértice. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_grafo_ad82b55e41a460b1b42381049e268de6c}{Grafo}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_grafo_matriz_8h}{Grafo\+Matriz.\+h}}\item 
+src/\mbox{\hyperlink{_grafo_matriz_8cpp}{Grafo\+Matriz.\+cpp}}\end{DoxyCompactItemize}

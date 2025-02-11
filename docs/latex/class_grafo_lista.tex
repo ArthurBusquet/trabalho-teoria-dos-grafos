@@ -1,0 +1,273 @@
+\doxysection{Grafo\+Lista Class Reference}
+\hypertarget{class_grafo_lista}{}\label{class_grafo_lista}\index{GrafoLista@{GrafoLista}}
+
+
+A classe \doxylink{class_grafo_lista}{Grafo\+Lista} é uma implementação de grafo que utiliza listas encadeadas para armazenar os vértices e arestas. Ela herda da classe abstrata \doxylink{class_grafo}{Grafo} e implementa suas funções virtuais para manipulação de vértices e arestas.  
+
+
+
+
+{\ttfamily \#include $<$Grafo\+Lista.\+h$>$}
+
+Inheritance diagram for Grafo\+Lista\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_grafo_lista}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_grafo_lista_af4a522c3a983807abe6f9fb74e0c4489}{Grafo\+Lista}} ()
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{class_grafo_lista}{Grafo\+Lista}. Inicializa as listas de vértices e arestas. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_grafo_lista_ac11ea955de368ba048d67e44f7cf5f0e}{get\+\_\+vertice}} (int id) override
+\begin{DoxyCompactList}\small\item\em Método para obter o peso de um vértice dado seu id. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_grafo_lista_ac8d5284da7f3ef4007c8cac351fc4df6}{get\+\_\+aresta}} (int id\+Origem, int id\+Destino) override
+\begin{DoxyCompactList}\small\item\em Método para obter o peso de uma aresta entre dois vértices dados seus ids. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_lista_a5bf86bfde3a65f1da47894144e12f8a4}{set\+\_\+vertice}} (int id, float peso) override
+\begin{DoxyCompactList}\small\item\em Método para definir o peso de um vértice dado seu id. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_lista_af3798502fb3a091ebe9bbd9025771add}{set\+\_\+aresta}} (int origem, int destino, float peso) override
+\begin{DoxyCompactList}\small\item\em Método para definir o peso de uma aresta entre dois vértices dados seus ids. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_lista_a34bec41ce42dd5719167a686aca9ad4a}{nova\+\_\+aresta}} (int origem, int destino, int peso) override
+\begin{DoxyCompactList}\small\item\em Método para adicionar uma nova aresta entre dois vértices. Verifica se a aresta já existe e, caso contrário, adiciona a aresta na lista. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_grafo_lista_ad56ed6d6af7d5741c0a59f48ae339575}{get\+\_\+vizinhos}} (int vertice) override
+\begin{DoxyCompactList}\small\item\em Método para obter o número de vizinhos de um vértice. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_lista_ade800e5e355aebd673a344987fd0865b}{imprimir}} ()
+\begin{DoxyCompactList}\small\item\em Método para imprimir os vértices e as arestas do grafo, além de informações sobre o grau e componentes conexas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_lista_a264c985123f08ae3ab99b4b1bb27261a}{inicializa\+\_\+grafo}} () override
+\begin{DoxyCompactList}\small\item\em Método para inicializar o grafo a partir de um arquivo de entrada. Lê as informações de vértices, arestas, pesos e outras configurações. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_grafo_lista_a4fb6a8087a973f7061b069d1d38a1174}{\texorpdfstring{$\sim$}{\string~}\+Grafo\+Lista}} ()
+\begin{DoxyCompactList}\small\item\em Destruidor da classe \doxylink{class_grafo_lista}{Grafo\+Lista}. Libera a memória alocada para as listas de vértices e arestas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_grafo}{Grafo}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_grafo_a0f6befe1a4a9bdaf4a05d2100f476522}{Grafo}} ()=default
+\begin{DoxyCompactList}\small\item\em Construtor padrão. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_grafo_a6ebba30af6e13ced6fea59de81080396}{\texorpdfstring{$\sim$}{\string~}\+Grafo}} ()=default
+\begin{DoxyCompactList}\small\item\em Destruidor virtual. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_grafo_a062f2789887e0e4d0dabf0f40f1196e3}{get\+\_\+ordem}} ()
+\begin{DoxyCompactList}\small\item\em Obtém o número de vértices no grafo (ordem do grafo). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a0ca434931b5d454ffe6decc8dd16b279}{set\+\_\+ordem}} (int ordem)
+\begin{DoxyCompactList}\small\item\em Define o número de vértices do grafo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_aaa0b55a32a79f959151c742c8f179e25}{aumenta\+\_\+ordem}} ()
+\begin{DoxyCompactList}\small\item\em Aumenta a ordem do grafo em 1. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_grafo_a24bd7ebc8fed82323a4335fb6b7f7800}{eh\+\_\+direcionado}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se o grafo é direcionado. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a196864be382b940b6d1a955b5c410ed1}{set\+\_\+eh\+\_\+direcionado}} (bool direcionado)
+\begin{DoxyCompactList}\small\item\em Define se o grafo é direcionado. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_grafo_a22aa3389904db28407564c7e279af0e6}{vertice\+\_\+ponderado}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se os vértices do grafo são ponderados. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_ad5f38027249f808d36e9f1b688245c25}{set\+\_\+vertice\+\_\+ponderado}} (bool vertice\+Ponderado)
+\begin{DoxyCompactList}\small\item\em Define se os vértices do grafo são ponderados. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_grafo_a3cc7e8c8e78252d54d04a734ba025e28}{aresta\+\_\+ponderada}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se as arestas do grafo são ponderadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a8ad69eeacb86e6baccdd5cb1236a5090}{set\+\_\+aresta\+\_\+ponderada}} (bool aresta\+Ponderada)
+\begin{DoxyCompactList}\small\item\em Define se as arestas do grafo são ponderadas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a9e4436c6bb72bf73c64540ceda34cb1e}{carrega\+\_\+grafo}} ()
+\begin{DoxyCompactList}\small\item\em Carrega o grafo a partir de um arquivo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a2778094dc6ed5a5d7898e3e765ed2c57}{carrega\+\_\+grafo2}} ()
+\begin{DoxyCompactList}\small\item\em Carrega o grafo a partir de um arquivo com outro formato. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_grafo_a9af683109b9f5ddb20a4c951a739d8df}{get\+\_\+grau}} ()
+\begin{DoxyCompactList}\small\item\em Obtém o grau (número de vizinhos) do vértice com maior grau. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_grafo_a6ef121a6657a931f8881ab0a0e7a77ee}{eh\+\_\+completo}} ()
+\begin{DoxyCompactList}\small\item\em Verifica se o grafo é completo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a1fce74258aedbdb525555d1c9ea80f8b}{dfs}} (int vertice, bool visitado\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Realiza uma busca em profundidade (DFS) para explorar todos os vértices conectados a partir de um vértice inicial. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_grafo_a8107b74abb70e626d18d3466a9a1cb63}{n\+\_\+conexo}} ()
+\begin{DoxyCompactList}\small\item\em Calcula o número de componentes conexas do grafo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a2d60fe7bde618a28cafa79b5e3de70da}{maior\+\_\+menor\+\_\+distancia}} ()
+\begin{DoxyCompactList}\small\item\em Encontra a maior menor distância entre os vértices utilizando o algoritmo de Floyd-\/\+Warshall. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A classe \doxylink{class_grafo_lista}{Grafo\+Lista} é uma implementação de grafo que utiliza listas encadeadas para armazenar os vértices e arestas. Ela herda da classe abstrata \doxylink{class_grafo}{Grafo} e implementa suas funções virtuais para manipulação de vértices e arestas. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_grafo_lista_af4a522c3a983807abe6f9fb74e0c4489}\index{GrafoLista@{GrafoLista}!GrafoLista@{GrafoLista}}
+\index{GrafoLista@{GrafoLista}!GrafoLista@{GrafoLista}}
+\doxysubsubsection{\texorpdfstring{GrafoLista()}{GrafoLista()}}
+{\footnotesize\ttfamily \label{class_grafo_lista_af4a522c3a983807abe6f9fb74e0c4489} 
+Grafo\+Lista\+::\+Grafo\+Lista (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{class_grafo_lista}{Grafo\+Lista}. Inicializa as listas de vértices e arestas. 
+
+\Hypertarget{class_grafo_lista_a4fb6a8087a973f7061b069d1d38a1174}\index{GrafoLista@{GrafoLista}!````~GrafoLista@{\texorpdfstring{$\sim$}{\string~}GrafoLista}}
+\index{````~GrafoLista@{\texorpdfstring{$\sim$}{\string~}GrafoLista}!GrafoLista@{GrafoLista}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GrafoLista()}{\string~GrafoLista()}}
+{\footnotesize\ttfamily \label{class_grafo_lista_a4fb6a8087a973f7061b069d1d38a1174} 
+Grafo\+Lista\+::\texorpdfstring{$\sim$}{\string~}\+Grafo\+Lista (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destruidor da classe \doxylink{class_grafo_lista}{Grafo\+Lista}. Libera a memória alocada para as listas de vértices e arestas. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_grafo_lista_ac8d5284da7f3ef4007c8cac351fc4df6}\index{GrafoLista@{GrafoLista}!get\_aresta@{get\_aresta}}
+\index{get\_aresta@{get\_aresta}!GrafoLista@{GrafoLista}}
+\doxysubsubsection{\texorpdfstring{get\_aresta()}{get\_aresta()}}
+{\footnotesize\ttfamily \label{class_grafo_lista_ac8d5284da7f3ef4007c8cac351fc4df6} 
+int Grafo\+Lista\+::get\+\_\+aresta (\begin{DoxyParamCaption}\item[{int}]{id\+Origem}{, }\item[{int}]{id\+Destino}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Método para obter o peso de uma aresta entre dois vértices dados seus ids. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+Origem} & O id do vértice de origem. \\
+\hline
+{\em id\+Destino} & O id do vértice de destino. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O peso da aresta entre os vértices de origem e destino. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_grafo_a5507e6044381fd85aaf8c20268becfb0}{Grafo}}.
+
+\Hypertarget{class_grafo_lista_ac11ea955de368ba048d67e44f7cf5f0e}\index{GrafoLista@{GrafoLista}!get\_vertice@{get\_vertice}}
+\index{get\_vertice@{get\_vertice}!GrafoLista@{GrafoLista}}
+\doxysubsubsection{\texorpdfstring{get\_vertice()}{get\_vertice()}}
+{\footnotesize\ttfamily \label{class_grafo_lista_ac11ea955de368ba048d67e44f7cf5f0e} 
+int Grafo\+Lista\+::get\+\_\+vertice (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Método para obter o peso de um vértice dado seu id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O id do vértice. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O peso do vértice correspondente ao id. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_grafo_a1f0abb031405ef9e387dad1b8ab68fb0}{Grafo}}.
+
+\Hypertarget{class_grafo_lista_ad56ed6d6af7d5741c0a59f48ae339575}\index{GrafoLista@{GrafoLista}!get\_vizinhos@{get\_vizinhos}}
+\index{get\_vizinhos@{get\_vizinhos}!GrafoLista@{GrafoLista}}
+\doxysubsubsection{\texorpdfstring{get\_vizinhos()}{get\_vizinhos()}}
+{\footnotesize\ttfamily \label{class_grafo_lista_ad56ed6d6af7d5741c0a59f48ae339575} 
+int Grafo\+Lista\+::get\+\_\+vizinhos (\begin{DoxyParamCaption}\item[{int}]{vertice}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Método para obter o número de vizinhos de um vértice. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertice} & O id do vértice. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O número de vizinhos do vértice. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_grafo_a8a69e155257c71c3442e4314dc7ac597}{Grafo}}.
+
+\Hypertarget{class_grafo_lista_ade800e5e355aebd673a344987fd0865b}\index{GrafoLista@{GrafoLista}!imprimir@{imprimir}}
+\index{imprimir@{imprimir}!GrafoLista@{GrafoLista}}
+\doxysubsubsection{\texorpdfstring{imprimir()}{imprimir()}}
+{\footnotesize\ttfamily \label{class_grafo_lista_ade800e5e355aebd673a344987fd0865b} 
+void Grafo\+Lista\+::imprimir (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Método para imprimir os vértices e as arestas do grafo, além de informações sobre o grau e componentes conexas. 
+
+\Hypertarget{class_grafo_lista_a264c985123f08ae3ab99b4b1bb27261a}\index{GrafoLista@{GrafoLista}!inicializa\_grafo@{inicializa\_grafo}}
+\index{inicializa\_grafo@{inicializa\_grafo}!GrafoLista@{GrafoLista}}
+\doxysubsubsection{\texorpdfstring{inicializa\_grafo()}{inicializa\_grafo()}}
+{\footnotesize\ttfamily \label{class_grafo_lista_a264c985123f08ae3ab99b4b1bb27261a} 
+void Grafo\+Lista\+::inicializa\+\_\+grafo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Método para inicializar o grafo a partir de um arquivo de entrada. Lê as informações de vértices, arestas, pesos e outras configurações. 
+
+
+
+Implements \mbox{\hyperlink{class_grafo_ad1eb4122f7c46e6e874ae54c4c9b45ce}{Grafo}}.
+
+\Hypertarget{class_grafo_lista_a34bec41ce42dd5719167a686aca9ad4a}\index{GrafoLista@{GrafoLista}!nova\_aresta@{nova\_aresta}}
+\index{nova\_aresta@{nova\_aresta}!GrafoLista@{GrafoLista}}
+\doxysubsubsection{\texorpdfstring{nova\_aresta()}{nova\_aresta()}}
+{\footnotesize\ttfamily \label{class_grafo_lista_a34bec41ce42dd5719167a686aca9ad4a} 
+void Grafo\+Lista\+::nova\+\_\+aresta (\begin{DoxyParamCaption}\item[{int}]{origem}{, }\item[{int}]{destino}{, }\item[{int}]{peso}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Método para adicionar uma nova aresta entre dois vértices. Verifica se a aresta já existe e, caso contrário, adiciona a aresta na lista. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origem} & O id do vértice de origem. \\
+\hline
+{\em destino} & O id do vértice de destino. \\
+\hline
+{\em peso} & O peso da nova aresta. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_grafo_a36f135f314ae74555daed781b172b06f}{Grafo}}.
+
+\Hypertarget{class_grafo_lista_af3798502fb3a091ebe9bbd9025771add}\index{GrafoLista@{GrafoLista}!set\_aresta@{set\_aresta}}
+\index{set\_aresta@{set\_aresta}!GrafoLista@{GrafoLista}}
+\doxysubsubsection{\texorpdfstring{set\_aresta()}{set\_aresta()}}
+{\footnotesize\ttfamily \label{class_grafo_lista_af3798502fb3a091ebe9bbd9025771add} 
+void Grafo\+Lista\+::set\+\_\+aresta (\begin{DoxyParamCaption}\item[{int}]{origem}{, }\item[{int}]{destino}{, }\item[{float}]{peso}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Método para definir o peso de uma aresta entre dois vértices dados seus ids. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origem} & O id do vértice de origem. \\
+\hline
+{\em destino} & O id do vértice de destino. \\
+\hline
+{\em peso} & O peso a ser atribuído à aresta. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_grafo_ae9d3052b7a59745f97f3404c39a94c64}{Grafo}}.
+
+\Hypertarget{class_grafo_lista_a5bf86bfde3a65f1da47894144e12f8a4}\index{GrafoLista@{GrafoLista}!set\_vertice@{set\_vertice}}
+\index{set\_vertice@{set\_vertice}!GrafoLista@{GrafoLista}}
+\doxysubsubsection{\texorpdfstring{set\_vertice()}{set\_vertice()}}
+{\footnotesize\ttfamily \label{class_grafo_lista_a5bf86bfde3a65f1da47894144e12f8a4} 
+void Grafo\+Lista\+::set\+\_\+vertice (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{float}]{peso}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Método para definir o peso de um vértice dado seu id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & O id do vértice. \\
+\hline
+{\em peso} & O peso a ser atribuído ao vértice. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_grafo_ad82b55e41a460b1b42381049e268de6c}{Grafo}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_grafo_lista_8h}{Grafo\+Lista.\+h}}\item 
+src/\mbox{\hyperlink{_grafo_lista_8cpp}{Grafo\+Lista.\+cpp}}\end{DoxyCompactItemize}
