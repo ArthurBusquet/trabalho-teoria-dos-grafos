@@ -8,31 +8,6 @@
 
 using namespace std;
 
-// GrafoMatriz::GrafoMatriz() {
-//     // Inicializa a matriz de adjacência com 0
-//     for (int i = 0; i < MAX_VERTICES; i++) {
-//         for (int j = 0; j < MAX_VERTICES; j++) {
-//             Matriz[i][j] = 0;
-//         }
-//     }
-
-//     // Inicializa a matriz linear com 0
-//     for (int i = 0; i < (MAX_VERTICES * (MAX_VERTICES + 1)) / 2; i++) {
-//         MatrizLinear[i] = 0;
-//     }
-
-//     // Inicializa o vetor de pesos dos vértices com 0
-//     for (int i = 0; i < MAX_VERTICES; i++) {
-//         VetorPesosVertices[i] = 0;
-//     }
-// }
-
-// GrafoMatriz::~GrafoMatriz() {
-//     // Como estamos usando arrays estáticos, não há necessidade de deletar manualmente.
-//     // Se usássemos alocação dinâmica (new/malloc), liberaríamos a memória aqui com delete/free.
-//     cout << "Destruindo GrafoMatriz..." << endl;
-// }
-
 GrafoMatriz::GrafoMatriz() {
     tamanhoAtual = TAMANHO_INICIAL;
     tamanhoAtualLinear = (TAMANHO_INICIAL * (TAMANHO_INICIAL + 1)) / 2;
@@ -52,16 +27,30 @@ GrafoMatriz::GrafoMatriz() {
 
 
 GrafoMatriz::~GrafoMatriz() {
-    // Libera a memória alocada para a matriz 2D
-    for (int i = 0; i < tamanhoAtual; i++) {
-        delete[] Matriz[i];
-    }
-    delete[] Matriz;
-
-    // Libera a memória alocada para a matriz linear
-    delete[] MatrizLinear;
-
     cout << "Destruindo GrafoMatriz..." << endl;
+
+    // Libera a matriz bidimensional, garantindo que os ponteiros são válidos
+    if (Matriz) {
+        for (int i = 0; i < tamanhoAtual; i++) {
+            if (Matriz[i]) {
+                delete[] Matriz[i];
+            }
+        }
+        delete[] Matriz;
+        Matriz = nullptr; // Evita dangling pointers
+    }
+
+    // Libera a matriz linear se ela foi alocada
+    if (MatrizLinear) {
+        delete[] MatrizLinear;
+        MatrizLinear = nullptr; // Evita dangling pointers
+    }
+
+    // Libera o vetor de pesos dos vértices
+    if (VetorPesosVertices) {
+        delete[] VetorPesosVertices;
+        VetorPesosVertices = nullptr;
+    }
 }
 
 // Método para redimensionar a matriz quadrada
@@ -173,7 +162,7 @@ int GrafoMatriz::calcularIndiceLinear(int origem, int destino) {
 }
 
 int GrafoMatriz::get_aresta(int origem, int destino) {
-    if (origem < 1 || destino < 1 || origem > tamanhoAtual || destino > tamanhoAtual) {
+    if (origem < 0 || destino < 0 || origem > tamanhoAtual || destino > tamanhoAtual) {
         cerr << "Erro: Índices fora dos limites da matriz!" << endl;
         return -1; // Retorno de erro
     }
@@ -276,4 +265,43 @@ void GrafoMatriz::nova_aresta(int origem, int destino, int peso) {
         int indice = calcularIndiceLinear(origem, destino);
         MatrizLinear[indice] = peso;
     }
+}
+
+
+void GrafoMatriz::deleta_aresta(int vertice1, int vertice2) {
+    if (eh_direcionado()) {
+
+        // Remove a aresta na matriz de adjacência
+        Matriz[vertice1 - 1][vertice2 - 1] = 0;
+    } else {
+        // Certifique-se de que origem é sempre menor ou igual a destino
+        if (vertice1 > vertice2) {
+            std::swap(vertice1, vertice2);
+        }
+        int indice = calcularIndiceLinear(vertice1, vertice2);
+        MatrizLinear[indice] = 0;
+    }
+}
+
+void GrafoMatriz::novo_no() {
+    // Aumenta a ordem do grafo
+    aumenta_ordem();
+    
+    // Verifica se é necessário redimensionar a matriz
+    if (get_ordem() > tamanhoAtual) {
+        if( eh_direcionado() ) {
+            redimensionarMatriz();           // Redimensiona a matriz quadrada
+        } else {
+            redimensionarMatrizLinear();     // Redimensiona a matriz linear
+        }
+    }
+    
+    // Inicializa o novo vértice na matriz (adiciona a linha e a coluna na matriz)
+    for (int i = 0; i < get_ordem(); i++) {
+        Matriz[i][get_ordem() - 1] = 0;  // Adiciona nova coluna
+        Matriz[get_ordem() - 1][i] = 0;  // Adiciona nova linha
+    }
+    
+    // Inicializa o vetor de pesos do novo vértice
+    VetorPesosVertices[get_ordem() - 1] = 0; // Valor padrão para o peso do vértice
 }

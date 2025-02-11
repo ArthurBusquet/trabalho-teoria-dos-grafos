@@ -21,6 +21,13 @@ public:
         return primeiro;
     }
 
+    void setInicio(T* novoInicio) {
+        primeiro = novoInicio;
+        if (novoInicio == nullptr) {
+            ultimo = nullptr;
+        }
+    }
+
     void adicionar(T* novoNo) {
         if (primeiro == nullptr) {
             primeiro = novoNo;

@@ -29,6 +29,10 @@ public:
     void set_aresta(int origem, int destino, float peso) override; 
     void nova_aresta(int origem, int destino, int peso);
 
+    void novo_no() override;  
+
+    void deleta_aresta(int vertice1, int vertice2) override;
+    
 };
 
 #endif  // GRAFO_MATRIZ_H_INCLUDED
