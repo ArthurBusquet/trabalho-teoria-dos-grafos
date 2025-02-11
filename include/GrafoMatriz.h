@@ -29,7 +29,12 @@ public:
     void set_aresta(int origem, int destino, float peso) override; 
     void nova_aresta(int origem, int destino, int peso);
 
-    void novo_no() override;  
+    void novo_no(int peso) override;  
+    void deleta_no(int vertice) override;
+    void deleta_arestas_direcionadas(int vertice);
+    void deleta_arestas_nao_direcionadas(int vertice);
+    void reorganiza_matriz(int vertice);
+    void reorganiza_vetor_pesos(int vertice);
 
     void deleta_aresta(int vertice1, int vertice2) override;
     

@@ -23,9 +23,10 @@ public:
 
     virtual void set_aresta(int origem, int destino, float peso) = 0;
     virtual void set_vertice(int id, float peso) = 0;
-    //virtual void deleta_aresta(int origem, int destino) = 0;
+    
 
-    virtual void novo_no() = 0;
+    virtual void novo_no(int peso) = 0;
+    virtual void deleta_no(int vertice) = 0;
 
     int get_ordem()
     {

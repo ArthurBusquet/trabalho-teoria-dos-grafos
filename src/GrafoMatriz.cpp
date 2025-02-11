@@ -29,27 +29,27 @@ GrafoMatriz::GrafoMatriz() {
 GrafoMatriz::~GrafoMatriz() {
     cout << "Destruindo GrafoMatriz..." << endl;
 
-    // Libera a matriz bidimensional, garantindo que os ponteiros são válidos
-    if (Matriz) {
+    // Libera a matriz bidimensional de forma segura
+    if (Matriz != nullptr) {  // Verifica se o ponteiro da Matriz não é nulo
         for (int i = 0; i < tamanhoAtual; i++) {
-            if (Matriz[i]) {
-                delete[] Matriz[i];
+            if (Matriz[i] != nullptr) {  // Verifica se a linha não é nula antes de liberar
+                delete[] Matriz[i]; // Libera apenas se o ponteiro for válido
             }
         }
-        delete[] Matriz;
-        Matriz = nullptr; // Evita dangling pointers
+        delete[] Matriz;  // Libera a matriz inteira
+        Matriz = nullptr;  // Evita dangling pointers (ponteiro inválido)
     }
 
-    // Libera a matriz linear se ela foi alocada
-    if (MatrizLinear) {
+    // Libera a matriz linear de forma segura
+    if (MatrizLinear != nullptr) {  // Verifica se o ponteiro não é nulo
         delete[] MatrizLinear;
-        MatrizLinear = nullptr; // Evita dangling pointers
+        MatrizLinear = nullptr;  // Evita dangling pointer
     }
 
-    // Libera o vetor de pesos dos vértices
-    if (VetorPesosVertices) {
+    // Libera o vetor de pesos
+    if (VetorPesosVertices != nullptr) {  // Verifica se o vetor não é nulo
         delete[] VetorPesosVertices;
-        VetorPesosVertices = nullptr;
+        VetorPesosVertices = nullptr;  // Evita dangling pointer
     }
 }
 
@@ -57,10 +57,14 @@ GrafoMatriz::~GrafoMatriz() {
 void GrafoMatriz::redimensionarMatriz() {
     int novoTamanho = tamanhoAtual * 2;
     cout << "Redimensionando matriz quadrada para " << novoTamanho << "..." << endl;
-
+    cout << "Aqui" << endl << endl;
+    
     int** novaMatriz = new int*[novoTamanho];
+    cout << "Aqui" << endl << endl;
     for (int i = 0; i < novoTamanho; i++) {
+        
         novaMatriz[i] = new int[novoTamanho];
+        
         for (int j = 0; j < novoTamanho; j++) {
             novaMatriz[i][j] = (i < tamanhoAtual && j < tamanhoAtual) ? Matriz[i][j] : 0;
         }
@@ -162,13 +166,13 @@ int GrafoMatriz::calcularIndiceLinear(int origem, int destino) {
 }
 
 int GrafoMatriz::get_aresta(int origem, int destino) {
-    if (origem < 0 || destino < 0 || origem > tamanhoAtual || destino > tamanhoAtual) {
-        cerr << "Erro: Índices fora dos limites da matriz!" << endl;
+    if (origem < 0 || destino < 0 || origem >= tamanhoAtual || destino >= tamanhoAtual) {
+        //cerr << "Erro: Índices fora dos limites da matriz!" << endl;
         return -1; // Retorno de erro
     }
 
     if (eh_direcionado()) {
-        return Matriz[origem - 1][destino - 1];
+        return Matriz[origem][destino];
     } else {
         if (origem > destino) {
             std::swap(origem, destino);
@@ -283,7 +287,7 @@ void GrafoMatriz::deleta_aresta(int vertice1, int vertice2) {
     }
 }
 
-void GrafoMatriz::novo_no() {
+void GrafoMatriz::novo_no(int peso) {
     // Aumenta a ordem do grafo
     aumenta_ordem();
     
@@ -303,5 +307,102 @@ void GrafoMatriz::novo_no() {
     }
     
     // Inicializa o vetor de pesos do novo vértice
-    VetorPesosVertices[get_ordem() - 1] = 0; // Valor padrão para o peso do vértice
+    VetorPesosVertices[get_ordem() - 1] = peso; // Valor padrão para o peso do vértice
+}
+
+void GrafoMatriz::deleta_no(int vertice) {
+    if (vertice < 1 || vertice > tamanhoAtual) {
+        cerr << "Erro: Vértice inválido!" << endl;
+        return;
+    }
+
+    // Remove todas as arestas associadas ao vértice
+    if (eh_direcionado()) {
+        deleta_arestas_direcionadas(vertice);
+    } else {
+        deleta_arestas_nao_direcionadas(vertice);
+    }
+
+    // Reorganiza a matriz de adjacência ou a matriz linear
+    reorganiza_matriz(vertice);
+
+    // Atualiza o vetor de pesos dos vértices
+    reorganiza_vetor_pesos(vertice);
+
+    // Decrementa a ordem do grafo
+    set_ordem(get_ordem() - 1);
+
+    cout << "Vértice " << vertice << " deletado com sucesso!" << endl;
+}
+
+void GrafoMatriz::deleta_arestas_direcionadas(int vertice) {
+    int v = vertice - 1; // Ajustando para índice 0
+
+    // Remove todas as arestas de saída do vértice
+    for (int i = 0; i < tamanhoAtual; i++) {
+        Matriz[v][i] = 0;
+    }
+
+    // Remove todas as arestas de entrada para o vértice
+    for (int i = 0; i < tamanhoAtual; i++) {
+        Matriz[i][v] = 0;
+    }
+}
+
+void GrafoMatriz::deleta_arestas_nao_direcionadas(int vertice) {
+    int v = vertice - 1; // Ajustando para índice 0
+
+    // Remove todas as arestas associadas ao vértice na matriz linear
+    for (int i = 0; i < tamanhoAtual; i++) {
+        if (i == v) continue; // Evita o próprio vértice
+
+        int indice = calcularIndiceLinear(i + 1, vertice);
+        MatrizLinear[indice] = 0;
+    }
+}
+
+void GrafoMatriz::reorganiza_matriz(int vertice) {
+    int v = vertice - 1; // Ajustando para índice 0
+
+    // Cria uma nova matriz com tamanho reduzido
+    int novoTamanho = tamanhoAtual - 1;
+    int** novaMatriz = new int*[novoTamanho];
+    for (int i = 0, ni = 0; i < tamanhoAtual; i++) {
+        if (i == v) continue; // Pula o vértice a ser deletado
+        novaMatriz[ni] = new int[novoTamanho];
+        for (int j = 0, nj = 0; j < tamanhoAtual; j++) {
+            if (j == v) continue; // Pula o vértice a ser deletado
+            novaMatriz[ni][nj] = Matriz[i][j];
+            nj++;
+        }
+        ni++;
+    }
+
+    // Libera a matriz antiga
+    for (int i = 0; i < tamanhoAtual; i++) {
+        delete[] Matriz[i];
+    }
+    delete[] Matriz;
+
+    // Atualiza ponteiro e tamanho
+    Matriz = novaMatriz;
+    tamanhoAtual = novoTamanho;
+}
+
+void GrafoMatriz::reorganiza_vetor_pesos(int vertice) {
+    int v = vertice - 1; // Ajustando para índice 0
+
+    // Cria um novo vetor de pesos com tamanho reduzido
+    int* novoVetorPesos = new int[tamanhoAtual - 1];
+    for (int i = 0, ni = 0; i < tamanhoAtual; i++) {
+        if (i == v) continue; // Pula o vértice a ser deletado
+        novoVetorPesos[ni] = VetorPesosVertices[i];
+        ni++;
+    }
+
+    // Libera o vetor antigo
+    delete[] VetorPesosVertices;
+
+    // Atualiza ponteiro
+    VetorPesosVertices = novoVetorPesos;
 }

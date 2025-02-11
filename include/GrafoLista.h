@@ -33,7 +33,8 @@ public:
     
 
     int get_vizinhos(int vertice) override;
-    void novo_no() override;  
+    void novo_no(int peso) override;  
+    void deleta_no(int vertice) override;
 
     void imprimir();
 

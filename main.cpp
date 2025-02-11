@@ -29,8 +29,6 @@ int main(int argc, char *argv[])
         std::cerr << "Uso incorreto. Veja as opções abaixo:\n";
         std::cerr << "Caso 1: ./main.out -d -m grafo.txt\n";
         std::cerr << "Caso 2: ./main.out -d -l grafo.txt\n";
-        std::cerr << "Caso 3: ./main.out -c -m descricao.txt grafo.txt\n";
-        std::cerr << "Caso 4: ./main.out -c -l descricao.txt grafo.txt\n";
         return 1;
     }
 
@@ -51,12 +49,12 @@ int main(int argc, char *argv[])
         if (estrutura == "-m")
         {
             graph = new GrafoMatriz();
-            graph->carrega_grafo();
+            graph->carrega_grafo2();
         }
         else
         {
             graph = new GrafoLista();
-            graph->carrega_grafo();
+            graph->carrega_grafo2();
         }
     }
         // Carregar o grafo a partir do arquivo
@@ -65,6 +63,9 @@ int main(int argc, char *argv[])
 
         std::cout << "\nEstado inicial do grafo:\n";
         imprimirDescricaoGrafo(graph);
+
+        //graph->novo_no(0);
+        
 
         // // TESTANDO nova_aresta
         // std::cout << "\n--- Testando nova_aresta ---\n";
@@ -131,7 +132,6 @@ int main(int argc, char *argv[])
         // // Verificando se a aresta foi realmente adicionada
         // int peso24 = graph->get_aresta(1, 4);
         // std::cout << "Verificando aresta (2 -> 4): " << peso24 << std::endl;
-
-        //delete graph;
+    delete graph;
     return 0;
 }

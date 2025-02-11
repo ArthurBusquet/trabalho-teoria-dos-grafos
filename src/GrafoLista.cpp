@@ -244,12 +244,16 @@ void GrafoLista::deleta_aresta(int origem, int destino) {
 }
 
 
-void GrafoLista::novo_no() {
+void GrafoLista::novo_no(int peso) {
     // Aumenta a ordem do grafo
     aumenta_ordem();
 
     // Cria um novo vértice com o id correspondente
-    set_vertice(get_ordem(), 0); // O peso pode ser inicializado com 0 ou outro valor, dependendo da necessidade
+    set_vertice(get_ordem(), peso); // O peso pode ser inicializado com 0 ou outro valor, dependendo da necessidade
+}
+
+void GrafoLista::deleta_no(int vertice) {
+    
 }
 
 GrafoLista::~GrafoLista()
