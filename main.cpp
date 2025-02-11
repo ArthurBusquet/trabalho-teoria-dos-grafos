@@ -104,6 +104,34 @@ int main(int argc, char *argv[])
         //     std::cerr << "Opção inválida." << std::endl;
         //     return 1;
         // }
-        delete graph;
+
+         // TESTANDO novo_no
+    
+    
+    
+        // std::cout << "\n--- Testando novo_no ---\n";
+        // int ordemAntes = graph->get_ordem();
+        // graph->novo_no();  // Adiciona um novo vértice
+        // int ordemDepois = graph->get_ordem();
+
+        // std::cout << "Ordem antes de novo_no: " << ordemAntes << std::endl;
+        // std::cout << "Ordem depois de novo_no: " << ordemDepois << std::endl;
+
+        // if (ordemDepois != ordemAntes + 1)
+        // {
+        //     std::cerr << "Erro: A ordem nao foi aumentada corretamente!" << std::endl;
+        // }
+        // else
+        // {
+        //     std::cout << "Novo vertice adicionado corretamente!" << std::endl;
+        // }
+
+        // graph->nova_aresta(1, 4, 10);
+
+        // // Verificando se a aresta foi realmente adicionada
+        // int peso24 = graph->get_aresta(1, 4);
+        // std::cout << "Verificando aresta (2 -> 4): " << peso24 << std::endl;
+
+        //delete graph;
     return 0;
 }
