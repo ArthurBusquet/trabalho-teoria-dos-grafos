@@ -10,44 +10,6 @@ GrafoLista::GrafoLista()
     arestas = new ListaEncadeada<ArestaEncadeada>();
 }
 
-void GrafoLista::inicializa_grafo()
-{
-    ifstream arquivo("./entradas/Grafo.txt");
-    if (!arquivo.is_open())
-    {
-        cerr << "Erro ao abrir o arquivo Grafo.txt" << endl;
-        return;
-    }
-
-    std::string linha;
-
-    int numNos;
-
-    bool direcionado, ponderadoVertices, ponderadoArestas;
-
-    arquivo >> numNos >> direcionado >> ponderadoVertices >> ponderadoArestas;
-
-    for (int i = 1; i <= numNos; i++)
-    {
-        int j;
-        arquivo >> j;
-
-        if (vertice_ponderado())
-            set_vertice(i, j);
-        else
-            set_vertice(i, 1);
-    }
-
-    int origem, destino = 1;
-    float peso = 0;
-    while (arquivo >> origem >> destino >> peso)
-    {
-        set_aresta(origem, destino, peso);
-    }
-
-    arquivo.close();
-}
-
 VerticeEncadeado *GrafoLista::get_vertice_encadeado(int id)
 {
     VerticeEncadeado *vertice = vertices->getInicio();

@@ -20,7 +20,6 @@ public:
     virtual ~GrafoMatriz();
     void redimensionarMatriz();
     void redimensionarMatrizLinear();
-    void inicializa_grafo();
     int calcularIndiceLinear(int origem, int destino);
     int get_aresta(int origem, int destino) override;
     int get_vertice(int vertice) override;

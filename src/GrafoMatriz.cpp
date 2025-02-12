@@ -99,65 +99,6 @@ void GrafoMatriz::redimensionarMatrizLinear() {
     tamanhoAtualLinear = novoTamanho;
 }
 
-void GrafoMatriz::inicializa_grafo() {
-    ifstream arquivo("./entradas/Grafo.txt");
-    if (!arquivo.is_open()) {
-        cerr << "Erro ao abrir o arquivo Grafo.txt" << endl;
-        return;
-    }
-
-    int num_vertices, direcionado, ponderado_vertices, ponderado_arestas;
-    arquivo >> num_vertices >> direcionado >> ponderado_vertices >> ponderado_arestas;
-
-    // Lendo os pesos dos vértices, caso o grafo seja ponderado nos vértices.
-    if (ponderado_vertices) {
-        int index = 0;
-        while (index < num_vertices) {
-            arquivo >> VetorPesosVertices[index];
-            index = index + 1;
-        }
-    }
-
-    // Inicializando a matriz de adjacência.
-    if (direcionado) {
-        int linha = 0;
-        while (linha < num_vertices) {
-            int coluna = 0;
-            while (coluna < num_vertices) {
-                Matriz[linha][coluna] = 0;
-                coluna = coluna + 1;
-            }
-            linha = linha + 1;
-        }
-    } else {
-        int index = 0;
-        while (index < (num_vertices * (num_vertices + 1)) / 2) {
-            MatrizLinear[index] = 0;
-            index = index + 1;
-        }
-    }
-
-    // Lendo as arestas do arquivo.
-    int origem, destino, peso;
-    while (arquivo >> origem >> destino) {
-        if (ponderado_arestas) {
-            arquivo >> peso;
-        } else {
-            arquivo >> peso;
-            peso = 1; // Arestas não ponderadas têm peso padrão 1
-        }
-
-        if (direcionado) {
-            Matriz[origem - 1][destino - 1] = peso;
-        } else {
-            int indice = calcularIndiceLinear(origem, destino);
-            MatrizLinear[indice] = peso;
-        }
-    }
-    arquivo.close();
-}
-
-
 int GrafoMatriz::calcularIndiceLinear(int origem, int destino) {
     if (origem <= destino) {
         return (destino * (destino - 1)) / 2 + origem;
@@ -310,57 +251,6 @@ void GrafoMatriz::novo_no(int peso) {
     VetorPesosVertices[get_ordem() - 1] = peso; // Valor padrão para o peso do vértice
 }
 
-void GrafoMatriz::deleta_no(int vertice) {
-    if (vertice < 1 || vertice > tamanhoAtual) {
-        cerr << "Erro: Vértice inválido!" << endl;
-        return;
-    }
-
-    // Remove todas as arestas associadas ao vértice
-    if (eh_direcionado()) {
-        deleta_arestas_direcionadas(vertice);
-    } else {
-        deleta_arestas_nao_direcionadas(vertice);
-    }
-
-    // Reorganiza a matriz de adjacência ou a matriz linear
-    //reorganiza_matriz(vertice);
-
-    // Atualiza o vetor de pesos dos vértices
-    //reorganiza_vetor_pesos(vertice);
-
-    // Decrementa a ordem do grafo
-    set_ordem(get_ordem() - 1);
-
-    cout << "Vértice " << vertice << " deletado com sucesso!" << endl;
-}
-
-void GrafoMatriz::deleta_arestas_direcionadas(int vertice) {
-    int v = vertice - 1; // Ajustando para índice 0
-
-    // Remove todas as arestas de saída do vértice
-    for (int i = 0; i < tamanhoAtual; i++) {
-        Matriz[v][i] = 0;
-    }
-
-    // Remove todas as arestas de entrada para o vértice
-    for (int i = 0; i < tamanhoAtual; i++) {
-        Matriz[i][v] = 0;
-    }
-}
-
-void GrafoMatriz::deleta_arestas_nao_direcionadas(int vertice) {
-    int v = vertice - 1; // Ajustando para índice 0
-
-    // Remove todas as arestas associadas ao vértice na matriz linear
-    for (int i = 0; i < tamanhoAtual; i++) {
-        if (i == v) continue; // Evita o próprio vértice
-
-        int indice = calcularIndiceLinear(i + 1, vertice);
-        MatrizLinear[indice] = 0;
-    }
-}
-
 void GrafoMatriz::reorganiza_matriz(int vertice) {
     int v = vertice - 1; // Ajustando para índice 0
 
@@ -405,4 +295,55 @@ void GrafoMatriz::reorganiza_vetor_pesos(int vertice) {
 
     // Atualiza ponteiro
     VetorPesosVertices = novoVetorPesos;
+}
+
+void GrafoMatriz::deleta_no(int vertice) {
+    if (vertice < 1 || vertice > tamanhoAtual) {
+        cerr << "Erro: Vértice inválido!" << endl;
+        return;
+    }
+
+    // Remove todas as arestas associadas ao vértice
+    if (eh_direcionado()) {
+        deleta_arestas_direcionadas(vertice);
+    } else {
+        deleta_arestas_nao_direcionadas(vertice);
+    }
+
+    // Reorganiza a matriz de adjacência ou a matriz linear
+    reorganiza_matriz(vertice);
+
+    // Atualiza o vetor de pesos dos vértices
+    reorganiza_vetor_pesos(vertice);
+
+    // Decrementa a ordem do grafo
+    set_ordem(get_ordem() - 1);
+
+    cout << "Vértice " << vertice << " deletado com sucesso!" << endl;
+}
+
+void GrafoMatriz::deleta_arestas_direcionadas(int vertice) {
+    int v = vertice - 1; // Ajustando para índice 0
+
+    // Remove todas as arestas de saída do vértice
+    for (int i = 0; i < tamanhoAtual; i++) {
+        Matriz[v][i] = 0;
+    }
+
+    // Remove todas as arestas de entrada para o vértice
+    for (int i = 0; i < tamanhoAtual; i++) {
+        Matriz[i][v] = 0;
+    }
+}
+
+void GrafoMatriz::deleta_arestas_nao_direcionadas(int vertice) {
+    int v = vertice - 1; // Ajustando para índice 0
+
+    // Remove todas as arestas associadas ao vértice na matriz linear
+    for (int i = 0; i < tamanhoAtual; i++) {
+        if (i == v) continue; // Evita o próprio vértice
+
+        int indice = calcularIndiceLinear(i + 1, vertice);
+        MatrizLinear[indice] = 0;
+    }
 }

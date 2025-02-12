@@ -88,24 +88,6 @@ public:
         set_vertice_ponderado(vtp);
         set_aresta_ponderada(atp);
 
-        inicializa_grafo();
-    }
-
-    void carrega_grafo2()
-    {
-        ifstream arquivo("./entradas/Grafo.txt");
-        if (!arquivo.is_open())
-        {
-            cerr << "Erro ao abrir o arquivo Grafo.txt" << endl;
-            return;
-        }
-
-        arquivo >> ordem >> direcionado >> vtp >> atp;
-        set_ordem(ordem);
-        set_eh_direcionado(direcionado);
-        set_vertice_ponderado(vtp);
-        set_aresta_ponderada(atp);
-
         for (int i = 1; i <= ordem; i++)
         {
             int peso_vertice;
@@ -127,8 +109,6 @@ public:
                 peso = 0;
             set_aresta(origem, destino, peso);
         }
-
-        // inicializa_grafo();
     }
 
     int get_grau()
@@ -206,9 +186,6 @@ public:
     return componentes;
 }
 
-
-
-    virtual void inicializa_grafo() = 0;
 
     void maior_menor_distancia() {
         int n = get_ordem();
