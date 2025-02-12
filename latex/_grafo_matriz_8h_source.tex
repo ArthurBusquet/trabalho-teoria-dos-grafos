@@ -1,0 +1,64 @@
+\doxysection{Grafo\+Matriz.\+h}
+\hypertarget{_grafo_matriz_8h_source}{}\label{_grafo_matriz_8h_source}\index{include/GrafoMatriz.h@{include/GrafoMatriz.h}}
+\mbox{\hyperlink{_grafo_matriz_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GRAFO\_MATRIZ\_H\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GRAFO\_MATRIZ\_H\_INCLUDED}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_grafo_8h}{Grafo.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_grafo_matriz_8h_a6ea5a71f78dde30312fc12d5e2f1684d}{TAMANHO\_INICIAL}}\ =\ 10;\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_grafo_matriz_a02ff2d64e3ebce45e6891a3c9914b92e}{GrafoMatriz}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_grafo_a0f6befe1a4a9bdaf4a05d2100f476522}{Grafo}}\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{int}**\ Matriz;\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{int}*\ MatrizLinear;\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}*\ VetorPesosVertices;\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ tamanhoAtual;\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ tamanhoAtualLinear;\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_grafo_matriz_a02ff2d64e3ebce45e6891a3c9914b92e}{GrafoMatriz}}();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_grafo_matriz_a2907ad8631e3bc21c34840cfbd7e0cbb}{\string~GrafoMatriz}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_matriz_aa9bc63976f1578206a89f5f08794de04}{redimensionarMatriz}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_matriz_a53456aee5d70d5dcbaec51ed6822233a}{redimensionarMatrizLinear}}();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_grafo_matriz_a1bcdc6146b2526c8aacbfe9708885378}{calcularIndiceLinear}}(\textcolor{keywordtype}{int}\ origem,\ \textcolor{keywordtype}{int}\ destino);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_grafo_matriz_ad8bfe4e0ba65c43bb15c24b5d5dd41a2}{get\_aresta}}(\textcolor{keywordtype}{int}\ origem,\ \textcolor{keywordtype}{int}\ destino)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_grafo_matriz_adf60b7bb020e48e07a6cb2dc6982b42a}{get\_vertice}}(\textcolor{keywordtype}{int}\ vertice)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_grafo_matriz_ad26746a41b10cb0649e750ab7c011981}{get\_vizinhos}}(\textcolor{keywordtype}{int}\ vertice)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_matriz_a9d08d9fa7fb905713a7788a308c708c6}{set\_vertice}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{float}\ peso)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_matriz_abac4e5064314f4eec5094cdc236521fc}{set\_aresta}}(\textcolor{keywordtype}{int}\ origem,\ \textcolor{keywordtype}{int}\ destino,\ \textcolor{keywordtype}{float}\ peso)\ \textcolor{keyword}{override};\ }
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_matriz_a674143c3e98c79c86c01fe45eb1f6d38}{nova\_aresta}}(\textcolor{keywordtype}{int}\ origem,\ \textcolor{keywordtype}{int}\ destino,\ \textcolor{keywordtype}{int}\ peso);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_matriz_a6958998ff85cfb375f5f20bc8e76b0be}{novo\_no}}(\textcolor{keywordtype}{int}\ peso)\ \textcolor{keyword}{override};\ \ }
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_matriz_a7b3b18435cc5a4e2df875c7da2a86287}{deleta\_no}}(\textcolor{keywordtype}{int}\ vertice)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_matriz_a7c78ce232598f80e05f5df8070889250}{deleta\_arestas\_direcionadas}}(\textcolor{keywordtype}{int}\ vertice);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_matriz_a78d7eae21d466f4f774b0f14f1b13a1c}{deleta\_arestas\_nao\_direcionadas}}(\textcolor{keywordtype}{int}\ vertice);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_matriz_a0a4eeb7020d4f57c51a0b93f4d8a677e}{reorganiza\_matriz}}(\textcolor{keywordtype}{int}\ vertice);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_matriz_a4023811c8dfda4694071909fe39530ac}{reorganiza\_vetor\_pesos}}(\textcolor{keywordtype}{int}\ vertice);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_grafo_matriz_a4fcf26d5680492994b704654e8a6bd9d}{deleta\_aresta}}(\textcolor{keywordtype}{int}\ vertice1,\ \textcolor{keywordtype}{int}\ vertice2)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00146\ \ \ \ \ }
+\DoxyCodeLine{00147\ \};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ GRAFO\_MATRIZ\_H\_INCLUDED}}
+
+\end{DoxyCode}

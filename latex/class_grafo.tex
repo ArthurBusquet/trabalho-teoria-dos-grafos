@@ -1,0 +1,353 @@
+\doxysection{Grafo Class Reference}
+\hypertarget{class_grafo}{}\label{class_grafo}\index{Grafo@{Grafo}}
+
+
+Classe abstrata que representa um grafo.  
+
+
+
+
+{\ttfamily \#include $<$Grafo.\+h$>$}
+
+Inheritance diagram for Grafo\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_grafo}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_grafo_a0f6befe1a4a9bdaf4a05d2100f476522}{Grafo}} ()=default
+\begin{DoxyCompactList}\small\item\em Construtor padrão. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_grafo_a6ebba30af6e13ced6fea59de81080396}{\texorpdfstring{$\sim$}{\string~}\+Grafo}} ()=default
+\begin{DoxyCompactList}\small\item\em Destrutor virtual. \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{class_grafo_a5507e6044381fd85aaf8c20268becfb0}{get\+\_\+aresta}} (int origem, int destino)=0
+\begin{DoxyCompactList}\small\item\em Retorna o peso da aresta entre dois vértices. \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{class_grafo_a1f0abb031405ef9e387dad1b8ab68fb0}{get\+\_\+vertice}} (int vertice)=0
+\begin{DoxyCompactList}\small\item\em Obtém o peso de um vértice. \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{class_grafo_a8a69e155257c71c3442e4314dc7ac597}{get\+\_\+vizinhos}} (int vertice)=0
+\begin{DoxyCompactList}\small\item\em Retorna o número de vizinhos de um vértice. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_grafo_a36f135f314ae74555daed781b172b06f}{nova\+\_\+aresta}} (int origem, int destino, int peso)=0
+\item 
+virtual void \mbox{\hyperlink{class_grafo_aec91253467d26a0022cca59bdc89f689}{deleta\+\_\+aresta}} (int vertice1, int vertice2)=0
+\item 
+virtual void \mbox{\hyperlink{class_grafo_ae9d3052b7a59745f97f3404c39a94c64}{set\+\_\+aresta}} (int origem, int destino, float peso)=0
+\item 
+virtual void \mbox{\hyperlink{class_grafo_ad82b55e41a460b1b42381049e268de6c}{set\+\_\+vertice}} (int id, float peso)=0
+\item 
+virtual void \mbox{\hyperlink{class_grafo_aac580a4a7b0264873f7e6ed13f85928d}{novo\+\_\+no}} (int peso)=0
+\item 
+virtual void \mbox{\hyperlink{class_grafo_afd273f3516ba33d39c19124f35997bd2}{deleta\+\_\+no}} (int vertice)=0
+\item 
+int \mbox{\hyperlink{class_grafo_a062f2789887e0e4d0dabf0f40f1196e3}{get\+\_\+ordem}} ()
+\item 
+void \mbox{\hyperlink{class_grafo_a0ca434931b5d454ffe6decc8dd16b279}{set\+\_\+ordem}} (int ordem)
+\item 
+void \mbox{\hyperlink{class_grafo_aaa0b55a32a79f959151c742c8f179e25}{aumenta\+\_\+ordem}} ()
+\item 
+bool \mbox{\hyperlink{class_grafo_a24bd7ebc8fed82323a4335fb6b7f7800}{eh\+\_\+direcionado}} ()
+\item 
+void \mbox{\hyperlink{class_grafo_a196864be382b940b6d1a955b5c410ed1}{set\+\_\+eh\+\_\+direcionado}} (bool direcionado)
+\item 
+bool \mbox{\hyperlink{class_grafo_a22aa3389904db28407564c7e279af0e6}{vertice\+\_\+ponderado}} ()
+\item 
+void \mbox{\hyperlink{class_grafo_ad5f38027249f808d36e9f1b688245c25}{set\+\_\+vertice\+\_\+ponderado}} (bool vertice\+Ponderado)
+\item 
+bool \mbox{\hyperlink{class_grafo_a3cc7e8c8e78252d54d04a734ba025e28}{aresta\+\_\+ponderada}} ()
+\item 
+void \mbox{\hyperlink{class_grafo_a8ad69eeacb86e6baccdd5cb1236a5090}{set\+\_\+aresta\+\_\+ponderada}} (bool aresta\+Ponderada)
+\item 
+void \mbox{\hyperlink{class_grafo_a9e4436c6bb72bf73c64540ceda34cb1e}{carrega\+\_\+grafo}} ()
+\begin{DoxyCompactList}\small\item\em Carrega o grafo a partir de um arquivo de entrada. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_grafo_a9af683109b9f5ddb20a4c951a739d8df}{get\+\_\+grau}} ()
+\begin{DoxyCompactList}\small\item\em Calcula o grau máximo do grafo. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_grafo_a6ef121a6657a931f8881ab0a0e7a77ee}{eh\+\_\+completo}} ()
+\item 
+void \mbox{\hyperlink{class_grafo_a1fce74258aedbdb525555d1c9ea80f8b}{dfs}} (int vertice, bool visitado\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{class_grafo_a8107b74abb70e626d18d3466a9a1cb63}{n\+\_\+conexo}} ()
+\begin{DoxyCompactList}\small\item\em Determina o número de componentes conexas do grafo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a2d60fe7bde618a28cafa79b5e3de70da}{maior\+\_\+menor\+\_\+distancia}} ()
+\begin{DoxyCompactList}\small\item\em Calcula a maior menor distância entre dois vértices utilizando o algoritmo de Floyd-\/\+Warshall. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe abstrata que representa um grafo. 
+
+Define operações fundamentais para manipulação de grafos, como adição e remoção de arestas e vértices. Essa classe serve como base para diferentes representações de grafos. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_grafo_a0f6befe1a4a9bdaf4a05d2100f476522}\index{Grafo@{Grafo}!Grafo@{Grafo}}
+\index{Grafo@{Grafo}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{Grafo()}{Grafo()}}
+{\footnotesize\ttfamily \label{class_grafo_a0f6befe1a4a9bdaf4a05d2100f476522} 
+Grafo\+::\+Grafo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Construtor padrão. 
+
+\Hypertarget{class_grafo_a6ebba30af6e13ced6fea59de81080396}\index{Grafo@{Grafo}!````~Grafo@{\texorpdfstring{$\sim$}{\string~}Grafo}}
+\index{````~Grafo@{\texorpdfstring{$\sim$}{\string~}Grafo}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Grafo()}{\string~Grafo()}}
+{\footnotesize\ttfamily \label{class_grafo_a6ebba30af6e13ced6fea59de81080396} 
+virtual Grafo\+::\texorpdfstring{$\sim$}{\string~}\+Grafo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Destrutor virtual. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_grafo_a3cc7e8c8e78252d54d04a734ba025e28}\index{Grafo@{Grafo}!aresta\_ponderada@{aresta\_ponderada}}
+\index{aresta\_ponderada@{aresta\_ponderada}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{aresta\_ponderada()}{aresta\_ponderada()}}
+{\footnotesize\ttfamily \label{class_grafo_a3cc7e8c8e78252d54d04a734ba025e28} 
+bool Grafo\+::aresta\+\_\+ponderada (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_grafo_aaa0b55a32a79f959151c742c8f179e25}\index{Grafo@{Grafo}!aumenta\_ordem@{aumenta\_ordem}}
+\index{aumenta\_ordem@{aumenta\_ordem}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{aumenta\_ordem()}{aumenta\_ordem()}}
+{\footnotesize\ttfamily \label{class_grafo_aaa0b55a32a79f959151c742c8f179e25} 
+void Grafo\+::aumenta\+\_\+ordem (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_grafo_a9e4436c6bb72bf73c64540ceda34cb1e}\index{Grafo@{Grafo}!carrega\_grafo@{carrega\_grafo}}
+\index{carrega\_grafo@{carrega\_grafo}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{carrega\_grafo()}{carrega\_grafo()}}
+{\footnotesize\ttfamily \label{class_grafo_a9e4436c6bb72bf73c64540ceda34cb1e} 
+void Grafo\+::carrega\+\_\+grafo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Carrega o grafo a partir de um arquivo de entrada. 
+
+O formato do arquivo deve conter\+:
+\begin{DoxyItemize}
+\item Número de vértices, se é direcionado e se é ponderado.
+\item Lista de vértices e seus pesos (se for ponderado).
+\item Lista de arestas com origem, destino e peso (se for ponderado). 
+\end{DoxyItemize}\Hypertarget{class_grafo_aec91253467d26a0022cca59bdc89f689}\index{Grafo@{Grafo}!deleta\_aresta@{deleta\_aresta}}
+\index{deleta\_aresta@{deleta\_aresta}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{deleta\_aresta()}{deleta\_aresta()}}
+{\footnotesize\ttfamily \label{class_grafo_aec91253467d26a0022cca59bdc89f689} 
+virtual void Grafo\+::deleta\+\_\+aresta (\begin{DoxyParamCaption}\item[{int}]{vertice1}{, }\item[{int}]{vertice2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_grafo_lista_ab403ec5eb58a8a7f4531fd52cf702093}{Grafo\+Lista}}, and \mbox{\hyperlink{class_grafo_matriz_a4fcf26d5680492994b704654e8a6bd9d}{Grafo\+Matriz}}.
+
+\Hypertarget{class_grafo_afd273f3516ba33d39c19124f35997bd2}\index{Grafo@{Grafo}!deleta\_no@{deleta\_no}}
+\index{deleta\_no@{deleta\_no}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{deleta\_no()}{deleta\_no()}}
+{\footnotesize\ttfamily \label{class_grafo_afd273f3516ba33d39c19124f35997bd2} 
+virtual void Grafo\+::deleta\+\_\+no (\begin{DoxyParamCaption}\item[{int}]{vertice}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_grafo_lista_a0940da6896d753c4f7d9bd16e5207520}{Grafo\+Lista}}, and \mbox{\hyperlink{class_grafo_matriz_a7b3b18435cc5a4e2df875c7da2a86287}{Grafo\+Matriz}}.
+
+\Hypertarget{class_grafo_a1fce74258aedbdb525555d1c9ea80f8b}\index{Grafo@{Grafo}!dfs@{dfs}}
+\index{dfs@{dfs}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{dfs()}{dfs()}}
+{\footnotesize\ttfamily \label{class_grafo_a1fce74258aedbdb525555d1c9ea80f8b} 
+void Grafo\+::dfs (\begin{DoxyParamCaption}\item[{int}]{vertice}{, }\item[{bool}]{visitado}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_grafo_a6ef121a6657a931f8881ab0a0e7a77ee}\index{Grafo@{Grafo}!eh\_completo@{eh\_completo}}
+\index{eh\_completo@{eh\_completo}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{eh\_completo()}{eh\_completo()}}
+{\footnotesize\ttfamily \label{class_grafo_a6ef121a6657a931f8881ab0a0e7a77ee} 
+bool Grafo\+::eh\+\_\+completo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_grafo_a24bd7ebc8fed82323a4335fb6b7f7800}\index{Grafo@{Grafo}!eh\_direcionado@{eh\_direcionado}}
+\index{eh\_direcionado@{eh\_direcionado}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{eh\_direcionado()}{eh\_direcionado()}}
+{\footnotesize\ttfamily \label{class_grafo_a24bd7ebc8fed82323a4335fb6b7f7800} 
+bool Grafo\+::eh\+\_\+direcionado (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_grafo_a5507e6044381fd85aaf8c20268becfb0}\index{Grafo@{Grafo}!get\_aresta@{get\_aresta}}
+\index{get\_aresta@{get\_aresta}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{get\_aresta()}{get\_aresta()}}
+{\footnotesize\ttfamily \label{class_grafo_a5507e6044381fd85aaf8c20268becfb0} 
+virtual int Grafo\+::get\+\_\+aresta (\begin{DoxyParamCaption}\item[{int}]{origem}{, }\item[{int}]{destino}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Retorna o peso da aresta entre dois vértices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origem} & Vértice de origem. \\
+\hline
+{\em destino} & Vértice de destino. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Peso da aresta ou um valor indicando inexistência. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_grafo_lista_ac8d5284da7f3ef4007c8cac351fc4df6}{Grafo\+Lista}}, and \mbox{\hyperlink{class_grafo_matriz_ad8bfe4e0ba65c43bb15c24b5d5dd41a2}{Grafo\+Matriz}}.
+
+\Hypertarget{class_grafo_a9af683109b9f5ddb20a4c951a739d8df}\index{Grafo@{Grafo}!get\_grau@{get\_grau}}
+\index{get\_grau@{get\_grau}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{get\_grau()}{get\_grau()}}
+{\footnotesize\ttfamily \label{class_grafo_a9af683109b9f5ddb20a4c951a739d8df} 
+int Grafo\+::get\+\_\+grau (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calcula o grau máximo do grafo. 
+
+\begin{DoxyReturn}{Returns}
+O maior grau encontrado entre os vértices. 
+\end{DoxyReturn}
+\Hypertarget{class_grafo_a062f2789887e0e4d0dabf0f40f1196e3}\index{Grafo@{Grafo}!get\_ordem@{get\_ordem}}
+\index{get\_ordem@{get\_ordem}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{get\_ordem()}{get\_ordem()}}
+{\footnotesize\ttfamily \label{class_grafo_a062f2789887e0e4d0dabf0f40f1196e3} 
+int Grafo\+::get\+\_\+ordem (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_grafo_a1f0abb031405ef9e387dad1b8ab68fb0}\index{Grafo@{Grafo}!get\_vertice@{get\_vertice}}
+\index{get\_vertice@{get\_vertice}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{get\_vertice()}{get\_vertice()}}
+{\footnotesize\ttfamily \label{class_grafo_a1f0abb031405ef9e387dad1b8ab68fb0} 
+virtual int Grafo\+::get\+\_\+vertice (\begin{DoxyParamCaption}\item[{int}]{vertice}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Obtém o peso de um vértice. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertice} & Identificador do vértice. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Peso do vértice. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_grafo_lista_ac11ea955de368ba048d67e44f7cf5f0e}{Grafo\+Lista}}, and \mbox{\hyperlink{class_grafo_matriz_adf60b7bb020e48e07a6cb2dc6982b42a}{Grafo\+Matriz}}.
+
+\Hypertarget{class_grafo_a8a69e155257c71c3442e4314dc7ac597}\index{Grafo@{Grafo}!get\_vizinhos@{get\_vizinhos}}
+\index{get\_vizinhos@{get\_vizinhos}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{get\_vizinhos()}{get\_vizinhos()}}
+{\footnotesize\ttfamily \label{class_grafo_a8a69e155257c71c3442e4314dc7ac597} 
+virtual int Grafo\+::get\+\_\+vizinhos (\begin{DoxyParamCaption}\item[{int}]{vertice}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Retorna o número de vizinhos de um vértice. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertice} & Identificador do vértice. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Número de vizinhos do vértice. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_grafo_lista_ad56ed6d6af7d5741c0a59f48ae339575}{Grafo\+Lista}}, and \mbox{\hyperlink{class_grafo_matriz_ad26746a41b10cb0649e750ab7c011981}{Grafo\+Matriz}}.
+
+\Hypertarget{class_grafo_a2d60fe7bde618a28cafa79b5e3de70da}\index{Grafo@{Grafo}!maior\_menor\_distancia@{maior\_menor\_distancia}}
+\index{maior\_menor\_distancia@{maior\_menor\_distancia}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{maior\_menor\_distancia()}{maior\_menor\_distancia()}}
+{\footnotesize\ttfamily \label{class_grafo_a2d60fe7bde618a28cafa79b5e3de70da} 
+void Grafo\+::maior\+\_\+menor\+\_\+distancia (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calcula a maior menor distância entre dois vértices utilizando o algoritmo de Floyd-\/\+Warshall. 
+
+\Hypertarget{class_grafo_a8107b74abb70e626d18d3466a9a1cb63}\index{Grafo@{Grafo}!n\_conexo@{n\_conexo}}
+\index{n\_conexo@{n\_conexo}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{n\_conexo()}{n\_conexo()}}
+{\footnotesize\ttfamily \label{class_grafo_a8107b74abb70e626d18d3466a9a1cb63} 
+int Grafo\+::n\+\_\+conexo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Determina o número de componentes conexas do grafo. 
+
+\begin{DoxyReturn}{Returns}
+Número de componentes conexas. 
+\end{DoxyReturn}
+\Hypertarget{class_grafo_a36f135f314ae74555daed781b172b06f}\index{Grafo@{Grafo}!nova\_aresta@{nova\_aresta}}
+\index{nova\_aresta@{nova\_aresta}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{nova\_aresta()}{nova\_aresta()}}
+{\footnotesize\ttfamily \label{class_grafo_a36f135f314ae74555daed781b172b06f} 
+virtual void Grafo\+::nova\+\_\+aresta (\begin{DoxyParamCaption}\item[{int}]{origem}{, }\item[{int}]{destino}{, }\item[{int}]{peso}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_grafo_lista_a34bec41ce42dd5719167a686aca9ad4a}{Grafo\+Lista}}, and \mbox{\hyperlink{class_grafo_matriz_a674143c3e98c79c86c01fe45eb1f6d38}{Grafo\+Matriz}}.
+
+\Hypertarget{class_grafo_aac580a4a7b0264873f7e6ed13f85928d}\index{Grafo@{Grafo}!novo\_no@{novo\_no}}
+\index{novo\_no@{novo\_no}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{novo\_no()}{novo\_no()}}
+{\footnotesize\ttfamily \label{class_grafo_aac580a4a7b0264873f7e6ed13f85928d} 
+virtual void Grafo\+::novo\+\_\+no (\begin{DoxyParamCaption}\item[{int}]{peso}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_grafo_lista_ac8ccf71640e963b32e87e98cfe0a4a41}{Grafo\+Lista}}, and \mbox{\hyperlink{class_grafo_matriz_a6958998ff85cfb375f5f20bc8e76b0be}{Grafo\+Matriz}}.
+
+\Hypertarget{class_grafo_ae9d3052b7a59745f97f3404c39a94c64}\index{Grafo@{Grafo}!set\_aresta@{set\_aresta}}
+\index{set\_aresta@{set\_aresta}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{set\_aresta()}{set\_aresta()}}
+{\footnotesize\ttfamily \label{class_grafo_ae9d3052b7a59745f97f3404c39a94c64} 
+virtual void Grafo\+::set\+\_\+aresta (\begin{DoxyParamCaption}\item[{int}]{origem}{, }\item[{int}]{destino}{, }\item[{float}]{peso}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_grafo_lista_af3798502fb3a091ebe9bbd9025771add}{Grafo\+Lista}}, and \mbox{\hyperlink{class_grafo_matriz_abac4e5064314f4eec5094cdc236521fc}{Grafo\+Matriz}}.
+
+\Hypertarget{class_grafo_a8ad69eeacb86e6baccdd5cb1236a5090}\index{Grafo@{Grafo}!set\_aresta\_ponderada@{set\_aresta\_ponderada}}
+\index{set\_aresta\_ponderada@{set\_aresta\_ponderada}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{set\_aresta\_ponderada()}{set\_aresta\_ponderada()}}
+{\footnotesize\ttfamily \label{class_grafo_a8ad69eeacb86e6baccdd5cb1236a5090} 
+void Grafo\+::set\+\_\+aresta\+\_\+ponderada (\begin{DoxyParamCaption}\item[{bool}]{aresta\+Ponderada}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_grafo_a196864be382b940b6d1a955b5c410ed1}\index{Grafo@{Grafo}!set\_eh\_direcionado@{set\_eh\_direcionado}}
+\index{set\_eh\_direcionado@{set\_eh\_direcionado}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{set\_eh\_direcionado()}{set\_eh\_direcionado()}}
+{\footnotesize\ttfamily \label{class_grafo_a196864be382b940b6d1a955b5c410ed1} 
+void Grafo\+::set\+\_\+eh\+\_\+direcionado (\begin{DoxyParamCaption}\item[{bool}]{direcionado}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_grafo_a0ca434931b5d454ffe6decc8dd16b279}\index{Grafo@{Grafo}!set\_ordem@{set\_ordem}}
+\index{set\_ordem@{set\_ordem}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{set\_ordem()}{set\_ordem()}}
+{\footnotesize\ttfamily \label{class_grafo_a0ca434931b5d454ffe6decc8dd16b279} 
+void Grafo\+::set\+\_\+ordem (\begin{DoxyParamCaption}\item[{int}]{ordem}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_grafo_ad82b55e41a460b1b42381049e268de6c}\index{Grafo@{Grafo}!set\_vertice@{set\_vertice}}
+\index{set\_vertice@{set\_vertice}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{set\_vertice()}{set\_vertice()}}
+{\footnotesize\ttfamily \label{class_grafo_ad82b55e41a460b1b42381049e268de6c} 
+virtual void Grafo\+::set\+\_\+vertice (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{float}]{peso}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_grafo_lista_a5bf86bfde3a65f1da47894144e12f8a4}{Grafo\+Lista}}, and \mbox{\hyperlink{class_grafo_matriz_a9d08d9fa7fb905713a7788a308c708c6}{Grafo\+Matriz}}.
+
+\Hypertarget{class_grafo_ad5f38027249f808d36e9f1b688245c25}\index{Grafo@{Grafo}!set\_vertice\_ponderado@{set\_vertice\_ponderado}}
+\index{set\_vertice\_ponderado@{set\_vertice\_ponderado}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{set\_vertice\_ponderado()}{set\_vertice\_ponderado()}}
+{\footnotesize\ttfamily \label{class_grafo_ad5f38027249f808d36e9f1b688245c25} 
+void Grafo\+::set\+\_\+vertice\+\_\+ponderado (\begin{DoxyParamCaption}\item[{bool}]{vertice\+Ponderado}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_grafo_a22aa3389904db28407564c7e279af0e6}\index{Grafo@{Grafo}!vertice\_ponderado@{vertice\_ponderado}}
+\index{vertice\_ponderado@{vertice\_ponderado}!Grafo@{Grafo}}
+\doxysubsubsection{\texorpdfstring{vertice\_ponderado()}{vertice\_ponderado()}}
+{\footnotesize\ttfamily \label{class_grafo_a22aa3389904db28407564c7e279af0e6} 
+bool Grafo\+::vertice\+\_\+ponderado (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_grafo_8h}{Grafo.\+h}}\end{DoxyCompactItemize}

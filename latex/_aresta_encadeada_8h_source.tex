@@ -1,0 +1,37 @@
+\doxysection{Aresta\+Encadeada.\+h}
+\hypertarget{_aresta_encadeada_8h_source}{}\label{_aresta_encadeada_8h_source}\index{include/ArestaEncadeada.h@{include/ArestaEncadeada.h}}
+\mbox{\hyperlink{_aresta_encadeada_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ARESTAENCADEADA\_H\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ARESTAENCADEADA\_H\_INCLUDED}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vertice_encadeado}{VerticeEncadeado}};}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_aresta_encadeada_aa51d380f914b597e5f178c4f146f43f3}{ArestaEncadeada}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_vertice_encadeado}{VerticeEncadeado}}*\ origem;\ \ }
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_vertice_encadeado}{VerticeEncadeado}}*\ destino;\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{float}\ peso;\ }
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_aresta_encadeada_aa51d380f914b597e5f178c4f146f43f3}{ArestaEncadeada}}*\ proximo;\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_aresta_encadeada_aa51d380f914b597e5f178c4f146f43f3}{ArestaEncadeada}}(\mbox{\hyperlink{class_vertice_encadeado}{VerticeEncadeado}}*\ origem,\ \mbox{\hyperlink{class_vertice_encadeado}{VerticeEncadeado}}*\ destino,\ \textcolor{keywordtype}{float}\ peso);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{class_vertice_encadeado}{VerticeEncadeado}}*\ \mbox{\hyperlink{class_aresta_encadeada_af44c797e13cb949112c72a8c2754480d}{getOrigem}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_vertice_encadeado}{VerticeEncadeado}}*\ \mbox{\hyperlink{class_aresta_encadeada_ac950eb4a5af50c64792b8df2ad037869}{getDestino}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_aresta_encadeada_a2b173140a661a7d02574faf412b89abd}{getPeso}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{class_aresta_encadeada_aa51d380f914b597e5f178c4f146f43f3}{ArestaEncadeada}}*\ \mbox{\hyperlink{class_aresta_encadeada_a1c316941a8e0f6ef6f019c962e72c7c7}{getProximo}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_aresta_encadeada_acb23930278a96345977212fb3ba361ee}{setProximo}}(\mbox{\hyperlink{class_aresta_encadeada_aa51d380f914b597e5f178c4f146f43f3}{ArestaEncadeada}}*\ novoProximo);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{friend}\ std::ostream\&\ \mbox{\hyperlink{class_aresta_encadeada_ae5221b9e55c3b595aa866be26df99d14}{operator<<}}(std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_aresta_encadeada_aa51d380f914b597e5f178c4f146f43f3}{ArestaEncadeada}}\&\ aresta);}
+\DoxyCodeLine{00069\ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ARESTAENCADEADA\_H\_INCLUDED}}
+
+\end{DoxyCode}

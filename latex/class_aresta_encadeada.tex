@@ -1,0 +1,186 @@
+\doxysection{Aresta\+Encadeada Class Reference}
+\hypertarget{class_aresta_encadeada}{}\label{class_aresta_encadeada}\index{ArestaEncadeada@{ArestaEncadeada}}
+
+
+Representa uma aresta em um grafo utilizando uma estrutura de lista encadeada.  
+
+
+
+
+{\ttfamily \#include $<$Aresta\+Encadeada.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aresta_encadeada_aa51d380f914b597e5f178c4f146f43f3}{Aresta\+Encadeada}} (\mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*}origem, \mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*}destino, float peso)
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{class_aresta_encadeada}{Aresta\+Encadeada}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_aresta_encadeada_af44c797e13cb949112c72a8c2754480d}{get\+Origem}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o vértice de origem da aresta. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_aresta_encadeada_ac950eb4a5af50c64792b8df2ad037869}{get\+Destino}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o vértice de destino da aresta. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_aresta_encadeada_a2b173140a661a7d02574faf412b89abd}{get\+Peso}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o peso da aresta. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_aresta_encadeada}{Aresta\+Encadeada}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_aresta_encadeada_a1c316941a8e0f6ef6f019c962e72c7c7}{get\+Proximo}} () const
+\begin{DoxyCompactList}\small\item\em Obtém a próxima aresta na lista encadeada. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_aresta_encadeada_acb23930278a96345977212fb3ba361ee}{set\+Proximo}} (\mbox{\hyperlink{class_aresta_encadeada}{Aresta\+Encadeada}} \texorpdfstring{$\ast$}{*}novo\+Proximo)
+\begin{DoxyCompactList}\small\item\em Define a próxima aresta na lista encadeada. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{class_aresta_encadeada_ae5221b9e55c3b595aa866be26df99d14}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{class_aresta_encadeada}{Aresta\+Encadeada}} \&aresta)
+\begin{DoxyCompactList}\small\item\em Sobrecarga do operador de saída para imprimir a aresta. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Representa uma aresta em um grafo utilizando uma estrutura de lista encadeada. 
+
+Essa classe é utilizada na implementação do grafo baseado em listas de adjacência. Cada aresta contém referências ao vértice de origem e destino, além de um ponteiro para a próxima aresta na estrutura encadeada. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_aresta_encadeada_aa51d380f914b597e5f178c4f146f43f3}\index{ArestaEncadeada@{ArestaEncadeada}!ArestaEncadeada@{ArestaEncadeada}}
+\index{ArestaEncadeada@{ArestaEncadeada}!ArestaEncadeada@{ArestaEncadeada}}
+\doxysubsubsection{\texorpdfstring{ArestaEncadeada()}{ArestaEncadeada()}}
+{\footnotesize\ttfamily \label{class_aresta_encadeada_aa51d380f914b597e5f178c4f146f43f3} 
+Aresta\+Encadeada\+::\+Aresta\+Encadeada (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*}}]{origem}{, }\item[{\mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*}}]{destino}{, }\item[{float}]{peso}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{class_aresta_encadeada}{Aresta\+Encadeada}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origem} & Ponteiro para o vértice de origem. \\
+\hline
+{\em destino} & Ponteiro para o vértice de destino. \\
+\hline
+{\em peso} & Peso da aresta.\\
+\hline
+\end{DoxyParams}
+Inicializa uma aresta entre dois vértices com um determinado peso.
+
+
+\begin{DoxyParams}{Parameters}
+{\em origem} & Ponteiro para o vértice de origem da aresta. \\
+\hline
+{\em destino} & Ponteiro para o vértice de destino da aresta. \\
+\hline
+{\em peso} & Peso da aresta. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_aresta_encadeada_ac950eb4a5af50c64792b8df2ad037869}\index{ArestaEncadeada@{ArestaEncadeada}!getDestino@{getDestino}}
+\index{getDestino@{getDestino}!ArestaEncadeada@{ArestaEncadeada}}
+\doxysubsubsection{\texorpdfstring{getDestino()}{getDestino()}}
+{\footnotesize\ttfamily \label{class_aresta_encadeada_ac950eb4a5af50c64792b8df2ad037869} 
+\mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*} Aresta\+Encadeada\+::get\+Destino (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Obtém o vértice de destino da aresta. 
+
+\begin{DoxyReturn}{Returns}
+Ponteiro para o vértice de destino. 
+\end{DoxyReturn}
+\Hypertarget{class_aresta_encadeada_af44c797e13cb949112c72a8c2754480d}\index{ArestaEncadeada@{ArestaEncadeada}!getOrigem@{getOrigem}}
+\index{getOrigem@{getOrigem}!ArestaEncadeada@{ArestaEncadeada}}
+\doxysubsubsection{\texorpdfstring{getOrigem()}{getOrigem()}}
+{\footnotesize\ttfamily \label{class_aresta_encadeada_af44c797e13cb949112c72a8c2754480d} 
+\mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*} Aresta\+Encadeada\+::get\+Origem (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Obtém o vértice de origem da aresta. 
+
+\begin{DoxyReturn}{Returns}
+Ponteiro para o vértice de origem. 
+\end{DoxyReturn}
+\Hypertarget{class_aresta_encadeada_a2b173140a661a7d02574faf412b89abd}\index{ArestaEncadeada@{ArestaEncadeada}!getPeso@{getPeso}}
+\index{getPeso@{getPeso}!ArestaEncadeada@{ArestaEncadeada}}
+\doxysubsubsection{\texorpdfstring{getPeso()}{getPeso()}}
+{\footnotesize\ttfamily \label{class_aresta_encadeada_a2b173140a661a7d02574faf412b89abd} 
+float Aresta\+Encadeada\+::get\+Peso (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Obtém o peso da aresta. 
+
+\begin{DoxyReturn}{Returns}
+Peso da aresta. 
+\end{DoxyReturn}
+\Hypertarget{class_aresta_encadeada_a1c316941a8e0f6ef6f019c962e72c7c7}\index{ArestaEncadeada@{ArestaEncadeada}!getProximo@{getProximo}}
+\index{getProximo@{getProximo}!ArestaEncadeada@{ArestaEncadeada}}
+\doxysubsubsection{\texorpdfstring{getProximo()}{getProximo()}}
+{\footnotesize\ttfamily \label{class_aresta_encadeada_a1c316941a8e0f6ef6f019c962e72c7c7} 
+\mbox{\hyperlink{class_aresta_encadeada}{Aresta\+Encadeada}} \texorpdfstring{$\ast$}{*} Aresta\+Encadeada\+::get\+Proximo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Obtém a próxima aresta na lista encadeada. 
+
+Obtém o próximo elemento na lista de arestas encadeadas.
+
+\begin{DoxyReturn}{Returns}
+Ponteiro para a próxima aresta.
+
+Ponteiro para a próxima aresta na lista encadeada. 
+\end{DoxyReturn}
+\Hypertarget{class_aresta_encadeada_acb23930278a96345977212fb3ba361ee}\index{ArestaEncadeada@{ArestaEncadeada}!setProximo@{setProximo}}
+\index{setProximo@{setProximo}!ArestaEncadeada@{ArestaEncadeada}}
+\doxysubsubsection{\texorpdfstring{setProximo()}{setProximo()}}
+{\footnotesize\ttfamily \label{class_aresta_encadeada_acb23930278a96345977212fb3ba361ee} 
+void Aresta\+Encadeada\+::set\+Proximo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aresta_encadeada}{Aresta\+Encadeada}} \texorpdfstring{$\ast$}{*}}]{novo\+Proximo}{}\end{DoxyParamCaption})}
+
+
+
+Define a próxima aresta na lista encadeada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em novo\+Proximo} & Ponteiro para a nova aresta seguinte.\\
+\hline
+{\em novo\+Proximo} & Ponteiro para a nova próxima aresta. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{class_aresta_encadeada_ae5221b9e55c3b595aa866be26df99d14}\index{ArestaEncadeada@{ArestaEncadeada}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!ArestaEncadeada@{ArestaEncadeada}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily \label{class_aresta_encadeada_ae5221b9e55c3b595aa866be26df99d14} 
+std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os}{, }\item[{const \mbox{\hyperlink{class_aresta_encadeada}{Aresta\+Encadeada}} \&}]{aresta}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Sobrecarga do operador de saída para imprimir a aresta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Stream de saída. \\
+\hline
+{\em aresta} & Aresta a ser impressa. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Stream de saída atualizado.
+\end{DoxyReturn}
+Exibe a origem, o destino e o peso da aresta.
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Fluxo de saída. \\
+\hline
+{\em aresta} & Aresta a ser exibida. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Fluxo de saída atualizado. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_aresta_encadeada_8h}{Aresta\+Encadeada.\+h}}\item 
+src/\mbox{\hyperlink{_aresta_encadeada_8cpp}{Aresta\+Encadeada.\+cpp}}\end{DoxyCompactItemize}

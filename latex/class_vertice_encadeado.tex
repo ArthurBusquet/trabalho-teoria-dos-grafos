@@ -1,0 +1,329 @@
+\doxysection{Vertice\+Encadeado Class Reference}
+\hypertarget{class_vertice_encadeado}{}\label{class_vertice_encadeado}\index{VerticeEncadeado@{VerticeEncadeado}}
+
+
+Representa um vértice em uma estrutura de grafo utilizando listas encadeadas.  
+
+
+
+
+{\ttfamily \#include $<$Vertice\+Encadeado.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_vertice_encadeado_a21d7b669d9c67ae413a6c7209008880d}{Vertice\+Encadeado}} (int id, int peso)
+\begin{DoxyCompactList}\small\item\em Construtor da classe \doxylink{class_vertice_encadeado}{Vertice\+Encadeado}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_vertice_encadeado_ad2ad7ea963ff50dcb4f66c124126a9b7}{get\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o identificador do vértice. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_vertice_encadeado_abd4053cd4016bcb92955a8924d51c0f8}{get\+Peso}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o peso do vértice. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_vertice_encadeado_af49be982135f0b5904f21429159a0faf}{get\+Grau}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o grau do vértice (número de conexões). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_vertice_encadeado_a04a3bcd8c5fd29747a85b56c5f650179}{get\+Proximo}} () const
+\begin{DoxyCompactList}\small\item\em Obtém o próximo vértice na lista encadeada. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vertice_encadeado_a070f881761f35d07751d66d1058c3770}{set\+Proximo}} (\mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*}novo\+Proximo)
+\begin{DoxyCompactList}\small\item\em Define o próximo vértice na lista encadeada. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vertice_encadeado_af0fe63b029b5aa44795467b198d9535e}{set\+Conexao}} (\mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*}vertice\+Destino, int peso\+Aresta)
+\begin{DoxyCompactList}\small\item\em Cria uma conexão entre este vértice e outro vértice destino. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_aresta_encadeada}{Aresta\+Encadeada}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_vertice_encadeado_aee1b2c277e9e550341fc4af5295d72cb}{get\+Primeira\+Conexao}} ()
+\begin{DoxyCompactList}\small\item\em Obtém a primeira conexão (aresta) do vértice. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_lista_encadeada}{Lista\+Encadeada}}$<$ \mbox{\hyperlink{class_aresta_encadeada}{Aresta\+Encadeada}} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_vertice_encadeado_aabfba1d3a90cfddfc0e487409479a616}{get\+Conexoes}} ()
+\begin{DoxyCompactList}\small\item\em Obtém a lista de conexões (arestas) do vértice. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vertice_encadeado_a01d49b73c7b588d6843f28c03d0b600d}{set\+Conexoes}} (\mbox{\hyperlink{class_lista_encadeada}{Lista\+Encadeada}}$<$ \mbox{\hyperlink{class_aresta_encadeada}{Aresta\+Encadeada}} $>$ \texorpdfstring{$\ast$}{*}novas\+Conexoes)
+\begin{DoxyCompactList}\small\item\em Define a lista de conexões (arestas) do vértice. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_vertice_encadeado_aa27e77b576a283554a9fa47ab4223d9b}{remove\+Conexao}} (\mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*}destino)
+\begin{DoxyCompactList}\small\item\em Remove uma conexão específica deste vértice para outro vértice. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_aresta_encadeada}{Aresta\+Encadeada}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_vertice_encadeado_a2c2f21be1dfa436ad730df02745b257b}{get\+Conexao}} (int origem, int destino)
+\begin{DoxyCompactList}\small\item\em Obtém uma conexão específica entre dois vértices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{class_vertice_encadeado_ad4e801fa41f555af406e43971a20500c}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \&vertice)
+\begin{DoxyCompactList}\small\item\em Sobrecarga do operador de saída para exibir informações do vértice. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Representa um vértice em uma estrutura de grafo utilizando listas encadeadas. 
+
+Cada vértice possui um identificador único, um peso, um grau (número de conexões) e uma lista encadeada de conexões (arestas). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_vertice_encadeado_a21d7b669d9c67ae413a6c7209008880d}\index{VerticeEncadeado@{VerticeEncadeado}!VerticeEncadeado@{VerticeEncadeado}}
+\index{VerticeEncadeado@{VerticeEncadeado}!VerticeEncadeado@{VerticeEncadeado}}
+\doxysubsubsection{\texorpdfstring{VerticeEncadeado()}{VerticeEncadeado()}}
+{\footnotesize\ttfamily \label{class_vertice_encadeado_a21d7b669d9c67ae413a6c7209008880d} 
+Vertice\+Encadeado\+::\+Vertice\+Encadeado (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{int}]{peso}{}\end{DoxyParamCaption})}
+
+
+
+Construtor da classe \doxylink{class_vertice_encadeado}{Vertice\+Encadeado}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador do vértice. \\
+\hline
+{\em peso} & Peso do vértice.\\
+\hline
+\end{DoxyParams}
+Inicializa um vértice com um identificador e peso fornecidos. O grau é inicialmente 0, e a lista de conexões é alocada dinamicamente.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Identificador único do vértice. \\
+\hline
+{\em peso} & Peso do vértice. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_vertice_encadeado_a2c2f21be1dfa436ad730df02745b257b}\index{VerticeEncadeado@{VerticeEncadeado}!getConexao@{getConexao}}
+\index{getConexao@{getConexao}!VerticeEncadeado@{VerticeEncadeado}}
+\doxysubsubsection{\texorpdfstring{getConexao()}{getConexao()}}
+{\footnotesize\ttfamily \label{class_vertice_encadeado_a2c2f21be1dfa436ad730df02745b257b} 
+\mbox{\hyperlink{class_aresta_encadeada}{Aresta\+Encadeada}} \texorpdfstring{$\ast$}{*} Vertice\+Encadeado\+::get\+Conexao (\begin{DoxyParamCaption}\item[{int}]{origem}{, }\item[{int}]{destino}{}\end{DoxyParamCaption})}
+
+
+
+Obtém uma conexão específica entre dois vértices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origem} & Identificador do vértice de origem. \\
+\hline
+{\em destino} & Identificador do vértice de destino. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ponteiro para a aresta correspondente ou nullptr se não existir.
+\end{DoxyReturn}
+Percorre a lista de conexões para encontrar uma aresta que conecte o vértice de origem ao de destino.
+
+
+\begin{DoxyParams}{Parameters}
+{\em origem} & Identificador do vértice de origem. \\
+\hline
+{\em destino} & Identificador do vértice de destino. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ponteiro para a aresta correspondente ou nullptr se não existir. 
+\end{DoxyReturn}
+\Hypertarget{class_vertice_encadeado_aabfba1d3a90cfddfc0e487409479a616}\index{VerticeEncadeado@{VerticeEncadeado}!getConexoes@{getConexoes}}
+\index{getConexoes@{getConexoes}!VerticeEncadeado@{VerticeEncadeado}}
+\doxysubsubsection{\texorpdfstring{getConexoes()}{getConexoes()}}
+{\footnotesize\ttfamily \label{class_vertice_encadeado_aabfba1d3a90cfddfc0e487409479a616} 
+\mbox{\hyperlink{class_lista_encadeada}{Lista\+Encadeada}}$<$ \mbox{\hyperlink{class_aresta_encadeada}{Aresta\+Encadeada}} $>$ \texorpdfstring{$\ast$}{*} Vertice\+Encadeado\+::get\+Conexoes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém a lista de conexões (arestas) do vértice. 
+
+\begin{DoxyReturn}{Returns}
+Ponteiro para a lista encadeada de arestas. 
+\end{DoxyReturn}
+\Hypertarget{class_vertice_encadeado_af49be982135f0b5904f21429159a0faf}\index{VerticeEncadeado@{VerticeEncadeado}!getGrau@{getGrau}}
+\index{getGrau@{getGrau}!VerticeEncadeado@{VerticeEncadeado}}
+\doxysubsubsection{\texorpdfstring{getGrau()}{getGrau()}}
+{\footnotesize\ttfamily \label{class_vertice_encadeado_af49be982135f0b5904f21429159a0faf} 
+int Vertice\+Encadeado\+::get\+Grau (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Obtém o grau do vértice (número de conexões). 
+
+\begin{DoxyReturn}{Returns}
+Grau do vértice. 
+\end{DoxyReturn}
+\Hypertarget{class_vertice_encadeado_ad2ad7ea963ff50dcb4f66c124126a9b7}\index{VerticeEncadeado@{VerticeEncadeado}!getId@{getId}}
+\index{getId@{getId}!VerticeEncadeado@{VerticeEncadeado}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily \label{class_vertice_encadeado_ad2ad7ea963ff50dcb4f66c124126a9b7} 
+int Vertice\+Encadeado\+::get\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Obtém o identificador do vértice. 
+
+\begin{DoxyReturn}{Returns}
+Identificador do vértice.
+
+O identificador do vértice. 
+\end{DoxyReturn}
+\Hypertarget{class_vertice_encadeado_abd4053cd4016bcb92955a8924d51c0f8}\index{VerticeEncadeado@{VerticeEncadeado}!getPeso@{getPeso}}
+\index{getPeso@{getPeso}!VerticeEncadeado@{VerticeEncadeado}}
+\doxysubsubsection{\texorpdfstring{getPeso()}{getPeso()}}
+{\footnotesize\ttfamily \label{class_vertice_encadeado_abd4053cd4016bcb92955a8924d51c0f8} 
+int Vertice\+Encadeado\+::get\+Peso (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Obtém o peso do vértice. 
+
+\begin{DoxyReturn}{Returns}
+Peso do vértice.
+
+O peso do vértice. 
+\end{DoxyReturn}
+\Hypertarget{class_vertice_encadeado_aee1b2c277e9e550341fc4af5295d72cb}\index{VerticeEncadeado@{VerticeEncadeado}!getPrimeiraConexao@{getPrimeiraConexao}}
+\index{getPrimeiraConexao@{getPrimeiraConexao}!VerticeEncadeado@{VerticeEncadeado}}
+\doxysubsubsection{\texorpdfstring{getPrimeiraConexao()}{getPrimeiraConexao()}}
+{\footnotesize\ttfamily \label{class_vertice_encadeado_aee1b2c277e9e550341fc4af5295d72cb} 
+\mbox{\hyperlink{class_aresta_encadeada}{Aresta\+Encadeada}} \texorpdfstring{$\ast$}{*} Vertice\+Encadeado\+::get\+Primeira\+Conexao (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Obtém a primeira conexão (aresta) do vértice. 
+
+\begin{DoxyReturn}{Returns}
+Ponteiro para a primeira aresta conectada a este vértice.
+
+Ponteiro para a primeira aresta conectada ao vértice. 
+\end{DoxyReturn}
+\Hypertarget{class_vertice_encadeado_a04a3bcd8c5fd29747a85b56c5f650179}\index{VerticeEncadeado@{VerticeEncadeado}!getProximo@{getProximo}}
+\index{getProximo@{getProximo}!VerticeEncadeado@{VerticeEncadeado}}
+\doxysubsubsection{\texorpdfstring{getProximo()}{getProximo()}}
+{\footnotesize\ttfamily \label{class_vertice_encadeado_a04a3bcd8c5fd29747a85b56c5f650179} 
+\mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*} Vertice\+Encadeado\+::get\+Proximo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Obtém o próximo vértice na lista encadeada. 
+
+Obtém o próximo vértice encadeado.
+
+\begin{DoxyReturn}{Returns}
+Ponteiro para o próximo vértice.
+
+Ponteiro para o próximo vértice na lista encadeada. 
+\end{DoxyReturn}
+\Hypertarget{class_vertice_encadeado_aa27e77b576a283554a9fa47ab4223d9b}\index{VerticeEncadeado@{VerticeEncadeado}!removeConexao@{removeConexao}}
+\index{removeConexao@{removeConexao}!VerticeEncadeado@{VerticeEncadeado}}
+\doxysubsubsection{\texorpdfstring{removeConexao()}{removeConexao()}}
+{\footnotesize\ttfamily \label{class_vertice_encadeado_aa27e77b576a283554a9fa47ab4223d9b} 
+int Vertice\+Encadeado\+::remove\+Conexao (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*}}]{destino}{}\end{DoxyParamCaption})}
+
+
+
+Remove uma conexão específica deste vértice para outro vértice. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em destino} & Ponteiro para o vértice de destino. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 se a conexão foi removida com sucesso, 0 caso contrário.
+\end{DoxyReturn}
+Encontra a aresta que conecta este vértice ao vértice de destino e a remove da lista de conexões. Reduz o grau do vértice após a remoção.
+
+
+\begin{DoxyParams}{Parameters}
+{\em destino} & Ponteiro para o vértice de destino da conexão a ser removida. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Peso da aresta removida ou 0 se a conexão não existir. 
+\end{DoxyReturn}
+\Hypertarget{class_vertice_encadeado_af0fe63b029b5aa44795467b198d9535e}\index{VerticeEncadeado@{VerticeEncadeado}!setConexao@{setConexao}}
+\index{setConexao@{setConexao}!VerticeEncadeado@{VerticeEncadeado}}
+\doxysubsubsection{\texorpdfstring{setConexao()}{setConexao()}}
+{\footnotesize\ttfamily \label{class_vertice_encadeado_af0fe63b029b5aa44795467b198d9535e} 
+void Vertice\+Encadeado\+::set\+Conexao (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*}}]{vertice\+Destino}{, }\item[{int}]{peso\+Aresta}{}\end{DoxyParamCaption})}
+
+
+
+Cria uma conexão entre este vértice e outro vértice destino. 
+
+Adiciona uma conexão entre este vértice e outro vértice.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertice\+Destino} & Ponteiro para o vértice de destino. \\
+\hline
+{\em peso\+Aresta} & Peso da aresta entre os vértices.\\
+\hline
+\end{DoxyParams}
+Cria uma nova aresta conectando este vértice ao vértice de destino e a adiciona à lista de conexões.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertice\+Destino} & Ponteiro para o vértice de destino. \\
+\hline
+{\em peso\+Aresta} & Peso da aresta que conecta os dois vértices. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_vertice_encadeado_a01d49b73c7b588d6843f28c03d0b600d}\index{VerticeEncadeado@{VerticeEncadeado}!setConexoes@{setConexoes}}
+\index{setConexoes@{setConexoes}!VerticeEncadeado@{VerticeEncadeado}}
+\doxysubsubsection{\texorpdfstring{setConexoes()}{setConexoes()}}
+{\footnotesize\ttfamily \label{class_vertice_encadeado_a01d49b73c7b588d6843f28c03d0b600d} 
+void Vertice\+Encadeado\+::set\+Conexoes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_lista_encadeada}{Lista\+Encadeada}}$<$ \mbox{\hyperlink{class_aresta_encadeada}{Aresta\+Encadeada}} $>$ \texorpdfstring{$\ast$}{*}}]{novas\+Conexoes}{}\end{DoxyParamCaption})}
+
+
+
+Define a lista de conexões (arestas) do vértice. 
+
+Define a lista de conexões do vértice.
+
+
+\begin{DoxyParams}{Parameters}
+{\em novas\+Conexoes} & Ponteiro para a nova lista de conexões. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_vertice_encadeado_a070f881761f35d07751d66d1058c3770}\index{VerticeEncadeado@{VerticeEncadeado}!setProximo@{setProximo}}
+\index{setProximo@{setProximo}!VerticeEncadeado@{VerticeEncadeado}}
+\doxysubsubsection{\texorpdfstring{setProximo()}{setProximo()}}
+{\footnotesize\ttfamily \label{class_vertice_encadeado_a070f881761f35d07751d66d1058c3770} 
+void Vertice\+Encadeado\+::set\+Proximo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \texorpdfstring{$\ast$}{*}}]{novo\+Proximo}{}\end{DoxyParamCaption})}
+
+
+
+Define o próximo vértice na lista encadeada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em novo\+Proximo} & Ponteiro para o novo próximo vértice. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{class_vertice_encadeado_ad4e801fa41f555af406e43971a20500c}\index{VerticeEncadeado@{VerticeEncadeado}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!VerticeEncadeado@{VerticeEncadeado}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily \label{class_vertice_encadeado_ad4e801fa41f555af406e43971a20500c} 
+std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os}{, }\item[{const \mbox{\hyperlink{class_vertice_encadeado}{Vertice\+Encadeado}} \&}]{vertice}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Sobrecarga do operador de saída para exibir informações do vértice. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Fluxo de saída. \\
+\hline
+{\em vertice} & Vértice a ser exibido. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Fluxo de saída atualizado.
+\end{DoxyReturn}
+Exibe o identificador, peso e grau do vértice, bem como suas conexões.
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Fluxo de saída. \\
+\hline
+{\em vertice} & Vértice a ser exibido. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Fluxo de saída atualizado. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_vertice_encadeado_8h}{Vertice\+Encadeado.\+h}}\item 
+src/\mbox{\hyperlink{_vertice_encadeado_8cpp}{Vertice\+Encadeado.\+cpp}}\end{DoxyCompactItemize}
