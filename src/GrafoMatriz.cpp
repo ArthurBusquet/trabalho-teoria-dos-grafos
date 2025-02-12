@@ -8,6 +8,12 @@
 
 using namespace std;
 
+/**
+ * @brief Construtor da classe GrafoMatriz.
+ * 
+ * Inicializa a matriz de adjacência, a matriz linear e o vetor de pesos dos vértices.
+ * O grafo começa com um tamanho inicial definido por `TAMANHO_INICIAL`.
+ */
 GrafoMatriz::GrafoMatriz() {
     tamanhoAtual = TAMANHO_INICIAL;
     tamanhoAtualLinear = (TAMANHO_INICIAL * (TAMANHO_INICIAL + 1)) / 2;
@@ -18,7 +24,7 @@ GrafoMatriz::GrafoMatriz() {
         Matriz[i] = new int[tamanhoAtual](); // Inicializa com zero
     }
 
-    // Aloca matriz linear dinamicamente
+    // Aloca matriz linear dinamicamente para grafos não direcionados
     MatrizLinear = new int[tamanhoAtualLinear](); // Inicializa com zero
 
     // Inicializa o vetor de pesos dos vértices com 0
@@ -26,6 +32,12 @@ GrafoMatriz::GrafoMatriz() {
 }
 
 
+/**
+ * @brief Destrutor da classe GrafoMatriz.
+ * 
+ * Libera a memória alocada para a matriz de adjacência, a matriz linear e o vetor de pesos dos vértices.
+ * Garante que todos os ponteiros sejam corretamente liberados e evita dangling pointers.
+ */
 GrafoMatriz::~GrafoMatriz() {
     cout << "Destruindo GrafoMatriz..." << endl;
 
@@ -53,24 +65,32 @@ GrafoMatriz::~GrafoMatriz() {
     }
 }
 
-// Método para redimensionar a matriz quadrada
+
+/**
+ * @brief Redimensiona a matriz de adjacência para acomodar novos vértices.
+ * 
+ * A matriz é duplicada em tamanho para evitar realocações frequentes.
+ * Os valores da matriz original são copiados para a nova matriz, e as novas posições
+ * são inicializadas com zero. Após a cópia, a matriz original é desalocada.
+ */
 void GrafoMatriz::redimensionarMatriz() {
     int novoTamanho = tamanhoAtual * 2;
     cout << "Redimensionando matriz quadrada para " << novoTamanho << "..." << endl;
     cout << "Aqui" << endl << endl;
     
+    // Aloca uma nova matriz com o dobro do tamanho
     int** novaMatriz = new int*[novoTamanho];
     cout << "Aqui" << endl << endl;
     for (int i = 0; i < novoTamanho; i++) {
-        
         novaMatriz[i] = new int[novoTamanho];
-        
+
+        // Copia os valores da matriz original e inicializa novas posições com zero
         for (int j = 0; j < novoTamanho; j++) {
             novaMatriz[i][j] = (i < tamanhoAtual && j < tamanhoAtual) ? Matriz[i][j] : 0;
         }
     }
 
-    // Libera matriz antiga
+    // Libera a matriz original
     for (int i = 0; i < tamanhoAtual; i++) {
         delete[] Matriz[i];
     }
@@ -81,12 +101,22 @@ void GrafoMatriz::redimensionarMatriz() {
     tamanhoAtual = novoTamanho;
 }
 
-// Método para redimensionar a matriz linear
+
+/**
+ * @brief Redimensiona a matriz linear de adjacência para acomodar novos vértices.
+ * 
+ * A matriz linear é usada para representar grafos não direcionados de forma eficiente.
+ * Essa função realoca a matriz linear, copiando os valores existentes e inicializando
+ * novas posições com zero. Após a cópia, a matriz original é desalocada.
+ */
 void GrafoMatriz::redimensionarMatrizLinear() {
     int novoTamanho = (tamanhoAtual * (tamanhoAtual + 1)) / 2;
     cout << "Redimensionando matriz linear para " << novoTamanho << "..." << endl;
 
+    // Aloca uma nova matriz linear com o novo tamanho
     int* novaMatrizLinear = new int[novoTamanho];
+
+    // Copia os valores da matriz original e inicializa novas posições com zero
     for (int i = 0; i < novoTamanho; i++) {
         novaMatrizLinear[i] = (i < tamanhoAtualLinear) ? MatrizLinear[i] : 0;
     }
@@ -99,6 +129,17 @@ void GrafoMatriz::redimensionarMatrizLinear() {
     tamanhoAtualLinear = novoTamanho;
 }
 
+
+/**
+ * @brief Calcula o índice correspondente na matriz linear para uma aresta.
+ * 
+ * A matriz linear armazena apenas a metade da matriz de adjacência para economizar espaço.
+ * Este método converte um par (origem, destino) em um índice dentro dessa matriz comprimida.
+ * 
+ * @param origem Vértice de origem da aresta.
+ * @param destino Vértice de destino da aresta.
+ * @return Índice correspondente na matriz linear.
+ */
 int GrafoMatriz::calcularIndiceLinear(int origem, int destino) {
     if (origem <= destino) {
         return (destino * (destino - 1)) / 2 + origem;
@@ -106,6 +147,16 @@ int GrafoMatriz::calcularIndiceLinear(int origem, int destino) {
     return (origem * (origem - 1)) / 2 + destino;
 }
 
+/**
+ * @brief Obtém o peso da aresta entre dois vértices.
+ * 
+ * Retorna o valor armazenado na matriz de adjacência ou na matriz linear,
+ * dependendo se o grafo é direcionado ou não.
+ * 
+ * @param origem Identificador do vértice de origem.
+ * @param destino Identificador do vértice de destino.
+ * @return Peso da aresta ou -1 se não existir.
+ */
 int GrafoMatriz::get_aresta(int origem, int destino) {
     if (origem < 0 || destino < 0 || origem >= tamanhoAtual || destino >= tamanhoAtual) {
         //cerr << "Erro: Índices fora dos limites da matriz!" << endl;
@@ -123,17 +174,37 @@ int GrafoMatriz::get_aresta(int origem, int destino) {
     }
 }
 
+/**
+ * @brief Define o peso de um vértice.
+ * 
+ * Se o grafo não for ponderado nos vértices, o peso será forçado para 0.
+ * 
+ * @param id Identificador do vértice.
+ * @param peso Novo peso do vértice.
+ */
 void GrafoMatriz::set_vertice(int id, float peso) {
-    if(!vertice_ponderado())
+    if (!vertice_ponderado()) {
         peso = 0;
+    }
 
     VetorPesosVertices[id - 1] = peso;
 }
 
+/**
+ * @brief Define o peso de uma aresta existente.
+ * 
+ * Se o grafo não for ponderado nas arestas, o peso será forçado para 0.
+ * O método verifica se o grafo é direcionado e armazena o peso na estrutura correspondente.
+ * 
+ * @param origem Identificador do vértice de origem.
+ * @param destino Identificador do vértice de destino.
+ * @param peso Novo peso da aresta.
+ */
 void GrafoMatriz::set_aresta(int origem, int destino, float peso) {
-    if(!aresta_ponderada())
+    if (!aresta_ponderada()) {
         peso = 0;
-    
+    }
+
     if (eh_direcionado()) {
         Matriz[origem][destino] = peso;
     } else {
@@ -146,6 +217,15 @@ void GrafoMatriz::set_aresta(int origem, int destino, float peso) {
     }
 }
 
+/**
+ * @brief Obtém o peso de um vértice.
+ * 
+ * Se o grafo for ponderado nos vértices, retorna o peso armazenado.
+ * Caso contrário, retorna 1 (peso padrão para vértices não ponderados).
+ * 
+ * @param origem Identificador do vértice.
+ * @return Peso do vértice.
+ */
 int GrafoMatriz::get_vertice(int origem) {
     if (vertice_ponderado()) {
         return VetorPesosVertices[origem - 1];
@@ -153,6 +233,16 @@ int GrafoMatriz::get_vertice(int origem) {
     return 1;
 }
 
+
+/**
+ * @brief Obtém o número de vizinhos de um vértice.
+ * 
+ * Para grafos direcionados, conta o número de arestas de saída do vértice.
+ * Para grafos não direcionados, verifica a matriz linear de adjacência, evitando contagens duplicadas.
+ * 
+ * @param vertice Identificador do vértice.
+ * @return Número de vizinhos do vértice ou -1 se o vértice for inválido.
+ */
 int GrafoMatriz::get_vizinhos(int vertice) {
     if (vertice < 1 || vertice > get_ordem()) {
         cerr << "Vértice inválido!" << endl;
@@ -184,10 +274,32 @@ int GrafoMatriz::get_vizinhos(int vertice) {
     return vizinhos;
 }
 
+/**
+ * @brief Adiciona uma nova aresta ao grafo.
+ * 
+ * A função verifica se a aresta já existe antes de adicioná-la.
+ * Para grafos direcionados, a aresta é armazenada na matriz de adjacência.
+ * Para grafos não direcionados, a aresta é armazenada na matriz linear comprimida.
+ * 
+ * @param origem Identificador do vértice de origem.
+ * @param destino Identificador do vértice de destino.
+ * @param peso Peso da aresta.
+ */
+/**
+ * @brief Adiciona uma nova aresta ao grafo.
+ * 
+ * A função verifica se a aresta já existe antes de adicioná-la.
+ * Para grafos direcionados, a aresta é armazenada na matriz de adjacência.
+ * Para grafos não direcionados, a aresta é armazenada na matriz linear comprimida.
+ * 
+ * @param origem Identificador do vértice de origem.
+ * @param destino Identificador do vértice de destino.
+ * @param peso Peso da aresta.
+ */
 void GrafoMatriz::nova_aresta(int origem, int destino, int peso) {
     std::cout << "Tentando adicionar aresta entre " << origem << " e " << destino << " com peso " << peso << std::endl;
     
-    // Verificando se a aresta já existea
+    // Verificando se a aresta já existe
     if (get_aresta(origem, destino) != 0) {
         std::cout << "Aresta entre " << origem << " e " << destino << " já existe!" << std::endl;
         return;
@@ -212,10 +324,17 @@ void GrafoMatriz::nova_aresta(int origem, int destino, int peso) {
     }
 }
 
-
+/**
+ * @brief Remove uma aresta do grafo.
+ * 
+ * Para grafos direcionados, apenas a entrada correspondente na matriz de adjacência é apagada.
+ * Para grafos não direcionados, a aresta é removida da matriz linear comprimida.
+ * 
+ * @param vertice1 Identificador do primeiro vértice.
+ * @param vertice2 Identificador do segundo vértice.
+ */
 void GrafoMatriz::deleta_aresta(int vertice1, int vertice2) {
     if (eh_direcionado()) {
-
         // Remove a aresta na matriz de adjacência
         Matriz[vertice1 - 1][vertice2 - 1] = 0;
     } else {
@@ -228,16 +347,25 @@ void GrafoMatriz::deleta_aresta(int vertice1, int vertice2) {
     }
 }
 
+
+/**
+ * @brief Adiciona um novo vértice ao grafo.
+ * 
+ * Aumenta a ordem do grafo e redimensiona a matriz de adjacência ou a matriz linear se necessário.
+ * Inicializa a nova linha e a nova coluna da matriz com zeros.
+ * 
+ * @param peso Peso do novo vértice.
+ */
 void GrafoMatriz::novo_no(int peso) {
     // Aumenta a ordem do grafo
     aumenta_ordem();
     
     // Verifica se é necessário redimensionar a matriz
     if (get_ordem() > tamanhoAtual) {
-        if( eh_direcionado() ) {
-            redimensionarMatriz();           // Redimensiona a matriz quadrada
+        if (eh_direcionado()) {
+            redimensionarMatriz();  // Redimensiona a matriz quadrada
         } else {
-            redimensionarMatrizLinear();     // Redimensiona a matriz linear
+            redimensionarMatrizLinear();  // Redimensiona a matriz linear
         }
     }
     
@@ -251,6 +379,13 @@ void GrafoMatriz::novo_no(int peso) {
     VetorPesosVertices[get_ordem() - 1] = peso; // Valor padrão para o peso do vértice
 }
 
+/**
+ * @brief Reorganiza a matriz de adjacência após a remoção de um vértice.
+ * 
+ * Cria uma nova matriz sem a linha e a coluna do vértice removido, copiando os dados restantes.
+ * 
+ * @param vertice Identificador do vértice removido.
+ */
 void GrafoMatriz::reorganiza_matriz(int vertice) {
     int v = vertice - 1; // Ajustando para índice 0
 
@@ -279,6 +414,13 @@ void GrafoMatriz::reorganiza_matriz(int vertice) {
     tamanhoAtual = novoTamanho;
 }
 
+/**
+ * @brief Reorganiza o vetor de pesos dos vértices após a remoção de um vértice.
+ * 
+ * Cria um novo vetor de pesos sem o valor correspondente ao vértice removido.
+ * 
+ * @param vertice Identificador do vértice removido.
+ */
 void GrafoMatriz::reorganiza_vetor_pesos(int vertice) {
     int v = vertice - 1; // Ajustando para índice 0
 
@@ -297,6 +439,14 @@ void GrafoMatriz::reorganiza_vetor_pesos(int vertice) {
     VetorPesosVertices = novoVetorPesos;
 }
 
+/**
+ * @brief Remove um vértice do grafo e reorganiza suas estruturas.
+ * 
+ * Remove todas as arestas associadas ao vértice e reorganiza a matriz de adjacência
+ * e o vetor de pesos. Reduz a ordem do grafo.
+ * 
+ * @param vertice Identificador do vértice a ser removido.
+ */
 void GrafoMatriz::deleta_no(int vertice) {
     if (vertice < 1 || vertice > tamanhoAtual) {
         cerr << "Erro: Vértice inválido!" << endl;
@@ -322,6 +472,13 @@ void GrafoMatriz::deleta_no(int vertice) {
     cout << "Vértice " << vertice << " deletado com sucesso!" << endl;
 }
 
+/**
+ * @brief Remove todas as arestas direcionadas associadas a um vértice.
+ * 
+ * Remove todas as conexões de saída e entrada do vértice na matriz de adjacência.
+ * 
+ * @param vertice Identificador do vértice.
+ */
 void GrafoMatriz::deleta_arestas_direcionadas(int vertice) {
     int v = vertice - 1; // Ajustando para índice 0
 
@@ -336,6 +493,13 @@ void GrafoMatriz::deleta_arestas_direcionadas(int vertice) {
     }
 }
 
+/**
+ * @brief Remove todas as arestas não direcionadas associadas a um vértice.
+ * 
+ * Remove as conexões do vértice na matriz linear de adjacência.
+ * 
+ * @param vertice Identificador do vértice.
+ */
 void GrafoMatriz::deleta_arestas_nao_direcionadas(int vertice) {
     int v = vertice - 1; // Ajustando para índice 0
 

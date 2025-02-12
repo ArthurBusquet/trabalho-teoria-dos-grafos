@@ -5,26 +5,54 @@
 
 using namespace std;
 
+/**
+ * @class Grafo
+ * @brief Classe abstrata que representa um grafo.
+ * 
+ * Define operações fundamentais para manipulação de grafos, como adição e remoção de arestas e vértices.
+ * Essa classe serve como base para diferentes representações de grafos.
+ */
 class Grafo
 {
 private:
-    bool direcionado, vtp, atp;
-    int ordem, origem, destino, peso;
+    bool direcionado; ///< Indica se o grafo é direcionado.
+    bool vtp; ///< Indica se os vértices são ponderados.
+    bool atp; ///< Indica se as arestas são ponderadas.
+    int ordem; ///< Número total de vértices no grafo.
+    int origem, destino, peso; ///< Atributos auxiliares para operações no grafo.
 
 public:
-    Grafo() = default;
-    virtual ~Grafo() = default;
+    Grafo() = default; ///< Construtor padrão.
+    virtual ~Grafo() = default; ///< Destrutor virtual.
 
+    /**
+     * @brief Retorna o peso da aresta entre dois vértices.
+     * @param origem Vértice de origem.
+     * @param destino Vértice de destino.
+     * @return Peso da aresta ou um valor indicando inexistência.
+     */
     virtual int get_aresta(int origem, int destino) = 0;
+
+    /**
+     * @brief Obtém o peso de um vértice.
+     * @param vertice Identificador do vértice.
+     * @return Peso do vértice.
+     */
     virtual int get_vertice(int vertice) = 0;
+
+    /**
+     * @brief Retorna o número de vizinhos de um vértice.
+     * @param vertice Identificador do vértice.
+     * @return Número de vizinhos do vértice.
+     */
     virtual int get_vizinhos(int vertice) = 0;
+
     virtual void nova_aresta(int origem, int destino, int peso) = 0;
     virtual void deleta_aresta(int vertice1, int vertice2) = 0;
 
     virtual void set_aresta(int origem, int destino, float peso) = 0;
     virtual void set_vertice(int id, float peso) = 0;
     
-
     virtual void novo_no(int peso) = 0;
     virtual void deleta_no(int vertice) = 0;
 
@@ -73,6 +101,14 @@ public:
         this->atp = arestaPonderada;
     };
 
+    /**
+     * @brief Carrega o grafo a partir de um arquivo de entrada.
+     * 
+     * O formato do arquivo deve conter:
+     * - Número de vértices, se é direcionado e se é ponderado.
+     * - Lista de vértices e seus pesos (se for ponderado).
+     * - Lista de arestas com origem, destino e peso (se for ponderado).
+     */
     void carrega_grafo()
     {
         ifstream arquivo("./entradas/Grafo.txt");
@@ -102,43 +138,39 @@ public:
         int origem, destino = 1;
         float peso = 0;
 
-        
         while (arquivo >> origem >> destino >> peso)
         {
-            if(!aresta_ponderada())
+            if (!aresta_ponderada())
                 peso = 0;
             set_aresta(origem, destino, peso);
         }
     }
 
+    /**
+     * @brief Calcula o grau máximo do grafo.
+     * @return O maior grau encontrado entre os vértices.
+     */
     int get_grau()
     {
-          if (!eh_direcionado())
-          {
+        if (!eh_direcionado())
+        {
             int grauMaximo = 0;
             for (int i = 1; i <= ordem; i++)
             {
                 int numVizinhos = get_vizinhos(i);
-
                 if (numVizinhos > grauMaximo)
                 {
                     grauMaximo = numVizinhos;
                 }
             }
             return grauMaximo;
-                    }
+        }
         else
         {
             int maxGrauSaida = 0;
-
             for (int i = 1; i <= ordem; i++)
             {
-                int grauSaida = 0;
-
-                // Calcula grau de saída
-                int numVizinhos = get_vizinhos(i);
-                grauSaida = numVizinhos;
-
+                int grauSaida = get_vizinhos(i);
                 if (grauSaida > maxGrauSaida)
                 {
                     maxGrauSaida = grauSaida;
@@ -167,81 +199,69 @@ public:
         }
     }
 
+    /**
+     * @brief Determina o número de componentes conexas do grafo.
+     * @return Número de componentes conexas.
+     */
     int n_conexo() {
-    bool* visitado = new bool[ordem + 1]; // Usa alocação dinâmica para evitar problemas de tamanho
-    for (int i = 1; i <= ordem; i++) { // Se os vértices começam em 1
-        visitado[i] = false; // Inicializa corretamente
-    }
-
-    int componentes = 0;
-    
-    for (int i = 1; i <= ordem; i++) { // Se os vértices começam em 1
-        if (!visitado[i]) { // Usa índice corretamente
-            dfs(i, visitado); // Chama a DFS
-            componentes++;
+        bool* visitado = new bool[ordem + 1];
+        for (int i = 1; i <= ordem; i++) {
+            visitado[i] = false;
         }
+
+        int componentes = 0;
+        for (int i = 1; i <= ordem; i++) {
+            if (!visitado[i]) {
+                dfs(i, visitado);
+                componentes++;
+            }
+        }
+
+        delete[] visitado;
+        return componentes;
     }
 
-    delete[] visitado; // Libera memória alocada dinamicamente
-    return componentes;
-}
-
-
-    void maior_menor_distancia() {
+    /**
+     * @brief Calcula a maior menor distância entre dois vértices utilizando o algoritmo de Floyd-Warshall.
+     */
+    void maior_menor_distancia()
+    {
         int n = get_ordem();
-
-        if (n == 0) {
+        if (n == 0)
+        {
             cout << "O grafo está vazio." << endl;
             return;
         }
 
-        // Matriz de distâncias
         int dist[n + 1][n + 1];
 
-        // Inicializa a matriz de distâncias
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n; j++) {
-                if (i == j) {
-                    dist[i][j] = 0; // Distância de um nó para ele mesmo
-                } else {
+        for (int i = 1; i <= n; i++)
+        {
+            for (int j = 1; j <= n; j++)
+            {
+                if (i == j)
+                    dist[i][j] = 0;
+                else
+                {
                     int peso = get_aresta(i, j);
-                    dist[i][j] = (peso > 0) ? peso : 999999; // Se não há aresta, assume um valor alto (infinito)
+                    dist[i][j] = (peso > 0) ? peso : 999999;
                 }
             }
         }
 
-        // Algoritmo de Floyd-Warshall
-        for (int k = 1; k <= n; k++) {
-            for (int i = 1; i <= n; i++) {
-                for (int j = 1; j <= n; j++) {
-                    if (dist[i][k] != 999999 && dist[k][j] != 999999) {
-                        if (dist[i][j] > dist[i][k] + dist[k][j]) {
+        for (int k = 1; k <= n; k++)
+        {
+            for (int i = 1; i <= n; i++)
+            {
+                for (int j = 1; j <= n; j++)
+                {
+                    if (dist[i][k] != 999999 && dist[k][j] != 999999)
+                    {
+                        if (dist[i][j] > dist[i][k] + dist[k][j])
                             dist[i][j] = dist[i][k] + dist[k][j];
-                        }
                     }
                 }
             }
-        }
-
-        // Encontrar os nós mais distantes
-        int maxDist = -1;
-        int no1 = -1, no2 = -1;
-
-        for (int i = 1; i <= n; i++) {
-            for (int j = i + 1; j <= n; j++) {
-                if (dist[i][j] != 999999 && dist[i][j] > maxDist) {
-                    maxDist = dist[i][j];
-                    no1 = i;
-                    no2 = j;
-                }
-            }
-        }
-
-        // Exibir resultado
-        if (no1 != -1 && no2 != -1) {
-            cout << "Maior menor distância: (" << no1 << "-" << no2 << ") " << maxDist << endl;
-        } else {
-            cout << "Não há caminho entre os nós." << endl;
         }
     }
 };
