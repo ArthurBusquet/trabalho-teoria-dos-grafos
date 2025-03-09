@@ -171,6 +171,7 @@ void GrafoLista::buscaEmProfundidade(VerticeEncadeado *vertice, bool *visitados)
             buscaEmProfundidade(vizinho, visitados);  // Chama recursivamente para os vizinhos
         }
         aresta = aresta->getProximo();  // Move para a próxima aresta
+    }
 }
 
 // Função que imprime os vértices, arestas e algumas propriedades do grafo.

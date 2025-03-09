@@ -8,17 +8,19 @@
 
 using namespace std;
 
-GrafoMatriz::GrafoMatriz() {
-    tamanhoAtual = TAMANHO_INICIAL;
-    tamanhoAtualLinear = (TAMANHO_INICIAL * (TAMANHO_INICIAL + 1)) / 2;
+const int TAMANHO_FIXO = 10000; // Define um tamanho fixo grande para a matriz
 
-    // Aloca matriz 2D dinamicamente
-    Matriz = new int*[tamanhoAtual];  // Aloca memória para a matriz quadrada de adjacência
+GrafoMatriz::GrafoMatriz() {
+    tamanhoAtual = TAMANHO_FIXO;
+    size_t tamanhoAtualLinear = ((size_t)TAMANHO_FIXO * (TAMANHO_FIXO + 1)) / 2;
+
+    // Aloca matriz 2D estaticamente
+    Matriz = new int*[tamanhoAtual];
     for (int i = 0; i < tamanhoAtual; i++) {
         Matriz[i] = new int[tamanhoAtual](); // Inicializa com zero
     }
 
-    // Aloca matriz linear dinamicamente
+    // Aloca matriz linear estaticamente
     MatrizLinear = new int[tamanhoAtualLinear](); // Inicializa com zero
 
     // Inicializa o vetor de pesos dos vértices com 0
@@ -39,48 +41,48 @@ GrafoMatriz::~GrafoMatriz() {
 }
 
 // Método para redimensionar a matriz quadrada
-void GrafoMatriz::redimensionarMatriz() {
-    int novoTamanho = tamanhoAtual * 2;  // Dobra o tamanho da matriz
-    cout << "Redimensionando matriz quadrada para " << novoTamanho << "..." << endl;
+// void GrafoMatriz::redimensionarMatriz() {
+//     int novoTamanho = tamanhoAtual * 2;  // Dobra o tamanho da matriz
+//     cout << "Redimensionando matriz quadrada para " << novoTamanho << "..." << endl;
 
-    // Cria uma nova matriz maior
-    int** novaMatriz = new int*[novoTamanho];
-    for (int i = 0; i < novoTamanho; i++) {
-        novaMatriz[i] = new int[novoTamanho];
-        for (int j = 0; j < novoTamanho; j++) {
-            novaMatriz[i][j] = (i < tamanhoAtual && j < tamanhoAtual) ? Matriz[i][j] : 0;
-        }
-    }
+//     // Cria uma nova matriz maior
+//     int** novaMatriz = new int*[novoTamanho];
+//     for (int i = 0; i < novoTamanho; i++) {
+//         novaMatriz[i] = new int[novoTamanho];
+//         for (int j = 0; j < novoTamanho; j++) {
+//             novaMatriz[i][j] = (i < tamanhoAtual && j < tamanhoAtual) ? Matriz[i][j] : 0;
+//         }
+//     }
 
-    // Libera a matriz antiga
-    for (int i = 0; i < tamanhoAtual; i++) {
-        delete[] Matriz[i];
-    }
-    delete[] Matriz;  // Libera o array de ponteiros para as linhas da matriz antiga
+//     // Libera a matriz antiga
+//     for (int i = 0; i < tamanhoAtual; i++) {
+//         delete[] Matriz[i];
+//     }
+//     delete[] Matriz;  // Libera o array de ponteiros para as linhas da matriz antiga
 
-    // Atualiza ponteiro e tamanho
-    Matriz = novaMatriz;  // A nova matriz é agora a matriz ativa
-    tamanhoAtual = novoTamanho;  // Atualiza o tamanho da matriz
-}
+//     // Atualiza ponteiro e tamanho
+//     Matriz = novaMatriz;  // A nova matriz é agora a matriz ativa
+//     tamanhoAtual = novoTamanho;  // Atualiza o tamanho da matriz
+// }
 
 // Método para redimensionar a matriz linear
-void GrafoMatriz::redimensionarMatrizLinear() {
-    int novoTamanho = (tamanhoAtual * (tamanhoAtual + 1)) / 2;  // Calcula o novo tamanho para a matriz linear
-    cout << "Redimensionando matriz linear para " << novoTamanho << "..." << endl;
+// void GrafoMatriz::redimensionarMatrizLinear() {
+//     int novoTamanho = (tamanhoAtual * (tamanhoAtual + 1)) / 2;  // Calcula o novo tamanho para a matriz linear
+//     cout << "Redimensionando matriz linear para " << novoTamanho << "..." << endl;
 
-    // Cria a nova matriz linear
-    int* novaMatrizLinear = new int[novoTamanho];
-    for (int i = 0; i < novoTamanho; i++) {
-        novaMatrizLinear[i] = (i < tamanhoAtualLinear) ? MatrizLinear[i] : 0;
-    }
+//     // Cria a nova matriz linear
+//     int* novaMatrizLinear = new int[novoTamanho];
+//     for (int i = 0; i < novoTamanho; i++) {
+//         novaMatrizLinear[i] = (i < tamanhoAtualLinear) ? MatrizLinear[i] : 0;
+//     }
 
-    // Libera a matriz linear antiga
-    delete[] MatrizLinear;
+//     // Libera a matriz linear antiga
+//     delete[] MatrizLinear;
 
-    // Atualiza ponteiro e tamanho
-    MatrizLinear = novaMatrizLinear;  // A nova matriz linear é agora a matriz ativa
-    tamanhoAtualLinear = novoTamanho;  // Atualiza o tamanho da matriz linear
-}
+//     // Atualiza ponteiro e tamanho
+//     MatrizLinear = novaMatrizLinear;  // A nova matriz linear é agora a matriz ativa
+//     tamanhoAtualLinear = novoTamanho;  // Atualiza o tamanho da matriz linear
+// }
 
 // Método para inicializar o grafo a partir de um arquivo
 void GrafoMatriz::inicializa_grafo() {
