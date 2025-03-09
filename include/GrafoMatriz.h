@@ -6,7 +6,7 @@
 
 using namespace std;
 
-const int TAMANHO_INICIAL = 10; // Começa com 10 vértices
+const int TAMANHO_INICIAL = 5001; // Começa com 10 vértices
 
 class GrafoMatriz : public Grafo {
 private:

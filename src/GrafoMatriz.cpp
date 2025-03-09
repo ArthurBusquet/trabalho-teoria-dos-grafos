@@ -8,30 +8,32 @@
 
 using namespace std;
 
-GrafoMatriz::GrafoMatriz() {
-    tamanhoAtual = TAMANHO_INICIAL;
-    tamanhoAtualLinear = (TAMANHO_INICIAL * (TAMANHO_INICIAL + 1)) / 2;
+// Definindo o tamanho estático da matriz
+const int TAMANHO_ESTATICO = 100; // Defina o tamanho máximo da matriz aqui
 
-    // Aloca matriz 2D dinamicamente
-    Matriz = new int*[tamanhoAtual];
-    for (int i = 0; i < tamanhoAtual; i++) {
-        Matriz[i] = new int[tamanhoAtual](); // Inicializa com zero
+GrafoMatriz::GrafoMatriz() {
+    tamanhoAtual = TAMANHO_ESTATICO;
+    tamanhoAtualLinear = (TAMANHO_ESTATICO * (TAMANHO_ESTATICO + 1)) / 2;
+
+    // Aloca matriz 2D estaticamente
+    Matriz = new int*[TAMANHO_ESTATICO];
+    for (int i = 0; i < TAMANHO_ESTATICO; i++) {
+        Matriz[i] = new int[TAMANHO_ESTATICO](); // Inicializa com zero
     }
 
-    // Aloca matriz linear dinamicamente
+    // Aloca matriz linear estaticamente
     MatrizLinear = new int[tamanhoAtualLinear](); // Inicializa com zero
 
     // Inicializa o vetor de pesos dos vértices com 0
-    VetorPesosVertices = new int[tamanhoAtual](); // Inicializa com zero
+    VetorPesosVertices = new int[TAMANHO_ESTATICO](); // Inicializa com zero
 }
-
 
 GrafoMatriz::~GrafoMatriz() {
     cout << "Destruindo GrafoMatriz..." << endl;
 
     // Libera a matriz bidimensional de forma segura
     if (Matriz != nullptr) {  // Verifica se o ponteiro da Matriz não é nulo
-        for (int i = 0; i < tamanhoAtual; i++) {
+        for (int i = 0; i < TAMANHO_ESTATICO; i++) {
             if (Matriz[i] != nullptr) {  // Verifica se a linha não é nula antes de liberar
                 delete[] Matriz[i]; // Libera apenas se o ponteiro for válido
             }
@@ -53,7 +55,8 @@ GrafoMatriz::~GrafoMatriz() {
     }
 }
 
-// Método para redimensionar a matriz quadrada
+// Método para redimensionar a matriz quadrada (COMENTADO, pois a matriz é estática)
+/*
 void GrafoMatriz::redimensionarMatriz() {
     int novoTamanho = tamanhoAtual * 2;
     cout << "Redimensionando matriz quadrada para " << novoTamanho << "..." << endl;
@@ -80,8 +83,10 @@ void GrafoMatriz::redimensionarMatriz() {
     Matriz = novaMatriz;
     tamanhoAtual = novoTamanho;
 }
+*/
 
-// Método para redimensionar a matriz linear
+// Método para redimensionar a matriz linear (COMENTADO, pois a matriz é estática)
+/*
 void GrafoMatriz::redimensionarMatrizLinear() {
     int novoTamanho = (tamanhoAtual * (tamanhoAtual + 1)) / 2;
     cout << "Redimensionando matriz linear para " << novoTamanho << "..." << endl;
@@ -98,6 +103,7 @@ void GrafoMatriz::redimensionarMatrizLinear() {
     MatrizLinear = novaMatrizLinear;
     tamanhoAtualLinear = novoTamanho;
 }
+*/
 
 int GrafoMatriz::calcularIndiceLinear(int origem, int destino) {
     if (origem <= destino) {
@@ -107,7 +113,7 @@ int GrafoMatriz::calcularIndiceLinear(int origem, int destino) {
 }
 
 int GrafoMatriz::get_aresta(int origem, int destino) {
-    if (origem < 0 || destino < 0 || origem >= tamanhoAtual || destino >= tamanhoAtual) {
+    if (origem < 0 || destino < 0 || origem >= TAMANHO_ESTATICO || destino >= TAMANHO_ESTATICO) {
         //cerr << "Erro: Índices fora dos limites da matriz!" << endl;
         return -1; // Retorno de erro
     }
@@ -187,14 +193,14 @@ int GrafoMatriz::get_vizinhos(int vertice) {
 void GrafoMatriz::nova_aresta(int origem, int destino, int peso) {
     std::cout << "Tentando adicionar aresta entre " << origem << " e " << destino << " com peso " << peso << std::endl;
     
-    // Verificando se a aresta já existea
+    // Verificando se a aresta já existe
     if (get_aresta(origem, destino) != 0) {
         std::cout << "Aresta entre " << origem << " e " << destino << " já existe!" << std::endl;
         return;
     }
 
     // Verifica se os índices estão dentro do limite
-    if (origem > tamanhoAtual || destino > tamanhoAtual) {
+    if (origem > TAMANHO_ESTATICO || destino > TAMANHO_ESTATICO) {
         std::cerr << "Erro: Índices de vértice estão fora dos limites da matriz!" << std::endl;
         return;
     }
@@ -212,10 +218,8 @@ void GrafoMatriz::nova_aresta(int origem, int destino, int peso) {
     }
 }
 
-
 void GrafoMatriz::deleta_aresta(int vertice1, int vertice2) {
     if (eh_direcionado()) {
-
         // Remove a aresta na matriz de adjacência
         Matriz[vertice1 - 1][vertice2 - 1] = 0;
     } else {
@@ -232,7 +236,8 @@ void GrafoMatriz::novo_no(int peso) {
     // Aumenta a ordem do grafo
     aumenta_ordem();
     
-    // Verifica se é necessário redimensionar a matriz
+    // Verifica se é necessário redimensionar a matriz (COMENTADO, pois a matriz é estática)
+    /*
     if (get_ordem() > tamanhoAtual) {
         if( eh_direcionado() ) {
             redimensionarMatriz();           // Redimensiona a matriz quadrada
@@ -240,6 +245,7 @@ void GrafoMatriz::novo_no(int peso) {
             redimensionarMatrizLinear();     // Redimensiona a matriz linear
         }
     }
+    */
     
     // Inicializa o novo vértice na matriz (adiciona a linha e a coluna na matriz)
     for (int i = 0; i < get_ordem(); i++) {
@@ -251,6 +257,8 @@ void GrafoMatriz::novo_no(int peso) {
     VetorPesosVertices[get_ordem() - 1] = peso; // Valor padrão para o peso do vértice
 }
 
+// Método para reorganizar a matriz (COMENTADO, pois a matriz é estática)
+/*
 void GrafoMatriz::reorganiza_matriz(int vertice) {
     int v = vertice - 1; // Ajustando para índice 0
 
@@ -278,7 +286,10 @@ void GrafoMatriz::reorganiza_matriz(int vertice) {
     Matriz = novaMatriz;
     tamanhoAtual = novoTamanho;
 }
+*/
 
+// Método para reorganizar o vetor de pesos (COMENTADO, pois a matriz é estática)
+/*
 void GrafoMatriz::reorganiza_vetor_pesos(int vertice) {
     int v = vertice - 1; // Ajustando para índice 0
 
@@ -296,9 +307,10 @@ void GrafoMatriz::reorganiza_vetor_pesos(int vertice) {
     // Atualiza ponteiro
     VetorPesosVertices = novoVetorPesos;
 }
+*/
 
 void GrafoMatriz::deleta_no(int vertice) {
-    if (vertice < 1 || vertice > tamanhoAtual) {
+    if (vertice < 1 || vertice > TAMANHO_ESTATICO) {
         cerr << "Erro: Vértice inválido!" << endl;
         return;
     }
@@ -310,11 +322,11 @@ void GrafoMatriz::deleta_no(int vertice) {
         deleta_arestas_nao_direcionadas(vertice);
     }
 
-    // Reorganiza a matriz de adjacência ou a matriz linear
-    reorganiza_matriz(vertice);
+    // Reorganiza a matriz de adjacência ou a matriz linear (COMENTADO, pois a matriz é estática)
+    // reorganiza_matriz(vertice);
 
-    // Atualiza o vetor de pesos dos vértices
-    reorganiza_vetor_pesos(vertice);
+    // Atualiza o vetor de pesos dos vértices (COMENTADO, pois a matriz é estática)
+    // reorganiza_vetor_pesos(vertice);
 
     // Decrementa a ordem do grafo
     set_ordem(get_ordem() - 1);
@@ -326,12 +338,12 @@ void GrafoMatriz::deleta_arestas_direcionadas(int vertice) {
     int v = vertice - 1; // Ajustando para índice 0
 
     // Remove todas as arestas de saída do vértice
-    for (int i = 0; i < tamanhoAtual; i++) {
+    for (int i = 0; i < TAMANHO_ESTATICO; i++) {
         Matriz[v][i] = 0;
     }
 
     // Remove todas as arestas de entrada para o vértice
-    for (int i = 0; i < tamanhoAtual; i++) {
+    for (int i = 0; i < TAMANHO_ESTATICO; i++) {
         Matriz[i][v] = 0;
     }
 }
@@ -340,7 +352,7 @@ void GrafoMatriz::deleta_arestas_nao_direcionadas(int vertice) {
     int v = vertice - 1; // Ajustando para índice 0
 
     // Remove todas as arestas associadas ao vértice na matriz linear
-    for (int i = 0; i < tamanhoAtual; i++) {
+    for (int i = 0; i < TAMANHO_ESTATICO; i++) {
         if (i == v) continue; // Evita o próprio vértice
 
         int indice = calcularIndiceLinear(i + 1, vertice);
