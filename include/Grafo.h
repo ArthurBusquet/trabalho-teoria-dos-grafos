@@ -28,7 +28,7 @@ public:
     virtual void nova_aresta(int origem, int destino, int peso) = 0;
     virtual void deleta_aresta(int vertice1, int vertice2) = 0;
     virtual void carrega_clusters() = 0;
-
+    virtual void imprimirClusters() = 0; // Torna obrigatório nas classes filhas
     virtual void set_aresta(int origem, int destino, float peso) = 0;
     virtual void set_vertice(int id, float peso) = 0;
     

@@ -228,6 +228,14 @@ void GrafoLista::novo_no(int peso) {
     // Cria um novo vértice com o id correspondente
     set_vertice(get_ordem(), peso); // O peso pode ser inicializado com 0 ou outro valor, dependendo da necessidade
 }
+void GrafoLista::imprimirClusters() {
+    Cluster* atual = clusters->getInicio();
+    while (atual != nullptr) {
+        atual->imprimirCluster();
+        atual = atual->getProximo();
+    }
+}
+
 
 void GrafoLista::carrega_clusters() {
     ifstream arquivo("./entradas/Clusters.txt");

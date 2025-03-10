@@ -117,6 +117,14 @@ void GrafoMatriz::redimensionarMatrizLinear() {
 }
 */
 
+void GrafoMatriz::imprimirClusters() {
+    Cluster* atual = clusters->getInicio();
+    while (atual != nullptr) {
+        atual->imprimirCluster();
+        atual = atual->getProximo();
+    }
+}
+
 void GrafoMatriz::carrega_clusters() {
     ifstream arquivo("./entradas/Clusters.txt");
     if (!arquivo.is_open()) {

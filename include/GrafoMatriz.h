@@ -135,7 +135,7 @@ public:
     void deleta_arestas_nao_direcionadas(int vertice);
     void reorganiza_matriz(int vertice);
     void reorganiza_vetor_pesos(int vertice);
-
+    void imprimirClusters() override;
     void deleta_aresta(int vertice1, int vertice2) override;
     void carrega_clusters() override;
 };
