@@ -1,5 +1,7 @@
 #include "../include/GrafoMatriz.h"
 #include "../include/Grafo.h"
+#include "../include/Cluster.h"
+#include "../include/ListaEncadeada.h"
 #include <iostream>
 #include <fstream>
 #include <cmath>
@@ -9,11 +11,11 @@
 using namespace std;
 
 // Definindo o tamanho estático da matriz
-const int TAMANHO_ESTATICO = 100; // Defina o tamanho máximo da matriz aqui
+const int TAMANHO_ESTATICO = 10000; // Defina o tamanho máximo da matriz aqui
 
 GrafoMatriz::GrafoMatriz() {
     tamanhoAtual = TAMANHO_ESTATICO;
-    tamanhoAtualLinear = (TAMANHO_ESTATICO * (TAMANHO_ESTATICO + 1)) / 2;
+    size_t tamanhoAtualLinear = ((size_t)TAMANHO_ESTATICO * (TAMANHO_ESTATICO + 1)) / 2;
 
     // Aloca matriz 2D estaticamente
     Matriz = new int*[TAMANHO_ESTATICO];
@@ -26,6 +28,8 @@ GrafoMatriz::GrafoMatriz() {
 
     // Inicializa o vetor de pesos dos vértices com 0
     VetorPesosVertices = new int[TAMANHO_ESTATICO](); // Inicializa com zero
+
+    clusters = new ListaEncadeada<Cluster>();
 }
 
 GrafoMatriz::~GrafoMatriz() {
@@ -53,6 +57,14 @@ GrafoMatriz::~GrafoMatriz() {
         delete[] VetorPesosVertices;
         VetorPesosVertices = nullptr;  // Evita dangling pointer
     }
+
+    Cluster* atual = clusters->getInicio();
+    while (atual != nullptr) {
+        Cluster* proximo = atual->getProximo();
+        delete atual;
+        atual = proximo;
+    }
+    delete clusters;
 }
 
 // Método para redimensionar a matriz quadrada (COMENTADO, pois a matriz é estática)
@@ -104,6 +116,44 @@ void GrafoMatriz::redimensionarMatrizLinear() {
     tamanhoAtualLinear = novoTamanho;
 }
 */
+
+void GrafoMatriz::carrega_clusters() {
+    ifstream arquivo("./entradas/Clusters.txt");
+    if (!arquivo.is_open()) {
+        cerr << "Erro ao abrir o arquivo Clusters.txt" << endl;
+        return;
+    }
+
+    int clusterId, vertice;
+    while (arquivo >> clusterId >> vertice) {
+        // Verifica se o cluster já existe na lista
+        Cluster* clusterExistente = nullptr;
+        Cluster* atual = clusters->getInicio();
+
+        while (atual != nullptr) {
+            if (atual->getId() == clusterId) {
+                clusterExistente = atual;
+                break;
+            }
+            atual = atual->getProximo();  // ✅ Agora usa `getProximo()`
+        }
+
+        // Se não existe, cria um novo cluster
+        if (clusterExistente == nullptr) {
+            clusterExistente = new Cluster(clusterId);
+            clusters->adicionar(clusterExistente);
+        }
+
+        // Adiciona o vértice ao cluster correspondente
+        clusterExistente->adicionarVertice(vertice);
+    }
+
+    arquivo.close();
+}
+
+
+
+
 
 int GrafoMatriz::calcularIndiceLinear(int origem, int destino) {
     if (origem <= destino) {

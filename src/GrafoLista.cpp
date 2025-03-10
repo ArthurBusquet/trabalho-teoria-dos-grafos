@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include "../include/GrafoLista.h"
+#include "../include/Cluster.h"
+#include "../include/ListaEncadeada.h"
 
 using namespace std;
 
@@ -8,6 +10,7 @@ GrafoLista::GrafoLista()
 {
     vertices = new ListaEncadeada<VerticeEncadeado>();
     arestas = new ListaEncadeada<ArestaEncadeada>();
+    clusters = new ListaEncadeada<Cluster>();
 }
 
 VerticeEncadeado *GrafoLista::get_vertice_encadeado(int id)
@@ -24,6 +27,7 @@ VerticeEncadeado *GrafoLista::get_vertice_encadeado(int id)
     }
     return nullptr;
 }
+
 
 int GrafoLista::get_vertice(int id)
 {
@@ -225,9 +229,52 @@ void GrafoLista::novo_no(int peso) {
     set_vertice(get_ordem(), peso); // O peso pode ser inicializado com 0 ou outro valor, dependendo da necessidade
 }
 
+void GrafoLista::carrega_clusters() {
+    ifstream arquivo("./entradas/Clusters.txt");
+    if (!arquivo.is_open()) {
+        cerr << "Erro ao abrir o arquivo Clusters.txt" << endl;
+        return;
+    }
+
+    int clusterId, vertice;
+    while (arquivo >> clusterId >> vertice) {
+        // Verifica se o cluster já existe na lista
+        Cluster* clusterExistente = nullptr;
+        Cluster* atual = clusters->getInicio();
+
+        while (atual != nullptr) {
+            if (atual->getId() == clusterId) {
+                clusterExistente = atual;
+                break;
+            }
+            atual = atual->getProximo();  // ✅ Agora usa `getProximo()`
+        }
+
+        // Se não existe, cria um novo cluster
+        if (clusterExistente == nullptr) {
+            clusterExistente = new Cluster(clusterId);
+            clusters->adicionar(clusterExistente);
+        }
+
+        // Adiciona o vértice ao cluster correspondente
+        clusterExistente->adicionarVertice(vertice);
+    }
+
+    arquivo.close();
+}
+
+
+
 
 GrafoLista::~GrafoLista()
 {
     delete vertices;
     delete arestas;
+    Cluster* atual = clusters->getInicio();
+    while (atual != nullptr) {
+        Cluster* proximo = atual->getProximo();
+        delete atual;
+        atual = proximo;
+    }
+    delete clusters;
 }

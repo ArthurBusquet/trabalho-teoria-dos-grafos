@@ -50,11 +50,13 @@ int main(int argc, char *argv[])
         {
             graph = new GrafoMatriz();
             graph->carrega_grafo();
+            graph->carrega_clusters();
         }
         else
         {
             graph = new GrafoLista();
             graph->carrega_grafo();
+            graph->carrega_clusters();
         }
     }
 

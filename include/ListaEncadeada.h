@@ -85,10 +85,17 @@ public:
     ~ListaEncadeada() {
         T* atual = primeiro;
         while (atual != nullptr) {
-            T* proximo = atual->getProximo();
+            T* proximo = nullptr;
+        
+            // Apenas chama `getProximo()` se o tipo `T` tem esse método
+            if constexpr (std::is_class<T>::value) {  
+                proximo = atual->getProximo();
+            }
+        
             delete atual;
             atual = proximo;
         }
+        
     }
 };
 

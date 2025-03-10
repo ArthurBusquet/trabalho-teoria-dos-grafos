@@ -5,6 +5,7 @@
 #include "ListaEncadeada.h"
 #include "VerticeEncadeado.h"
 #include "ArestaEncadeada.h"
+#include "Cluster.h"
 
 #include <iostream>
 
@@ -17,13 +18,15 @@ private:
     ListaEncadeada<ArestaEncadeada> *arestas;
     VerticeEncadeado *get_vertice_encadeado(int id);
     void buscaEmProfundidade(VerticeEncadeado *vertice, bool *visitados);
+    ListaEncadeada<Cluster>* clusters;
+    
 
 public:
     GrafoLista();
 
     int get_vertice(int id) override;
     int get_aresta(int idOrigem, int idDestino) override;
-
+    void carrega_clusters()override;
     void set_vertice(int id, float peso) override;
     void set_aresta(int origem, int destino, float peso) override;
     void nova_aresta(int origem, int destino, int peso) override;

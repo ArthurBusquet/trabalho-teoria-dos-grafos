@@ -2,6 +2,8 @@
 #define GRAFO_H_INCLUDED
 #include <iostream>
 #include <fstream>
+#include "Cluster.h"
+
 
 using namespace std;
 
@@ -10,6 +12,11 @@ class Grafo
 private:
     bool direcionado, vtp, atp;
     int ordem, origem, destino, peso;
+ 
+
+protected:
+
+    ListaEncadeada<Cluster>* clusters;
 
 public:
     Grafo() = default;
@@ -20,6 +27,7 @@ public:
     virtual int get_vizinhos(int vertice) = 0;
     virtual void nova_aresta(int origem, int destino, int peso) = 0;
     virtual void deleta_aresta(int vertice1, int vertice2) = 0;
+    virtual void carrega_clusters() = 0;
 
     virtual void set_aresta(int origem, int destino, float peso) = 0;
     virtual void set_vertice(int id, float peso) = 0;
@@ -244,6 +252,10 @@ public:
             cout << "Não há caminho entre os nós." << endl;
         }
     }
+    
 };
+
+
+
 
 #endif // GRAFO_H_INCLUDED
