@@ -57,6 +57,7 @@ int main(int argc, char *argv[])
             graph = new GrafoLista();
             graph->carrega_grafo();
             graph->carrega_clusters();
+            graph->imprimirClusters();
         }
     }
 
