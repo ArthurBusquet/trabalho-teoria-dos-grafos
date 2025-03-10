@@ -7,7 +7,7 @@ using namespace std;
 
 /**
  * @brief Classe base para a representação de um grafo.
- * 
+ *
  * Essa classe define as operações gerais que podem ser realizadas em grafos,
  * como manipulação de arestas, vértices, grau, e conexões. As subclasses precisam
  * implementar a inicialização do grafo e operações de manipulação específicas.
@@ -23,11 +23,76 @@ private:
     int destino;      /**< Vértice de destino para operações com arestas */
     int peso;         /**< Peso das arestas ou vértices (quando ponderados) */
 
+    const int MAX_NODES = 50000;
+    const int MAX_EDGES = 1000000;
+
+    struct NodeMapping
+    {
+        int original;
+        int mapped;
+    };
+
+    int mapeia_vertice(NodeMapping node_mapping[], int &node_count, int node, int &next_id)
+    {
+        for (int i = 0; i < node_count; i++)
+        {
+            if (node_mapping[i].original == node)
+            {
+                return node_mapping[i].mapped; // Retorna o ID já mapeado
+            }
+        }
+        node_mapping[node_count].original = node;
+        node_mapping[node_count].mapped = next_id;
+        set_vertice(next_id, 1);
+        node_count++;
+        return next_id++; // Retorna o novo ID e incrementa o próximo ID
+    }
+
 public:
     /**
      * @brief Construtor padrão.
      */
     Grafo() = default;
+
+    void carrega_grafo_novo()
+    {
+
+        std::string filename = "./entradas/aves-weaver-social-14.edges";
+
+        // Abre o arquivo para leitura
+        std::ifstream file(filename);
+        if (!file.is_open())
+        {
+            std::cerr << "Erro ao abrir o arquivo " << filename << std::endl;
+            return;
+        }
+
+        set_eh_direcionado(false);
+        set_aresta_ponderada(false);
+        set_vertice_ponderado(false);
+
+        NodeMapping node_mapping[MAX_NODES];
+        int node_count = 0; // Contador de nós mapeados
+        int edge_count = 0; // Contador de arestas
+        int next_id = 1;    // Próximo ID sequencial a ser atribuído
+
+        int node1, node2;
+
+        // Lê o arquivo linha por linha
+        while (file >> node1 >> node2)
+        {
+
+            int mapped_node1 = mapeia_vertice(node_mapping, node_count, node1, next_id);
+            int mapped_node2 = mapeia_vertice(node_mapping, node_count, node2, next_id);
+
+            set_aresta(mapped_node1, mapped_node2, 1);
+            edge_count++;
+        }
+
+        file.close();
+
+        set_ordem(node_count);
+    };
 
     /**
      * @brief Destruidor virtual.
@@ -36,7 +101,7 @@ public:
 
     /**
      * @brief Método abstrato para obter o peso de uma aresta entre dois vértices.
-     * 
+     *
      * @param origem Vértice de origem da aresta.
      * @param destino Vértice de destino da aresta.
      * @return O peso da aresta.
@@ -45,7 +110,7 @@ public:
 
     /**
      * @brief Método abstrato para obter o peso de um vértice.
-     * 
+     *
      * @param vertice O identificador do vértice.
      * @return O peso do vértice.
      */
@@ -53,7 +118,7 @@ public:
 
     /**
      * @brief Método abstrato para obter o número de vizinhos de um vértice.
-     * 
+     *
      * @param vertice O identificador do vértice.
      * @return O número de vizinhos.
      */
@@ -61,7 +126,7 @@ public:
 
     /**
      * @brief Método abstrato para adicionar uma nova aresta entre dois vértices.
-     * 
+     *
      * @param origem Vértice de origem da aresta.
      * @param destino Vértice de destino da aresta.
      * @param peso Peso da aresta.
@@ -70,7 +135,7 @@ public:
 
     /**
      * @brief Método abstrato para definir o peso de uma aresta.
-     * 
+     *
      * @param origem Vértice de origem da aresta.
      * @param destino Vértice de destino da aresta.
      * @param peso Peso da aresta.
@@ -79,7 +144,7 @@ public:
 
     /**
      * @brief Método abstrato para definir o peso de um vértice.
-     * 
+     *
      * @param id Identificador do vértice.
      * @param peso Peso do vértice.
      */
@@ -87,7 +152,7 @@ public:
 
     /**
      * @brief Obtém o número de vértices no grafo (ordem do grafo).
-     * 
+     *
      * @return O número de vértices do grafo.
      */
     int get_ordem()
@@ -97,7 +162,7 @@ public:
 
     /**
      * @brief Define o número de vértices do grafo.
-     * 
+     *
      * @param ordem O número de vértices a ser definido.
      */
     void set_ordem(int ordem)
@@ -115,7 +180,7 @@ public:
 
     /**
      * @brief Verifica se o grafo é direcionado.
-     * 
+     *
      * @return Verdadeiro se o grafo for direcionado, falso caso contrário.
      */
     bool eh_direcionado()
@@ -125,7 +190,7 @@ public:
 
     /**
      * @brief Define se o grafo é direcionado.
-     * 
+     *
      * @param direcionado Valor que define se o grafo será direcionado.
      */
     void set_eh_direcionado(bool direcionado)
@@ -135,7 +200,7 @@ public:
 
     /**
      * @brief Verifica se os vértices do grafo são ponderados.
-     * 
+     *
      * @return Verdadeiro se os vértices forem ponderados, falso caso contrário.
      */
     bool vertice_ponderado()
@@ -145,7 +210,7 @@ public:
 
     /**
      * @brief Define se os vértices do grafo são ponderados.
-     * 
+     *
      * @param verticePonderado Valor que define se os vértices serão ponderados.
      */
     void set_vertice_ponderado(bool verticePonderado)
@@ -155,7 +220,7 @@ public:
 
     /**
      * @brief Verifica se as arestas do grafo são ponderadas.
-     * 
+     *
      * @return Verdadeiro se as arestas forem ponderadas, falso caso contrário.
      */
     bool aresta_ponderada()
@@ -165,7 +230,7 @@ public:
 
     /**
      * @brief Define se as arestas do grafo são ponderadas.
-     * 
+     *
      * @param arestaPonderada Valor que define se as arestas serão ponderadas.
      */
     void set_aresta_ponderada(bool arestaPonderada)
@@ -228,7 +293,7 @@ public:
 
         while (arquivo >> origem >> destino >> peso)
         {
-            if(!aresta_ponderada())
+            if (!aresta_ponderada())
                 peso = 0;
             set_aresta(origem, destino, peso);
         }
@@ -236,7 +301,7 @@ public:
 
     /**
      * @brief Obtém o grau (número de vizinhos) do vértice com maior grau.
-     * 
+     *
      * @return O grau máximo.
      */
     int get_grau()
@@ -278,7 +343,7 @@ public:
 
     /**
      * @brief Verifica se o grafo é completo.
-     * 
+     *
      * @return Verdadeiro se o grafo for completo (todos os vértices estão conectados entre si), falso caso contrário.
      */
     bool eh_completo()
@@ -293,14 +358,17 @@ public:
 
     /**
      * @brief Realiza uma busca em profundidade (DFS) para explorar todos os vértices conectados a partir de um vértice inicial.
-     * 
+     *
      * @param vertice Vértice de origem para a busca.
      * @param visitado Array de visitados para marcar os vértices já visitados.
      */
-    void dfs(int vertice, bool visitado[]) {
+    void dfs(int vertice, bool visitado[])
+    {
         visitado[vertice] = true;
-        for (int i = 1; i <= ordem; i++) {
-            if (get_aresta(vertice, i) && !visitado[i]) {
+        for (int i = 1; i <= ordem; i++)
+        {
+            if (get_aresta(vertice, i) && !visitado[i])
+            {
                 dfs(i, visitado);
             }
         }
@@ -308,19 +376,23 @@ public:
 
     /**
      * @brief Calcula o número de componentes conexas do grafo.
-     * 
+     *
      * @return O número de componentes conexas no grafo.
      */
-    int n_conexo() {
-        bool* visitado = new bool[ordem + 1]; // Usa alocação dinâmica para evitar problemas de tamanho
-        for (int i = 1; i <= ordem; i++) { // Se os vértices começam em 1
+    int n_conexo()
+    {
+        bool *visitado = new bool[ordem + 1]; // Usa alocação dinâmica para evitar problemas de tamanho
+        for (int i = 1; i <= ordem; i++)
+        {                        // Se os vértices começam em 1
             visitado[i] = false; // Inicializa corretamente
         }
 
         int componentes = 0;
-        
-        for (int i = 1; i <= ordem; i++) { // Se os vértices começam em 1
-            if (!visitado[i]) { // Usa índice corretamente
+
+        for (int i = 1; i <= ordem; i++)
+        { // Se os vértices começam em 1
+            if (!visitado[i])
+            {                     // Usa índice corretamente
                 dfs(i, visitado); // Chama a DFS
                 componentes++;
             }
@@ -337,15 +409,17 @@ public:
 
     /**
      * @brief Encontra a maior menor distância entre os vértices utilizando o algoritmo de Floyd-Warshall.
-     * 
+     *
      * O algoritmo calcula todas as menores distâncias entre pares de vértices e depois encontra a maior distância
      * entre qualquer par de vértices. Caso não haja caminho entre os vértices, o algoritmo considerará um valor
      * de infinito para aquelas distâncias.
      */
-    void maior_menor_distancia() {
+    void maior_menor_distancia()
+    {
         int n = get_ordem();
 
-        if (n == 0) {
+        if (n == 0)
+        {
             cout << "O grafo está vazio." << endl;
             return;
         }
@@ -354,11 +428,16 @@ public:
         int dist[n + 1][n + 1];
 
         // Inicializa a matriz de distâncias
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n; j++) {
-                if (i == j) {
+        for (int i = 1; i <= n; i++)
+        {
+            for (int j = 1; j <= n; j++)
+            {
+                if (i == j)
+                {
                     dist[i][j] = 0; // Distância de um nó para ele mesmo
-                } else {
+                }
+                else
+                {
                     int peso = get_aresta(i, j);
                     dist[i][j] = (peso > 0) ? peso : 999999; // Se não há aresta, assume um valor alto (infinito)
                 }
@@ -366,11 +445,16 @@ public:
         }
 
         // Algoritmo de Floyd-Warshall
-        for (int k = 1; k <= n; k++) {
-            for (int i = 1; i <= n; i++) {
-                for (int j = 1; j <= n; j++) {
-                    if (dist[i][k] != 999999 && dist[k][j] != 999999) {
-                        if (dist[i][j] > dist[i][k] + dist[k][j]) {
+        for (int k = 1; k <= n; k++)
+        {
+            for (int i = 1; i <= n; i++)
+            {
+                for (int j = 1; j <= n; j++)
+                {
+                    if (dist[i][k] != 999999 && dist[k][j] != 999999)
+                    {
+                        if (dist[i][j] > dist[i][k] + dist[k][j])
+                        {
                             dist[i][j] = dist[i][k] + dist[k][j];
                         }
                     }
@@ -382,9 +466,12 @@ public:
         int maxDist = -1;
         int no1 = -1, no2 = -1;
 
-        for (int i = 1; i <= n; i++) {
-            for (int j = i + 1; j <= n; j++) {
-                if (dist[i][j] != 999999 && dist[i][j] > maxDist) {
+        for (int i = 1; i <= n; i++)
+        {
+            for (int j = i + 1; j <= n; j++)
+            {
+                if (dist[i][j] != 999999 && dist[i][j] > maxDist)
+                {
                     maxDist = dist[i][j];
                     no1 = i;
                     no2 = j;
@@ -393,9 +480,12 @@ public:
         }
 
         // Exibir resultado
-        if (no1 != -1 && no2 != -1) {
+        if (no1 != -1 && no2 != -1)
+        {
             cout << "Maior menor distância: (" << no1 << "-" << no2 << ") " << maxDist << endl;
-        } else {
+        }
+        else
+        {
             cout << "Não há caminho entre os nós." << endl;
         }
     }
