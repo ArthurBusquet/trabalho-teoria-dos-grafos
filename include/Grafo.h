@@ -58,7 +58,7 @@ public:
     void carrega_grafo_novo()
     {
 
-        std::string filename = "./entradas/aves-weaver-social-14.edges";
+        std::string filename = "./entradas/aa4.mtx";
 
         // Abre o arquivo para leitura
         std::ifstream file(filename);
@@ -392,6 +392,7 @@ public:
      */
     int n_conexo()
     {
+
         bool *visitado = new bool[ordem + 1]; // Usa alocação dinâmica para evitar problemas de tamanho
         for (int i = 1; i <= ordem; i++)
         {                        // Se os vértices começam em 1

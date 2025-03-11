@@ -230,17 +230,6 @@ void GrafoMatriz::set_aresta(int origem, int destino, float peso)
         int indice = calcularIndiceLinear(origem, destino);
         MatrizLinear[indice] = peso; // Para grafos não direcionados, adiciona na matriz comprimida
     }
-
-    // std::cout << "Matriz Triangular Inferior:" << std::endl;
-
-    // for (int i = 0; i < 11; i++) {
-    //     for (int j = 0; j <= i; j++) {
-    //         // Calcula o índice linear para a posição (i, j)
-    //         int indice = calcularIndiceLinear(j, i);
-    //         std::cout << MatrizLinear[indice] << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
 }
 
 // Método para obter o peso de um vértice
