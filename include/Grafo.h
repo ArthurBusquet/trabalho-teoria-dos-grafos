@@ -22,6 +22,7 @@ private:
     int origem;       /**< Vértice de origem para operações com arestas */
     int destino;      /**< Vértice de destino para operações com arestas */
     int peso;         /**< Peso das arestas ou vértices (quando ponderados) */
+    int* clusters; // Array para armazenar os clusters de cada vértice
 
     const int MAX_NODES = 50000;
     const int MAX_EDGES = 1000000;
@@ -92,12 +93,22 @@ public:
         file.close();
 
         set_ordem(node_count);
+
+        // Cria clusters aleatórios após carregar o grafo
+        criar_clusters_aleatorios(3); // Exemplo: 3 clusters
     };
 
     /**
      * @brief Destruidor virtual.
      */
-    virtual ~Grafo() = default;
+    // virtual ~Grafo() = default;
+    virtual ~Grafo()
+    {
+        if (clusters)
+        {
+            delete[] clusters; // Libera a memória alocada para os clusters
+        }
+    }
 
     /**
      * @brief Método abstrato para obter o peso de uma aresta entre dois vértices.
@@ -488,6 +499,27 @@ public:
         {
             cout << "Não há caminho entre os nós." << endl;
         }
+    }
+
+    void criar_clusters_aleatorios(int num_clusters)
+    {
+        if (clusters)
+        {
+            delete[] clusters; // Libera a memória anterior, se houver
+        }
+        clusters = new int[ordem + 1]; // Aloca memória para os clusters
+
+        srand(time(0)); // Inicializa a semente do gerador de números aleatórios
+
+        for (int i = 1; i <= ordem; i++)
+        {
+            clusters[i] = rand() % num_clusters + 1; // Atribui um cluster aleatório (de 1 a num_clusters)
+        }
+    }
+
+    int* get_clusters()
+    {
+        return clusters;
     }
 };
 

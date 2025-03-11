@@ -89,6 +89,10 @@ void imprimirDescricaoGrafo(Grafo *graph)
     std::cout << "Arestas ponderadas: " << (graph->aresta_ponderada() ? "Sim" : "Nao") << std::endl;
     // graph->maior_menor_distancia();
     std::cout << "----------------------------------------" << std::endl;
+    int* clusters = graph->get_clusters();
+    for (int i = 1; i <= graph->get_ordem(); i++) {
+        std::cout << "Vértice " << i << " está no cluster " << clusters[i] << endl;
+    }
 }
 
 int main(int argc, char *argv[])
@@ -119,12 +123,12 @@ int main(int argc, char *argv[])
         if (estrutura == "-m")
         {
             graph = new GrafoMatriz();
-            graph->carrega_grafo();
+            graph->carrega_grafo_novo();
         }
         else
         {
             graph = new GrafoLista();
-            graph->carrega_grafo();
+            graph->carrega_grafo_novo();
         }
     }
     else
