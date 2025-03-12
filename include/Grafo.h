@@ -526,4 +526,6 @@ public:
     }
 };
 
+
+
 #endif // GRAFO_H_INCLUDED
