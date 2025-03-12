@@ -509,12 +509,14 @@ public:
             delete[] clusters; // Libera a memória anterior, se houver
         }
         clusters = new int[ordem + 1]; // Aloca memória para os clusters
-
-        srand(time(0)); // Inicializa a semente do gerador de números aleatórios
-
+    
         for (int i = 1; i <= ordem; i++)
         {
-            clusters[i] = rand() % num_clusters + 1; // Atribui um cluster aleatório (de 1 a num_clusters)
+            // Obtém o último dígito do número do vértice
+            int ultimo_digito = i % 10;
+    
+            // Atribui o cluster com base no último dígito
+            clusters[i] = (ultimo_digito % num_clusters) + 1;
         }
     }
 
