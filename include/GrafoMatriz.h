@@ -3,6 +3,7 @@
 
 #include "Grafo.h"
 #include <string>
+#include "Cluster.h"
 
 using namespace std;
 
@@ -53,12 +54,12 @@ public:
     /**
      * @brief Método para redimensionar a matriz 2D de adjacência.
      */
-    void redimensionarMatriz();
+    //void redimensionarMatriz();
 
     /**
      * @brief Método para redimensionar a matriz linear de adjacência.
      */
-    void redimensionarMatrizLinear();
+    //void redimensionarMatrizLinear();
 
     /**
      * @brief Método para inicializar o grafo a partir de um arquivo de entrada.
@@ -74,6 +75,8 @@ public:
      * @return O índice linear correspondente aos vértices de origem e destino.
      */
     int calcularIndiceLinear(int origem, int destino);
+
+    
 
     /**
      * @brief Método para obter o peso de uma aresta entre dois vértices dados seus ids.
@@ -125,6 +128,17 @@ public:
      * @param peso O peso da nova aresta.
      */
     void nova_aresta(int origem, int destino, int peso);
+
+    void novo_no(int peso) override;  
+    void deleta_no(int vertice) override;
+    void deleta_arestas_direcionadas(int vertice);
+    void deleta_arestas_nao_direcionadas(int vertice);
+    void reorganiza_matriz(int vertice);
+    void reorganiza_vetor_pesos(int vertice);
+    void imprimirClusters() override;
+    void deleta_aresta(int vertice1, int vertice2) override;
+    void carrega_clusters() override;
 };
+
 
 #endif  // GRAFO_MATRIZ_H_INCLUDED

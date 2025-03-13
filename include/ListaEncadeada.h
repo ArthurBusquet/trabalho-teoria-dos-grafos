@@ -5,51 +5,29 @@
 
 using namespace std;
 
-/**
- * @brief A classe ListaEncadeada é uma implementação genérica de uma lista encadeada, capaz de armazenar elementos de qualquer tipo.
- * Esta classe fornece métodos para adicionar, remover e imprimir elementos da lista, além de acessar o primeiro e o último elemento.
- * 
- * @tparam T Tipo dos elementos armazenados na lista.
- */
 template <typename T>
 
 class ListaEncadeada {
 private:
-    /**
-     * @brief Ponteiro para o primeiro nó da lista.
-     */
     T* primeiro;
-
-    /**
-     * @brief Ponteiro para o último nó da lista.
-     */
     T* ultimo;
-
-    /**
-     * @brief Armazena o tamanho atual da lista.
-     */
     int tamanho;
 
-public:
-    /**
-     * @brief Construtor padrão da lista encadeada. Inicializa a lista com primeiro e último ponteiro nulos.
-     */
-    ListaEncadeada() : primeiro(nullptr), ultimo(nullptr), tamanho(0) {}
 
-    /**
-     * @brief Obtém o primeiro nó da lista.
-     * 
-     * @return O ponteiro para o primeiro nó.
-     */
+public:
+    ListaEncadeada() : primeiro(nullptr), ultimo(nullptr) {}
+
     T* getInicio() const {
         return primeiro;
     }
 
-    /**
-     * @brief Adiciona um novo nó ao final da lista.
-     * 
-     * @param novoNo Ponteiro para o nó a ser adicionado.
-     */
+    void setInicio(T* novoInicio) {
+        primeiro = novoInicio;
+        if (novoInicio == nullptr) {
+            ultimo = nullptr;
+        }
+    }
+
     void adicionar(T* novoNo) {
         if (primeiro == nullptr) {
             primeiro = novoNo;
@@ -61,11 +39,6 @@ public:
         tamanho++;
     }
 
-    /**
-     * @brief Imprime todos os elementos da lista.
-     * 
-     * @note A impressão é feita chamando o operador `<<` do tipo `T` para cada elemento da lista.
-     */
     void imprimir() const {
         T* atual = primeiro;
         while (atual != nullptr) {
@@ -74,12 +47,6 @@ public:
         }
     }
 
-    /**
-     * @brief Remove um nó específico da lista.
-     * 
-     * @param noParaRemover Ponteiro para o nó a ser removido.
-     * @note Se o nó não for encontrado ou a lista estiver vazia, a operação não será realizada.
-     */
     void remover(T* noParaRemover) {
         if(!primeiro || !noParaRemover) {
             return;
@@ -110,25 +77,25 @@ public:
         }
     }
 
-    /**
-     * @brief Retorna o tamanho atual da lista (número de elementos armazenados).
-     * 
-     * @return O número de elementos na lista.
-     */
     int get_tamanho() {
         return tamanho;
     }
 
-    /**
-     * @brief Destruidor da lista encadeada. Libera toda a memória alocada para os nós da lista.
-     */
+
     ~ListaEncadeada() {
         T* atual = primeiro;
         while (atual != nullptr) {
-            T* proximo = atual->getProximo();
+            T* proximo = nullptr;
+        
+            // Apenas chama `getProximo()` se o tipo `T` tem esse método
+            if constexpr (std::is_class<T>::value) {  
+                proximo = atual->getProximo();
+            }
+        
             delete atual;
             atual = proximo;
         }
+        
     }
 };
 
