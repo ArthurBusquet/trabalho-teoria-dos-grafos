@@ -17,66 +17,66 @@ GrafoMatriz::GrafoMatriz() {
     tamanhoAtual = TAMANHO_ESTATICO;
     size_t tamanhoAtualLinear = ((size_t)TAMANHO_ESTATICO * (TAMANHO_ESTATICO + 1)) / 2;
 
-    // Aloca matriz 2D estaticamente
     Matriz = new int*[TAMANHO_ESTATICO];
     for (int i = 0; i < TAMANHO_ESTATICO; i++) {
-        Matriz[i] = new int[TAMANHO_ESTATICO](); // Inicializa com zero
+        Matriz[i] = new int[TAMANHO_ESTATICO]();
     }
 
-    // Aloca matriz linear estaticamente
-    MatrizLinear = new int[tamanhoAtualLinear](); // Inicializa com zero
-
-    // Inicializa o vetor de pesos dos vértices com 0
-    VetorPesosVertices = new int[TAMANHO_ESTATICO](); // Inicializa com zero
+    MatrizLinear = new int[tamanhoAtualLinear]();
+    VetorPesosVertices = new int[TAMANHO_ESTATICO]();
 
     cout << "🔍 [DEBUG GRAFO_MATRIZ] Antes da inicialização: clusters = " << clusters << endl;
-
-    if (!clusters || clusters == reinterpret_cast<ListaEncadeada<Cluster>*>(-1)) {
-        cout << "🚨 [DEBUG GRAFO_MATRIZ] clusters estava inválido! Inicializando corretamente...\n";
+    
+    if (!clusters || reinterpret_cast<uintptr_t>(clusters) < 0x1000) {
+        cout << "🚨 [DEBUG] clusters estava inválido! Inicializando corretamente...\n";
         clusters = new ListaEncadeada<Cluster>();
-    }
 
-    if (clusters) {
-        cout << "✅ [DEBUG GRAFO_MATRIZ] clusters inicializado com sucesso! Endereço: " << clusters << endl;
-    } else {
-        cerr << "❌ [ERRO FATAL] Falha ao alocar clusters!" << endl;
+        if (!clusters) {
+            cerr << "❌ [ERRO FATAL] Falha ao alocar clusters!" << endl;
+            exit(EXIT_FAILURE);
+        }
+        cout << "✅ [DEBUG] clusters inicializado com sucesso! Endereço: " << clusters << endl;
     }
 }
+
 
 GrafoMatriz::~GrafoMatriz() {
     cout << "Destruindo GrafoMatriz..." << endl;
 
-    // Libera a matriz bidimensional de forma segura
-    if (Matriz != nullptr) {  // Verifica se o ponteiro da Matriz não é nulo
+    if (Matriz) {
         for (int i = 0; i < TAMANHO_ESTATICO; i++) {
-            if (Matriz[i] != nullptr) {  // Verifica se a linha não é nula antes de liberar
-                delete[] Matriz[i]; // Libera apenas se o ponteiro for válido
+            if (Matriz[i]) {
+                delete[] Matriz[i];
+                Matriz[i] = nullptr;
             }
         }
-        delete[] Matriz;  // Libera a matriz inteira
-        Matriz = nullptr;  // Evita dangling pointers (ponteiro inválido)
+        delete[] Matriz;
+        Matriz = nullptr;
     }
 
-    // Libera a matriz linear de forma segura
-    if (MatrizLinear != nullptr) {  // Verifica se o ponteiro não é nulo
+    if (MatrizLinear) {
         delete[] MatrizLinear;
-        MatrizLinear = nullptr;  // Evita dangling pointer
+        MatrizLinear = nullptr;
     }
 
-    // Libera o vetor de pesos
-    if (VetorPesosVertices != nullptr) {  // Verifica se o vetor não é nulo
+    if (VetorPesosVertices) {
         delete[] VetorPesosVertices;
-        VetorPesosVertices = nullptr;  // Evita dangling pointer
+        VetorPesosVertices = nullptr;
     }
 
-    Cluster* atual = clusters->getInicio();
-    while (atual != nullptr) {
-        Cluster* proximo = atual->getProximo();
-        delete atual;
-        atual = proximo;
+    if (clusters) {
+        Cluster* atual = clusters->getInicio();
+        while (atual != nullptr) {
+            Cluster* proximo = atual->getProximo();
+            delete atual;
+            atual = proximo;
+        }
+        delete clusters;
+        clusters = nullptr; // 🔥 Prevenindo uso de ponteiro inválido
     }
-    delete clusters;
 }
+
+
 
 // Método para redimensionar a matriz quadrada (COMENTADO, pois a matriz é estática)
 /*

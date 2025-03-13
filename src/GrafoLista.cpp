@@ -13,17 +13,20 @@ GrafoLista::GrafoLista()
 
     cout << "🔍 [DEBUG GRAFO_LISTA] Antes da inicialização, clusters = " << clusters << endl;
 
-    if (!clusters || clusters == reinterpret_cast<ListaEncadeada<Cluster>*>(-1)) {
-        cout << "🚨 [DEBUG GRAFO_LISTA] clusters estava inválido! Inicializando corretamente...\n";
+    // Verifica se clusters está corrompido antes de usá-lo
+    if (!clusters || reinterpret_cast<uintptr_t>(clusters) < 0x1000) {
+        cout << "🚨 [DEBUG] clusters estava inválido! Inicializando corretamente...\n";
         clusters = new ListaEncadeada<Cluster>();
-    }
 
-    if (clusters) {
-        cout << "✅ [DEBUG GRAFO_LISTA] clusters inicializado com sucesso! Endereço: " << clusters << endl;
-    } else {
-        cerr << "❌ [ERRO FATAL] Falha ao alocar clusters!" << endl;
+        if (!clusters) {
+            cerr << "❌ [ERRO FATAL] Falha ao alocar clusters!" << endl;
+            exit(EXIT_FAILURE);
+        }
+        cout << "✅ [DEBUG] clusters inicializado com sucesso! Endereço: " << clusters << endl;
     }
 }
+
+
 
 VerticeEncadeado *GrafoLista::get_vertice_encadeado(int id)
 {
@@ -253,13 +256,25 @@ void GrafoLista::imprimirClusters() {
 
 GrafoLista::~GrafoLista()
 {
-    delete vertices;
-    delete arestas;
-    Cluster* atual = clusters->getInicio();
-    while (atual != nullptr) {
-        Cluster* proximo = atual->getProximo();
-        delete atual;
-        atual = proximo;
+    if (vertices) {
+        delete vertices;
+        vertices = nullptr;
     }
-    delete clusters;
+
+    if (arestas) {
+        delete arestas;
+        arestas = nullptr;
+    }
+
+    if (clusters) {
+        Cluster* atual = clusters->getInicio();
+        while (atual != nullptr) {
+            Cluster* proximo = atual->getProximo();
+            delete atual;
+            atual = proximo;
+        }
+        delete clusters;
+        clusters = nullptr; // 🔥 Evita ponteiro inválido
+    }
 }
+

@@ -452,17 +452,14 @@ public:
             cout << "➡️ [DEBUG] Tentando adicionar vértice " << vertice << " ao cluster " << clusterId << endl;
     
             Cluster* clusterExistente = nullptr;
-            Cluster* atual = clusters->getInicio();
-    
-            while (atual != nullptr) {
+            for (Cluster* atual = clusters->getInicio(); atual != nullptr; atual = atual->getProximo()) {
                 if (atual->getId() == clusterId) {
                     clusterExistente = atual;
                     break;
                 }
-                atual = atual->getProximo();
             }
-    
-            if (clusterExistente == nullptr) {
+            
+            if (!clusterExistente) {
                 clusterExistente = new Cluster(clusterId);
                 clusters->adicionar(clusterExistente);
                 cout << "➕ [DEBUG] Criado novo Cluster " << clusterId << endl;
