@@ -29,7 +29,18 @@ GrafoMatriz::GrafoMatriz() {
     // Inicializa o vetor de pesos dos vértices com 0
     VetorPesosVertices = new int[TAMANHO_ESTATICO](); // Inicializa com zero
 
-    clusters = new ListaEncadeada<Cluster>();
+    cout << "🔍 [DEBUG GRAFO_MATRIZ] Antes da inicialização: clusters = " << clusters << endl;
+
+    if (!clusters || clusters == reinterpret_cast<ListaEncadeada<Cluster>*>(-1)) {
+        cout << "🚨 [DEBUG GRAFO_MATRIZ] clusters estava inválido! Inicializando corretamente...\n";
+        clusters = new ListaEncadeada<Cluster>();
+    }
+
+    if (clusters) {
+        cout << "✅ [DEBUG GRAFO_MATRIZ] clusters inicializado com sucesso! Endereço: " << clusters << endl;
+    } else {
+        cerr << "❌ [ERRO FATAL] Falha ao alocar clusters!" << endl;
+    }
 }
 
 GrafoMatriz::~GrafoMatriz() {
@@ -124,42 +135,6 @@ void GrafoMatriz::imprimirClusters() {
         atual = atual->getProximo();
     }
 }
-
-void GrafoMatriz::carrega_clusters() {
-    ifstream arquivo("./entradas/Clusters.txt");
-    if (!arquivo.is_open()) {
-        cerr << "Erro ao abrir o arquivo Clusters.txt" << endl;
-        return;
-    }
-
-    int clusterId, vertice;
-    while (arquivo >> clusterId >> vertice) {
-        // Verifica se o cluster já existe na lista
-        Cluster* clusterExistente = nullptr;
-        Cluster* atual = clusters->getInicio();
-
-        while (atual != nullptr) {
-            if (atual->getId() == clusterId) {
-                clusterExistente = atual;
-                break;
-            }
-            atual = atual->getProximo();  // ✅ Agora usa `getProximo()`
-        }
-
-        // Se não existe, cria um novo cluster
-        if (clusterExistente == nullptr) {
-            clusterExistente = new Cluster(clusterId);
-            clusters->adicionar(clusterExistente);
-        }
-
-        // Adiciona o vértice ao cluster correspondente
-        clusterExistente->adicionarVertice(vertice);
-    }
-
-    arquivo.close();
-}
-
-
 
 
 

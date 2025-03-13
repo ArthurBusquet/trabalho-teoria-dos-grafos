@@ -29,3 +29,7 @@ Cluster* Cluster::getProximo() const {
 void Cluster::setProximo(Cluster* novoProximo) {
     proximo = novoProximo;
 }
+
+ListaEncadeada<VerticeEncadeado>* Cluster::getVertices() {
+    return vertices;
+}

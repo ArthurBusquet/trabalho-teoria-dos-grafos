@@ -3,9 +3,10 @@
 #include <iostream>
 #include <fstream>
 #include "Cluster.h"
-
+#include "ListaEncadeada.h"
 
 using namespace std;
+
 
 class Grafo
 {
@@ -17,6 +18,7 @@ private:
 protected:
 
     ListaEncadeada<Cluster>* clusters;
+    ListaEncadeada<ArestaEncadeada>* resultado = new ListaEncadeada<ArestaEncadeada>();
 
 public:
     Grafo() = default;
@@ -27,7 +29,6 @@ public:
     virtual int get_vizinhos(int vertice) = 0;
     virtual void nova_aresta(int origem, int destino, int peso) = 0;
     virtual void deleta_aresta(int vertice1, int vertice2) = 0;
-    virtual void carrega_clusters() = 0;
     virtual void imprimirClusters() = 0; // Torna obrigatório nas classes filhas
     virtual void set_aresta(int origem, int destino, float peso) = 0;
     virtual void set_vertice(int id, float peso) = 0;
@@ -251,6 +252,228 @@ public:
         } else {
             cout << "Não há caminho entre os nós." << endl;
         }
+    }
+    struct NoInt {
+        int valor;
+        NoInt* proximo;
+    
+        NoInt(int v) : valor(v), proximo(nullptr) {}
+    
+        NoInt* getProximo() { return proximo; }
+        void setProximo(NoInt* prox) { proximo = prox; }
+    };
+    
+    struct VizinhosValidos {
+        int id;
+        int qtd;
+        VizinhosValidos* proximo;
+    
+        VizinhosValidos(int id, int qtd) : id(id), qtd(qtd), proximo(nullptr) {}
+    
+        VizinhosValidos* getProximo() { return proximo; }
+        void setProximo(VizinhosValidos* novoProximo) { proximo = novoProximo; }
+    };
+    
+    
+    float encontrarAGMG() {
+        float pesoTotal = 0.0;
+        ListaEncadeada<NoInt>* clustersCobertos = new ListaEncadeada<NoInt>();
+        ListaEncadeada<NoInt>* nosNaArvore = new ListaEncadeada<NoInt>();
+    
+        cout << "🔍 Iniciando cálculo da AGMG..." << endl;
+    
+        if (!clusters) {
+            cerr << "❌ ERRO FATAL: clusters está nullptr!" << endl;
+            return -1;
+        }
+    
+        // 🟢 Escolher nó inicial com mais vizinhos válidos
+        int melhorNo = -1, maxVizinhos = -1;
+        for (int i = 1; i <= get_ordem(); i++) {
+            int vizinhos = 0;
+            for (int j = 1; j <= get_ordem(); j++) {
+                if (get_aresta(i, j) > 0 && encontrarCluster(i) != encontrarCluster(j)) {
+                    vizinhos++;
+                }
+            }
+            if (vizinhos > maxVizinhos) {
+                melhorNo = i;
+                maxVizinhos = vizinhos;
+            }
+        }
+    
+        if (melhorNo == -1) {
+            cout << "❌ Erro: Nenhum nó válido encontrado!" << endl;
+            return -1;
+        }
+    
+        cout << "✔ Nó inicial: " << melhorNo << endl;
+        nosNaArvore->adicionar(new NoInt(melhorNo));
+        clustersCobertos->adicionar(new NoInt(encontrarCluster(melhorNo)));
+    
+        // 🟢 Expansão progressiva da árvore
+        while (clustersCobertos->get_tamanho() < clusters->get_tamanho()) {
+            int proximoNo = -1, menorPeso = INT_MAX;
+            ArestaEncadeada* melhorAresta = nullptr;
+    
+            NoInt* noAtual = nosNaArvore->getInicio();
+            while (noAtual != nullptr) {
+                for (int j = 1; j <= get_ordem(); j++) {
+                    int pesoAresta = get_aresta(noAtual->valor, j);
+                    if (pesoAresta > 0) {
+                        int clusterVizinho = encontrarCluster(j);
+                        if (clustersCobertos->get_tamanho() >= clusters->get_tamanho()) break;
+    
+                        cout << "🔹 Tentando expandir com aresta " << noAtual->valor << " <-> " << j
+                             << " (Peso: " << pesoAresta << ", Cluster vizinho: " << clusterVizinho << ")" << endl;
+    
+                        bool jaNaArvore = false;
+                        NoInt* naArvore = nosNaArvore->getInicio();
+                        while (naArvore != nullptr) {
+                            if (naArvore->valor == j) {
+                                jaNaArvore = true;
+                                break;
+                            }
+                            naArvore = naArvore->getProximo();
+                        }
+    
+                        bool clusterJaCoberto = false;
+                        NoInt* coberto = clustersCobertos->getInicio();
+                        while (coberto != nullptr) {
+                            if (coberto->valor == clusterVizinho) {
+                                clusterJaCoberto = true;
+                                break;
+                            }
+                            coberto = coberto->getProximo();
+                        }
+    
+                        if (!jaNaArvore && !clusterJaCoberto) {
+                            if (pesoAresta < menorPeso) {
+                                proximoNo = j;
+                                menorPeso = pesoAresta;
+                                melhorAresta = new ArestaEncadeada(
+                                    new VerticeEncadeado(noAtual->valor, 1),
+                                    new VerticeEncadeado(j, 1),
+                                    pesoAresta
+                                );
+                            }
+                        }
+                    }
+                }
+                noAtual = noAtual->getProximo();
+            }
+    
+            if (proximoNo == -1) {
+                cout << "❌ Erro: Não foi possível conectar todos os clusters!" << endl;
+                break;
+            }
+    
+            nosNaArvore->adicionar(new NoInt(proximoNo));
+            clustersCobertos->adicionar(new NoInt(encontrarCluster(proximoNo)));
+    
+            if (melhorAresta) {
+                pesoTotal += melhorAresta->getPeso();
+                resultado->adicionar(melhorAresta);
+                cout << "✔ Adicionando aresta: " << melhorAresta->getOrigem()->getId()
+                     << " -> " << melhorAresta->getDestino()->getId()
+                     << " (Peso: " << melhorAresta->getPeso() << ")" << endl;
+                cout << "⚡ Peso Total atualizado: " << pesoTotal << endl;
+            }
+        }
+    
+        cout << "✔ AGMG construída com sucesso!" << endl;
+        cout << "🔸 Peso total da árvore geradora mínima: " << pesoTotal << endl;
+    
+        delete clustersCobertos;
+        delete nosNaArvore;
+    
+        return pesoTotal;
+    }
+    
+    
+    
+    
+    void imprimirAGMG(float pesoTotalAGMG) {
+        if (pesoTotalAGMG == 0.0) {
+            cout << "A AGMG ainda não foi construída ou não possui arestas." << endl;
+            return;
+        }
+    
+        cout << "Peso total da Árvore Geradora Mínima dos Clusters: " << pesoTotalAGMG << endl;
+    
+        ArestaEncadeada* atual = resultado->getInicio();
+        while (atual != nullptr) {
+            cout << atual->getOrigem()->getId() << " -- "
+                 << atual->getDestino()->getId()
+                 << " (Peso: " << atual->getPeso() << ")" << endl;
+            atual = atual->getProximo();
+        }
+    }
+    
+    
+    int encontrarCluster(int id) {
+        Cluster* atual = clusters->getInicio();
+        while (atual != nullptr) {
+            ListaEncadeada<VerticeEncadeado>* verticesCluster = atual->getVertices();
+            VerticeEncadeado* v = verticesCluster->getInicio();
+            while (v != nullptr) {
+                if (v->getId() == id) return atual->getId();
+                v = v->getProximo();
+            }
+            atual = atual->getProximo();
+        }
+        return -1; // Caso não encontrado
+    }
+    
+    void carrega_clusters() { 
+        cout << "🔍 [DEBUG CARREGA_CLUSTERS] Antes da inicialização, clusters = " << clusters << std::endl;
+    
+        if (!clusters || clusters == reinterpret_cast<ListaEncadeada<Cluster>*>(-1)) {
+            cerr << "❌ ERRO FATAL: clusters está inválido ANTES da inicialização!" << endl;
+            clusters = new ListaEncadeada<Cluster>();
+            if (clusters) {
+                cout << "✅ [DEBUG] clusters foi alocado dinamicamente!" << endl;
+            } else {
+                cerr << "❌ ERRO GRAVE: Falha ao alocar clusters!" << endl;
+                return;
+            }
+        }
+    
+        ifstream arquivo("./entradas/Clusters.txt");
+        if (!arquivo.is_open()) {
+            cerr << "Erro ao abrir o arquivo Clusters.txt" << endl;
+            return;
+        }
+    
+        int clusterId, vertice;
+        cout << "🔍 Carregando clusters...\n";
+    
+        while (arquivo >> clusterId >> vertice) {
+            cout << "➡️ [DEBUG] Tentando adicionar vértice " << vertice << " ao cluster " << clusterId << endl;
+    
+            Cluster* clusterExistente = nullptr;
+            Cluster* atual = clusters->getInicio();
+    
+            while (atual != nullptr) {
+                if (atual->getId() == clusterId) {
+                    clusterExistente = atual;
+                    break;
+                }
+                atual = atual->getProximo();
+            }
+    
+            if (clusterExistente == nullptr) {
+                clusterExistente = new Cluster(clusterId);
+                clusters->adicionar(clusterExistente);
+                cout << "➕ [DEBUG] Criado novo Cluster " << clusterId << endl;
+            }
+    
+            clusterExistente->adicionarVertice(vertice);
+            cout << "✔ Cluster " << clusterId << " recebeu vértice " << vertice << endl;
+        }
+    
+        arquivo.close();
+        cout << "✔ Clusters carregados com sucesso! Tamanho final: " << clusters->get_tamanho() << endl;
     }
     
 };

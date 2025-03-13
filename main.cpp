@@ -115,6 +115,7 @@ int main(int argc, char *argv[])
             return 1;
         }
         std::string caminhoArquivo = argv[3];
+        std::cout << "🔍 [DEBUG MAIN] Antes da criação do grafo: clusters = " << graph << std::endl;
 
         if (estrutura == "-m")
         {
@@ -125,6 +126,8 @@ int main(int argc, char *argv[])
         {
             graph = new GrafoLista();
             graph->carrega_grafo();
+            std::cout << "🔍 [DEBUG MAIN] Depois da criação do grafo: clusters = " << graph << std::endl;
+
         }
     }
     else
@@ -144,6 +147,17 @@ int main(int argc, char *argv[])
         imprimirDescricaoGrafo(graph);
     }
 
-    delete graph;
+    std::cout << "🔍 [DEBUG MAIN] Antes de `carrega_clusters()`: clusters = " << graph << std::endl;
+
+    graph->carrega_clusters();
+    
+    std::cout << "🔍 [DEBUG MAIN] Depois de `carrega_clusters()`: clusters = " << graph << std::endl;
+
+    float pesoTotal = graph->encontrarAGMG();  
+    if (pesoTotal >= 0) {
+        graph->imprimirAGMG(pesoTotal);
+    } else {
+        cout << "❌ A AGMG falhou ao ser construída." << endl;
+    }
     return 0;
 }
