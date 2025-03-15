@@ -58,7 +58,7 @@ public:
     void carrega_grafo_novo()
     {
 
-        std::string filename = "./entradas/aa4.mtx";
+        std::string filename = "./entradas/aves-weaver-social-14.edges";
 
         // Abre o arquivo para leitura
         std::ifstream file(filename);
