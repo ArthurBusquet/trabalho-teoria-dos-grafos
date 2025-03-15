@@ -16,7 +16,7 @@ GrafoMatriz::GrafoMatriz()
     size_t tamanhoAtualLinear = ((size_t)TAMANHO_FIXO * (TAMANHO_FIXO + 1)) / 2;
 
     // Aloca matriz 2D estaticamente
-    Matriz = new int*[tamanhoAtual];
+    Matriz = new int *[tamanhoAtual];
     for (int i = 0; i < tamanhoAtual; i++)
     {
         Matriz[i] = new int[tamanhoAtual](); // Inicializa com zero
@@ -313,4 +313,36 @@ void GrafoMatriz::nova_aresta(int origem, int destino, int peso)
         int indice = calcularIndiceLinear(origem, destino);
         MatrizLinear[indice] = peso; // Adiciona a aresta na matriz comprimida
     }
+}
+
+int *GrafoMatriz::get_vizinhos_array(int id, int &tamanho)
+{
+    if (id < 1 || id > tamanhoAtual)
+    {
+        tamanho = 0;
+        return nullptr;
+    }
+
+    tamanho = 0;
+    for (int i = 1; i <= tamanhoAtual; i++)
+    {
+        if (Matriz[id][i] != 0)
+        {
+            tamanho++;
+        }
+    }
+
+    int *vizinhos = new int[tamanho];
+
+    int index = 0;
+    for (int i = 1; i <= tamanhoAtual; i++)
+    {
+        if (Matriz[id][i] != 0)
+        {
+            vizinhos[index] = i;
+            index++;
+        }
+    }
+
+    return vizinhos;
 }

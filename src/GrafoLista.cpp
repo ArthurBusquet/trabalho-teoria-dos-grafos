@@ -91,7 +91,6 @@ int GrafoLista::get_vertice(int id)
 int GrafoLista::get_aresta(int idOrigem, int idDestino)
 {
     ArestaEncadeada *aresta = arestas->getInicio();
-    
 
     while (aresta != nullptr)
     {
@@ -226,6 +225,32 @@ void GrafoLista::nova_aresta(int origem, int destino, int peso)
     {
         verticeDestino->setConexao(verticeOrigem, peso); // Cria a conexão no sentido destino -> origem
     }
+}
+
+int *GrafoLista::get_vizinhos_array(int id, int &tamanho)
+{
+    VerticeEncadeado *vertice = get_vertice_encadeado(id);
+
+    if (vertice == nullptr)
+    {
+        tamanho = 0;
+        return nullptr;
+    }
+
+    tamanho = vertice->getGrau();
+
+    int *vizinhos = new int[tamanho];
+
+    ArestaEncadeada *aresta = vertice->getPrimeiraConexao();
+    int index = 0;
+    while (aresta != nullptr)
+    {
+        vizinhos[index] = aresta->getDestino()->getId();
+        aresta = aresta->getProximo();
+        index++;
+    }
+
+    return vizinhos;
 }
 
 // Destruidor da classe GrafoLista

@@ -112,6 +112,10 @@ public:
      */
     void inicializa_grafo() override;
 
+    int* get_vizinhos_array(int id, int& tamanho) override;
+
+
+
     /**
      * @brief Destruidor da classe GrafoLista. Libera a memória alocada para as listas de vértices e arestas.
      */

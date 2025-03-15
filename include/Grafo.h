@@ -22,7 +22,7 @@ private:
     int origem;       /**< Vértice de origem para operações com arestas */
     int destino;      /**< Vértice de destino para operações com arestas */
     int peso;         /**< Peso das arestas ou vértices (quando ponderados) */
-    int* clusters; // Array para armazenar os clusters de cada vértice
+    int *clusters;    // Array para armazenar os clusters de cada vértice
 
     const int MAX_NODES = 50000;
     const int MAX_EDGES = 1000000;
@@ -160,6 +160,8 @@ public:
      * @param peso Peso do vértice.
      */
     virtual void set_vertice(int id, float peso) = 0;
+
+    virtual int *get_vizinhos_array(int id, int &tamanho) = 0;
 
     /**
      * @brief Obtém o número de vértices no grafo (ordem do grafo).
@@ -509,20 +511,108 @@ public:
             delete[] clusters; // Libera a memória anterior, se houver
         }
         clusters = new int[ordem + 1]; // Aloca memória para os clusters
-    
+
         for (int i = 1; i <= ordem; i++)
         {
             // Obtém o último dígito do número do vértice
             int ultimo_digito = i % 10;
-    
+
             // Atribui o cluster com base no último dígito
             clusters[i] = (ultimo_digito % num_clusters) + 1;
         }
     }
 
-    int* get_clusters()
+    int *get_clusters()
     {
         return clusters;
+    }
+
+    float encontrar_agmg_randomizado()
+    {
+        cout << "aqui";
+        if (clusters == nullptr)
+        {
+            cout << "Clusters não foram definidos." << endl;
+            return -1;
+        }
+
+        srand(time(NULL));
+
+        int vertice_inicial = clusters[0];
+
+        bool *visitados = new bool[ordem + 1]();
+        int *pai = new int[ordem + 1];
+        for (int i = 1; i <= ordem; i++)
+        {
+            pai[i] = -1;
+        }
+
+        float soma_pesos_agmg = 0;
+
+        visitados[vertice_inicial] = true;
+
+        int *vertices_ativos = new int[ordem];
+        int num_vertices_ativos = 1;
+        vertices_ativos[0] = vertice_inicial;
+
+        while (num_vertices_ativos > 0)
+        {
+            int indice_aleatorio = rand() % num_vertices_ativos;
+            int vertice_atual = vertices_ativos[indice_aleatorio];
+
+            int tamanho_vizinhos;
+            int *vizinhos = get_vizinhos_array(vertice_atual, tamanho_vizinhos);
+
+            for (int i = 0; i < tamanho_vizinhos; i++)
+            {
+                int vizinho = vizinhos[i];
+
+                if (!visitados[vizinho])
+                {
+                    float peso = get_aresta(vertice_atual, vizinho);
+                    soma_pesos_agmg += peso;
+                    pai[vizinho] = vertice_atual;
+                    visitados[vizinho] = true;
+
+                    vertices_ativos[num_vertices_ativos++] = vizinho;
+                }
+            }
+
+            vertices_ativos[indice_aleatorio] = vertices_ativos[num_vertices_ativos - 1];
+            num_vertices_ativos--;
+
+            delete[] vizinhos;
+        }
+
+        delete[] visitados;
+        delete[] pai;
+        delete[] vertices_ativos;
+
+        return soma_pesos_agmg;
+    }
+
+    void testaVizinhos()
+    {
+        int tamanho;
+
+        int *vizinhos = get_vizinhos_array(1, tamanho); // Obtém os vizinhos do vértice com ID 1
+
+        if (vizinhos != nullptr)
+        {
+            cout << "Vizinhos do vértice 1: ";
+            for (int i = 0; i < tamanho; i++)
+            {
+                cout << vizinhos[i] << " ";
+            }
+            cout << endl;
+
+            // Libera a memória alocada para o array de vizinhos
+            delete[] vizinhos;
+        }
+        else
+        {
+            cout << "O vértice não existe ou não tem vizinhos." << endl;
+        }
     }
 };
 
