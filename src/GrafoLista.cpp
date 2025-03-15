@@ -235,3 +235,8 @@ GrafoLista::~GrafoLista()
     delete vertices; // Libera a lista de vértices
     delete arestas;  // Libera a lista de arestas
 }
+
+int* GrafoLista::get_vizinhos_vertices(int vertice, int& quantidadeVizinhos) {
+    quantidadeVizinhos = 0; // Inicializa a quantidade de vizinhos como 0
+    return 0;
+}

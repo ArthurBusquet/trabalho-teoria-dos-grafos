@@ -160,6 +160,7 @@ public:
      * @param peso Peso do vértice.
      */
     virtual void set_vertice(int id, float peso) = 0;
+    virtual int* get_vizinhos_vertices(int vertice, int& qtdvizinhos) = 0;
 
     /**
      * @brief Obtém o número de vértices no grafo (ordem do grafo).
@@ -320,8 +321,22 @@ public:
         if (!eh_direcionado())
         {
             int grauMaximo = 0;
-            for (int i = 1; i <= ordem; i++)
+            for (int i = 1; i <= 100; i++)
             {
+                // int quantidadeVizinhos = get_vizinhos(i);
+                // int* vizinhos = get_vizinhos_vertices(i, quantidadeVizinhos);
+                // if (vizinhos) {
+                //     cout << "Vizinhos do vértice " << i << ": ";
+                //     for (int i = 0; i < quantidadeVizinhos; i++) {
+                //         cout << vizinhos[i] << " ";
+                //     }
+                //     cout << endl;
+                
+                //     // Libera a memória alocada para o array de vizinhos
+                //     delete[] vizinhos;
+                // } else {
+                //     cout << "Vértice inválido ou sem vizinhos." << endl;
+                // }
                 int numVizinhos = get_vizinhos(i);
 
                 if (numVizinhos > grauMaximo)

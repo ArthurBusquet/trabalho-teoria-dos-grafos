@@ -314,3 +314,59 @@ void GrafoMatriz::nova_aresta(int origem, int destino, int peso)
         MatrizLinear[indice] = peso; // Adiciona a aresta na matriz comprimida
     }
 }
+
+// Método para obter os vértices vizinhos de um determinado vértice
+int* GrafoMatriz::get_vizinhos_vertices(int vertice, int& quantidadeVizinhos) {
+    quantidadeVizinhos = 0; // Inicializa a quantidade de vizinhos como 0
+
+    // if (vertice < 1 || vertice > get_ordem()) {
+    //     cerr << "Vértice inválido!" << endl;
+    //     return nullptr; // Retorna nullptr se o vértice for inválido
+    // }
+
+    int v = vertice - 1; // Ajustando para índice 0
+
+    // Conta quantos vizinhos existem
+    if (eh_direcionado()) {
+        // Para grafos direcionados, verificar as arestas de saída
+        for (int i = 0; i < get_ordem(); i++) {
+            if (Matriz[v][i] != 0) {
+                quantidadeVizinhos++;
+            }
+        }
+    } else {
+        // Para grafos não direcionados, verificar a matriz comprimida
+        for (int i = 0; i < get_ordem(); i++) {
+            if (i == v) continue; // Evita contar o próprio vértice
+
+            int indice = calcularIndiceLinear(i + 1, vertice);
+            if (MatrizLinear[indice] != 0) {
+                quantidadeVizinhos++;
+            }
+        }
+    }
+
+    // Aloca um array dinâmico para armazenar os vizinhos
+    int* vizinhos = new int[quantidadeVizinhos];
+    int index = 0;
+
+    // Preenche o array com os vértices vizinhos
+    if (eh_direcionado()) {
+        for (int i = 0; i < get_ordem(); i++) {
+            if (Matriz[v][i] != 0) {
+                vizinhos[index++] = i + 1; // Adiciona o vértice vizinho
+            }
+        }
+    } else {
+        for (int i = 0; i < get_ordem(); i++) {
+            if (i == v) continue;
+
+            int indice = calcularIndiceLinear(i + 1, vertice);
+            if (MatrizLinear[indice] != 0) {
+                vizinhos[index++] = i + 1; // Adiciona o vértice vizinho
+            }
+        }
+    }
+
+    return vizinhos; // Retorna o array de vizinhos
+}

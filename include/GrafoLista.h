@@ -116,6 +116,8 @@ public:
      * @brief Destruidor da classe GrafoLista. Libera a memória alocada para as listas de vértices e arestas.
      */
     ~GrafoLista();
+
+    int* get_vizinhos_vertices(int vertice, int& quantidadeVizinhos) override;
 };
 
 #endif // GRAFOLISTA_H_INCLUDED
