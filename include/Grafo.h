@@ -85,9 +85,11 @@ public:
 
             int mapped_node1 = mapeia_vertice(node_mapping, node_count, node1, next_id);
             int mapped_node2 = mapeia_vertice(node_mapping, node_count, node2, next_id);
-
-            set_aresta(mapped_node1, mapped_node2, 1);
-            edge_count++;
+            if (node1 != node2)
+            {
+                set_aresta(mapped_node1, mapped_node2, 1);
+                edge_count++;
+            }
         }
 
         file.close();
@@ -95,7 +97,7 @@ public:
         set_ordem(node_count);
 
         // Cria clusters aleatórios após carregar o grafo
-        criar_clusters_aleatorios(3); // Exemplo: 3 clusters
+        criar_clusters_aleatorios(10); // Exemplo: 3 clusters
     };
 
     /**
@@ -160,6 +162,7 @@ public:
      * @param peso Peso do vértice.
      */
     virtual void set_vertice(int id, float peso) = 0;
+    virtual int *get_vizinhos_vertices(int vertice, int &qtdvizinhos) = 0;
 
     virtual int *get_vizinhos_array(int id, int &tamanho) = 0;
 
@@ -322,8 +325,22 @@ public:
         if (!eh_direcionado())
         {
             int grauMaximo = 0;
-            for (int i = 1; i <= ordem; i++)
+            for (int i = 1; i <= 100; i++)
             {
+                // int quantidadeVizinhos = get_vizinhos(i);
+                // int* vizinhos = get_vizinhos_vertices(i, quantidadeVizinhos);
+                // if (vizinhos) {
+                //     cout << "Vizinhos do vértice " << i << ": ";
+                //     for (int i = 0; i < quantidadeVizinhos; i++) {
+                //         cout << vizinhos[i] << " ";
+                //     }
+                //     cout << endl;
+
+                //     // Libera a memória alocada para o array de vizinhos
+                //     delete[] vizinhos;
+                // } else {
+                //     cout << "Vértice inválido ou sem vizinhos." << endl;
+                // }
                 int numVizinhos = get_vizinhos(i);
 
                 if (numVizinhos > grauMaximo)
@@ -527,92 +544,243 @@ public:
         return clusters;
     }
 
-    float encontrar_agmg_randomizado()
+    /**
+     * @brief Encontra a Árvore Geradora Mínima (AGM) do grafo, garantindo que contenha pelo menos um vértice de cada cluster.
+     *
+     * Esta função utiliza uma abordagem gulosa semelhante ao algoritmo de Kruskal para encontrar a AGM,
+     * mas com a adição de uma verificação para garantir que todos os clusters estejam representados na árvore.
+     *
+     * @return Um array de pares representando as arestas da AGM.
+     */
+    std::pair<int, int> *arvore_geradora_minima_gulosa(int &tamanho_agm)
     {
-        cout << "aqui";
-        if (clusters == nullptr)
+        // Estrutura para armazenar as arestas da AGM
+        std::pair<int, int> *agm = new std::pair<int, int>[ordem]; // No máximo, a AGM terá (ordem - 1) arestas
+        tamanho_agm = 0;                                           // Inicializa o tamanho da AGM
+
+        // Estrutura para armazenar todas as arestas do grafo
+        struct Aresta
         {
-            cout << "Clusters não foram definidos." << endl;
-            return -1;
-        }
+            int peso;
+            int origem;
+            int destino;
+        };
 
-        srand(time(NULL));
-
-        int vertice_inicial = clusters[0];
-
-        bool *visitados = new bool[ordem + 1]();
-        int *pai = new int[ordem + 1];
+        // Conta o número total de arestas
+        int total_arestas = 0;
         for (int i = 1; i <= ordem; i++)
         {
-            pai[i] = -1;
+            int qtdVizinhos;
+            int *vizinhos = get_vizinhos_vertices(i, qtdVizinhos);
+            total_arestas += qtdVizinhos;
+            delete[] vizinhos; // Libera a memória alocada para o array de vizinhos
         }
 
+        // Aloca memória para armazenar todas as arestas
+        Aresta *arestas = new Aresta[total_arestas];
+        int indice_arestas = 0;
+
+        // Coleta todas as arestas do grafo
+        for (int i = 1; i <= ordem; i++)
+        {
+            int qtdVizinhos;
+            int *vizinhos = get_vizinhos_vertices(i, qtdVizinhos);
+            for (int j = 0; j < qtdVizinhos; j++)
+            {
+                int vizinho = vizinhos[j];
+                int peso = get_aresta(i, vizinho);
+                arestas[indice_arestas].peso = peso;
+                arestas[indice_arestas].origem = i;
+                arestas[indice_arestas].destino = vizinho;
+                indice_arestas++;
+            }
+            delete[] vizinhos; // Libera a memória alocada para o array de vizinhos
+        }
+
+        // Ordena as arestas manualmente (usando Bubble Sort)
+        for (int i = 0; i < total_arestas - 1; i++)
+        {
+            for (int j = 0; j < total_arestas - i - 1; j++)
+            {
+                if (arestas[j].peso > arestas[j + 1].peso)
+                {
+                    // Troca as arestas
+                    Aresta temp = arestas[j];
+                    arestas[j] = arestas[j + 1];
+                    arestas[j + 1] = temp;
+                }
+            }
+        }
+
+        // Estrutura para verificar se um vértice já está na AGM
+        bool *na_agm = new bool[ordem + 1];
+        for (int i = 1; i <= ordem; i++)
+        {
+            na_agm[i] = false;
+        }
+
+        // Estrutura para verificar se um cluster já está representado na AGM
+        bool *cluster_representado = new bool[clusters[ordem] + 1];
+        for (int i = 1; i <= clusters[ordem]; i++)
+        {
+            cluster_representado[i] = false;
+        }
+
+        // Contador de clusters representados
+        int clusters_representados = 0;
+
+        // Algoritmo guloso para construir a AGM
+        for (int i = 0; i < total_arestas; i++)
+        {
+            int u = arestas[i].origem;
+            int v = arestas[i].destino;
+
+            // Verifica se a aresta conecta dois vértices que não estão na AGM
+            if (!na_agm[u] || !na_agm[v])
+            {
+                agm[tamanho_agm] = {u, v};
+                tamanho_agm++;
+                na_agm[u] = true;
+                na_agm[v] = true;
+
+                // Marca o cluster como representado, se necessário
+                if (!cluster_representado[clusters[u]])
+                {
+                    cluster_representado[clusters[u]] = true;
+                    clusters_representados++;
+                }
+                if (!cluster_representado[clusters[v]])
+                {
+                    cluster_representado[clusters[v]] = true;
+                    clusters_representados++;
+                }
+
+                // Verifica se todos os clusters estão representados
+                if (clusters_representados == clusters[ordem])
+                {
+                    break; // Todos os clusters estão representados, podemos parar
+                }
+            }
+        }
+
+        // Libera a memória alocada
+        delete[] arestas;
+        delete[] na_agm;
+        delete[] cluster_representado;
+
+        return agm;
+    }
+
+    float encontrar_agmg_guloso()
+    {
+        int num_clusters = 10;
+
+        bool *vertices_visitados = new bool[ordem + 1]();        // Inicializa todos como false
+        bool *cluster_conectados = new bool[num_clusters + 1](); // Inicializa todos como false
         float soma_pesos_agmg = 0;
 
-        visitados[vertice_inicial] = true;
+        int vertice_atual = 1;                              // Começa no vértice 1
+        vertices_visitados[vertice_atual] = true;           // Marca o vértice inicial como visitado
+        cluster_conectados[clusters[vertice_atual]] = true; // Marca o cluster do vértice inicial como conectado
 
-        int *vertices_ativos = new int[ordem];
-        int num_vertices_ativos = 1;
-        vertices_ativos[0] = vertice_inicial;
-
-        while (num_vertices_ativos > 0)
+        while (true)
         {
-            int indice_aleatorio = rand() % num_vertices_ativos;
-            int vertice_atual = vertices_ativos[indice_aleatorio];
+            cout << "vertice_atual: " << vertice_atual << endl;
 
-            int tamanho_vizinhos;
-            int *vizinhos = get_vizinhos_array(vertice_atual, tamanho_vizinhos);
+            int qtd_vizinhos;
+            int *vizinhos = get_vizinhos_vertices(vertice_atual, qtd_vizinhos);
 
-            for (int i = 0; i < tamanho_vizinhos; i++)
+            // Se não houver vizinhos, sai do loop
+            if (qtd_vizinhos == 0)
+            {
+                delete[] vizinhos;
+                cout << "Nao foi possivel encontrar uma arvore que ligue todos os clusters " << endl;
+                break;
+            }
+
+            float menor_peso_local = 99999;
+            int posicao_menor_peso_local = -1;
+            int proximo_vertice = -1;
+
+            // Procura o vizinho com o menor peso que conecta a um cluster não conectado
+            for (int i = 0; i < qtd_vizinhos; i++)
             {
                 int vizinho = vizinhos[i];
-
-                if (!visitados[vizinho])
+                float peso_aresta = get_aresta(vertice_atual, vizinho);
+                // Se o vizinho não foi visitado e o peso é menor que o menor peso local
+                if (!vertices_visitados[vizinho] && peso_aresta < menor_peso_local)
                 {
-                    float peso = get_aresta(vertice_atual, vizinho);
-                    soma_pesos_agmg += peso;
-                    pai[vizinho] = vertice_atual;
-                    visitados[vizinho] = true;
+                    menor_peso_local = peso_aresta;
+                    posicao_menor_peso_local = i;
+                }
 
-                    vertices_ativos[num_vertices_ativos++] = vizinho;
+                // Se o cluster do vizinho ainda não foi conectado
+                if (!cluster_conectados[clusters[vizinho]])
+                {
+                    cout << "cluster do  " << vizinho << "e" << clusters[vizinho] << endl;
+                    proximo_vertice = vizinho;
+                    break; // Prioriza conectar clusters não conectados
                 }
             }
 
-            vertices_ativos[indice_aleatorio] = vertices_ativos[num_vertices_ativos - 1];
-            num_vertices_ativos--;
+            // Se não encontrou um cluster não conectado, usa o vizinho com menor peso
+            if (proximo_vertice == -1 && posicao_menor_peso_local != -1)
+            {
+                proximo_vertice = vizinhos[posicao_menor_peso_local];
+            }
+
+            // Se não há próximo vértice válido, sai do loop
+            if (proximo_vertice == -1)
+            {
+                delete[] vizinhos;
+                cout << "Nao foi possivel encontrar uma arvore que ligue todos os clusters " << endl;
+                break;
+            }
+
+            // Atualiza o vértice atual e marca como visitado
+            vertice_atual = proximo_vertice;
+            vertices_visitados[vertice_atual] = true;
+            cluster_conectados[clusters[vertice_atual]] = true;
+            soma_pesos_agmg += menor_peso_local;
+
+            // Verifica se todos os clusters estão conectados
+            bool todos_clusters_conectados = true;
+            for (int i = 1; i <= num_clusters; i++)
+            {
+                if (!cluster_conectados[i])
+                {
+                    todos_clusters_conectados = false;
+                    break;
+                }
+            }
 
             delete[] vizinhos;
+
+            // Se todos os clusters estão conectados, sai do loop
+            if (todos_clusters_conectados)
+            {
+                break;
+            }
         }
 
-        delete[] visitados;
-        delete[] pai;
-        delete[] vertices_ativos;
+        delete[] cluster_conectados;
+        delete[] vertices_visitados;
 
         return soma_pesos_agmg;
     }
 
-    void testaVizinhos()
+    void testa_get_vizinhos(int id)
     {
-        int tamanho;
+        int *vizinhos = new int[ordem];
+        int qtd_vizinhos;
+        vizinhos = get_vizinhos_vertices(id, qtd_vizinhos);
 
-        int *vizinhos = get_vizinhos_array(1, tamanho); // Obtém os vizinhos do vértice com ID 1
-
-        if (vizinhos != nullptr)
+        cout << "vizinhos do " << id << " ";
+        for (int i = 0; i < qtd_vizinhos; i++)
         {
-            cout << "Vizinhos do vértice 1: ";
-            for (int i = 0; i < tamanho; i++)
-            {
-                cout << vizinhos[i] << " ";
-            }
-            cout << endl;
-
-            // Libera a memória alocada para o array de vizinhos
-            delete[] vizinhos;
+            cout << vizinhos[i] << " ";
         }
-        else
-        {
-            cout << "O vértice não existe ou não tem vizinhos." << endl;
-        }
+        cout << endl;
     }
 };
 

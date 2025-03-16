@@ -127,6 +127,7 @@ public:
     void nova_aresta(int origem, int destino, int peso);
 
     int* get_vizinhos_array(int id, int& tamanho) override;
+    int* get_vizinhos_vertices(int vertice, int& quantidadeVizinhos) override;
 };
 
 #endif  // GRAFO_MATRIZ_H_INCLUDED

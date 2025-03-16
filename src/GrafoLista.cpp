@@ -94,7 +94,7 @@ int GrafoLista::get_aresta(int idOrigem, int idDestino)
 
     while (aresta != nullptr)
     {
-        if (aresta->getOrigem()->getId() == idOrigem && aresta->getDestino()->getId() == idDestino)
+        if ((aresta->getOrigem()->getId() == idOrigem && aresta->getDestino()->getId() == idDestino) || (aresta->getOrigem()->getId() == idDestino && aresta->getDestino()->getId() == idOrigem))
         {
             return aresta->getPeso(); // Retorna o peso da aresta
         }
@@ -120,39 +120,33 @@ void GrafoLista::set_vertice(int id, float peso)
 // Verifica se a aresta já existe, e se não, cria e adiciona.
 void GrafoLista::set_aresta(int origem, int destino, float peso)
 {
-    // Se o grafo não for direcionado, sempre ordenamos os vértices
-    if (!eh_direcionado() && origem > destino)
-    {
-        swap(origem, destino);
-    }
-
-    // Verifica se a aresta já existe
     ArestaEncadeada *atual = arestas->getInicio();
     while (atual != nullptr)
     {
-        if (atual->getOrigem()->getId() == origem && atual->getDestino()->getId() == destino)
+        if ((atual->getOrigem()->getId() == origem && atual->getDestino()->getId() == destino) || 
+            (!eh_direcionado() && atual->getOrigem()->getId() == destino && atual->getDestino()->getId() == origem))
         {
-            return; // Se a aresta já existe, não a adicionamos novamente
+            return;  // Se a aresta já existe, não a adiciona novamente
         }
         atual = atual->getProximo();
     }
 
-    // Obtém os vértices de origem e destino
     VerticeEncadeado *verticeOrigem = get_vertice_encadeado(origem);
     VerticeEncadeado *verticeDestino = get_vertice_encadeado(destino);
-
     if (verticeOrigem == nullptr || verticeDestino == nullptr)
     {
         cout << "Erro: Um ou ambos os vértices não existem!" << endl;
         return;
     }
 
-    // Cria e adiciona a nova aresta
     ArestaEncadeada *novaAresta = new ArestaEncadeada(verticeOrigem, verticeDestino, peso);
-    arestas->adicionar(novaAresta);
 
-    // Adiciona conexão ao vértice de origem (somente uma vez)
-    verticeOrigem->setConexao(verticeDestino, peso);
+    verticeOrigem->setConexao(verticeDestino, peso);  // Cria a conexão entre os vértices
+
+    if (!eh_direcionado()) {
+        verticeDestino->setConexao(verticeOrigem, peso);  // Se o grafo não for direcionado, também cria a conexão no sentido inverso
+    }
+    arestas->adicionar(novaAresta);  // Adiciona a nova aresta à lista
 }
 
 // Função que retorna o grau de um vértice, ou seja, o número de conexões (arestas) que ele possui.
@@ -223,23 +217,64 @@ void GrafoLista::nova_aresta(int origem, int destino, int peso)
     // Se o grafo não for direcionado, adiciona também no sentido inverso
     if (!eh_direcionado())
     {
+        cout << "teste";
         verticeDestino->setConexao(verticeOrigem, peso); // Cria a conexão no sentido destino -> origem
     }
 }
 
 int *GrafoLista::get_vizinhos_array(int id, int &tamanho)
 {
+    // Obtém o vértice pelo ID
     VerticeEncadeado *vertice = get_vertice_encadeado(id);
 
+    // Se o vértice não existir, retorna nullptr
     if (vertice == nullptr)
     {
         tamanho = 0;
         return nullptr;
     }
 
+    // Conta o número de vizinhos (grau do vértice)
     tamanho = vertice->getGrau();
 
+    // Aloca um array para armazenar os IDs dos vizinhos
     int *vizinhos = new int[tamanho];
+
+    // Percorre as conexões do vértice e armazena os IDs dos vizinhos no array
+    ArestaEncadeada *aresta = vertice->getPrimeiraConexao();
+    int index = 0;
+    while (aresta != nullptr)
+    {
+        vizinhos[index] = aresta->getDestino()->getId();
+        aresta = aresta->getProximo();
+        index++;
+    }
+
+    // Retorna o array de vizinhos
+    return vizinhos;
+}
+
+// Destruidor da classe GrafoLista
+// Libera a memória utilizada pelas listas de vértices e arestas.
+GrafoLista::~GrafoLista()
+{
+    delete vertices; // Libera a lista de vértices
+    delete arestas;  // Libera a lista de arestas
+}
+
+int *GrafoLista::get_vizinhos_vertices(int verticeId, int &quantidadeVizinhos)
+{
+    VerticeEncadeado *vertice = get_vertice_encadeado(verticeId);
+
+    if (vertice == nullptr)
+    {
+        quantidadeVizinhos = 0;
+        return nullptr;
+    }
+
+    quantidadeVizinhos = vertice->getGrau();
+
+    int *vizinhos = new int[quantidadeVizinhos];
 
     ArestaEncadeada *aresta = vertice->getPrimeiraConexao();
     int index = 0;
@@ -251,12 +286,4 @@ int *GrafoLista::get_vizinhos_array(int id, int &tamanho)
     }
 
     return vizinhos;
-}
-
-// Destruidor da classe GrafoLista
-// Libera a memória utilizada pelas listas de vértices e arestas.
-GrafoLista::~GrafoLista()
-{
-    delete vertices; // Libera a lista de vértices
-    delete arestas;  // Libera a lista de arestas
 }
