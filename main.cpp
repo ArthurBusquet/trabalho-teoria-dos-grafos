@@ -90,21 +90,34 @@ void imprimirDescricaoGrafo(Grafo *graph)
     std::cout << "Arestas ponderadas: " << (graph->aresta_ponderada() ? "Sim" : "Nao") << std::endl;
     // graph->maior_menor_distancia();
     std::cout << "----------------------------------------" << std::endl;
-    int* clusters = graph->get_clusters();
-    for (int i = 1; i <= graph->get_ordem(); i++) {
-        std::cout << "Vértice " << i << " está no cluster " << clusters[i] << endl;
-    }
-    int tamanho_agm;
-    std::pair<int, int>* agm = graph->arvore_geradora_minima_gulosa(tamanho_agm);
+    // int* clusters = graph->get_clusters();
+    // for (int i = 1; i <= graph->get_ordem(); i++) {
+    //     std::cout << "Vértice " << i << " está no cluster " << clusters[i] << endl;
+    // }
+    // int tamanho_agm;
+    // std::pair<int, int>* agm = graph->arvore_geradora_minima_gulosa(tamanho_agm);
     
+    // // Exibir as arestas da AGM
+    // std::cout << "Arestas da Árvore Geradora Mínima:" << std::endl;
+    // for (int i = 0; i < tamanho_agm; i++) {
+    //     std::cout << "Aresta: " << agm[i].first << " - " << agm[i].second << std::endl;
+    // }
+    
+    // // Libera a memória alocada para a AGM
+    // delete[] agm;
+
+    int tamanho_agm;
+    std::pair<int, int>* agm = graph->arvore_geradora_minima_reativa(tamanho_agm);
+
     // Exibir as arestas da AGM
-    std::cout << "Arestas da Árvore Geradora Mínima:" << std::endl;
+    std::cout << "Arestas da Árvore Geradora Mínima (Reativa):" << std::endl;
     for (int i = 0; i < tamanho_agm; i++) {
         std::cout << "Aresta: " << agm[i].first << " - " << agm[i].second << std::endl;
     }
-    
+
     // Libera a memória alocada para a AGM
     delete[] agm;
+
 }
 
 int main(int argc, char *argv[])
