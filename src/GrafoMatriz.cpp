@@ -401,11 +401,6 @@ int *GrafoMatriz::get_vizinhos_vertices(int vertice, int &quantidadeVizinhos)
 {
     quantidadeVizinhos = 0; // Inicializa a quantidade de vizinhos como 0
 
-    // if (vertice < 1 || vertice > get_ordem()) {
-    //     cerr << "Vértice inválido!" << endl;
-    //     return nullptr; // Retorna nullptr se o vértice for inválido
-    // }
-
     int v = vertice - 1; // Ajustando para índice 0
 
     // Conta quantos vizinhos existem
