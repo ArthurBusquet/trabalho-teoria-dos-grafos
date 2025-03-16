@@ -342,7 +342,7 @@ void Grafo::encontrarAGMG() {
 
 //algoritmo Reativo:
 
-void Grafo::encontrarAGMG() {
+void Grafo::encontrarAGMG2() {
     map<int, int> vizinhosValidos;  
     set<int> clustersCobertos;  
     ListaEncadeada<ArestaEncadeada>* resultado = new ListaEncadeada<ArestaEncadeada>(); 
@@ -391,26 +391,55 @@ void Grafo::encontrarAGMG() {
         int proximoNo = -1, maxVizinhosProximo = -1;
         ArestaEncadeada* melhorAresta = nullptr;
 
+        // Recalcular vizinhos válidos a cada iteração
+        for (int i = 1; i <= get_ordem(); i++) {
+            vizinhosValidos[i] = 0;
+            set<int> clustersVizinhos;
+            for (int j = 1; j <= get_ordem(); j++) {
+                if (get_aresta(i, j) != -1) { 
+                    int clusterOrigem = encontrarCluster(i);
+                    int clusterVizinho = encontrarCluster(j);
+
+                    if (clusterOrigem != clusterVizinho) {
+                        vizinhosValidos[i]++;
+                        clustersVizinhos.insert(clusterVizinho);
+                    }
+                }
+            }
+        }
+
+        // Seleção probabilística do próximo nó
+        vector<pair<int, int>> candidatos;
         for (int noAtual : nosNaArvore) {
             for (int j = 1; j <= get_ordem(); j++) {
                 if (get_aresta(noAtual, j) != -1) {
                     int clusterVizinho = encontrarCluster(j);
 
                     if (nosNaArvore.find(j) == nosNaArvore.end() && clustersCobertos.find(clusterVizinho) == clustersCobertos.end()) {
-                        if (vizinhosValidos[j] > maxVizinhosProximo || 
-                            (vizinhosValidos[j] == maxVizinhosProximo && j < proximoNo)) {
-                            proximoNo = j;
-                            maxVizinhosProximo = vizinhosValidos[j];
-                            melhorAresta = new ArestaEncadeada(new VerticeEncadeado(noAtual, 1), new VerticeEncadeado(j, 1), get_aresta(noAtual, j));
-                        }
+                        candidatos.emplace_back(j, vizinhosValidos[j]);
                     }
                 }
             }
         }
 
-        if (proximoNo == -1) {
+        if (candidatos.empty()) {
             cout << "Erro: Não foi possível conectar todos os clusters!" << endl;
             break;
+        }
+
+        // Critério probabilístico para a seleção do próximo nó
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<> dis(0, candidatos.size() - 1);
+        int indiceEscolhido = dis(gen);
+        proximoNo = candidatos[indiceEscolhido].first;
+
+        // Encontrar a melhor aresta correspondente
+        for (int noAtual : nosNaArvore) {
+            if (get_aresta(noAtual, proximoNo) != -1) {
+                melhorAresta = new ArestaEncadeada(new VerticeEncadeado(noAtual, 1), new VerticeEncadeado(proximoNo, 1), get_aresta(noAtual, proximoNo));
+                break;
+            }
         }
 
         // Adiciona o próximo nó na árvore
@@ -425,18 +454,6 @@ void Grafo::encontrarAGMG() {
     }
 
     cout << "AGMG construída com sucesso!" << endl;
-}
-
-void Grafo::imprimirAGMG() {
-    cout << "Arestas na AGMG:" << endl;
-    for (int i = 1; i <= get_ordem(); i++) {
-        for (int j = i + 1; j <= get_ordem(); j++) {
-            int peso = get_aresta(i, j);
-            if (peso != -1) {
-                cout << i << " -- " << j << " (peso: " << peso << ")" << endl;
-            }
-        }
-    }
 }
 
 int Grafo::encontrarCluster(int id) {
