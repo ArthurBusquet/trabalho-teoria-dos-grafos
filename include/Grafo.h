@@ -2,6 +2,7 @@
 #define GRAFO_H_INCLUDED
 #include <iostream>
 #include <fstream>
+#include <ctime>
 
 using namespace std;
 
@@ -23,6 +24,22 @@ private:
     int destino;      /**< Vértice de destino para operações com arestas */
     int peso;         /**< Peso das arestas ou vértices (quando ponderados) */
     int *clusters;    // Array para armazenar os clusters de cada vértice
+
+    float modulo_subtracao(int a, int b)
+    {
+        if (a > b)
+        {
+            return a - b;
+        }
+        else if (a < b)
+        {
+            return b - a;
+        }
+        else
+        {
+            return 1;
+        }
+    }
 
     const int MAX_NODES = 50000;
     const int MAX_EDGES = 1000000;
@@ -57,30 +74,51 @@ public:
 
     void carrega_grafo_novo(int d)
     {
-        //int d = 1; // Aqui você pode mudar para testar diferentes arquivos
+        // int d = 1; // Aqui você pode mudar para testar diferentes arquivos
         std::string filename;
-    
-        if (d == 1) {
+
+        if (d == 1)
+        {
             filename = "./entradas/aa4.mtx";
-        } else if (d == 2) {
+        }
+        else if (d == 2)
+        {
             filename = "./entradas/arquivo2.mtx";
-        } else if (d == 3) {
+        }
+        else if (d == 3)
+        {
             filename = "./entradas/arquivo3.mtx";
-        } else if (d == 4) {
+        }
+        else if (d == 4)
+        {
             filename = "./entradas/arquivo4.mtx";
-        } else if (d == 5) {
+        }
+        else if (d == 5)
+        {
             filename = "./entradas/arquivo5.mtx";
-        } else if (d == 6) {
+        }
+        else if (d == 6)
+        {
             filename = "./entradas/arquivo6.mtx";
-        } else if (d == 7) {
+        }
+        else if (d == 7)
+        {
             filename = "./entradas/arquivo7.mtx";
-        } else if (d == 8) {
+        }
+        else if (d == 8)
+        {
             filename = "./entradas/arquivo8.mtx";
-        } else if (d == 9) {
+        }
+        else if (d == 9)
+        {
             filename = "./entradas/arquivo9.mtx";
-        } else if (d == 10) {
+        }
+        else if (d == 10)
+        {
             filename = "./entradas/arquivo10.mtx";
-        } else {
+        }
+        else
+        {
             std::cout << "Arquivo Inválido" << std::endl;
         }
         // Abre o arquivo para leitura
@@ -92,7 +130,7 @@ public:
         }
 
         set_eh_direcionado(false);
-        set_aresta_ponderada(false);
+        set_aresta_ponderada(true);
         set_vertice_ponderado(false);
 
         NodeMapping node_mapping[MAX_NODES];
@@ -110,7 +148,7 @@ public:
             int mapped_node2 = mapeia_vertice(node_mapping, node_count, node2, next_id);
             if (node1 != node2)
             {
-                set_aresta(mapped_node1, mapped_node2, 1);
+                set_aresta(mapped_node1, mapped_node2, modulo_subtracao(mapped_node1, mapped_node2));
                 edge_count++;
             }
         }
@@ -296,46 +334,6 @@ public:
         set_aresta_ponderada(atp);
 
         inicializa_grafo();
-    }
-
-    /**
-     * @brief Carrega o grafo a partir de um arquivo com outro formato.
-     */
-    void carrega_grafo2()
-    {
-        ifstream arquivo("./entradas/Grafo.txt");
-        if (!arquivo.is_open())
-        {
-            cerr << "Erro ao abrir o arquivo Grafo.txt" << endl;
-            return;
-        }
-
-        arquivo >> ordem >> direcionado >> vtp >> atp;
-        set_ordem(ordem);
-        set_eh_direcionado(direcionado);
-        set_vertice_ponderado(vtp);
-        set_aresta_ponderada(atp);
-
-        for (int i = 1; i <= ordem; i++)
-        {
-            int peso_vertice;
-            arquivo >> peso_vertice;
-
-            if (vertice_ponderado())
-                set_vertice(i, peso_vertice);
-            else
-                set_vertice(i, 1);
-        }
-
-        int origem, destino = 1;
-        float peso = 0;
-
-        while (arquivo >> origem >> destino >> peso)
-        {
-            if (!aresta_ponderada())
-                peso = 0;
-            set_aresta(origem, destino, peso);
-        }
     }
 
     /**
@@ -558,7 +556,8 @@ public:
             int ultimo_digito = i % 10;
 
             // Atribui o cluster com base no último dígito
-            clusters[i] = (ultimo_digito % num_clusters) + 1;
+
+            clusters[i] = i % 71 == 0 ? (ultimo_digito % num_clusters) + 1 : 0;
         }
     }
 
@@ -708,65 +707,162 @@ public:
 
         while (true)
         {
-            cout << "vertice_atual: " << vertice_atual << endl;
+            std::cout << "soma_pesos_agmg: " << soma_pesos_agmg << std::endl;
 
             int qtd_vizinhos;
             int *vizinhos = get_vizinhos_vertices(vertice_atual, qtd_vizinhos);
 
-            // Se não houver vizinhos, sai do loop
             if (qtd_vizinhos == 0)
             {
                 delete[] vizinhos;
-                cout << "Nao foi possivel encontrar uma arvore que ligue todos os clusters " << endl;
+                std::cout << "Nao foi possivel encontrar uma arvore que ligue todos os clusters " << std::endl;
                 break;
             }
 
             float menor_peso_local = 99999;
-            int posicao_menor_peso_local = -1;
             int proximo_vertice = -1;
 
-            // Procura o vizinho com o menor peso que conecta a um cluster não conectado
             for (int i = 0; i < qtd_vizinhos; i++)
             {
                 int vizinho = vizinhos[i];
                 float peso_aresta = get_aresta(vertice_atual, vizinho);
-                // Se o vizinho não foi visitado e o peso é menor que o menor peso local
-                if (!vertices_visitados[vizinho] && peso_aresta < menor_peso_local)
-                {
-                    menor_peso_local = peso_aresta;
-                    posicao_menor_peso_local = i;
-                }
 
-                // Se o cluster do vizinho ainda não foi conectado
                 if (!cluster_conectados[clusters[vizinho]])
                 {
-                    cout << "cluster do  " << vizinho << "e" << clusters[vizinho] << endl;
-                    proximo_vertice = vizinho;
-                    break; // Prioriza conectar clusters não conectados
+                    if (peso_aresta < menor_peso_local)
+                    {
+                        menor_peso_local = peso_aresta;
+                        proximo_vertice = vizinho;
+                    }
+
+                    else if (peso_aresta == menor_peso_local)
+                    {
+                    }
                 }
             }
 
-            // Se não encontrou um cluster não conectado, usa o vizinho com menor peso
-            if (proximo_vertice == -1 && posicao_menor_peso_local != -1)
+            if (proximo_vertice == -1)
             {
-                proximo_vertice = vizinhos[posicao_menor_peso_local];
+                for (int i = 0; i < qtd_vizinhos; i++)
+                {
+                    int vizinho = vizinhos[i];
+                    float peso_aresta = get_aresta(vertice_atual, vizinho);
+
+                    if (!vertices_visitados[vizinho] && peso_aresta < menor_peso_local)
+                    {
+                        menor_peso_local = peso_aresta;
+                        proximo_vertice = vizinho;
+                    }
+                }
             }
 
-            // Se não há próximo vértice válido, sai do loop
             if (proximo_vertice == -1)
             {
                 delete[] vizinhos;
-                cout << "Nao foi possivel encontrar uma arvore que ligue todos os clusters " << endl;
+                std::cout << "Nao foi possivel encontrar uma arvore que ligue todos os clusters " << std::endl;
                 break;
             }
 
-            // Atualiza o vértice atual e marca como visitado
             vertice_atual = proximo_vertice;
             vertices_visitados[vertice_atual] = true;
             cluster_conectados[clusters[vertice_atual]] = true;
             soma_pesos_agmg += menor_peso_local;
 
-            // Verifica se todos os clusters estão conectados
+            bool todos_clusters_conectados = true;
+            for (int i = 1; i <= num_clusters; i++)
+            {
+                if (!cluster_conectados[i])
+                {
+
+                    todos_clusters_conectados = false;
+                    break;
+                }
+            }
+
+            delete[] vizinhos;
+
+            if (todos_clusters_conectados)
+            {
+                break;
+            }
+        }
+
+        delete[] cluster_conectados;
+        delete[] vertices_visitados;
+
+        return soma_pesos_agmg;
+    }
+
+    float encontrar_agmg_randomizado()
+    {
+        int num_clusters = 10;
+
+        bool *vertices_visitados = new bool[ordem + 1]();
+        bool *cluster_conectados = new bool[num_clusters + 1]();
+        float soma_pesos_agmg = 0;
+
+        std::srand(std::time(0));
+
+        int vertice_atual = std::rand() % ordem + 1;
+        vertices_visitados[vertice_atual] = true;
+        cluster_conectados[clusters[vertice_atual]] = true;
+
+        while (true)
+        {
+            std::cout << "vertice_atual: " << vertice_atual << std::endl;
+
+            int qtd_vizinhos;
+            int *vizinhos = get_vizinhos_vertices(vertice_atual, qtd_vizinhos);
+
+            if (qtd_vizinhos == 0)
+            {
+                delete[] vizinhos;
+                std::cout << "Nao foi possivel encontrar uma arvore que ligue todos os clusters " << std::endl;
+                break;
+            }
+
+            float menor_peso_local = 99999;
+            int candidatos[ordem];
+            int num_candidatos = 0;
+
+            for (int i = 0; i < qtd_vizinhos; i++)
+            {
+                int vizinho = vizinhos[i];
+                float peso_aresta = get_aresta(vertice_atual, vizinho);
+
+                if (!vertices_visitados[vizinho] && peso_aresta <= menor_peso_local)
+                {
+                    if (peso_aresta < menor_peso_local)
+                    {
+                        menor_peso_local = peso_aresta;
+                        num_candidatos = 0;
+                    }
+                    candidatos[num_candidatos++] = vizinho;
+                }
+
+                if (!cluster_conectados[clusters[vizinho]])
+                {
+                    std::cout << "cluster do " << vizinho << " e " << clusters[vizinho] << std::endl;
+                    num_candidatos = 0;
+                    candidatos[num_candidatos++] = vizinho;
+                    break;
+                }
+            }
+
+            if (num_candidatos == 0)
+            {
+                delete[] vizinhos;
+                std::cout << "Nao foi possivel encontrar uma arvore que ligue todos os clusters " << std::endl;
+                break;
+            }
+
+            int proximo_vertice = candidatos[std::rand() % num_candidatos];
+
+            vertice_atual = proximo_vertice;
+            vertices_visitados[vertice_atual] = true;
+            cluster_conectados[clusters[vertice_atual]] = true;
+            soma_pesos_agmg += menor_peso_local;
+
             bool todos_clusters_conectados = true;
             for (int i = 1; i <= num_clusters; i++)
             {
@@ -779,7 +875,6 @@ public:
 
             delete[] vizinhos;
 
-            // Se todos os clusters estão conectados, sai do loop
             if (todos_clusters_conectados)
             {
                 break;
