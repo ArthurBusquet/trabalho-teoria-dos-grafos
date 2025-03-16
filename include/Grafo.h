@@ -340,6 +340,93 @@ void Grafo::encontrarAGMG() {
     cout << "AGMG construída com sucesso!" << endl;
 }
 
+//algoritmo Reativo:
+
+void Grafo::encontrarAGMG() {
+    map<int, int> vizinhosValidos;  
+    set<int> clustersCobertos;  
+    ListaEncadeada<ArestaEncadeada>* resultado = new ListaEncadeada<ArestaEncadeada>(); 
+
+    // Passo 1: Contar quantos vizinhos válidos cada nó tem
+    for (int i = 1; i <= get_ordem(); i++) {
+        vizinhosValidos[i] = 0;
+
+        set<int> clustersVizinhos;
+        for (int j = 1; j <= get_ordem(); j++) {
+            if (get_aresta(i, j) != -1) { 
+                int clusterOrigem = encontrarCluster(i);
+                int clusterVizinho = encontrarCluster(j);
+
+                if (clusterOrigem != clusterVizinho) {
+                    vizinhosValidos[i]++;
+                    clustersVizinhos.insert(clusterVizinho);
+                }
+            }
+        }
+        clustersCobertos.insert(encontrarCluster(i));
+    }
+
+    // Passo 2: Escolher o primeiro nó baseado no maior número de vizinhos válidos
+    int melhorNo = -1, maxVizinhos = -1;
+    for (const auto& [id, vizinhos] : vizinhosValidos) {
+        if (vizinhos > maxVizinhos || (vizinhos == maxVizinhos && id < melhorNo)) {
+            melhorNo = id;
+            maxVizinhos = vizinhos;
+        }
+    }
+
+    if (melhorNo == -1) {
+        cout << "Erro: Nenhum nó válido encontrado!" << endl;
+        return;
+    }
+
+    set<int> nosNaArvore;
+    nosNaArvore.insert(melhorNo);
+    clustersCobertos.insert(encontrarCluster(melhorNo));
+
+    cout << "Nó inicial: " << melhorNo << endl;
+
+    // Passo 3: Expandir a árvore até cobrir todos os clusters
+    while (clustersCobertos.size() < clusters->get_tamanho()) {
+        int proximoNo = -1, maxVizinhosProximo = -1;
+        ArestaEncadeada* melhorAresta = nullptr;
+
+        for (int noAtual : nosNaArvore) {
+            for (int j = 1; j <= get_ordem(); j++) {
+                if (get_aresta(noAtual, j) != -1) {
+                    int clusterVizinho = encontrarCluster(j);
+
+                    if (nosNaArvore.find(j) == nosNaArvore.end() && clustersCobertos.find(clusterVizinho) == clustersCobertos.end()) {
+                        if (vizinhosValidos[j] > maxVizinhosProximo || 
+                            (vizinhosValidos[j] == maxVizinhosProximo && j < proximoNo)) {
+                            proximoNo = j;
+                            maxVizinhosProximo = vizinhosValidos[j];
+                            melhorAresta = new ArestaEncadeada(new VerticeEncadeado(noAtual, 1), new VerticeEncadeado(j, 1), get_aresta(noAtual, j));
+                        }
+                    }
+                }
+            }
+        }
+
+        if (proximoNo == -1) {
+            cout << "Erro: Não foi possível conectar todos os clusters!" << endl;
+            break;
+        }
+
+        // Adiciona o próximo nó na árvore
+        nosNaArvore.insert(proximoNo);
+        clustersCobertos.insert(encontrarCluster(proximoNo));
+
+        // Adiciona a aresta correspondente
+        resultado->adicionar(melhorAresta);
+
+        cout << "Adicionando aresta: " << melhorAresta->getOrigem()->getId() << " -> " 
+             << melhorAresta->getDestino()->getId() << " (peso " << melhorAresta->getPeso() << ")" << endl;
+    }
+
+    cout << "AGMG construída com sucesso!" << endl;
+}
+
 void Grafo::imprimirAGMG() {
     cout << "Arestas na AGMG:" << endl;
     for (int i = 1; i <= get_ordem(); i++) {
@@ -365,6 +452,8 @@ int Grafo::encontrarCluster(int id) {
     }
     return -1; // Não encontrado
 }
+
+
 
 
 
