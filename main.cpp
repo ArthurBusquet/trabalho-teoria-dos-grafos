@@ -11,23 +11,23 @@
 
 void imprimirDescricaoGrafo(Grafo *graph)
 {
-    // std::cout << "Grau: " << graph->get_grau() << std::endl;
-    // std::cout << "Ordem: " << graph->get_ordem() << std::endl;
-    // std::cout << "Direcionado: " << (graph->eh_direcionado() ? "Sim" : "Nao") << std::endl;
-    // std::cout << "Componentes conexas: " << graph->n_conexo() << std::endl;
-    // std::cout << "Completo: " << graph->eh_completo() << std::endl;
-    // std::cout << "Vertices ponderados: " << (graph->vertice_ponderado() ? "Sim" : "Nao") << std::endl;
-    // std::cout << "Arestas ponderadas: " << (graph->aresta_ponderada() ? "Sim" : "Nao") << std::endl;
+    std::cout << "Grau: " << graph->get_grau() << std::endl;
+    std::cout << "Ordem: " << graph->get_ordem() << std::endl;
+    std::cout << "Direcionado: " << (graph->eh_direcionado() ? "Sim" : "Nao") << std::endl;
+    std::cout << "Componentes conexas: " << graph->n_conexo() << std::endl;
+    std::cout << "Completo: " << graph->eh_completo() << std::endl;
+    std::cout << "Vertices ponderados: " << (graph->vertice_ponderado() ? "Sim" : "Nao") << std::endl;
+    std::cout << "Arestas ponderadas: " << (graph->aresta_ponderada() ? "Sim" : "Nao") << std::endl;
 
-    graph->testa_get_vizinhos(636);
-    // graph->maior_menor_distancia();
-    std::cout << "----------------------------------------" << std::endl;
-    int *clusters = graph->get_clusters();
-    for (int i = 1; i <= 20; i++)
-    {
-        std::cout << "Vértice " << i << " está no cluster " << clusters[i] << endl;
-    }
-    std::cout << "Arvore: " << graph->encontrar_agmg_guloso() << endl;
+    // graph->testa_get_vizinhos(636);
+    // // graph->maior_menor_distancia();
+    // std::cout << "----------------------------------------" << std::endl;
+    // int *clusters = graph->get_clusters();
+    // for (int i = 1; i <= 20; i++)
+    // {
+    //     std::cout << "Vértice " << i << " está no cluster " << clusters[i] << endl;
+    // }
+    // std::cout << "Arvore: " << graph->encontrar_agmg_guloso() << endl;
     // int tamanho_agm;
     // std::pair<int, int>* agm = graph->arvore_geradora_minima_gulosa(tamanho_agm);
 

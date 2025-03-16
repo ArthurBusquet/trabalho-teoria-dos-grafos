@@ -83,45 +83,25 @@ public:
         if (d == 1)
         {
             filename = "./entradas/aa4.mtx";
-        }
-        else if (d == 2)
-        {
-            filename = "./entradas/arquivo2.mtx";
-        }
-        else if (d == 3)
-        {
-            filename = "./entradas/arquivo3.mtx";
-        }
-        else if (d == 4)
-        {
-            filename = "./entradas/arquivo4.mtx";
-        }
-        else if (d == 5)
-        {
-            filename = "./entradas/arquivo5.mtx";
-        }
-        else if (d == 6)
-        {
-            filename = "./entradas/arquivo6.mtx";
-        }
-        else if (d == 7)
-        {
-            filename = "./entradas/arquivo7.mtx";
-        }
-        else if (d == 8)
-        {
-            filename = "./entradas/arquivo8.mtx";
-        }
-        else if (d == 9)
-        {
-            filename = "./entradas/arquivo9.mtx";
-        }
-        else if (d == 10)
-        {
-            filename = "./entradas/arquivo10.mtx";
-        }
-        else
-        {
+        } else if (d == 2) {
+            filename = "./entradas/bio-grid-fruitfly.mtx";
+        } else if (d == 3) {
+            filename = "./entradas/bio-grid-yeast.mtx";
+        } else if (d == 4) {
+            filename = "./entradas/ca-Erdos992.mtx";
+        } else if (d == 5) {
+            filename = "./entradas/airfoil1_dual.mtx";
+        } else if (d == 6) {
+            filename = "./entradas/EX5.mtx";
+        } else if (d == 7) {
+            filename = "./entradas/ukerbe1.mtx";
+        } else if (d == 8) {
+            filename = "./entradas/as-735.mtx";
+        } else if (d == 9) {
+            filename = "./entradas/p2p-Gnutella08.mtx";
+        } else if (d == 10) {
+            filename = "./entradas/bio-dmela.mtx";
+        } else {
             std::cout << "Arquivo Inválido" << std::endl;
         }
         // Abre o arquivo para leitura
