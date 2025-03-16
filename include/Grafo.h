@@ -55,11 +55,34 @@ public:
      */
     Grafo() = default;
 
-    void carrega_grafo_novo()
+    void carrega_grafo_novo(int d)
     {
-
-        std::string filename = "./entradas/aa4.mtx";
-
+        //int d = 1; // Aqui você pode mudar para testar diferentes arquivos
+        std::string filename;
+    
+        if (d == 1) {
+            filename = "./entradas/aa4.mtx";
+        } else if (d == 2) {
+            filename = "./entradas/arquivo2.mtx";
+        } else if (d == 3) {
+            filename = "./entradas/arquivo3.mtx";
+        } else if (d == 4) {
+            filename = "./entradas/arquivo4.mtx";
+        } else if (d == 5) {
+            filename = "./entradas/arquivo5.mtx";
+        } else if (d == 6) {
+            filename = "./entradas/arquivo6.mtx";
+        } else if (d == 7) {
+            filename = "./entradas/arquivo7.mtx";
+        } else if (d == 8) {
+            filename = "./entradas/arquivo8.mtx";
+        } else if (d == 9) {
+            filename = "./entradas/arquivo9.mtx";
+        } else if (d == 10) {
+            filename = "./entradas/arquivo10.mtx";
+        } else {
+            std::cout << "Arquivo Inválido" << std::endl;
+        }
         // Abre o arquivo para leitura
         std::ifstream file(filename);
         if (!file.is_open())
