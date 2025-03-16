@@ -539,6 +539,118 @@ public:
     {
         return clusters;
     }
+
+    /**
+    * @brief Encontra a Árvore Geradora Mínima (AGM) do grafo, garantindo que contenha pelo menos um vértice de cada cluster.
+    *
+    * Esta função utiliza uma abordagem gulosa semelhante ao algoritmo de Kruskal para encontrar a AGM,
+    * mas com a adição de uma verificação para garantir que todos os clusters estejam representados na árvore.
+    *
+    * @return Um array de pares representando as arestas da AGM.
+    */
+    std::pair<int, int>* arvore_geradora_minima_gulosa(int& tamanho_agm) {
+        // Estrutura para armazenar as arestas da AGM
+        std::pair<int, int>* agm = new std::pair<int, int>[ordem]; // No máximo, a AGM terá (ordem - 1) arestas
+        tamanho_agm = 0; // Inicializa o tamanho da AGM
+
+        // Estrutura para armazenar todas as arestas do grafo
+        struct Aresta {
+            int peso;
+            int origem;
+            int destino;
+        };
+
+        // Conta o número total de arestas
+        int total_arestas = 0;
+        for (int i = 1; i <= ordem; i++) {
+            int qtdVizinhos;
+            int* vizinhos = get_vizinhos_vertices(i, qtdVizinhos);
+            total_arestas += qtdVizinhos;
+            delete[] vizinhos; // Libera a memória alocada para o array de vizinhos
+        }
+
+        // Aloca memória para armazenar todas as arestas
+        Aresta* arestas = new Aresta[total_arestas];
+        int indice_arestas = 0;
+
+        // Coleta todas as arestas do grafo
+        for (int i = 1; i <= ordem; i++) {
+            int qtdVizinhos;
+            int* vizinhos = get_vizinhos_vertices(i, qtdVizinhos);
+            for (int j = 0; j < qtdVizinhos; j++) {
+                int vizinho = vizinhos[j];
+                int peso = get_aresta(i, vizinho);
+                arestas[indice_arestas].peso = peso;
+                arestas[indice_arestas].origem = i;
+                arestas[indice_arestas].destino = vizinho;
+                indice_arestas++;
+            }
+            delete[] vizinhos; // Libera a memória alocada para o array de vizinhos
+        }
+
+        // Ordena as arestas manualmente (usando Bubble Sort)
+        for (int i = 0; i < total_arestas - 1; i++) {
+            for (int j = 0; j < total_arestas - i - 1; j++) {
+                if (arestas[j].peso > arestas[j + 1].peso) {
+                    // Troca as arestas
+                    Aresta temp = arestas[j];
+                    arestas[j] = arestas[j + 1];
+                    arestas[j + 1] = temp;
+                }
+            }
+        }
+
+        // Estrutura para verificar se um vértice já está na AGM
+        bool* na_agm = new bool[ordem + 1];
+        for (int i = 1; i <= ordem; i++) {
+            na_agm[i] = false;
+        }
+
+        // Estrutura para verificar se um cluster já está representado na AGM
+        bool* cluster_representado = new bool[clusters[ordem] + 1];
+        for (int i = 1; i <= clusters[ordem]; i++) {
+            cluster_representado[i] = false;
+        }
+
+        // Contador de clusters representados
+        int clusters_representados = 0;
+
+        // Algoritmo guloso para construir a AGM
+        for (int i = 0; i < total_arestas; i++) {
+            int u = arestas[i].origem;
+            int v = arestas[i].destino;
+
+            // Verifica se a aresta conecta dois vértices que não estão na AGM
+            if (!na_agm[u] || !na_agm[v]) {
+                agm[tamanho_agm] = {u, v};
+                tamanho_agm++;
+                na_agm[u] = true;
+                na_agm[v] = true;
+
+                // Marca o cluster como representado, se necessário
+                if (!cluster_representado[clusters[u]]) {
+                    cluster_representado[clusters[u]] = true;
+                    clusters_representados++;
+                }
+                if (!cluster_representado[clusters[v]]) {
+                    cluster_representado[clusters[v]] = true;
+                    clusters_representados++;
+                }
+
+                // Verifica se todos os clusters estão representados
+                if (clusters_representados == clusters[ordem]) {
+                    break; // Todos os clusters estão representados, podemos parar
+                }
+            }
+        }
+
+        // Libera a memória alocada
+        delete[] arestas;
+        delete[] na_agm;
+        delete[] cluster_representado;
+
+        return agm;
+    }
 };
 
 #endif // GRAFO_H_INCLUDED
