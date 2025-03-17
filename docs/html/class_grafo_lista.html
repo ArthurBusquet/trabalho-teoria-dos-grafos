@@ -152,6 +152,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a264c985123f08ae3ab99b4b1bb27261a" id="r_a264c985123f08ae3ab99b4b1bb27261a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a264c985123f08ae3ab99b4b1bb27261a">inicializa_grafo</a> () override</td></tr>
 <tr class="memdesc:a264c985123f08ae3ab99b4b1bb27261a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método para inicializar o grafo a partir de um arquivo de entrada. Lê as informações de vértices, arestas, pesos e outras configurações.  <br /></td></tr>
 <tr class="separator:a264c985123f08ae3ab99b4b1bb27261a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf8ec13fc00a2c635ef546b14f524b3d" id="r_acf8ec13fc00a2c635ef546b14f524b3d"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf8ec13fc00a2c635ef546b14f524b3d">get_vizinhos_array</a> (int id, int &amp;tamanho) override</td></tr>
+<tr class="separator:acf8ec13fc00a2c635ef546b14f524b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e75457615541e600ad2c1e0c054e2f9" id="r_a1e75457615541e600ad2c1e0c054e2f9"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e75457615541e600ad2c1e0c054e2f9">get_vizinhos_vertices</a> (int vertice, int &amp;quantidadeVizinhos) override</td></tr>
+<tr class="memdesc:a1e75457615541e600ad2c1e0c054e2f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtém os vértices vizinhos de um determinado vértice.  <br /></td></tr>
+<tr class="separator:a1e75457615541e600ad2c1e0c054e2f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fb6a8087a973f7061b069d1d38a1174" id="r_a4fb6a8087a973f7061b069d1d38a1174"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fb6a8087a973f7061b069d1d38a1174">~GrafoLista</a> ()</td></tr>
 <tr class="memdesc:a4fb6a8087a973f7061b069d1d38a1174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruidor da classe <a class="el" href="class_grafo_lista.html" title="A classe GrafoLista é uma implementação de grafo que utiliza listas encadeadas para armazenar os vért...">GrafoLista</a>. Libera a memória alocada para as listas de vértices e arestas.  <br /></td></tr>
 <tr class="separator:a4fb6a8087a973f7061b069d1d38a1174"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,9 +164,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0f6befe1a4a9bdaf4a05d2100f476522 inherit pub_methods_class_grafo" id="r_a0f6befe1a4a9bdaf4a05d2100f476522"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a0f6befe1a4a9bdaf4a05d2100f476522">Grafo</a> ()=default</td></tr>
 <tr class="memdesc:a0f6befe1a4a9bdaf4a05d2100f476522 inherit pub_methods_class_grafo"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construtor padrão.  <br /></td></tr>
 <tr class="separator:a0f6befe1a4a9bdaf4a05d2100f476522 inherit pub_methods_class_grafo"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ebba30af6e13ced6fea59de81080396 inherit pub_methods_class_grafo" id="r_a6ebba30af6e13ced6fea59de81080396"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a6ebba30af6e13ced6fea59de81080396">~Grafo</a> ()=default</td></tr>
-<tr class="memdesc:a6ebba30af6e13ced6fea59de81080396 inherit pub_methods_class_grafo"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruidor virtual.  <br /></td></tr>
-<tr class="separator:a6ebba30af6e13ced6fea59de81080396 inherit pub_methods_class_grafo"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31201c0feeb55bc2790627f9fded6da5 inherit pub_methods_class_grafo" id="r_a31201c0feeb55bc2790627f9fded6da5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a31201c0feeb55bc2790627f9fded6da5">carrega_grafo_novo</a> (int d)</td></tr>
+<tr class="memdesc:a31201c0feeb55bc2790627f9fded6da5 inherit pub_methods_class_grafo"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carrega o grafo a partir de um arquivo que contem a instancia do grafo.  <br /></td></tr>
+<tr class="separator:a31201c0feeb55bc2790627f9fded6da5 inherit pub_methods_class_grafo"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8068832fcbbb1abe9be821b18b2d02d inherit pub_methods_class_grafo" id="r_ac8068832fcbbb1abe9be821b18b2d02d"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#ac8068832fcbbb1abe9be821b18b2d02d">~Grafo</a> ()</td></tr>
+<tr class="memdesc:ac8068832fcbbb1abe9be821b18b2d02d inherit pub_methods_class_grafo"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruidor virtual.  <br /></td></tr>
+<tr class="separator:ac8068832fcbbb1abe9be821b18b2d02d inherit pub_methods_class_grafo"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a062f2789887e0e4d0dabf0f40f1196e3 inherit pub_methods_class_grafo" id="r_a062f2789887e0e4d0dabf0f40f1196e3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a062f2789887e0e4d0dabf0f40f1196e3">get_ordem</a> ()</td></tr>
 <tr class="memdesc:a062f2789887e0e4d0dabf0f40f1196e3 inherit pub_methods_class_grafo"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtém o número de vértices no grafo (ordem do grafo).  <br /></td></tr>
 <tr class="separator:a062f2789887e0e4d0dabf0f40f1196e3 inherit pub_methods_class_grafo"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,12 +197,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8ad69eeacb86e6baccdd5cb1236a5090 inherit pub_methods_class_grafo" id="r_a8ad69eeacb86e6baccdd5cb1236a5090"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a8ad69eeacb86e6baccdd5cb1236a5090">set_aresta_ponderada</a> (bool arestaPonderada)</td></tr>
 <tr class="memdesc:a8ad69eeacb86e6baccdd5cb1236a5090 inherit pub_methods_class_grafo"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define se as arestas do grafo são ponderadas.  <br /></td></tr>
 <tr class="separator:a8ad69eeacb86e6baccdd5cb1236a5090 inherit pub_methods_class_grafo"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e4436c6bb72bf73c64540ceda34cb1e inherit pub_methods_class_grafo" id="r_a9e4436c6bb72bf73c64540ceda34cb1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a9e4436c6bb72bf73c64540ceda34cb1e">carrega_grafo</a> ()</td></tr>
-<tr class="memdesc:a9e4436c6bb72bf73c64540ceda34cb1e inherit pub_methods_class_grafo"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carrega o grafo a partir de um arquivo.  <br /></td></tr>
-<tr class="separator:a9e4436c6bb72bf73c64540ceda34cb1e inherit pub_methods_class_grafo"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2778094dc6ed5a5d7898e3e765ed2c57 inherit pub_methods_class_grafo" id="r_a2778094dc6ed5a5d7898e3e765ed2c57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a2778094dc6ed5a5d7898e3e765ed2c57">carrega_grafo2</a> ()</td></tr>
-<tr class="memdesc:a2778094dc6ed5a5d7898e3e765ed2c57 inherit pub_methods_class_grafo"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carrega o grafo a partir de um arquivo com outro formato.  <br /></td></tr>
-<tr class="separator:a2778094dc6ed5a5d7898e3e765ed2c57 inherit pub_methods_class_grafo"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9af683109b9f5ddb20a4c951a739d8df inherit pub_methods_class_grafo" id="r_a9af683109b9f5ddb20a4c951a739d8df"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a9af683109b9f5ddb20a4c951a739d8df">get_grau</a> ()</td></tr>
 <tr class="memdesc:a9af683109b9f5ddb20a4c951a739d8df inherit pub_methods_class_grafo"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtém o grau (número de vizinhos) do vértice com maior grau.  <br /></td></tr>
 <tr class="separator:a9af683109b9f5ddb20a4c951a739d8df inherit pub_methods_class_grafo"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -210,6 +212,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2d60fe7bde618a28cafa79b5e3de70da inherit pub_methods_class_grafo" id="r_a2d60fe7bde618a28cafa79b5e3de70da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a2d60fe7bde618a28cafa79b5e3de70da">maior_menor_distancia</a> ()</td></tr>
 <tr class="memdesc:a2d60fe7bde618a28cafa79b5e3de70da inherit pub_methods_class_grafo"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encontra a maior menor distância entre os vértices utilizando o algoritmo de Floyd-Warshall.  <br /></td></tr>
 <tr class="separator:a2d60fe7bde618a28cafa79b5e3de70da inherit pub_methods_class_grafo"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bbd26a70b8237948f1bffc220a34d71 inherit pub_methods_class_grafo" id="r_a4bbd26a70b8237948f1bffc220a34d71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a4bbd26a70b8237948f1bffc220a34d71">criar_clusters_aleatorios</a> (int num_clusters)</td></tr>
+<tr class="separator:a4bbd26a70b8237948f1bffc220a34d71 inherit pub_methods_class_grafo"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af909a433166c2f9973e3b4270d58acf0 inherit pub_methods_class_grafo" id="r_af909a433166c2f9973e3b4270d58acf0"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#af909a433166c2f9973e3b4270d58acf0">get_clusters</a> ()</td></tr>
+<tr class="separator:af909a433166c2f9973e3b4270d58acf0 inherit pub_methods_class_grafo"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17fef3dbdbadbd0db01ee72365bc153f inherit pub_methods_class_grafo" id="r_a17fef3dbdbadbd0db01ee72365bc153f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a17fef3dbdbadbd0db01ee72365bc153f">encontrar_agmg_guloso</a> ()</td></tr>
+<tr class="memdesc:a17fef3dbdbadbd0db01ee72365bc153f inherit pub_methods_class_grafo"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encontra o Árvore Geradora Mínima (AGM) do grafo, garantindo que contenha pelo menos um vértice de cada cluster.  <br /></td></tr>
+<tr class="separator:a17fef3dbdbadbd0db01ee72365bc153f inherit pub_methods_class_grafo"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a108e982620c70a5f97984622daf7f0ea inherit pub_methods_class_grafo" id="r_a108e982620c70a5f97984622daf7f0ea"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a108e982620c70a5f97984622daf7f0ea">encontrar_agmg_randomizado</a> ()</td></tr>
+<tr class="memdesc:a108e982620c70a5f97984622daf7f0ea inherit pub_methods_class_grafo"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encontra o Árvore Geradora Mínima (AGM) do grafo, garantindo que contenha pelo menos um vértice de cada cluster.  <br /></td></tr>
+<tr class="separator:a108e982620c70a5f97984622daf7f0ea inherit pub_methods_class_grafo"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2707413c67adfa6a39a9317c62f721cb inherit pub_methods_class_grafo" id="r_a2707413c67adfa6a39a9317c62f721cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grafo.html#a2707413c67adfa6a39a9317c62f721cb">testa_get_vizinhos</a> (int id)</td></tr>
+<tr class="separator:a2707413c67adfa6a39a9317c62f721cb inherit pub_methods_class_grafo"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A classe <a class="el" href="class_grafo_lista.html" title="A classe GrafoLista é uma implementação de grafo que utiliza listas encadeadas para armazenar os vért...">GrafoLista</a> é uma implementação de grafo que utiliza listas encadeadas para armazenar os vértices e arestas. Ela herda da classe abstrata <a class="el" href="class_grafo.html" title="Classe base para a representação de um grafo.">Grafo</a> e implementa suas funções virtuais para manipulação de vértices e arestas. </p>
@@ -363,6 +377,79 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>O número de vizinhos do vértice. </dd></dl>
 
 <p>Implements <a class="el" href="class_grafo.html#a8a69e155257c71c3442e4314dc7ac597">Grafo</a>.</p>
+
+</div>
+</div>
+<a id="acf8ec13fc00a2c635ef546b14f524b3d" name="acf8ec13fc00a2c635ef546b14f524b3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf8ec13fc00a2c635ef546b14f524b3d">&#9670;&#160;</a></span>get_vizinhos_array()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int * GrafoLista::get_vizinhos_array </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>tamanho</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="class_grafo.html#ae20da66b385152200e07579a43bba23b">Grafo</a>.</p>
+
+</div>
+</div>
+<a id="a1e75457615541e600ad2c1e0c054e2f9" name="a1e75457615541e600ad2c1e0c054e2f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e75457615541e600ad2c1e0c054e2f9">&#9670;&#160;</a></span>get_vizinhos_vertices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int * GrafoLista::get_vizinhos_vertices </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>vertice</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>quantidadeVizinhos</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Obtém os vértices vizinhos de um determinado vértice. </p>
+<p>Esta função retorna um array contendo os vértices vizinhos do vértice especificado. A quantidade de vizinhos é armazenada na variável passada por referência.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vertice</td><td>O vértice cujo vizinhos serão buscados. </td></tr>
+    <tr><td class="paramname">quantidadeVizinhos</td><td>Referência para armazenar a quantidade total de vizinhos. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Ponteiro para um array contendo os vértices vizinhos. </dd></dl>
+
+<p>Implements <a class="el" href="class_grafo.html#a37d3ebe9a3fdc55e6127e2af2f1dac5f">Grafo</a>.</p>
 
 </div>
 </div>

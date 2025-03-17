@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['_7egrafo_0',['~Grafo',['../class_grafo.html#a6ebba30af6e13ced6fea59de81080396',1,'Grafo']]],
-  ['_7egrafolista_1',['~GrafoLista',['../class_grafo_lista.html#a4fb6a8087a973f7061b069d1d38a1174',1,'GrafoLista']]],
-  ['_7egrafomatriz_2',['~GrafoMatriz',['../class_grafo_matriz.html#a2907ad8631e3bc21c34840cfbd7e0cbb',1,'GrafoMatriz']]],
-  ['_7elistaencadeada_3',['~ListaEncadeada',['../class_lista_encadeada.html#a28bee040db9c86b637590d2788bf351b',1,'ListaEncadeada']]]
+  ['vertice_5fponderado_0',['vertice_ponderado',['../class_grafo.html#a22aa3389904db28407564c7e279af0e6',1,'Grafo']]],
+  ['verticeencadeado_1',['VerticeEncadeado',['../class_vertice_encadeado.html#a21d7b669d9c67ae413a6c7209008880d',1,'VerticeEncadeado']]]
 ];

@@ -36,6 +36,10 @@ void \mbox{\hyperlink{class_grafo_lista_ade800e5e355aebd673a344987fd0865b}{impri
 \begin{DoxyCompactList}\small\item\em Método para imprimir os vértices e as arestas do grafo, além de informações sobre o grau e componentes conexas. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_grafo_lista_a264c985123f08ae3ab99b4b1bb27261a}{inicializa\+\_\+grafo}} () override
 \begin{DoxyCompactList}\small\item\em Método para inicializar o grafo a partir de um arquivo de entrada. Lê as informações de vértices, arestas, pesos e outras configurações. \end{DoxyCompactList}\item 
+int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_grafo_lista_acf8ec13fc00a2c635ef546b14f524b3d}{get\+\_\+vizinhos\+\_\+array}} (int id, int \&tamanho) override
+\item 
+int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_grafo_lista_a1e75457615541e600ad2c1e0c054e2f9}{get\+\_\+vizinhos\+\_\+vertices}} (int vertice, int \&quantidade\+Vizinhos) override
+\begin{DoxyCompactList}\small\item\em Obtém os vértices vizinhos de um determinado vértice. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_grafo_lista_a4fb6a8087a973f7061b069d1d38a1174}{\texorpdfstring{$\sim$}{\string~}\+Grafo\+Lista}} ()
 \begin{DoxyCompactList}\small\item\em Destruidor da classe \doxylink{class_grafo_lista}{Grafo\+Lista}. Libera a memória alocada para as listas de vértices e arestas. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_grafo}{Grafo}}}
@@ -43,7 +47,9 @@ void \mbox{\hyperlink{class_grafo_lista_a264c985123f08ae3ab99b4b1bb27261a}{inici
 \item 
 \mbox{\hyperlink{class_grafo_a0f6befe1a4a9bdaf4a05d2100f476522}{Grafo}} ()=default
 \begin{DoxyCompactList}\small\item\em Construtor padrão. \end{DoxyCompactList}\item 
-virtual \mbox{\hyperlink{class_grafo_a6ebba30af6e13ced6fea59de81080396}{\texorpdfstring{$\sim$}{\string~}\+Grafo}} ()=default
+void \mbox{\hyperlink{class_grafo_a31201c0feeb55bc2790627f9fded6da5}{carrega\+\_\+grafo\+\_\+novo}} (int d)
+\begin{DoxyCompactList}\small\item\em Carrega o grafo a partir de um arquivo que contem a instancia do grafo. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{class_grafo_ac8068832fcbbb1abe9be821b18b2d02d}{\texorpdfstring{$\sim$}{\string~}\+Grafo}} ()
 \begin{DoxyCompactList}\small\item\em Destruidor virtual. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{class_grafo_a062f2789887e0e4d0dabf0f40f1196e3}{get\+\_\+ordem}} ()
 \begin{DoxyCompactList}\small\item\em Obtém o número de vértices no grafo (ordem do grafo). \end{DoxyCompactList}\item 
@@ -63,10 +69,6 @@ bool \mbox{\hyperlink{class_grafo_a3cc7e8c8e78252d54d04a734ba025e28}{aresta\+\_\
 \begin{DoxyCompactList}\small\item\em Verifica se as arestas do grafo são ponderadas. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_grafo_a8ad69eeacb86e6baccdd5cb1236a5090}{set\+\_\+aresta\+\_\+ponderada}} (bool aresta\+Ponderada)
 \begin{DoxyCompactList}\small\item\em Define se as arestas do grafo são ponderadas. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_grafo_a9e4436c6bb72bf73c64540ceda34cb1e}{carrega\+\_\+grafo}} ()
-\begin{DoxyCompactList}\small\item\em Carrega o grafo a partir de um arquivo. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_grafo_a2778094dc6ed5a5d7898e3e765ed2c57}{carrega\+\_\+grafo2}} ()
-\begin{DoxyCompactList}\small\item\em Carrega o grafo a partir de um arquivo com outro formato. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{class_grafo_a9af683109b9f5ddb20a4c951a739d8df}{get\+\_\+grau}} ()
 \begin{DoxyCompactList}\small\item\em Obtém o grau (número de vizinhos) do vértice com maior grau. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_grafo_a6ef121a6657a931f8881ab0a0e7a77ee}{eh\+\_\+completo}} ()
@@ -76,7 +78,17 @@ void \mbox{\hyperlink{class_grafo_a1fce74258aedbdb525555d1c9ea80f8b}{dfs}} (int 
 int \mbox{\hyperlink{class_grafo_a8107b74abb70e626d18d3466a9a1cb63}{n\+\_\+conexo}} ()
 \begin{DoxyCompactList}\small\item\em Calcula o número de componentes conexas do grafo. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_grafo_a2d60fe7bde618a28cafa79b5e3de70da}{maior\+\_\+menor\+\_\+distancia}} ()
-\begin{DoxyCompactList}\small\item\em Encontra a maior menor distância entre os vértices utilizando o algoritmo de Floyd-\/\+Warshall. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Encontra a maior menor distância entre os vértices utilizando o algoritmo de Floyd-\/\+Warshall. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a4bbd26a70b8237948f1bffc220a34d71}{criar\+\_\+clusters\+\_\+aleatorios}} (int num\+\_\+clusters)
+\item 
+int \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_grafo_af909a433166c2f9973e3b4270d58acf0}{get\+\_\+clusters}} ()
+\item 
+float \mbox{\hyperlink{class_grafo_a17fef3dbdbadbd0db01ee72365bc153f}{encontrar\+\_\+agmg\+\_\+guloso}} ()
+\begin{DoxyCompactList}\small\item\em Encontra o Árvore Geradora Mínima (AGM) do grafo, garantindo que contenha pelo menos um vértice de cada cluster. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_grafo_a108e982620c70a5f97984622daf7f0ea}{encontrar\+\_\+agmg\+\_\+randomizado}} ()
+\begin{DoxyCompactList}\small\item\em Encontra o Árvore Geradora Mínima (AGM) do grafo, garantindo que contenha pelo menos um vértice de cada cluster. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_grafo_a2707413c67adfa6a39a9317c62f721cb}{testa\+\_\+get\+\_\+vizinhos}} (int id)
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -173,6 +185,42 @@ O número de vizinhos do vértice.
 
 
 Implements \mbox{\hyperlink{class_grafo_a8a69e155257c71c3442e4314dc7ac597}{Grafo}}.
+
+\Hypertarget{class_grafo_lista_acf8ec13fc00a2c635ef546b14f524b3d}\index{GrafoLista@{GrafoLista}!get\_vizinhos\_array@{get\_vizinhos\_array}}
+\index{get\_vizinhos\_array@{get\_vizinhos\_array}!GrafoLista@{GrafoLista}}
+\doxysubsubsection{\texorpdfstring{get\_vizinhos\_array()}{get\_vizinhos\_array()}}
+{\footnotesize\ttfamily \label{class_grafo_lista_acf8ec13fc00a2c635ef546b14f524b3d} 
+int \texorpdfstring{$\ast$}{*} Grafo\+Lista\+::get\+\_\+vizinhos\+\_\+array (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{int \&}]{tamanho}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_grafo_ae20da66b385152200e07579a43bba23b}{Grafo}}.
+
+\Hypertarget{class_grafo_lista_a1e75457615541e600ad2c1e0c054e2f9}\index{GrafoLista@{GrafoLista}!get\_vizinhos\_vertices@{get\_vizinhos\_vertices}}
+\index{get\_vizinhos\_vertices@{get\_vizinhos\_vertices}!GrafoLista@{GrafoLista}}
+\doxysubsubsection{\texorpdfstring{get\_vizinhos\_vertices()}{get\_vizinhos\_vertices()}}
+{\footnotesize\ttfamily \label{class_grafo_lista_a1e75457615541e600ad2c1e0c054e2f9} 
+int \texorpdfstring{$\ast$}{*} Grafo\+Lista\+::get\+\_\+vizinhos\+\_\+vertices (\begin{DoxyParamCaption}\item[{int}]{vertice}{, }\item[{int \&}]{quantidade\+Vizinhos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Obtém os vértices vizinhos de um determinado vértice. 
+
+Esta função retorna um array contendo os vértices vizinhos do vértice especificado. A quantidade de vizinhos é armazenada na variável passada por referência.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertice} & O vértice cujo vizinhos serão buscados. \\
+\hline
+{\em quantidade\+Vizinhos} & Referência para armazenar a quantidade total de vizinhos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ponteiro para um array contendo os vértices vizinhos. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_grafo_a37d3ebe9a3fdc55e6127e2af2f1dac5f}{Grafo}}.
 
 \Hypertarget{class_grafo_lista_ade800e5e355aebd673a344987fd0865b}\index{GrafoLista@{GrafoLista}!imprimir@{imprimir}}
 \index{imprimir@{imprimir}!GrafoLista@{GrafoLista}}

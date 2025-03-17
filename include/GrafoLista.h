@@ -114,14 +114,25 @@ public:
 
     int* get_vizinhos_array(int id, int& tamanho) override;
 
-
+    /**
+    * @brief Obtém os vértices vizinhos de um determinado vértice.
+    *
+    * @details Esta função retorna um array contendo os vértices vizinhos
+    * do vértice especificado. A quantidade de vizinhos é armazenada na 
+    * variável passada por referência.
+    *
+    * @param vertice O vértice cujo vizinhos serão buscados.
+    * @param quantidadeVizinhos Referência para armazenar a quantidade total de vizinhos.
+    * @return Ponteiro para um array contendo os vértices vizinhos.
+    */
+    int* get_vizinhos_vertices(int vertice, int& quantidadeVizinhos) override;
 
     /**
      * @brief Destruidor da classe GrafoLista. Libera a memória alocada para as listas de vértices e arestas.
      */
     ~GrafoLista();
 
-    int* get_vizinhos_vertices(int vertice, int& quantidadeVizinhos) override;
+
 };
 
 #endif // GRAFOLISTA_H_INCLUDED

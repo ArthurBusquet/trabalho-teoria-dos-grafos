@@ -114,8 +114,8 @@ $(function(){initNavTree('functions_func.html',''); initResizable(true); });
 
 <h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
 <li>calcularIndiceLinear()&#160;:&#160;<a class="el" href="class_grafo_matriz.html#a1bcdc6146b2526c8aacbfe9708885378">GrafoMatriz</a></li>
-<li>carrega_grafo()&#160;:&#160;<a class="el" href="class_grafo.html#a9e4436c6bb72bf73c64540ceda34cb1e">Grafo</a></li>
-<li>carrega_grafo2()&#160;:&#160;<a class="el" href="class_grafo.html#a2778094dc6ed5a5d7898e3e765ed2c57">Grafo</a></li>
+<li>carrega_grafo_novo()&#160;:&#160;<a class="el" href="class_grafo.html#a31201c0feeb55bc2790627f9fded6da5">Grafo</a></li>
+<li>criar_clusters_aleatorios()&#160;:&#160;<a class="el" href="class_grafo.html#a4bbd26a70b8237948f1bffc220a34d71">Grafo</a></li>
 </ul>
 
 
@@ -127,16 +127,21 @@ $(function(){initNavTree('functions_func.html',''); initResizable(true); });
 <h3><a id="index_e" name="index_e"></a>- e -</h3><ul>
 <li>eh_completo()&#160;:&#160;<a class="el" href="class_grafo.html#a6ef121a6657a931f8881ab0a0e7a77ee">Grafo</a></li>
 <li>eh_direcionado()&#160;:&#160;<a class="el" href="class_grafo.html#a24bd7ebc8fed82323a4335fb6b7f7800">Grafo</a></li>
+<li>encontrar_agmg_guloso()&#160;:&#160;<a class="el" href="class_grafo.html#a17fef3dbdbadbd0db01ee72365bc153f">Grafo</a></li>
+<li>encontrar_agmg_randomizado()&#160;:&#160;<a class="el" href="class_grafo.html#a108e982620c70a5f97984622daf7f0ea">Grafo</a></li>
 </ul>
 
 
 <h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
 <li>get_aresta()&#160;:&#160;<a class="el" href="class_grafo.html#a5507e6044381fd85aaf8c20268becfb0">Grafo</a>, <a class="el" href="class_grafo_lista.html#ac8d5284da7f3ef4007c8cac351fc4df6">GrafoLista</a>, <a class="el" href="class_grafo_matriz.html#ad8bfe4e0ba65c43bb15c24b5d5dd41a2">GrafoMatriz</a></li>
+<li>get_clusters()&#160;:&#160;<a class="el" href="class_grafo.html#af909a433166c2f9973e3b4270d58acf0">Grafo</a></li>
 <li>get_grau()&#160;:&#160;<a class="el" href="class_grafo.html#a9af683109b9f5ddb20a4c951a739d8df">Grafo</a></li>
 <li>get_ordem()&#160;:&#160;<a class="el" href="class_grafo.html#a062f2789887e0e4d0dabf0f40f1196e3">Grafo</a></li>
 <li>get_tamanho()&#160;:&#160;<a class="el" href="class_lista_encadeada.html#a56b0cf38d0578e52a261fb024c7a7a34">ListaEncadeada&lt; T &gt;</a></li>
 <li>get_vertice()&#160;:&#160;<a class="el" href="class_grafo.html#a1f0abb031405ef9e387dad1b8ab68fb0">Grafo</a>, <a class="el" href="class_grafo_lista.html#ac11ea955de368ba048d67e44f7cf5f0e">GrafoLista</a>, <a class="el" href="class_grafo_matriz.html#adf60b7bb020e48e07a6cb2dc6982b42a">GrafoMatriz</a></li>
 <li>get_vizinhos()&#160;:&#160;<a class="el" href="class_grafo.html#a8a69e155257c71c3442e4314dc7ac597">Grafo</a>, <a class="el" href="class_grafo_lista.html#ad56ed6d6af7d5741c0a59f48ae339575">GrafoLista</a>, <a class="el" href="class_grafo_matriz.html#ad26746a41b10cb0649e750ab7c011981">GrafoMatriz</a></li>
+<li>get_vizinhos_array()&#160;:&#160;<a class="el" href="class_grafo.html#ae20da66b385152200e07579a43bba23b">Grafo</a>, <a class="el" href="class_grafo_lista.html#acf8ec13fc00a2c635ef546b14f524b3d">GrafoLista</a>, <a class="el" href="class_grafo_matriz.html#a230a0115e4c047ffaae3cfb9e8b2d9bf">GrafoMatriz</a></li>
+<li>get_vizinhos_vertices()&#160;:&#160;<a class="el" href="class_grafo.html#a37d3ebe9a3fdc55e6127e2af2f1dac5f">Grafo</a>, <a class="el" href="class_grafo_lista.html#a1e75457615541e600ad2c1e0c054e2f9">GrafoLista</a>, <a class="el" href="class_grafo_matriz.html#aaf25a0a110dec49dc97e1cdd978b2b90">GrafoMatriz</a></li>
 <li>getConexao()&#160;:&#160;<a class="el" href="class_vertice_encadeado.html#a2c2f21be1dfa436ad730df02745b257b">VerticeEncadeado</a></li>
 <li>getConexoes()&#160;:&#160;<a class="el" href="class_vertice_encadeado.html#aabfba1d3a90cfddfc0e487409479a616">VerticeEncadeado</a></li>
 <li>getDestino()&#160;:&#160;<a class="el" href="class_aresta_encadeada.html#ac950eb4a5af50c64792b8df2ad037869">ArestaEncadeada</a></li>
@@ -196,6 +201,11 @@ $(function(){initNavTree('functions_func.html',''); initResizable(true); });
 </ul>
 
 
+<h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
+<li>testa_get_vizinhos()&#160;:&#160;<a class="el" href="class_grafo.html#a2707413c67adfa6a39a9317c62f721cb">Grafo</a></li>
+</ul>
+
+
 <h3><a id="index_v" name="index_v"></a>- v -</h3><ul>
 <li>vertice_ponderado()&#160;:&#160;<a class="el" href="class_grafo.html#a22aa3389904db28407564c7e279af0e6">Grafo</a></li>
 <li>VerticeEncadeado()&#160;:&#160;<a class="el" href="class_vertice_encadeado.html#a21d7b669d9c67ae413a6c7209008880d">VerticeEncadeado</a></li>
@@ -203,7 +213,7 @@ $(function(){initNavTree('functions_func.html',''); initResizable(true); });
 
 
 <h3><a id="index__7E" name="index__7E"></a>- ~ -</h3><ul>
-<li>~Grafo()&#160;:&#160;<a class="el" href="class_grafo.html#a6ebba30af6e13ced6fea59de81080396">Grafo</a></li>
+<li>~Grafo()&#160;:&#160;<a class="el" href="class_grafo.html#ac8068832fcbbb1abe9be821b18b2d02d">Grafo</a></li>
 <li>~GrafoLista()&#160;:&#160;<a class="el" href="class_grafo_lista.html#a4fb6a8087a973f7061b069d1d38a1174">GrafoLista</a></li>
 <li>~GrafoMatriz()&#160;:&#160;<a class="el" href="class_grafo_matriz.html#a2907ad8631e3bc21c34840cfbd7e0cbb">GrafoMatriz</a></li>
 <li>~ListaEncadeada()&#160;:&#160;<a class="el" href="class_lista_encadeada.html#a28bee040db9c86b637590d2788bf351b">ListaEncadeada&lt; T &gt;</a></li>

@@ -25,106 +25,118 @@
 \contentsline {subsection}{\numberline {4.2.3}Member Function Documentation}{10}{subsection.4.2.3}%
 \contentsline {subsubsection}{\numberline {4.2.3.1}aresta\_ponderada()}{10}{subsubsection.4.2.3.1}%
 \contentsline {subsubsection}{\numberline {4.2.3.2}aumenta\_ordem()}{10}{subsubsection.4.2.3.2}%
-\contentsline {subsubsection}{\numberline {4.2.3.3}carrega\_grafo()}{10}{subsubsection.4.2.3.3}%
-\contentsline {subsubsection}{\numberline {4.2.3.4}carrega\_grafo2()}{10}{subsubsection.4.2.3.4}%
-\contentsline {subsubsection}{\numberline {4.2.3.5}dfs()}{10}{subsubsection.4.2.3.5}%
+\contentsline {subsubsection}{\numberline {4.2.3.3}carrega\_grafo\_novo()}{10}{subsubsection.4.2.3.3}%
+\contentsline {subsubsection}{\numberline {4.2.3.4}criar\_clusters\_aleatorios()}{11}{subsubsection.4.2.3.4}%
+\contentsline {subsubsection}{\numberline {4.2.3.5}dfs()}{11}{subsubsection.4.2.3.5}%
 \contentsline {subsubsection}{\numberline {4.2.3.6}eh\_completo()}{11}{subsubsection.4.2.3.6}%
 \contentsline {subsubsection}{\numberline {4.2.3.7}eh\_direcionado()}{11}{subsubsection.4.2.3.7}%
-\contentsline {subsubsection}{\numberline {4.2.3.8}get\_aresta()}{11}{subsubsection.4.2.3.8}%
-\contentsline {subsubsection}{\numberline {4.2.3.9}get\_grau()}{12}{subsubsection.4.2.3.9}%
-\contentsline {subsubsection}{\numberline {4.2.3.10}get\_ordem()}{12}{subsubsection.4.2.3.10}%
-\contentsline {subsubsection}{\numberline {4.2.3.11}get\_vertice()}{12}{subsubsection.4.2.3.11}%
-\contentsline {subsubsection}{\numberline {4.2.3.12}get\_vizinhos()}{12}{subsubsection.4.2.3.12}%
-\contentsline {subsubsection}{\numberline {4.2.3.13}inicializa\_grafo()}{13}{subsubsection.4.2.3.13}%
-\contentsline {subsubsection}{\numberline {4.2.3.14}maior\_menor\_distancia()}{13}{subsubsection.4.2.3.14}%
-\contentsline {subsubsection}{\numberline {4.2.3.15}n\_conexo()}{13}{subsubsection.4.2.3.15}%
-\contentsline {subsubsection}{\numberline {4.2.3.16}nova\_aresta()}{13}{subsubsection.4.2.3.16}%
-\contentsline {subsubsection}{\numberline {4.2.3.17}set\_aresta()}{13}{subsubsection.4.2.3.17}%
-\contentsline {subsubsection}{\numberline {4.2.3.18}set\_aresta\_ponderada()}{14}{subsubsection.4.2.3.18}%
-\contentsline {subsubsection}{\numberline {4.2.3.19}set\_eh\_direcionado()}{14}{subsubsection.4.2.3.19}%
-\contentsline {subsubsection}{\numberline {4.2.3.20}set\_ordem()}{14}{subsubsection.4.2.3.20}%
-\contentsline {subsubsection}{\numberline {4.2.3.21}set\_vertice()}{14}{subsubsection.4.2.3.21}%
-\contentsline {subsubsection}{\numberline {4.2.3.22}set\_vertice\_ponderado()}{15}{subsubsection.4.2.3.22}%
-\contentsline {subsubsection}{\numberline {4.2.3.23}vertice\_ponderado()}{15}{subsubsection.4.2.3.23}%
-\contentsline {section}{\numberline {4.3}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lista Class Reference}{15}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{17}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Constructor \& Destructor Documentation}{17}{subsection.4.3.2}%
-\contentsline {subsubsection}{\numberline {4.3.2.1}GrafoLista()}{17}{subsubsection.4.3.2.1}%
-\contentsline {subsubsection}{\numberline {4.3.2.2}$\sim $GrafoLista()}{17}{subsubsection.4.3.2.2}%
-\contentsline {subsection}{\numberline {4.3.3}Member Function Documentation}{17}{subsection.4.3.3}%
-\contentsline {subsubsection}{\numberline {4.3.3.1}get\_aresta()}{17}{subsubsection.4.3.3.1}%
-\contentsline {subsubsection}{\numberline {4.3.3.2}get\_vertice()}{18}{subsubsection.4.3.3.2}%
-\contentsline {subsubsection}{\numberline {4.3.3.3}get\_vizinhos()}{18}{subsubsection.4.3.3.3}%
-\contentsline {subsubsection}{\numberline {4.3.3.4}imprimir()}{18}{subsubsection.4.3.3.4}%
-\contentsline {subsubsection}{\numberline {4.3.3.5}inicializa\_grafo()}{18}{subsubsection.4.3.3.5}%
-\contentsline {subsubsection}{\numberline {4.3.3.6}nova\_aresta()}{18}{subsubsection.4.3.3.6}%
-\contentsline {subsubsection}{\numberline {4.3.3.7}set\_aresta()}{19}{subsubsection.4.3.3.7}%
-\contentsline {subsubsection}{\numberline {4.3.3.8}set\_vertice()}{19}{subsubsection.4.3.3.8}%
-\contentsline {section}{\numberline {4.4}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Matriz Class Reference}{20}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Detailed Description}{21}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Constructor \& Destructor Documentation}{21}{subsection.4.4.2}%
-\contentsline {subsubsection}{\numberline {4.4.2.1}GrafoMatriz()}{21}{subsubsection.4.4.2.1}%
-\contentsline {subsubsection}{\numberline {4.4.2.2}$\sim $GrafoMatriz()}{22}{subsubsection.4.4.2.2}%
-\contentsline {subsection}{\numberline {4.4.3}Member Function Documentation}{22}{subsection.4.4.3}%
-\contentsline {subsubsection}{\numberline {4.4.3.1}calcularIndiceLinear()}{22}{subsubsection.4.4.3.1}%
-\contentsline {subsubsection}{\numberline {4.4.3.2}get\_aresta()}{22}{subsubsection.4.4.3.2}%
-\contentsline {subsubsection}{\numberline {4.4.3.3}get\_vertice()}{22}{subsubsection.4.4.3.3}%
-\contentsline {subsubsection}{\numberline {4.4.3.4}get\_vizinhos()}{23}{subsubsection.4.4.3.4}%
-\contentsline {subsubsection}{\numberline {4.4.3.5}inicializa\_grafo()}{23}{subsubsection.4.4.3.5}%
-\contentsline {subsubsection}{\numberline {4.4.3.6}nova\_aresta()}{23}{subsubsection.4.4.3.6}%
-\contentsline {subsubsection}{\numberline {4.4.3.7}redimensionarMatriz()}{24}{subsubsection.4.4.3.7}%
-\contentsline {subsubsection}{\numberline {4.4.3.8}redimensionarMatrizLinear()}{24}{subsubsection.4.4.3.8}%
-\contentsline {subsubsection}{\numberline {4.4.3.9}set\_aresta()}{24}{subsubsection.4.4.3.9}%
-\contentsline {subsubsection}{\numberline {4.4.3.10}set\_vertice()}{24}{subsubsection.4.4.3.10}%
-\contentsline {section}{\numberline {4.5}Lista\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeada$<$ T $>$ Class Template Reference}{25}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Detailed Description}{25}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Constructor \& Destructor Documentation}{25}{subsection.4.5.2}%
-\contentsline {subsubsection}{\numberline {4.5.2.1}ListaEncadeada()}{25}{subsubsection.4.5.2.1}%
-\contentsline {subsubsection}{\numberline {4.5.2.2}$\sim $ListaEncadeada()}{26}{subsubsection.4.5.2.2}%
-\contentsline {subsection}{\numberline {4.5.3}Member Function Documentation}{26}{subsection.4.5.3}%
-\contentsline {subsubsection}{\numberline {4.5.3.1}adicionar()}{26}{subsubsection.4.5.3.1}%
-\contentsline {subsubsection}{\numberline {4.5.3.2}get\_tamanho()}{26}{subsubsection.4.5.3.2}%
-\contentsline {subsubsection}{\numberline {4.5.3.3}getInicio()}{26}{subsubsection.4.5.3.3}%
-\contentsline {subsubsection}{\numberline {4.5.3.4}imprimir()}{27}{subsubsection.4.5.3.4}%
-\contentsline {subsubsection}{\numberline {4.5.3.5}remover()}{27}{subsubsection.4.5.3.5}%
-\contentsline {section}{\numberline {4.6}Vertice\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeado Class Reference}{28}{section.4.6}%
-\contentsline {subsection}{\numberline {4.6.1}Detailed Description}{29}{subsection.4.6.1}%
-\contentsline {subsection}{\numberline {4.6.2}Constructor \& Destructor Documentation}{29}{subsection.4.6.2}%
-\contentsline {subsubsection}{\numberline {4.6.2.1}VerticeEncadeado()}{29}{subsubsection.4.6.2.1}%
-\contentsline {subsection}{\numberline {4.6.3}Member Function Documentation}{29}{subsection.4.6.3}%
-\contentsline {subsubsection}{\numberline {4.6.3.1}getConexao()}{29}{subsubsection.4.6.3.1}%
-\contentsline {subsubsection}{\numberline {4.6.3.2}getConexoes()}{30}{subsubsection.4.6.3.2}%
-\contentsline {subsubsection}{\numberline {4.6.3.3}getGrau()}{30}{subsubsection.4.6.3.3}%
-\contentsline {subsubsection}{\numberline {4.6.3.4}getId()}{30}{subsubsection.4.6.3.4}%
-\contentsline {subsubsection}{\numberline {4.6.3.5}getPeso()}{30}{subsubsection.4.6.3.5}%
-\contentsline {subsubsection}{\numberline {4.6.3.6}getPrimeiraConexao()}{30}{subsubsection.4.6.3.6}%
-\contentsline {subsubsection}{\numberline {4.6.3.7}getProximo()}{31}{subsubsection.4.6.3.7}%
-\contentsline {subsubsection}{\numberline {4.6.3.8}removeConexao()}{31}{subsubsection.4.6.3.8}%
-\contentsline {subsubsection}{\numberline {4.6.3.9}setConexao()}{31}{subsubsection.4.6.3.9}%
-\contentsline {subsubsection}{\numberline {4.6.3.10}setConexoes()}{31}{subsubsection.4.6.3.10}%
-\contentsline {subsubsection}{\numberline {4.6.3.11}setProximo()}{31}{subsubsection.4.6.3.11}%
-\contentsline {subsection}{\numberline {4.6.4}Friends And Related Symbol Documentation}{32}{subsection.4.6.4}%
-\contentsline {subsubsection}{\numberline {4.6.4.1}operator$<$$<$}{32}{subsubsection.4.6.4.1}%
-\contentsline {chapter}{\numberline {5}File Documentation}{33}{chapter.5}%
-\contentsline {section}{\numberline {5.1}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Aresta\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeada.h File Reference}{33}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Aresta\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeada.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{33}{section.5.2}%
-\contentsline {section}{\numberline {5.3}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Grafo.h File Reference}{34}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Grafo.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{34}{section.5.4}%
-\contentsline {section}{\numberline {5.5}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lista.h File Reference}{37}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lista.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{38}{section.5.6}%
-\contentsline {section}{\numberline {5.7}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Matriz.h File Reference}{38}{section.5.7}%
-\contentsline {subsection}{\numberline {5.7.1}Variable Documentation}{39}{subsection.5.7.1}%
-\contentsline {subsubsection}{\numberline {5.7.1.1}TAMANHO\_INICIAL}{39}{subsubsection.5.7.1.1}%
-\contentsline {section}{\numberline {5.8}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Matriz.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{39}{section.5.8}%
-\contentsline {section}{\numberline {5.9}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lista\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeada.h File Reference}{39}{section.5.9}%
-\contentsline {section}{\numberline {5.10}Lista\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeada.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{40}{section.5.10}%
-\contentsline {section}{\numberline {5.11}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Vertice\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeado.h File Reference}{41}{section.5.11}%
-\contentsline {section}{\numberline {5.12}Vertice\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeado.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{41}{section.5.12}%
-\contentsline {section}{\numberline {5.13}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Aresta\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeada.cpp File Reference}{42}{section.5.13}%
-\contentsline {subsection}{\numberline {5.13.1}Function Documentation}{42}{subsection.5.13.1}%
-\contentsline {subsubsection}{\numberline {5.13.1.1}operator$<$$<$()}{42}{subsubsection.5.13.1.1}%
-\contentsline {section}{\numberline {5.14}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lista.cpp File Reference}{42}{section.5.14}%
-\contentsline {section}{\numberline {5.15}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Matriz.cpp File Reference}{42}{section.5.15}%
-\contentsline {section}{\numberline {5.16}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Vertice\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeado.cpp File Reference}{42}{section.5.16}%
-\contentsline {subsection}{\numberline {5.16.1}Function Documentation}{43}{subsection.5.16.1}%
-\contentsline {subsubsection}{\numberline {5.16.1.1}operator$<$$<$()}{43}{subsubsection.5.16.1.1}%
+\contentsline {subsubsection}{\numberline {4.2.3.8}encontrar\_agmg\_guloso()}{12}{subsubsection.4.2.3.8}%
+\contentsline {subsubsection}{\numberline {4.2.3.9}encontrar\_agmg\_randomizado()}{12}{subsubsection.4.2.3.9}%
+\contentsline {subsubsection}{\numberline {4.2.3.10}get\_aresta()}{12}{subsubsection.4.2.3.10}%
+\contentsline {subsubsection}{\numberline {4.2.3.11}get\_clusters()}{12}{subsubsection.4.2.3.11}%
+\contentsline {subsubsection}{\numberline {4.2.3.12}get\_grau()}{13}{subsubsection.4.2.3.12}%
+\contentsline {subsubsection}{\numberline {4.2.3.13}get\_ordem()}{13}{subsubsection.4.2.3.13}%
+\contentsline {subsubsection}{\numberline {4.2.3.14}get\_vertice()}{13}{subsubsection.4.2.3.14}%
+\contentsline {subsubsection}{\numberline {4.2.3.15}get\_vizinhos()}{13}{subsubsection.4.2.3.15}%
+\contentsline {subsubsection}{\numberline {4.2.3.16}get\_vizinhos\_array()}{14}{subsubsection.4.2.3.16}%
+\contentsline {subsubsection}{\numberline {4.2.3.17}get\_vizinhos\_vertices()}{14}{subsubsection.4.2.3.17}%
+\contentsline {subsubsection}{\numberline {4.2.3.18}inicializa\_grafo()}{14}{subsubsection.4.2.3.18}%
+\contentsline {subsubsection}{\numberline {4.2.3.19}maior\_menor\_distancia()}{14}{subsubsection.4.2.3.19}%
+\contentsline {subsubsection}{\numberline {4.2.3.20}n\_conexo()}{15}{subsubsection.4.2.3.20}%
+\contentsline {subsubsection}{\numberline {4.2.3.21}nova\_aresta()}{15}{subsubsection.4.2.3.21}%
+\contentsline {subsubsection}{\numberline {4.2.3.22}set\_aresta()}{15}{subsubsection.4.2.3.22}%
+\contentsline {subsubsection}{\numberline {4.2.3.23}set\_aresta\_ponderada()}{15}{subsubsection.4.2.3.23}%
+\contentsline {subsubsection}{\numberline {4.2.3.24}set\_eh\_direcionado()}{16}{subsubsection.4.2.3.24}%
+\contentsline {subsubsection}{\numberline {4.2.3.25}set\_ordem()}{16}{subsubsection.4.2.3.25}%
+\contentsline {subsubsection}{\numberline {4.2.3.26}set\_vertice()}{16}{subsubsection.4.2.3.26}%
+\contentsline {subsubsection}{\numberline {4.2.3.27}set\_vertice\_ponderado()}{16}{subsubsection.4.2.3.27}%
+\contentsline {subsubsection}{\numberline {4.2.3.28}testa\_get\_vizinhos()}{17}{subsubsection.4.2.3.28}%
+\contentsline {subsubsection}{\numberline {4.2.3.29}vertice\_ponderado()}{17}{subsubsection.4.2.3.29}%
+\contentsline {section}{\numberline {4.3}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lista Class Reference}{17}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{19}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Constructor \& Destructor Documentation}{19}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}GrafoLista()}{19}{subsubsection.4.3.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.2.2}$\sim $GrafoLista()}{19}{subsubsection.4.3.2.2}%
+\contentsline {subsection}{\numberline {4.3.3}Member Function Documentation}{19}{subsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.3.1}get\_aresta()}{19}{subsubsection.4.3.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.3.2}get\_vertice()}{20}{subsubsection.4.3.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3.3}get\_vizinhos()}{20}{subsubsection.4.3.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.3.4}get\_vizinhos\_array()}{21}{subsubsection.4.3.3.4}%
+\contentsline {subsubsection}{\numberline {4.3.3.5}get\_vizinhos\_vertices()}{21}{subsubsection.4.3.3.5}%
+\contentsline {subsubsection}{\numberline {4.3.3.6}imprimir()}{21}{subsubsection.4.3.3.6}%
+\contentsline {subsubsection}{\numberline {4.3.3.7}inicializa\_grafo()}{21}{subsubsection.4.3.3.7}%
+\contentsline {subsubsection}{\numberline {4.3.3.8}nova\_aresta()}{21}{subsubsection.4.3.3.8}%
+\contentsline {subsubsection}{\numberline {4.3.3.9}set\_aresta()}{22}{subsubsection.4.3.3.9}%
+\contentsline {subsubsection}{\numberline {4.3.3.10}set\_vertice()}{22}{subsubsection.4.3.3.10}%
+\contentsline {section}{\numberline {4.4}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Matriz Class Reference}{23}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Detailed Description}{24}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Constructor \& Destructor Documentation}{25}{subsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.2.1}GrafoMatriz()}{25}{subsubsection.4.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.4.2.2}$\sim $GrafoMatriz()}{25}{subsubsection.4.4.2.2}%
+\contentsline {subsection}{\numberline {4.4.3}Member Function Documentation}{25}{subsection.4.4.3}%
+\contentsline {subsubsection}{\numberline {4.4.3.1}calcularIndiceLinear()}{25}{subsubsection.4.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.4.3.2}get\_aresta()}{25}{subsubsection.4.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.4.3.3}get\_vertice()}{25}{subsubsection.4.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.4.3.4}get\_vizinhos()}{26}{subsubsection.4.4.3.4}%
+\contentsline {subsubsection}{\numberline {4.4.3.5}get\_vizinhos\_array()}{26}{subsubsection.4.4.3.5}%
+\contentsline {subsubsection}{\numberline {4.4.3.6}get\_vizinhos\_vertices()}{26}{subsubsection.4.4.3.6}%
+\contentsline {subsubsection}{\numberline {4.4.3.7}inicializa\_grafo()}{27}{subsubsection.4.4.3.7}%
+\contentsline {subsubsection}{\numberline {4.4.3.8}nova\_aresta()}{27}{subsubsection.4.4.3.8}%
+\contentsline {subsubsection}{\numberline {4.4.3.9}redimensionarMatriz()}{27}{subsubsection.4.4.3.9}%
+\contentsline {subsubsection}{\numberline {4.4.3.10}redimensionarMatrizLinear()}{27}{subsubsection.4.4.3.10}%
+\contentsline {subsubsection}{\numberline {4.4.3.11}set\_aresta()}{27}{subsubsection.4.4.3.11}%
+\contentsline {subsubsection}{\numberline {4.4.3.12}set\_vertice()}{28}{subsubsection.4.4.3.12}%
+\contentsline {section}{\numberline {4.5}Lista\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeada$<$ T $>$ Class Template Reference}{28}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Detailed Description}{29}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Constructor \& Destructor Documentation}{29}{subsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.1}ListaEncadeada()}{29}{subsubsection.4.5.2.1}%
+\contentsline {subsubsection}{\numberline {4.5.2.2}$\sim $ListaEncadeada()}{29}{subsubsection.4.5.2.2}%
+\contentsline {subsection}{\numberline {4.5.3}Member Function Documentation}{29}{subsection.4.5.3}%
+\contentsline {subsubsection}{\numberline {4.5.3.1}adicionar()}{29}{subsubsection.4.5.3.1}%
+\contentsline {subsubsection}{\numberline {4.5.3.2}get\_tamanho()}{30}{subsubsection.4.5.3.2}%
+\contentsline {subsubsection}{\numberline {4.5.3.3}getInicio()}{30}{subsubsection.4.5.3.3}%
+\contentsline {subsubsection}{\numberline {4.5.3.4}imprimir()}{30}{subsubsection.4.5.3.4}%
+\contentsline {subsubsection}{\numberline {4.5.3.5}remover()}{30}{subsubsection.4.5.3.5}%
+\contentsline {section}{\numberline {4.6}Vertice\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeado Class Reference}{31}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Detailed Description}{31}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Constructor \& Destructor Documentation}{31}{subsection.4.6.2}%
+\contentsline {subsubsection}{\numberline {4.6.2.1}VerticeEncadeado()}{31}{subsubsection.4.6.2.1}%
+\contentsline {subsection}{\numberline {4.6.3}Member Function Documentation}{32}{subsection.4.6.3}%
+\contentsline {subsubsection}{\numberline {4.6.3.1}getConexao()}{32}{subsubsection.4.6.3.1}%
+\contentsline {subsubsection}{\numberline {4.6.3.2}getConexoes()}{32}{subsubsection.4.6.3.2}%
+\contentsline {subsubsection}{\numberline {4.6.3.3}getGrau()}{32}{subsubsection.4.6.3.3}%
+\contentsline {subsubsection}{\numberline {4.6.3.4}getId()}{33}{subsubsection.4.6.3.4}%
+\contentsline {subsubsection}{\numberline {4.6.3.5}getPeso()}{33}{subsubsection.4.6.3.5}%
+\contentsline {subsubsection}{\numberline {4.6.3.6}getPrimeiraConexao()}{33}{subsubsection.4.6.3.6}%
+\contentsline {subsubsection}{\numberline {4.6.3.7}getProximo()}{33}{subsubsection.4.6.3.7}%
+\contentsline {subsubsection}{\numberline {4.6.3.8}removeConexao()}{33}{subsubsection.4.6.3.8}%
+\contentsline {subsubsection}{\numberline {4.6.3.9}setConexao()}{34}{subsubsection.4.6.3.9}%
+\contentsline {subsubsection}{\numberline {4.6.3.10}setConexoes()}{34}{subsubsection.4.6.3.10}%
+\contentsline {subsubsection}{\numberline {4.6.3.11}setProximo()}{34}{subsubsection.4.6.3.11}%
+\contentsline {subsection}{\numberline {4.6.4}Friends And Related Symbol Documentation}{34}{subsection.4.6.4}%
+\contentsline {subsubsection}{\numberline {4.6.4.1}operator$<$$<$}{34}{subsubsection.4.6.4.1}%
+\contentsline {chapter}{\numberline {5}File Documentation}{37}{chapter.5}%
+\contentsline {section}{\numberline {5.1}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Aresta\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeada.h File Reference}{37}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Aresta\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeada.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{37}{section.5.2}%
+\contentsline {section}{\numberline {5.3}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Grafo.h File Reference}{38}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Grafo.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{38}{section.5.4}%
+\contentsline {section}{\numberline {5.5}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lista.h File Reference}{45}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lista.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{46}{section.5.6}%
+\contentsline {section}{\numberline {5.7}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Matriz.h File Reference}{46}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}Variable Documentation}{47}{subsection.5.7.1}%
+\contentsline {subsubsection}{\numberline {5.7.1.1}TAMANHO\_INICIAL}{47}{subsubsection.5.7.1.1}%
+\contentsline {section}{\numberline {5.8}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Matriz.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{47}{section.5.8}%
+\contentsline {section}{\numberline {5.9}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lista\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeada.h File Reference}{47}{section.5.9}%
+\contentsline {section}{\numberline {5.10}Lista\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeada.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{48}{section.5.10}%
+\contentsline {section}{\numberline {5.11}include/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Vertice\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeado.h File Reference}{49}{section.5.11}%
+\contentsline {section}{\numberline {5.12}Vertice\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeado.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{49}{section.5.12}%
+\contentsline {section}{\numberline {5.13}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Aresta\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeada.cpp File Reference}{50}{section.5.13}%
+\contentsline {subsection}{\numberline {5.13.1}Function Documentation}{50}{subsection.5.13.1}%
+\contentsline {subsubsection}{\numberline {5.13.1.1}operator$<$$<$()}{50}{subsubsection.5.13.1.1}%
+\contentsline {section}{\numberline {5.14}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Lista.cpp File Reference}{50}{section.5.14}%
+\contentsline {section}{\numberline {5.15}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Grafo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Matriz.cpp File Reference}{50}{section.5.15}%
+\contentsline {subsection}{\numberline {5.15.1}Variable Documentation}{51}{subsection.5.15.1}%
+\contentsline {subsubsection}{\numberline {5.15.1.1}TAMANHO\_FIXO}{51}{subsubsection.5.15.1.1}%
+\contentsline {section}{\numberline {5.16}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Vertice\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Encadeado.cpp File Reference}{51}{section.5.16}%
+\contentsline {subsection}{\numberline {5.16.1}Function Documentation}{51}{subsection.5.16.1}%
+\contentsline {subsubsection}{\numberline {5.16.1.1}operator$<$$<$()}{51}{subsubsection.5.16.1.1}%

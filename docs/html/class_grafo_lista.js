@@ -5,6 +5,8 @@ var class_grafo_lista =
     [ "get_aresta", "class_grafo_lista.html#ac8d5284da7f3ef4007c8cac351fc4df6", null ],
     [ "get_vertice", "class_grafo_lista.html#ac11ea955de368ba048d67e44f7cf5f0e", null ],
     [ "get_vizinhos", "class_grafo_lista.html#ad56ed6d6af7d5741c0a59f48ae339575", null ],
+    [ "get_vizinhos_array", "class_grafo_lista.html#acf8ec13fc00a2c635ef546b14f524b3d", null ],
+    [ "get_vizinhos_vertices", "class_grafo_lista.html#a1e75457615541e600ad2c1e0c054e2f9", null ],
     [ "imprimir", "class_grafo_lista.html#ade800e5e355aebd673a344987fd0865b", null ],
     [ "inicializa_grafo", "class_grafo_lista.html#a264c985123f08ae3ab99b4b1bb27261a", null ],
     [ "nova_aresta", "class_grafo_lista.html#a34bec41ce42dd5719167a686aca9ad4a", null ],

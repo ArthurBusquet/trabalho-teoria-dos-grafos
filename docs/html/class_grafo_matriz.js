@@ -6,6 +6,8 @@ var class_grafo_matriz =
     [ "get_aresta", "class_grafo_matriz.html#ad8bfe4e0ba65c43bb15c24b5d5dd41a2", null ],
     [ "get_vertice", "class_grafo_matriz.html#adf60b7bb020e48e07a6cb2dc6982b42a", null ],
     [ "get_vizinhos", "class_grafo_matriz.html#ad26746a41b10cb0649e750ab7c011981", null ],
+    [ "get_vizinhos_array", "class_grafo_matriz.html#a230a0115e4c047ffaae3cfb9e8b2d9bf", null ],
+    [ "get_vizinhos_vertices", "class_grafo_matriz.html#aaf25a0a110dec49dc97e1cdd978b2b90", null ],
     [ "inicializa_grafo", "class_grafo_matriz.html#a01ec9f198e6c2f49690c5cf58c480aad", null ],
     [ "nova_aresta", "class_grafo_matriz.html#a674143c3e98c79c86c01fe45eb1f6d38", null ],
     [ "redimensionarMatriz", "class_grafo_matriz.html#aa9bc63976f1578206a89f5f08794de04", null ],

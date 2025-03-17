@@ -74,6 +74,8 @@ public:
 
     /**
      * @brief Carrega o grafo a partir de um arquivo que contem a instancia do grafo.
+     *
+     * @param d Parametro que seleciona o arquivo a ser lido
      */
     void carrega_grafo_novo(int d)
     {
@@ -208,12 +210,16 @@ public:
     virtual void set_vertice(int id, float peso) = 0;
 
     /**
-     * @brief 
-     *
-     * Esta função busca e disponibiliza um array com os vertices vizinhos ao vertice em questao
-     *
-     * @return Quantidade total de vizinhos do vertice
-     */
+    * @brief Obtém os vértices vizinhos de um determinado vértice.
+    *
+    * @details Esta função retorna um array contendo os vértices vizinhos
+    * do vértice especificado. A quantidade de vizinhos é armazenada na 
+    * variável passada por referência.
+    *
+    * @param vertice O vértice cujo vizinhos serão buscados.
+    * @param qtdvizinhos Referência para armazenar a quantidade total de vizinhos.
+    * @return Ponteiro para um array contendo os vértices vizinhos.
+    */
     virtual int *get_vizinhos_vertices(int vertice, int &qtdvizinhos) = 0;
 
     virtual int *get_vizinhos_array(int id, int &tamanho) = 0;
