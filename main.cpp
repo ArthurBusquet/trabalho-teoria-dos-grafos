@@ -11,34 +11,16 @@
 
 void imprimirDescricaoGrafo(Grafo *graph)
 {
-    std::cout << "Grau: " << graph->get_grau() << std::endl;
-    std::cout << "Ordem: " << graph->get_ordem() << std::endl;
-    std::cout << "Direcionado: " << (graph->eh_direcionado() ? "Sim" : "Nao") << std::endl;
-    std::cout << "Componentes conexas: " << graph->n_conexo() << std::endl;
-    std::cout << "Completo: " << graph->eh_completo() << std::endl;
-    std::cout << "Vertices ponderados: " << (graph->vertice_ponderado() ? "Sim" : "Nao") << std::endl;
-    std::cout << "Arestas ponderadas: " << (graph->aresta_ponderada() ? "Sim" : "Nao") << std::endl;
+    // std::cout << "Grau: " << graph->get_grau() << std::endl;
+    // std::cout << "Ordem: " << graph->get_ordem() << std::endl;
+    // std::cout << "Direcionado: " << (graph->eh_direcionado() ? "Sim" : "Nao") << std::endl;
+    // std::cout << "Componentes conexas: " << graph->n_conexo() << std::endl;
+    // std::cout << "Completo: " << graph->eh_completo() << std::endl;
+    // std::cout << "Vertices ponderados: " << (graph->vertice_ponderado() ? "Sim" : "Nao") << std::endl;
+    // std::cout << "Arestas ponderadas: " << (graph->aresta_ponderada() ? "Sim" : "Nao") << std::endl;
+    std::cout << "Tamanho da árvore utilizando Algoritmo Guloso: " << graph->encontrar_agmg_guloso() << endl;
+    std::cout << "Tamanho da árvore utilizando Algoritmo Randomizado: " << graph->encontrar_agmg_randomizado() << endl;
 
-    // graph->testa_get_vizinhos(636);
-    // // graph->maior_menor_distancia();
-    // std::cout << "----------------------------------------" << std::endl;
-    // int *clusters = graph->get_clusters();
-    // for (int i = 1; i <= 20; i++)
-    // {
-    //     std::cout << "Vértice " << i << " está no cluster " << clusters[i] << endl;
-    // }
-    // std::cout << "Arvore: " << graph->encontrar_agmg_guloso() << endl;
-    // int tamanho_agm;
-    // std::pair<int, int>* agm = graph->arvore_geradora_minima_gulosa(tamanho_agm);
-
-    // // Exibir as arestas da AGM
-    // std::cout << "Arestas da Árvore Geradora Mínima:" << std::endl;
-    // for (int i = 0; i < tamanho_agm; i++) {
-    //     std::cout << "Aresta: " << agm[i].first << " - " << agm[i].second << std::endl;
-    // }
-
-    // Libera a memória alocada para a AGM
-    // delete[] agm;
 }
 
 int main(int argc, char *argv[])

@@ -324,20 +324,6 @@ public:
             int grauMaximo = 0;
             for (int i = 1; i <= 100; i++)
             {
-                // int quantidadeVizinhos = get_vizinhos(i);
-                // int* vizinhos = get_vizinhos_vertices(i, quantidadeVizinhos);
-                // if (vizinhos) {
-                //     cout << "Vizinhos do vértice " << i << ": ";
-                //     for (int i = 0; i < quantidadeVizinhos; i++) {
-                //         cout << vizinhos[i] << " ";
-                //     }
-                //     cout << endl;
-
-                //     // Libera a memória alocada para o array de vizinhos
-                //     delete[] vizinhos;
-                // } else {
-                //     cout << "Vértice inválido ou sem vizinhos." << endl;
-                // }
                 int numVizinhos = get_vizinhos(i);
 
                 if (numVizinhos > grauMaximo)
@@ -563,7 +549,7 @@ public:
 
         while (true)
         {
-            std::cout << "soma_pesos_agmg: " << soma_pesos_agmg << std::endl;
+            //std::cout << "soma_pesos_agmg: " << soma_pesos_agmg << std::endl;
 
             int qtd_vizinhos;
             int *vizinhos = get_vizinhos_vertices(vertice_atual, qtd_vizinhos);
@@ -672,7 +658,7 @@ public:
 
         while (true)
         {
-            std::cout << "vertice_atual: " << vertice_atual << std::endl;
+            //std::cout << "vertice_atual: " << vertice_atual << std::endl;
 
             int qtd_vizinhos;
             int *vizinhos = get_vizinhos_vertices(vertice_atual, qtd_vizinhos);
@@ -705,7 +691,7 @@ public:
 
                 if (!cluster_conectados[clusters[vizinho]])
                 {
-                    std::cout << "cluster do " << vizinho << " e " << clusters[vizinho] << std::endl;
+                    //std::cout << "cluster do " << vizinho << " e " << clusters[vizinho] << std::endl;
                     num_candidatos = 0;
                     candidatos[num_candidatos++] = vizinho;
                     break;
@@ -756,7 +742,7 @@ public:
         int qtd_vizinhos;
         vizinhos = get_vizinhos_vertices(id, qtd_vizinhos);
 
-        cout << "vizinhos do " << id << " ";
+        //cout << "vizinhos do " << id << " ";
         for (int i = 0; i < qtd_vizinhos; i++)
         {
             cout << vizinhos[i] << " ";
