@@ -757,6 +757,129 @@ public:
         }
         cout << endl;
     }
+
+    /**
+    * @brief Encontra a Árvore Geradora Mínima (AGM) do grafo de forma reativa, garantindo que contenha pelo menos um vértice de cada cluster.
+    *
+    * Esta função utiliza uma abordagem gulosa semelhante ao algoritmo de Prim, mas com a adição de uma verificação para garantir que todos os clusters estejam representados na árvore.
+    *
+    * @return Um array de pares representando as arestas da AGM.
+    */
+    std::pair<int, int>* arvore_geradora_minima_reativa(int& tamanho_agm) {
+        // Verifica se o grafo tem vértices
+        if (ordem == 0) {
+            std::cerr << "Erro: O grafo não tem vértices." << std::endl;
+            tamanho_agm = 0;
+            return nullptr;
+        }
+
+        // Estrutura para armazenar as arestas da AGM
+        std::pair<int, int>* agm = new std::pair<int, int>[ordem]; // No máximo, a AGM terá (ordem - 1) arestas
+        tamanho_agm = 0; // Inicializa o tamanho da AGM
+
+        // Estrutura para verificar se um vértice já está na AGM
+        bool* na_agm = new bool[ordem + 1];
+        for (int i = 1; i <= ordem; i++) {
+            na_agm[i] = false;
+        }
+
+        // Estrutura para verificar se um cluster já está representado na AGM
+        bool* cluster_representado = new bool[clusters[ordem] + 1];
+        for (int i = 1; i <= clusters[ordem]; i++) {
+            cluster_representado[i] = false;
+        }
+
+        // Contador de clusters representados
+        int clusters_representados = 0;
+
+        // Função para verificar se todos os clusters estão representados
+        auto todos_clusters_representados = [&]() {
+            return clusters_representados == clusters[ordem];
+        };
+
+        // Função para adicionar um vértice à AGM e atualizar os clusters representados
+        auto adicionar_vertice = [&](int vertice) {
+            if (!na_agm[vertice]) {
+                na_agm[vertice] = true;
+                if (!cluster_representado[clusters[vertice]]) {
+                    cluster_representado[clusters[vertice]] = true;
+                    clusters_representados++;
+                }
+            }
+        };
+
+        // Estrutura para armazenar as arestas candidatas
+        struct Aresta {
+            int peso;
+            int origem;
+            int destino;
+        };
+
+        // Array para armazenar todas as arestas do grafo
+        Aresta* arestas = new Aresta[ordem * ordem]; // Número máximo de arestas em um grafo completo
+        int num_arestas = 0;
+
+        // Coleta todas as arestas do grafo
+        for (int i = 1; i <= ordem; i++) {
+            int qtdVizinhos;
+            int* vizinhos = get_vizinhos_vertices(i, qtdVizinhos);
+            for (int j = 0; j < qtdVizinhos; j++) {
+                int vizinho = vizinhos[j];
+                int peso = get_aresta(i, vizinho);
+                if (peso > 0) { // Ignora arestas com peso zero ou inválido
+                    arestas[num_arestas].peso = peso;
+                    arestas[num_arestas].origem = i;
+                    arestas[num_arestas].destino = vizinho;
+                    num_arestas++;
+                }
+            }
+            delete[] vizinhos; // Libera a memória alocada para o array de vizinhos
+        }
+
+        // Ordena as arestas manualmente (usando Bubble Sort)
+        for (int i = 0; i < num_arestas - 1; i++) {
+            for (int j = 0; j < num_arestas - i - 1; j++) {
+                if (arestas[j].peso > arestas[j + 1].peso) {
+                    // Troca as arestas
+                    Aresta temp = arestas[j];
+                    arestas[j] = arestas[j + 1];
+                    arestas[j + 1] = temp;
+                }
+            }
+        }
+
+        // Adiciona o primeiro vértice de cada cluster à AGM
+        for (int i = 1; i <= ordem; i++) {
+            if (!cluster_representado[clusters[i]]) {
+                adicionar_vertice(i);
+            }
+        }
+
+        // Enquanto nem todos os clusters estiverem representados, adiciona arestas
+        for (int i = 0; i < num_arestas && !todos_clusters_representados(); i++) {
+            int u = arestas[i].origem;
+            int v = arestas[i].destino;
+
+            // Se o vértice de destino ainda não está na AGM, adiciona a aresta
+            if (!na_agm[v]) {
+                agm[tamanho_agm] = {u, v};
+                tamanho_agm++;
+                adicionar_vertice(v);
+            }
+        }
+
+        // Verifica se todos os clusters foram representados
+        if (!todos_clusters_representados()) {
+            std::cerr << "Aviso: Nem todos os clusters estão conectados no grafo." << std::endl;
+        }
+
+        // Libera a memória alocada
+        delete[] na_agm;
+        delete[] cluster_representado;
+        delete[] arestas;
+
+        return agm;
+    }
 };
 
 #endif // GRAFO_H_INCLUDED
